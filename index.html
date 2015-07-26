@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head lang="ru">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <link rel="stylesheet" href="frameworks/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="index.css" type="text/css"/>
+
+    <script src="frameworks/jquery/jquery.min.js"></script>
+    <script src="frameworks/bootstrap/js/bootstrap.min.js"></script>
+    <script src="modules.js"></script>
+    <script src="index.js"></script>
+    <title>InfoboxCloud Calculator</title>
+</head>
+<body>
+<div class="container">
+    <header class="page-header">
+        <!--<ul class="nav nav-pills pull-right">-->
+            <!--<li class="active">-->
+                <!--<a href="#">Калькулятор</a>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<a href="#">Руководство</a>-->
+            <!--</li>-->
+        <!--</ul>-->
+        <h3>Калькулятор облачной инфраструктуры InfoboxCloud</h3>
+        Официальные тарифные планы доступны <a href="http://infobox.ru/about/documents/tariffs-annex-3/" target="_blank">по ссылке</a>.
+    </header>
+    <div class="jumbotron">
+        <p>Укажите параметры облачного сервера:</p>
+        <div class="input-group">
+            <span class="input-group-addon input-group-addon_first">Имя сервера</span>
+            <input type="text" class="form-control serverName" placeholder="Веб-сервер" aria-label="basic-addon1">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon input-group-addon_first">Ядра процессора</span>
+            <input type="text" class="form-control cores" placeholder="1" aria-label="basic-addon1">
+            <span class="input-group-addon input-group-addon_last">штук</span>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon input-group-addon_first">Частота процессора</span>
+            <input type="text" class="form-control frequency" placeholder="2.3" aria-describedby="basic-addon1">
+            <span class="input-group-addon input-group-addon_last">гигагерц</span>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon input-group-addon_first">Дисковое пространство</span>
+            <input type="text" class="form-control disk" placeholder="50" aria-describedby="basic-addon1">
+            <span class="input-group-addon input-group-addon_last">гигабайт</span>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon input-group-addon_first">Оперативная память</span>
+            <input type="text" class="form-control ram" placeholder="4" aria-describedby="basic-addon1">
+            <span class="input-group-addon input-group-addon_last">гигабайт</span>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon input-group-addon_first">Количество публичных IP</span>
+            <input type="text" class="form-control ip" placeholder="1" aria-describedby="basic-addon1">
+            <span class="input-group-addon input-group-addon_last">штук</span>
+        </div>
+        <input type="text" class="trafficOut"  style="visibility: hidden"/><label style="visibility: hidden"> Исходящий трафик в месяц (гб)</label></br>
+        <div class="btn-group">
+            <button type="button" class="btn btn-success addButton">Добавить сервер</button>
+            <button type="button" class="btn btn-default clearItemsButton">Очистить поля</button>
+            <button type="button" class="btn btn-default clearListButton">Очистить список</button>
+
+        </div>
+
+        </br>
+        </br>
+        <div class="resultSpace" style="background: lightgreen">
+            <strong>Примерная стоимость облачной инфраструктуры: 0.00 руб. в месяц</strong>
+        </div>
+        <div class="downloadSpace"></div>
+        <div class="listSpace" style="background: lightgray"></div>
+    </div>
+</div>
+<div class="navbar-fixed-bottom row-fluid">
+    <div class="navbar-inner">
+        <div class="container">
+            "Калькулятор облачной инфраструктуры InfoboxCloud". Сборка от 26.07.2015.
+            © «Национальные телекоммуникации», 2002-2015
+        </div>
+    </div>
+</body>
+</html>
