@@ -32,34 +32,53 @@
         <p>Укажите параметры облачного сервера:</p>
         <div class="input-group">
             <span class="input-group-addon input-group-addon_first">Имя сервера</span>
-            <input type="text" class="form-control serverName" placeholder="Веб-сервер" aria-label="basic-addon1">
+            <input type="text" class="form-control serverName" placeholder="Облачный сервер" aria-label="basic-addon1">
         </div>
         <div class="input-group">
             <span class="input-group-addon input-group-addon_first">Ядра процессора</span>
-            <input type="text" class="form-control cores" placeholder="1" aria-label="basic-addon1">
+            <input type="text" class="form-control cores" placeholder="от 1 до 24" aria-label="basic-addon1">
             <span class="input-group-addon input-group-addon_last">штук</span>
         </div>
         <div class="input-group">
             <span class="input-group-addon input-group-addon_first">Частота процессора</span>
-            <input type="text" class="form-control frequency" placeholder="2.3" aria-describedby="basic-addon1">
+            <input type="text" class="form-control frequency" placeholder="от 1 до 2.3" aria-describedby="basic-addon1">
             <span class="input-group-addon input-group-addon_last">гигагерц</span>
         </div>
         <div class="input-group">
-            <span class="input-group-addon input-group-addon_first">Дисковое пространство</span>
-            <input type="text" class="form-control disk" placeholder="50" aria-describedby="basic-addon1">
+            <span class="input-group-addon input-group-addon_first">Оперативная память</span>
+            <input type="text" class="form-control ram" placeholder="от 0.5 до 64" aria-describedby="basic-addon1">
             <span class="input-group-addon input-group-addon_last">гигабайт</span>
         </div>
         <div class="input-group">
-            <span class="input-group-addon input-group-addon_first">Оперативная память</span>
-            <input type="text" class="form-control ram" placeholder="4" aria-describedby="basic-addon1">
+            <span class="input-group-addon input-group-addon_first">Дисковое пространство</span>
+            <input type="text" class="form-control disk" placeholder="от 10 до 500" aria-describedby="basic-addon1">
             <span class="input-group-addon input-group-addon_last">гигабайт</span>
         </div>
         <div class="input-group">
             <span class="input-group-addon input-group-addon_first">Количество публичных IP</span>
-            <input type="text" class="form-control ip" placeholder="1" aria-describedby="basic-addon1">
+            <input type="text" class="form-control ip" placeholder="от 0 до 10" aria-describedby="basic-addon1">
             <span class="input-group-addon input-group-addon_last">штук</span>
         </div>
-        <input type="text" class="trafficOut"  style="visibility: hidden"/><label style="visibility: hidden"> Исходящий трафик в месяц (гб)</label></br>
+        <div class="input-group">
+            <span class="input-group-addon input-group-addon_first">Исходящий трафик</span>
+            <input type="text" class="form-control trafficOut" placeholder="Первые 3000 бесплатно!" aria-describedby="basic-addon1"/>
+            <span class="input-group-addon input-group-addon_last">гигабайт</span>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon input-group-addon_first"><a href="https://infoboxcloud.ru/community/blog/iaas/220.html" target="_blank">Тип виртуализации</a></span>
+            <select class="form-control vtType">
+                <option>Контейнер</option>
+                <option>Виртуальная машина (разрешить управление ядром ОС)</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon input-group-addon_first">Операционная система</span>
+            <select class="form-control osType">
+                <option>Linux</option>
+                <option>Windows</option>
+            </select>
+        </div>
+       </br>
         <div class="btn-group">
             <button type="button" class="btn btn-success addButton">Добавить сервер</button>
             <button type="button" class="btn btn-default clearItemsButton">Очистить поля</button>
@@ -76,10 +95,10 @@
         <div class="listSpace" style="background: lightgray"></div>
     </div>
 </div>
-<div class="navbar-fixed-bottom row-fluid">
+<div class="navbar-fixed-bottom row-fluid footer">
     <div class="navbar-inner">
         <div class="container">
-            "Калькулятор облачной инфраструктуры InfoboxCloud". Сборка от 26.07.2015.
+            "Калькулятор облачной инфраструктуры InfoboxCloud". Сборка от 27.07.2015.
             © «Национальные телекоммуникации», 2002-2015
         </div>
     </div>
