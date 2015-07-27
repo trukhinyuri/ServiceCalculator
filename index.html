@@ -1,16 +1,18 @@
 <!DOCTYPE html>
-<html>
-<head lang="ru">
+<html lang="ru" ng-app="calculator">
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <link rel="stylesheet" href="frameworks/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css"/>
     <link rel="stylesheet" href="index.css" type="text/css"/>
 
-    <script src="frameworks/jquery/jquery.min.js"></script>
-    <script src="frameworks/bootstrap/js/bootstrap.min.js"></script>
-    <script src="modules.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/angularjs/angular.js"></script>
+    <script src="modules.min.js"></script>
     <script src="index.js"></script>
     <title>InfoboxCloud Calculator</title>
 </head>
@@ -29,8 +31,8 @@
         Официальные тарифные планы доступны <a href="http://infobox.ru/about/documents/tariffs-annex-3/" target="_blank">по ссылке</a>.
         Если вы хотите получить коммерческое предложение или у вас есть вопрос, <a href="mailto:ytrukhin@infobox.ru">напишите нам</a>.
     </header>
-    <div class="jumbotron">
-        <p>Укажите параметры облачного сервера:</p>
+    <div class="jumbotron jumbotron_cloud_server" ng-controller="inputCloudServerController">
+        <h4>Укажите параметры облачного сервера:</h4>
         <div class="input-group">
             <span class="input-group-addon input-group-addon_first">Имя сервера</span>
             <input type="text" class="form-control serverName" placeholder="Облачный сервер" aria-label="basic-addon1">
@@ -83,23 +85,25 @@
         <div class="btn-group">
             <button type="button" class="btn btn-success addButton">Добавить сервер</button>
             <button type="button" class="btn btn-default clearItemsButton">Очистить поля</button>
-            <button type="button" class="btn btn-default clearListButton">Очистить список</button>
-
+            <button type="button" class="btn btn-default clearLastButton">Удалить последний</button>
+            <button type="button" class="btn btn-danger clearListButton">Очистить список</button>
         </div>
 
         </br>
         </br>
-        <div class="resultSpace" style="background: lightgreen">
-            <strong>Примерная стоимость облачной инфраструктуры: 0.00 руб. в месяц</strong>
+    </div>
+    <div class="jumbotron jumbotron_results">
+        <div class="resultSpace" ng-controller="resultsController">
+            <h3 class="resultHeader">Примерная стоимость облачной инфраструктуры: {{ costOfInfrastructure }} руб. в месяц (30 дней)</h3>
         </div>
         <div class="downloadSpace"></div>
-        <div class="listSpace" style="background: lightgray"></div>
+        <div class="listSpace"></div>
     </div>
 </div>
 <div class="navbar-fixed-bottom row-fluid footer">
     <div class="navbar-inner">
         <div class="container">
-            "Калькулятор облачной инфраструктуры InfoboxCloud". Сборка от 27.07.2015.
+            "Калькулятор облачной инфраструктуры InfoboxCloud". Сборка от 28.07.2015.
             © «Национальные телекоммуникации», 2002-2015
         </div>
     </div>

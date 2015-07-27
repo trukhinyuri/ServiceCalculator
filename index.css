@@ -10,3 +10,27 @@
     background: white;
     color: grey;
 }
+.jumbotron_cloud_server {
+    padding: 2mm;
+    background: white;
+    margin: 1mm;
+}
+.jumbotron_results {
+    padding: 2mm;
+    margin: 1mm 1mm 1mm 0;
+    background: white;
+}
+.resultSpace {
+    /*color: #00b3ee;*/
+}
+.resultHeader {
+    margin: 0;
+}
+.resultServer {
+    border: 0.4mm solid #00b3ee;
+    margin: 3mm 0 3mm 0;
+    border-radius: 1mm;
+    padding: 1mm;
+}
+
+
