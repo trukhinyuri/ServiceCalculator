@@ -140,7 +140,7 @@ function run() {
         console.log("ip:" + ipCost);
         var trafficCost = undefined;
         if (trafficOut > trafficFreeLim) {
-            trafficCost = (trafficFreeLim - trafficOut)*trafficOutGb;
+            trafficCost = (trafficOut - trafficFreeLim)*trafficOutGb;
             console.log("traffic:" + trafficCost);
         } else if (trafficOut <= trafficFreeLim) {
             trafficCost = 0;
