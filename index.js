@@ -22,7 +22,7 @@ function run() {
     var minFrequency = 1;
     var maxFrequency = 2.3;
     var minDiskCapacity = 10;
-    var maxDiskCapacity = 500;
+    var maxDiskCapacity = 2000;
     var minRamCapacity = 0.5;
     var maxRamCapacity = 64;
     var minIP = 0;
