@@ -72,8 +72,13 @@ function run() {
         console.log("validated_IPLimits:" + ipValue);
         var trafficOutValue = validateTrafficOutLimits(isNumberInputCorrect(trafficOut.value));
         console.log("validated_TrafficLimits:" + trafficOutValue);
+        //windows must be only vm
+        if (osType.selectedIndex == 1) {
+            vtType.selectedIndex = 1;
+        }
         var vtTypeIndex = vtType.selectedIndex;
         var osTypeIndex = osType.selectedIndex;
+
 
         var costOfServer = calculate(coresValue, frequencyValue, ramValue, diskValue, ipValue, trafficOutValue, vtTypeIndex, osTypeIndex);
         if (costOfServer != 0) {
