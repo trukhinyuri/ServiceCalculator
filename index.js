@@ -2,21 +2,8 @@
 (function () {
     Modules.Events.addStartupListener(run);
     function run() {
-        var winHour = 0.34;
-        var cpuContainerGhzHour = 0.375;
-        var cpuVMGhzHour = 0.75;
-        var ramGbHour = 0.55;
-        var diskGbHour = 0.0125;
-        var balancerHour = 0.25;
-        var diskBackupHour = 0.0038;
-        var diskImagesHour = 0.0038;
-        var trafficFreeLim = 3000; //gb
-        var trafficIn = 0;
-        var trafficOutGb = 0.50;
-        var ipMonth = 90;
-        var days = 30;
-        var hours = 24;
-        var minPaymentForActivation = 500;
+        var price = new Price.VirtuozzoPrice();
+        var virtuozzoCalculator = new Virtuozzo.Calculator(price);
 
         //limits
         var minCPUCores = 1;
@@ -27,8 +14,8 @@
         var maxDiskCapacity = 2000;
         var minRamCapacity = 0.5;
         var maxRamCapacity = 64;
-        var minIP = 0;
-        var maxIP = 10;
+        var minipv4 = 0;
+        var maxipv4 = 10;
         var minTrafficOut = 0;
 
         var addButton = document.getElementsByClassName("addButton")[0];
@@ -44,15 +31,21 @@
         Modules.Events.addListener(clearListButton, "click", clearList);
         Modules.Events.addListener(clearLastButton, "click", clearLast);
 
+        var region = document.getElementsByClassName("region")[0];
         var serverName = document.getElementsByClassName("serverName")[0];
         var cores = document.getElementsByClassName("cores")[0];
         var frequency = document.getElementsByClassName("frequency")[0];
         var disk = document.getElementsByClassName("disk")[0];
         var ram = document.getElementsByClassName("ram")[0];
-        var ip = document.getElementsByClassName("ip")[0];
+        var ipv4 = document.getElementsByClassName("ipv4")[0];
         var trafficOut = document.getElementsByClassName("trafficOut")[0];
         var vtType = document.getElementsByClassName("vtType")[0];
         var osType = document.getElementsByClassName("osType")[0];
+        var runningDays = document.getElementsByClassName("runningDays")[0];
+        var runningHours = document.getElementsByClassName("runningHours")[0];
+        var stoppedDays = document.getElementsByClassName("stoppedDays")[0];
+        var stoppedHours = document.getElementsByClassName("stoppedHours")[0];
+        var virtuozzoServersTable = document.getElementsByClassName("virtuozzoServersTable")[0].getElementsByTagName('tbody')[0];
 
         var sum = 0;
         var costOfServersList = [];
@@ -63,6 +56,8 @@
 
 
         function addToList() {
+            var regionValue = region.selectedIndex;
+            console.log("region:" + region.value);
             var serverNameValue = validateServerName(serverName.value);
             console.log("validated_serverName:" + serverNameValue);
             var coresValue = validateCPULimits(isNumberInputCorrect(cores.value));
@@ -73,8 +68,8 @@
             console.log("validated_diskCapacity:" + diskValue);
             var ramValue = validateRamLimits(isNumberInputCorrect(ram.value));
             console.log("validated_RamCapacity:" + ramValue);
-            var ipValue = validateIPLimits(isNumberInputCorrect(ip.value));
-            console.log("validated_IPLimits:" + ipValue);
+            var ipv4Value = validateipv4Limits(isNumberInputCorrect(ipv4.value));
+            console.log("validated_ipv4Limits:" + ipv4Value);
             var trafficOutValue = validateTrafficOutLimits(isNumberInputCorrect(trafficOut.value));
             console.log("validated_TrafficLimits:" + trafficOutValue);
             //windows must be only vm
@@ -82,107 +77,144 @@
                 vtType.selectedIndex = 1;
             }
             var vtTypeIndex = vtType.selectedIndex;
+            console.log("vtType:" + vtType.value);
             var osTypeIndex = osType.selectedIndex;
+            console.log("osType:" + osType.value);
 
+            var runningDaysValue = validateRunningDays(isNumberInputCorrect(runningDays.value));
+            console.log("validated_runningDays:" + runningDaysValue);
 
-            var costOfServer = calculate(coresValue, frequencyValue, ramValue, diskValue, ipValue, trafficOutValue, vtTypeIndex, osTypeIndex);
-            if (costOfServer != 0) {
-                var tempListSpace = listSpace.innerHTML;
-                listSpace.innerHTML = "<div class='resultServer'>"
-                    + "Сервер: " + "<strong>" + serverNameValue.toString() + "</strong>"+ "; </br>"
-                    + "Ядра: " + "<strong>" + coresValue.toString() + "</strong>"+ "; </br>"
-                    + "Частота: " + "<strong>" + frequencyValue.toString() + " ГГц</strong>"+ "; </br>"
-                    + "Память: " + "<strong>" + ramValue.toString() + " Гб</strong>"+ "; </br>"
-                    + "Диск: " + "<strong>" + diskValue.toString() + " Гб</strong>"+ "; </br>"
-                    + "Публичные IP-адреса: " + "<strong>" + ipValue.toString() + "</strong>"+ "; </br>"
-                    + "Исходящий трафик: " + "<strong>" + trafficOutValue.toString() + " Гб</strong>"+ "; </br>"
-                    + "Тип виртуализации: " + "<strong>" + vtType.value + " </strong>"+ "; </br>"
-                    + "Операционная система: " + "<strong>" + osType.value + " </strong>"+ "; </br>"
-                    + "Стоимость: " + "<strong>" + costOfServer.toFixed(2).toString() + "</strong>"+ "; "
-                    + "</div>" + tempListSpace;
-                exportDoc += "Сервер: " + serverNameValue.toString() + "; "
-                    + "Ядра: " + coresValue.toString() + "; "
-                    + "Частота: " + frequencyValue.toString() + "; "
-                    + "Память: " + ramValue.toString() + "; "
-                    + "Диск: " + diskValue.toString() + "; "
-                    + "Публичные IP-адреса: " + ipValue.toString() + "; "
-                    + "Исходящий трафик: " + trafficOutValue.toString() + "; "
-                    + "Тип виртуализации: " + vtType.value + "; "
-                    + "Операционная система: " + osType.value + "; "
-                    + "Стоимость: " + costOfServer.toFixed(2).toString() + "; "
-                    + "\r\n";
-                sum += costOfServer;
-                costOfServersList.push(costOfServer);
-                updateResult();
-                //generateExportLink(exportDoc + exportResult);
-            }
+            var runningHoursValue = validateRunningHours(isNumberInputCorrect(runningHours.value));
+            console.log("validated_runningHours:" + runningHoursValue);
+
+            var stoppedDaysValue = validateStoppedDays(isNumberInputCorrect(stoppedDays.value));
+            console.log("validated_stoppedDays:" + stoppedDaysValue);
+
+            var stoppedHoursValue = validateStoppedHours(isNumberInputCorrect(stoppedHours.value));
+            console.log("validated_stoppedHours:" + stoppedHoursValue);
+
+            if (runningDaysValue | runningHoursValue | stoppedDaysValue | stoppedHoursValue != 0) {
+                var virtuozzoServer = new Virtuozzo.Server(
+                    regionValue,
+                    serverNameValue,
+                    coresValue,
+                    frequencyValue,
+                    ramValue,
+                    diskValue,
+                    ipv4Value,
+                    trafficOutValue,
+                    vtTypeIndex,
+                    osTypeIndex,
+                    runningDaysValue,
+                    runningHoursValue,
+                    stoppedDaysValue,
+                    stoppedHoursValue);
+
+                virtuozzoCalculator.addServer(virtuozzoServer);
+                var costOfServer = virtuozzoCalculator.getCostOfServer(virtuozzoServer);
+                costOfServersList.push(parseFloat(costOfServer));
+                sum += parseFloat(costOfServer);
+
+                var row = virtuozzoServersTable.insertRow(virtuozzoServersTable.rows.length);
+                var cellServerName = row.insertCell(0);
+                cellServerName.appendChild(document.createTextNode(serverNameValue));
+
+                var cellRegion = row.insertCell(1);
+                if (regionValue == 0) {
+                    cellRegion.appendChild(document.createTextNode("Россия, Санкт-Петербург (SSD)"));
+                } else if (regionValue == 1) {
+                    cellRegion.appendChild(document.createTextNode("Россия, Москва (SSD-cache)"));
+                } else if (regionValue == 2) {
+                    cellRegion.appendChild(document.createTextNode("Европа, Амстердам (SSD-cache)"));
+                }
+
+                var cellCores = row.insertCell(2);
+                cellCores.appendChild(document.createTextNode(coresValue));
+
+                var cellFrequency = row.insertCell(3);
+                cellFrequency.appendChild(document.createTextNode(frequencyValue + " ГГц."));
+
+                var cellRam = row.insertCell(4);
+                cellRam.appendChild(document.createTextNode(ramValue + " ГБ."));
+
+                var cellDisk = row.insertCell(5);
+                cellDisk.appendChild(document.createTextNode(diskValue + " ГБ."));
+
+                var cellIPv4 = row.insertCell(6);
+                cellIPv4.appendChild(document.createTextNode(ipv4Value));
+
+                var cellTrafficOut = row.insertCell(7);
+                cellTrafficOut.appendChild(document.createTextNode(trafficOutValue + " ГБ."));
+
+                var cellVtType = row.insertCell(8);
+                if (vtTypeIndex == 1) {
+                    cellVtType.appendChild(document.createTextNode("Виртуальная машина"));
+                } else {
+                    cellVtType.appendChild(document.createTextNode(vtType.value));
+                }
+
+                var cellOSType = row.insertCell(9);
+                cellOSType.appendChild(document.createTextNode(osType.value));
+
+                var cellRunning = row.insertCell(10);
+                if ((parseFloat(runningDaysValue) != 0) && (parseFloat(runningHoursValue) != 0)) {
+                    cellRunning.appendChild(document.createTextNode(runningDaysValue + " дн., " + runningHoursValue + "ч."));
+                } else if ((parseFloat(runningDaysValue) == 0) && (parseFloat(runningHoursValue) != 0)) {
+                    cellRunning.appendChild(document.createTextNode(runningHoursValue + " ч."));
+                } else if ((parseFloat(runningDaysValue) != 0) && (parseFloat(runningHoursValue) == 0)) {
+                    cellRunning.appendChild(document.createTextNode(runningDaysValue + " дн."));
+                } else if ((parseFloat(runningDaysValue) == 0) && (parseFloat(runningHoursValue) == 0)) {
+                    cellRunning.appendChild(document.createTextNode("-"));
+                }
+
+                var cellStopped = row.insertCell(11);
+                if ((parseFloat(stoppedDaysValue) != 0) && (parseFloat(stoppedHoursValue) != 0)) {
+                    cellStopped.appendChild(document.createTextNode(stoppedDaysValue + " дн., " + stoppedHoursValue + "ч."));
+                } else if ((parseFloat(stoppedDaysValue) == 0) && (parseFloat(stoppedHoursValue) != 0)) {
+                    cellStopped.appendChild(document.createTextNode(stoppedHoursValue + " ч."));
+                } else if ((parseFloat(stoppedDaysValue) != 0) && (parseFloat(stoppedHoursValue) == 0)) {
+                    cellStopped.appendChild(document.createTextNode(stoppedDaysValue + " дн."));
+                } else if ((parseFloat(stoppedDaysValue) == 0) && (parseFloat(stoppedHoursValue) == 0)) {
+                    cellStopped.appendChild(document.createTextNode("-"));
+                }
+
+                var cellServerCost = row.insertCell(12);
+                cellServerCost.appendChild(document.createTextNode(costOfServer + " руб."));
+            } else clearItems();
+
+            updateResult();
             serverName.focus();
         }
+
         function clearItems() {
             serverName.value = "";
             cores.value = "";
             frequency.value = "";
             disk.value = "";
             ram.value = "";
-            ip.value = "";
+            ipv4.value = "";
             trafficOut.value = "";
+            runningDays.value = "";
+            runningHours.value = "";
+            stoppedDays.value = "";
+            stoppedHours.value = "";
         }
         function clearList() {
-            listSpace.innerHTML = "";
-            downloadSpace.innerHTML = "";
+            while(virtuozzoServersTable.rows[0]) virtuozzoServersTable.deleteRow(0);
             sum = 0;
             costOfServersList = [];
             updateResult();
         }
         function clearLast() {
-            if (costOfServersList.length > 0) {
-                var listItems = document.getElementsByClassName("resultServer");
-                listSpace.removeChild(listItems[0]);
-                sum = sum - costOfServersList[costOfServersList.length - 1];
-                costOfServersList.pop();
-                updateResult();
-            }
-        }
-
-        function calculate(cores, frequency, ram, disk, ip, trafficOut, vtTypeIndex, osTypeIndex) {
-            var cpuCost = undefined;
-            if (vtTypeIndex == 0) {
-                cpuCost = cores*frequency*cpuContainerGhzHour*hours*days; //container
-                console.log("cpu:" + cpuCost);
-                console.log("vtType:" + "container");
-            } else if (vtTypeIndex == 1) {
-                cpuCost = cores*frequency*cpuVMGhzHour*hours*days; //vm
-                console.log("cpu:" + cpuCost);
-                console.log("vtType:" + "vm");
-            }
-            var ramCost = ram*ramGbHour*hours*days;
-            console.log("ram:" + ramCost);
-            var diskCost = disk*diskGbHour*hours*days;
-            console.log("disk:" + diskCost);
-            var ipCost = ip*ipMonth;
-            console.log("ip:" + ipCost);
-            var trafficCost = undefined;
-            if (trafficOut > trafficFreeLim) {
-                trafficCost = (trafficOut - trafficFreeLim)*trafficOutGb;
-                console.log("traffic:" + trafficCost);
-            } else if (trafficOut <= trafficFreeLim) {
-                trafficCost = 0;
-                console.log("traffic:" + "free");
-            }
-            var osCost = 0;
-            if (osTypeIndex == 1) {
-                osCost = winHour*hours*days;
-                console.log("osType:" + "windows");
-                console.log("os:" + osCost);
-            }
-            var result = cpuCost + ramCost + diskCost + ipCost + trafficCost + osCost;
-            console.log(result);
-            return result;
+            virtuozzoServersTable.deleteRow(virtuozzoServersTable.rows.length -1);
+            sum = sum - costOfServersList[costOfServersList.length - 1];
+            costOfServersList.pop();
+            updateResult();
         }
 
         function updateResult() {
-            resultSpace.innerHTML = "<h3 class='resultHeader'>" + "Примерная стоимость облачной инфраструктуры: " + sum.toFixed(2).toString() + " руб. в месяц (30 дней)"+ "</h3>";
-            exportResult = "Примерная стоимость облачной инфраструктуры: " + sum.toFixed(2).toString() + " руб. в месяц" + "\r\n";
+            resultSpace.innerHTML = "<h3 class='resultHeader'>" + "Примерная стоимость облачной инфраструктуры: " + parseFloat(sum).toFixed(2).toString() + " руб."+ "</h3>";
+            exportResult = "Примерная стоимость облачной инфраструктуры: " + parseFloat(sum).toFixed(2).toString() + " руб. в месяц" + "\r\n";
         }
 
         function generateExportLink(content) {
@@ -277,39 +309,74 @@
             }
             return ramCapacity;
         }
-        function validateIPLimits (ipCount) {
-            if (isEmptyOrSpaces(ipCount)) {
-                ip.value = 1;
-                return 1; //Recommended minimum 1 ip adress for internet access.
+        function validateipv4Limits (ipv4Count) {
+            if (isEmptyOrSpaces(ipv4Count)) {
+                ipv4.value = 1;
+                return 1; //Recommended minimum 1 ipv4 adress for internet access.
             }
-            if (ipCount < minIP) {
-                ip.value = minIP;
-                return minIP;
-            } else if (ipCount > maxIP) {
-                ip.value = maxIP;
-                return maxIP;
+            if (ipv4Count < minipv4) {
+                ipv4.value = minipv4;
+                return minipv4;
+            } else if (ipv4Count > maxipv4) {
+                ipv4.value = maxipv4;
+                return maxipv4;
             }
-            return ipCount;
+            return ipv4Count;
         }
         function validateTrafficOutLimits (trafficOutValue) {
             if (isEmptyOrSpaces(trafficOutValue)) {
-                trafficOut.value = trafficFreeLim;
-                return trafficFreeLim;
+                trafficOut.value = 0;
+                return 0;
             }
             if (trafficOutValue < minTrafficOut) {
-                trafficOut.value = trafficFreeLim;
-                return trafficFreeLim;
+                trafficOut.value = price.currentPrice[region.selectedIndex].trafficFreeLim;
+                return price.currentPrice[region.selectedIndex].trafficFreeLim;
             }
             return trafficOutValue;
         }
+
+        function validateRunningDays(runningDaysValue) {
+            if (isEmptyOrSpaces(runningDaysValue) == true) {
+                runningDays.value = 30;
+                return 30;
+            } else if (runningDaysValue < 0) {
+                runningDays.value = 0;
+                return 0;
+            } else
+                return runningDaysValue;
+        }
+
+        function validateRunningHours(runningHoursValue) {
+            if (isEmptyOrSpaces(runningHoursValue) == true) {
+                runningHours.value = 0;
+                return 0;
+            } else if (runningHoursValue < 0) {
+                runningHours.value = 0;
+                return 0;
+            } else
+                return runningHoursValue;
+        }
+
+        function validateStoppedDays(stoppedDaysValue) {
+            if (isEmptyOrSpaces(stoppedDaysValue) == true) {
+                stoppedDays.value = 0;
+                return 0;
+            } else if (stoppedDaysValue < 0) {
+                stoppedDays.value = 0;
+                return 0;
+            } else
+                return stoppedDaysValue;
+        }
+
+        function validateStoppedHours(stoppedHoursValue) {
+            if (isEmptyOrSpaces(stoppedHoursValue) == true) {
+                stoppedHours.value = 0;
+                return 0;
+            } else if (stoppedHoursValue < 0) {
+                stoppedHours.value = 0;
+                return stoppedHours.value;
+            } else
+                return stoppedHoursValue;
+        }
     }
-    var calculatorApp = angular.module('calculator',[]);
-
-    calculatorApp.controller('inputCloudServerController', ['$scope', function($scope) {
-
-    }]);
-
-    calculatorApp.controller('resultsController', ['$scope', function($scope) {
-        $scope.costOfInfrastructure = "0.00";
-    }]);
 }());
