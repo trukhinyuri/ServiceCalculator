@@ -497,7 +497,7 @@ QUnit.test( "Virtuozzo.Calculator.getCostOfRunningServer (" +
     });
 
 QUnit.test( "Virtuozzo.Calculator.getCostOfStoppedServer (" +
-    "regionValue = 0, serverNameValue = \"server\", coresValue = 1, frequencyValue = 1, ramValue = 1, diskValue = 10, ipv4Value = 1, trafficOutValue = 100, vtTypeIndex = 0, osTypeIndex = 0, runningDaysValue = 30, runningHoursValue = 0, stoppedDaysValue = 15, stoppedHoursValue = 0 )",
+    "regionValue = 0, serverNameValue = \"server\", coresValue = 1, frequencyValue = 1, ramValue = 1, diskValue = 10, ipv4Value = 1, trafficOutValue = 100, vtTypeIndex = 0, osTypeIndex = 0, runningDaysValue = 0, runningHoursValue = 0, stoppedDaysValue = 15, stoppedHoursValue = 0 )",
     function( assert ) {
         var price = new Price.VirtuozzoPrice();
         var virtuozzoCalculator = new Virtuozzo.Calculator(price);
@@ -512,7 +512,7 @@ QUnit.test( "Virtuozzo.Calculator.getCostOfStoppedServer (" +
         var trafficOutValue = 100;
         var vtTypeIndex = 0;
         var osTypeIndex = 0;
-        var runningDaysValue = 30;
+        var runningDaysValue = 0;
         var runningHoursValue = 0;
         var stoppedDaysValue = 15;
         var stoppedHoursValue = 0;
@@ -540,8 +540,8 @@ QUnit.test( "Virtuozzo.Calculator.getCostOfStoppedServer (" +
         assert.ok( expectedCostOfStoppedServer == actualCostOfStoppedServer, "Passed! actualCostOfStoppedServer: " + actualCostOfStoppedServer );
     });
 
-QUnit.test( "Virtuozzo.Calculator.getCostOfStoppedServer (" +
-    "regionValue = 0, serverNameValue = \"server\", coresValue = 1, frequencyValue = 1, ramValue = 1, diskValue = 10, ipv4Value = 1, trafficOutValue = 100, vtTypeIndex = 0, osTypeIndex = 0, runningDaysValue = 30, runningHoursValue = 0, stoppedDaysValue = 15, stoppedHoursValue = 0 )",
+QUnit.test( "Virtuozzo.Calculator.getCostOfServer (" +
+    "regionValue = 0, serverNameValue = \"server\", coresValue = 1, frequencyValue = 1, ramValue = 1, diskValue = 10, ipv4Value = 1, trafficOutValue = 100, vtTypeIndex = 0, osTypeIndex = 0, runningDaysValue = 0, runningHoursValue = 1, stoppedDaysValue = 0, stoppedHoursValue = 1 )",
     function( assert ) {
         var price = new Price.VirtuozzoPrice();
         var virtuozzoCalculator = new Virtuozzo.Calculator(price);
@@ -556,10 +556,10 @@ QUnit.test( "Virtuozzo.Calculator.getCostOfStoppedServer (" +
         var trafficOutValue = 100;
         var vtTypeIndex = 0;
         var osTypeIndex = 0;
-        var runningDaysValue = 30;
-        var runningHoursValue = 0;
-        var stoppedDaysValue = 15;
-        var stoppedHoursValue = 0;
+        var runningDaysValue = 0;
+        var runningHoursValue = 1;
+        var stoppedDaysValue = 0;
+        var stoppedHoursValue = 1;
 
         var virtuozzoServer = new Virtuozzo.Server(
             regionValue,
@@ -577,7 +577,7 @@ QUnit.test( "Virtuozzo.Calculator.getCostOfStoppedServer (" +
             stoppedDaysValue,
             stoppedHoursValue);
 
-        var expectedCostOfServer = 859.68;
+        var expectedCostOfServer = 91.03;
 
         virtuozzoCalculator.addServer(virtuozzoServer);
         var actualCostOfServer = virtuozzoCalculator.getCostOfServer(virtuozzoServer);
