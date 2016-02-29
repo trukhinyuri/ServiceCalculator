@@ -53,8 +53,14 @@ var Virtuozzo;
             var diskCost = this._calculateDiskCost(server.region, server.diskGb, server.stoppedDays, server.stoppedHours);
             console.log("diskRunningCost: " + diskCost);
 
-            var ipv4Cost = this._calculateIPv4Cost(server.region, server.ipv4Count, server.stoppedDays, server.stoppedHours);
-            console.log("IPv4Cost: " + ipv4Cost);
+            var ipv4Cost = undefined;
+            if ((server.runningDays == 0) && (server.runningHours == 0)) {
+                ipv4Cost = this._calculateIPv4Cost(server.region, server.ipv4Count,
+                    server.stoppedDays, server.stoppedHours);
+                console.log("IPv4StoppedCost: " + ipv4Cost);
+            } else {
+                ipv4Cost = 0; //calculated in running server cost
+            }
 
             var OSCost = this._calculateOSCost(server.region, server.osType, server.stoppedDays, server.stoppedHours);
             console.log("OSCost: " + OSCost);
@@ -106,11 +112,13 @@ var Virtuozzo;
             return diskCost.toFixed(2);
         };
 
-        Calculator.prototype._calculateIPv4Cost = function (region, ipv4Count, days, hours) {
-            var totalHours = this._calculateTotalHours(days, hours);
-            var monthCount = (totalHours / 721 >> 0) + 1; //divide without remainder
-            var ipv4Cost = ipv4Count*_price.currentPrice[region].ipv4Month*monthCount;
-            return ipv4Cost.toFixed(2);
+        Calculator.prototype._calculateIPv4Cost = function (region, ipv4Count, stoppedDays, stoppedHours) {
+            var totalHours = this._calculateTotalHours(stoppedDays, stoppedHours);
+            if (totalHours > 0) {
+                var monthCount = (totalHours / 721 >> 0) + 1; //divide without remainder
+                var ipv4Cost = ipv4Count*_price.currentPrice[region].ipv4Month*monthCount;
+                return ipv4Cost.toFixed(2);
+            } else return 0;
         };
 
         Calculator.prototype._calculateTrafficOutCost = function (region, trafficOutCount) {
