@@ -1,3 +1,93 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.container-fluid {
+    min-width: 1050px;
+    padding: 0 14px 0 14px;
+    width:100%;
+}
+
+.container-calculator {
+    padding: 28px 14px 0 14px;
+}
+
+.container-results {
+    padding: 0 14px 0 14px;
+    margin: 0;
+}
+
+.navbar-brand {
+    margin: 0;
+}
+
+.navbar-nav > li > a, .navbar-brand {
+    padding-top:4px !important;
+    padding-bottom:0 !important;
+    height: 28px;
+}
+.navbar {
+    min-height:28px !important;
+    margin: 0;
+    background: white;
+}
+
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+}
+
+.nav>.navItem_general>a {
+    color: grey;
+}
+
+.nav_order_dropdown_menu > li > a:hover, .dropdown-menu > li > a:focus {
+    background-image:none !important;
+}
+.nav_order_dropdown_menu > li > a:hover, .dropdown-menu > li > a:focus {
+    background-color:#80cc28;
+    color: white;
+}
+
+.nav>.nav_order_dropdown>a:focus, .nav>.nav_order_dropdown>a:hover {
+    background: #80cc28 none;
+    color: white;
+}
+
+.dropdown-header-description {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-generic {
+    background: transparent;
+}
+
+.footer {
+    background: #262525;
+    color: grey;
+    width: 100%;
+}
+
+.footer-text {
+    padding: 1px 14px 1px 14px;
+}
+
+.nav_order_dropdown {
+    background: #80cc28;
+}
+
+.nav_order_dropdown:hover {
+    background: #80cc28;
+}
+
+.nav_order_dropdown_text {
+    color: white;
+}
+
 .input-group-addon_first {
     min-width:200px;
     text-align:left;
@@ -6,18 +96,16 @@
     min-width:90px;
     text-align:left;
 }
-.footer {
-    background: white;
-    color: grey;
-}
+
 .jumbotron_cloud_server {
-    padding: 2mm;
+    margin: 0;
+    padding: 1mm;
     background: white;
-    margin: 1mm;
+    border: none;
 }
 .jumbotron_results {
     padding: 2mm;
-    margin: 1mm 1mm 1mm 0;
+
     background: white;
 }
 .resultSpace {
@@ -43,10 +131,7 @@ thead {
 
 .page-header {
     margin: 0;
-}
-
-.container {
-    min-width: 1000px;
+    padding: 0;
 }
 
 .inputServerInfo {

@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1, user-scalable=no"/>
 
+    <title>Калькулятор стоимости облака InfoboxCloud</title>
+
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css"/>
     <link rel="stylesheet" href="index.css" type="text/css"/>
@@ -15,25 +17,144 @@
     <script src="price.js"></script>
     <script src="calculator.js"></script>
     <script src="index.js"></script>
-    <title>InfoboxCloud Calculator</title>
 </head>
 <body>
-<div class="container">
-    <header class="page-header">
-        <!--<ul class="nav nav-pills pull-right">-->
-            <!--<li class="active">-->
-                <!--<a href="#">Калькулятор</a>-->
-            <!--</li>-->
-            <!--<li>-->
-                <!--<a href="#">Руководство</a>-->
-            <!--</li>-->
-        <!--</ul>-->
-        <h3>Калькулятор стоимости облачной инфраструктуры <a href="http://infoboxcloud.ru" target="_blank">InfoboxCloud</a></h3>
-        <ul>
-            <li>Добавьте необходимое количество серверов с требуемыми параметрами (Virtuozzo) или подписок с подходящим объемом ресурсов (Azure Pack) и вы увидите, сколько будет стоить вся облачная инфраструктура в месяц.</li>
-            <li>Если у вас есть вопрос или вы хотите получить коммерческое предложение на официальном шаблоне компании, <a href="mailto:ytrukhin@infobox.ru">напишите нам</a>.</li>
-            <li><b>Заказать облачную инфраструктуру можно на сайте <a href="http://infoboxcloud.ru">http://infoboxcloud.ru</a>. Успешного использования!</b></li>
+<div class="navbar navbar-static-top navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <ul class="nav navbar-nav">
+            <li class="navItem_general"><p class="navbar-brand">Калькулятор</p></li>
         </ul>
+        <div class="navbar-header">
+            <p class="navbar-brand">
+                <img src="img/infoboxcloud-logo.svg" width="125">
+            </p>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        Сервисы
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="https://infoboxcloud.ru/services/virtuozzo/" target="_blank">
+                                Virtuozzo Infrastructure
+                                <p class="dropdown-header dropdown-header-description">
+                                    Облачная инфраструктура на базе технологий Virtuozzo
+                                    <br>
+                                    <b>по максимально доступной стоимости</b>.
+                                </p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://infoboxcloud.ru/services/azurepack/" target="_blank">
+                                Azure Pack Infrastructure
+                                <p class="dropdown-header dropdown-header-description">
+                                    Облачная инфраструктура <b>enterprise-класса</b>
+                                    <br>
+                                    на базе технологий Windows Azure Pack и Hyper-V.
+                                    <br>
+                                    Создано в InfoboxCloud совместно с Microsoft.
+                                    <br>
+                                    Дата-центр TIER III в России.
+                                </p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://infoboxcloud.ru/services/azure/" target="_blank">
+                                Microsoft Azure
+                                <p class="dropdown-header dropdown-header-description">
+                                    Глобальное облако компании Microsoft.
+                                    <br>
+                                    Совместимо с InfoboxCloud Azure Pack Infrastructure.
+                                    <br>
+                                    <b>30 дата-центров по всему миру</b>.
+                                </p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://infoboxcloud.ru/services/privatecloud/" target="_blank">
+                                Частное облако
+                                <p class="dropdown-header dropdown-header-description">
+                                    Построение частных <b>выделенных</b> облачных инфраструктур
+                                    <br>
+                                    на базе технологий Virtuozzo и Windows Azure Pack.
+                                </p>
+                            </a>
+                        </li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="https://infoboxcloud.ru/request/" target="_blank">Что выбрать?</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        Партнерам
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="https://infoboxcloud.ru/partners/integrator/" target="_blank">
+                                IT–интегратор
+                                <p class="dropdown-header dropdown-header-description">
+                                    Программа «IT-интегратор» ориентирована на сотрудничество с компаниями,
+                                    <br>
+                                    оказывающими услуги по разработке и развертыванию IT-решений
+                                    <br>
+                                    различной сложности для корпоративных клиентов, а также компаний,
+                                    <br>
+                                    обслуживающих юридические лица по модели IT-аутсорсинга.
+                                </p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://infoboxcloud.ru/partners/whitelabel/" target="_blank">
+                                White Label
+                                <p class="dropdown-header dropdown-header-description">
+                                    Это модель сотрудничества означает реализацию услуг под брэндом
+                                    <br>
+                                    компании-продавца, фактически оказываемых на ресурсах другой компании.
+                                    <br>
+                                    Программа рекомендована для компаний с большими клиентскими базами
+                                    <br>
+                                    и узнаваемым брендом.
+                                </p>
+                            </a>
+                        </li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="https://infoboxcloud.ru/partners/order/?" target="_blank">Стать партнером</a></li>
+                    </ul>
+                </li>
+                <li><a href="https://infoboxcloud.ru/about/" target="_blank">Почему InfoboxCloud?</a></li>
+                <!--<li class="navItem_general"><a href="https://helpdesk.infobox.ru/Knowledgebase/List/Index/2/oblchnja&#45;&#45;infrstrukturhttps://helpdesk.infobox.ru/Knowledgebase/List/Index/2/oblchnja&#45;&#45;infrstruktur" target="_blank">Поддержка</a></li>-->
+                <!--<li class="navItem_general"><a href="https://infoboxcloud.ru/about/contacts/" target="_blank">Свяжитесь с нами</a></li>-->
+                <!--<li class="navItem_general"><a href="https://infoboxcloud.ru/login/" target="_blank">Вход для клиентов</a></li>-->
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="https://infoboxcloud.ru/request/" target="_blank">Хочу консультацию, демо</a></li>
+                <li class="dropdown nav_order_dropdown">
+                    <a href="#" class="dropdown-toggle nav_order_dropdown_text" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        Стать клиентом
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu nav_order_dropdown_menu navItem_general_menu">
+                        <li><a href="https://infoboxcloud.ru/services/virtuozzo/order/" target="_blank">Virtuozzo Infrastructure</a></li>
+                        <li><a href="https://infoboxcloud.ru/services/azurepack/order/" target="_blank">Azure Pack Infrastructure</a></li>
+                        <li><a href="https://infoboxcloud.ru/services/azure/order/" target="_blank">Microsoft Azure</a></li>
+                        <li><a href="https://infoboxcloud.ru/services/privatecloud/order/" target="_blank">Dedicated Infrastructure</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="https://infoboxcloud.ru/request/" target="_blank">Что выбрать?</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</div>
+<div class="container-fluid container-calculator">
+    <header class="page-header">
+        <br>
+        Добавьте необходимое количество серверов с требуемыми параметрами (Virtuozzo) или подписок с подходящим объемом ресурсов (Azure Pack) и вы увидите, сколько будет стоить вся облачная инфраструктура в месяц.
+
     </header>
     <div class="jumbotron jumbotron_cloud_server" ng-controller="inputCloudServerController">
         <h4>Выберите облачную платформу:</h4>
@@ -48,14 +169,14 @@
                 идеально подходящая для малого и среднего бизнеса, разработчиков, веб-студий и ИТ-интеграторов.</p>
             При регистрации требуется пополнение баланса на 500 рублей. Оплата взимается на почасовой основе за ресурсы, выделенные серверам в панели управления. В любое время вы можете создавать, останавливать и удалять серверы, изменять объем ресурсов или использовать автомасштабирование.
             <br><br>
-            Официальные тарифные планы доступны <a href="http://infobox.ru/about/documents/tariffs-annex-3/" target="_blank">по ссылке</a>.
+            Официальные тарифные планы доступны <a href="https://infoboxcloud.ru/about/docs/" target="_blank">по ссылке</a>.
             <h4>Укажите параметры облачного сервера:</h4>
             <div class="input-group inputServerInfo">
                 <span class="input-group-addon input-group-addon_first">Регион:</span>
                 <select class="form-control region">
                     <option>Россия, дата-центр в Санкт-Петербурге (новая архитектура на быстрых SSD)</option>
                     <option>Россия, дата-центр в Москве, соответствующий TIER III Gold (SSD–кеширование)</option>
-                    <option>Европа, дата-центр в Амстердаме (SSD–кеширование)</option>
+                    <option>Европа, дата-центр в Амстердаме (новая архитектура на быстрых SSD)</option>
                 </select>
             </div>
             <div class="input-group inputServerInfo">
@@ -127,47 +248,47 @@
                 <button type="button" class="btn btn-default clearLastButton">Удалить последний сервер</button>
                 <button type="button" class="btn btn-danger clearListButton">Очистить список серверов</button>
             </div>
-
-            </br>
-            </br></div>
-        <div class="azurepack_tab"></div>
-
-    </div>
-    <div class="jumbotron jumbotron_results">
-        <div class="resultSpace" ng-controller="resultsController">
-            <h3 class="resultHeader" name="resultHeader">Примерная стоимость облачной инфраструктуры: 0.00 руб.</h3>
         </div>
-        <div class="downloadSpace"></div>
-        <table class="table table-hover table-condensed virtuozzoServersTable">
-            <caption>Virtuozzo Infrastructure</caption>
-            <thead>
-            <tr>
-                <td>Сервер</td>
-                <td>Регион</td>
-                <td>Ядра vCPU</td>
-                <td>Частота vCPU</td>
-                <td>Объем RAM</td>
-                <td>Объем диска</td>
-                <td>Внешние IPv4</td>
-                <td>Исходящий трафик</td>
-                <td>Виртуализация</td>
-                <td>Операционная система</td>
-                <td>Запущен</td>
-                <td>Остановлен</td>
-                <td>Стоимость</td>
-            </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-        <div class="listSpace"></div>
+    </div>
+    <div class="azurepack_tab" style="visibility: hidden"></div>
+    </div>
+    <div class="container-fluid container-results">
+        <div class="jumbotron jumbotron_results">
+            <div class="resultSpace" ng-controller="resultsController">
+                <h3 class="resultHeader" name="resultHeader">Примерная стоимость облачной инфраструктуры: 0.00 руб.</h3>
+            </div>
+            <div class="downloadSpace"></div>
+            <table class="table table-hover table-condensed virtuozzoServersTable">
+                <caption>Virtuozzo Infrastructure</caption>
+                <thead>
+                <tr>
+                    <td>Сервер</td>
+                    <td>Регион</td>
+                    <td>Ядра vCPU</td>
+                    <td>Частота vCPU</td>
+                    <td>Объем RAM</td>
+                    <td>Объем диска</td>
+                    <td>Внешние IPv4</td>
+                    <td>Исходящий трафик</td>
+                    <td>Виртуализация</td>
+                    <td>Операционная система</td>
+                    <td>Запущен</td>
+                    <td>Остановлен</td>
+                    <td>Стоимость</td>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <div class="listSpace"></div>
+        </div>
     </div>
 </div>
 <div class="navbar-fixed-bottom row-fluid footer">
     <div class="navbar-inner">
-        <div class="container">
-            "Калькулятор облачной инфраструктуры InfoboxCloud". <a href="/frontend/tests/" target="_blank">Сборка от 01.03.2016</a>.
-            © «Национальные телекоммуникации», 2002-2016
+        <div class="footer-text">
+            "Калькулятор облачной инфраструктуры InfoboxCloud". Обновление от 24.04.2016.
+            © OOO «Национальные телекоммуникации», 2002-2016
         </div>
     </div>
 </div>
