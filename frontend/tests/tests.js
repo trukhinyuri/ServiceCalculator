@@ -472,6 +472,8 @@ QUnit.test( "Virtuozzo.Calculator.getCostOfRunningServer (" +
         var runningHoursValue = 0;
         var stoppedDaysValue = 0;
         var stoppedHoursValue = 0;
+        var backupCountValue = 0;
+        var backupSpaceValue = 0;
 
         var virtuozzoServer = new Virtuozzo.Server(
             regionValue,
@@ -480,6 +482,8 @@ QUnit.test( "Virtuozzo.Calculator.getCostOfRunningServer (" +
             frequencyValue,
             ramValue,
             diskValue,
+            backupCountValue,
+            backupSpaceValue,
             ipv4Value,
             trafficOutValue,
             vtTypeIndex,
@@ -516,6 +520,8 @@ QUnit.test( "Virtuozzo.Calculator.getCostOfStoppedServer (" +
         var runningHoursValue = 0;
         var stoppedDaysValue = 15;
         var stoppedHoursValue = 0;
+        var backupCountValue = 0;
+        var backupSpaceValue = 0;
 
         var virtuozzoServer = new Virtuozzo.Server(
             regionValue,
@@ -524,6 +530,8 @@ QUnit.test( "Virtuozzo.Calculator.getCostOfStoppedServer (" +
             frequencyValue,
             ramValue,
             diskValue,
+            backupCountValue,
+            backupSpaceValue,
             ipv4Value,
             trafficOutValue,
             vtTypeIndex,
@@ -560,6 +568,8 @@ QUnit.test( "Virtuozzo.Calculator.getCostOfServer (" +
         var runningHoursValue = 1;
         var stoppedDaysValue = 0;
         var stoppedHoursValue = 1;
+        var backupCountValue = 0;
+        var backupSpaceValue = 0;
 
         var virtuozzoServer = new Virtuozzo.Server(
             regionValue,
@@ -568,6 +578,8 @@ QUnit.test( "Virtuozzo.Calculator.getCostOfServer (" +
             frequencyValue,
             ramValue,
             diskValue,
+            backupCountValue,
+            backupSpaceValue,
             ipv4Value,
             trafficOutValue,
             vtTypeIndex,
