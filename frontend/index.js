@@ -21,16 +21,28 @@
             }
 
             function classExchange(destinationElement, sourceElement, className) {
-                var destinationClasses = destinationElement.className.split(' ');
-                if (destinationClasses.indexOf(className) == -1) {
-                    var removeActivePlatformClasses = sourceElement.className.split(' ');
-                    var i = removeActivePlatformClasses.indexOf(className);
-                    removeActivePlatformClasses.splice(i, 1);
-                    destinationClasses.push(" " + className);
-                    destinationElement.className = destinationClasses.toString();
-                    sourceElement.className = removeActivePlatformClasses.toString();
+                removeClass(sourceElement, className);
+                addClass(destinationElement, className);
+            }
+
+            function removeClass(element, className) {
+                var elementClasses = element.className.split(" ");
+                var i = elementClasses.indexOf(className);
+                if (i >= 0) {
+                    elementClasses.splice(i, 1);
+                    element.className = elementClasses.toString();
                     return true;
                 } else return false;
+            }
+
+            function addClass(element, className) {
+                var elementClasses = element.className.split(" ");
+                if (elementClasses.indexOf(className) == -1) {
+                    elementClasses.push(" " + className);
+                    element.className = elementClasses.toString();
+                    return true;
+                } else return false;
+
             }
 
 
