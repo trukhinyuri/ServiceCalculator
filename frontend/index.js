@@ -2,6 +2,41 @@
 (function () {
     Modules.Events.addStartupListener(run);
     function run() {
+        var initializeCloudPlatformSelectors = function () {
+            var cloudPlatformSelector_virtuozzo = document.getElementsByClassName("cloudPlatformSelector_virtuozzo")[0];
+            var cloudPlatformSelector_azurepack = document.getElementsByClassName("cloudPlatformSelector_azurepack")[0];
+            var cloudPlatform_virtuozzo_tab = document.getElementsByClassName("virtuozzo_tab")[0];
+            var cloudPlatform_azurepack_tab = document.getElementsByClassName("azurepack_tab")[0];
+            Modules.Events.addListener(cloudPlatformSelector_virtuozzo, "click", virtuozzoPlatformSelectorClicked);
+            Modules.Events.addListener(cloudPlatformSelector_azurepack, "click", azurePackPlatformSelectorClicked);
+
+            function virtuozzoPlatformSelectorClicked() {
+                classExchange(cloudPlatformSelector_virtuozzo, cloudPlatformSelector_azurepack, "active");
+                classExchange(cloudPlatform_azurepack_tab, cloudPlatform_virtuozzo_tab, "collapse");
+            }
+
+            function azurePackPlatformSelectorClicked() {
+                classExchange(cloudPlatformSelector_azurepack, cloudPlatformSelector_virtuozzo, "active");
+                classExchange(cloudPlatform_virtuozzo_tab, cloudPlatform_azurepack_tab, "collapse");
+            }
+
+            function classExchange(destinationElement, sourceElement, className) {
+                var destinationClasses = destinationElement.className.split(' ');
+                if (destinationClasses.indexOf(className) == -1) {
+                    var removeActivePlatformClasses = sourceElement.className.split(' ');
+                    var i = removeActivePlatformClasses.indexOf(className);
+                    removeActivePlatformClasses.splice(i, 1);
+                    destinationClasses.push(" " + className);
+                    destinationElement.className = destinationClasses.toString();
+                    sourceElement.className = removeActivePlatformClasses.toString();
+                    return true;
+                } else return false;
+            }
+
+
+        };
+        initializeCloudPlatformSelectors();
+
         var price = new Price.VirtuozzoPrice();
         var virtuozzoCalculator = new Virtuozzo.Calculator(price);
 
