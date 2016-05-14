@@ -32,6 +32,9 @@ var Virtuozzo;
             var diskCost = this._calculateDiskCost(server.region, server.diskGb, server.runningDays, server.runningHours);
             console.log("diskRunningCost: " + diskCost);
 
+            var backupCost = this._calculateBackupCost(server.region, server.backupCount, server.backupSpace, server.runningDays, server.runningHours);
+            console.log("backupCost: " + backupCost);
+
             var ipv4Cost = this._calculateIPv4Cost(server.region, server.ipv4Count, server.runningDays, server.runningHours);
             console.log("IPv4Cost: " + ipv4Cost);
 
@@ -41,7 +44,7 @@ var Virtuozzo;
             var OSCost = this._calculateOSCost(server.region, server.osType, server.runningDays, server.runningHours);
             console.log("OSCost: " + OSCost);
 
-            var costOfRunningServer = parseFloat(cpuRunningCost) + parseFloat(ramRunningCost) + parseFloat(diskCost) + parseFloat(ipv4Cost) + parseFloat(trafficOutCost) + parseFloat(OSCost);
+            var costOfRunningServer = parseFloat(cpuRunningCost) + parseFloat(ramRunningCost) + parseFloat(diskCost) + parseFloat(backupCost) + parseFloat(ipv4Cost) + parseFloat(trafficOutCost) + parseFloat(OSCost);
 
             return costOfRunningServer.toFixed(2);
         };
@@ -52,6 +55,9 @@ var Virtuozzo;
 
             var diskCost = this._calculateDiskCost(server.region, server.diskGb, server.stoppedDays, server.stoppedHours);
             console.log("diskRunningCost: " + diskCost);
+
+            var backupCost = this._calculateBackupCost(server.region, server.backupCount, server.backupSpace, server.stoppedDays, server.stoppedHours);
+            console.log("backupCost: " + backupCost);
 
             var ipv4Cost = undefined;
             if ((server.runningDays == 0) && (server.runningHours == 0)) {
@@ -65,7 +71,7 @@ var Virtuozzo;
             var OSCost = this._calculateOSCost(server.region, server.osType, server.stoppedDays, server.stoppedHours);
             console.log("OSCost: " + OSCost);
 
-            var costOfStoppedServer = parseFloat(diskCost) + parseFloat(ipv4Cost) + parseFloat(OSCost);
+            var costOfStoppedServer = parseFloat(diskCost) + parseFloat(backupCost) + parseFloat(ipv4Cost) + parseFloat(OSCost);
 
             return costOfStoppedServer.toFixed(2);
         };
@@ -110,6 +116,12 @@ var Virtuozzo;
             var totalHours = this._calculateTotalHours(days, hours);
             var diskCost = diskCount*_price.currentPrice[region].diskGbHour*totalHours;
             return diskCost.toFixed(2);
+        };
+
+        Calculator.prototype._calculateBackupCost = function (region, backupCount, backupSpace, days, hours) {
+            var totalHours = this._calculateTotalHours(days, hours);
+            var backupCost = backupCount*backupSpace*_price.currentPrice[region].diskBackupHour*totalHours;
+            return backupCost.toFixed(2);
         };
 
         Calculator.prototype._calculateIPv4Cost = function (region, ipv4Count, stoppedDays, stoppedHours) {
@@ -164,13 +176,15 @@ var Virtuozzo;
     }());
 
     var Server = (function(){
-        function Server(region, serverName, vCPUCoresCount, vCPUFrequencyGhz, ramGb, diskGb, ipv4Count, trafficOutGb, vtType, osType, runningDays, runningHours, stoppedDays, stoppedHours) {
+        function Server(region, serverName, vCPUCoresCount, vCPUFrequencyGhz, ramGb, diskGb, backupCount, backupSpace, ipv4Count, trafficOutGb, vtType, osType, runningDays, runningHours, stoppedDays, stoppedHours) {
             this.region = region;
             this.serverName = serverName;
             this.vCPUCoresCount = vCPUCoresCount;
             this.vCPUFrequencyGhz = vCPUFrequencyGhz;
             this.ramGb = ramGb;
             this.diskGb = diskGb;
+            this.backupCount = backupCount;
+            this.backupSpace = backupSpace;
             this.ipv4Count = ipv4Count;
             this.trafficOutGb = trafficOutGb;
             this.vtType = vtType;

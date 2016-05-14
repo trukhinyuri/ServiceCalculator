@@ -36,6 +36,8 @@
         var cores = document.getElementsByClassName("cores")[0];
         var frequency = document.getElementsByClassName("frequency")[0];
         var disk = document.getElementsByClassName("disk")[0];
+        var backupCount = document.getElementsByClassName("backupCount")[0];
+        var backupSpace = document.getElementsByClassName("backupSpace")[0];
         var ram = document.getElementsByClassName("ram")[0];
         var ipv4 = document.getElementsByClassName("ipv4")[0];
         var trafficOut = document.getElementsByClassName("trafficOut")[0];
@@ -66,6 +68,10 @@
             console.log("validated_frequency:" + frequencyValue);
             var diskValue = validateDiskLimits(isNumberInputCorrect(disk.value));
             console.log("validated_diskCapacity:" + diskValue);
+            var backupCountValue = validatebackupCount(isNumberInputCorrect(backupCount.value));
+            console.log("validated_backupCountValue:" + backupCountValue);
+            var backupSpaceValue = validatebackupSpace(isNumberInputCorrect(backupSpace.value), parseFloat(diskValue), parseFloat(backupCountValue));
+            console.log("validated_backupSpaceValue:" + backupSpaceValue);
             var ramValue = validateRamLimits(isNumberInputCorrect(ram.value));
             console.log("validated_RamCapacity:" + ramValue);
             var ipv4Value = validateipv4Limits(isNumberInputCorrect(ipv4.value));
@@ -101,6 +107,8 @@
                     frequencyValue,
                     ramValue,
                     diskValue,
+                    backupCountValue,
+                    backupSpaceValue,
                     ipv4Value,
                     trafficOutValue,
                     vtTypeIndex,
@@ -125,7 +133,7 @@
                 } else if (regionValue == 1) {
                     cellRegion.appendChild(document.createTextNode("Россия, Москва (Tier III Gold, SSD-cache)"));
                 } else if (regionValue == 2) {
-                    cellRegion.appendChild(document.createTextNode("Европа, Амстердам (SSD-cache)"));
+                    cellRegion.appendChild(document.createTextNode("Европа, Амстердам (SSD)"));
                 }
 
                 var cellCores = row.insertCell(2);
@@ -140,23 +148,26 @@
                 var cellDisk = row.insertCell(5);
                 cellDisk.appendChild(document.createTextNode(diskValue + " ГБ."));
 
-                var cellIPv4 = row.insertCell(6);
+                var cellBackups = row.insertCell(6);
+                cellBackups.appendChild(document.createTextNode(backupCountValue * backupSpaceValue + " ГБ."));
+
+                var cellIPv4 = row.insertCell(7);
                 cellIPv4.appendChild(document.createTextNode(ipv4Value));
 
-                var cellTrafficOut = row.insertCell(7);
+                var cellTrafficOut = row.insertCell(8);
                 cellTrafficOut.appendChild(document.createTextNode(trafficOutValue + " ГБ."));
 
-                var cellVtType = row.insertCell(8);
+                var cellVtType = row.insertCell(9);
                 if (vtTypeIndex == 1) {
                     cellVtType.appendChild(document.createTextNode("Виртуальная машина"));
                 } else {
                     cellVtType.appendChild(document.createTextNode(vtType.value));
                 }
 
-                var cellOSType = row.insertCell(9);
+                var cellOSType = row.insertCell(10);
                 cellOSType.appendChild(document.createTextNode(osType.value));
 
-                var cellRunning = row.insertCell(10);
+                var cellRunning = row.insertCell(11);
                 if ((parseFloat(runningDaysValue) != 0) && (parseFloat(runningHoursValue) != 0)) {
                     cellRunning.appendChild(document.createTextNode(runningDaysValue + " дн., " + runningHoursValue + "ч."));
                 } else if ((parseFloat(runningDaysValue) == 0) && (parseFloat(runningHoursValue) != 0)) {
@@ -167,7 +178,7 @@
                     cellRunning.appendChild(document.createTextNode("-"));
                 }
 
-                var cellStopped = row.insertCell(11);
+                var cellStopped = row.insertCell(12);
                 if ((parseFloat(stoppedDaysValue) != 0) && (parseFloat(stoppedHoursValue) != 0)) {
                     cellStopped.appendChild(document.createTextNode(stoppedDaysValue + " дн., " + stoppedHoursValue + "ч."));
                 } else if ((parseFloat(stoppedDaysValue) == 0) && (parseFloat(stoppedHoursValue) != 0)) {
@@ -178,7 +189,7 @@
                     cellStopped.appendChild(document.createTextNode("-"));
                 }
 
-                var cellServerCost = row.insertCell(12);
+                var cellServerCost = row.insertCell(13);
                 cellServerCost.appendChild(document.createTextNode(costOfServer + " руб."));
             } else clearItems();
 
@@ -191,6 +202,8 @@
             cores.value = "";
             frequency.value = "";
             disk.value = "";
+            backupCount.value = "";
+            backupSpace.value = "";
             ram.value = "";
             ipv4.value = "";
             trafficOut.value = "";
@@ -293,6 +306,33 @@
                 return maxDiskCapacity;
             }
             return diskCapacity;
+        }
+
+        function validatebackupCount(backupCountValue) {
+            if (isEmptyOrSpaces(backupCountValue)) {
+                backupCount.value = 0;
+                return 0;
+            }
+
+            if (backupCountValue < 0) {
+                backupCount.value = 0;
+                return 0;
+            } else return backupCountValue;
+        }
+
+        function validatebackupSpace(backupSpaceValue, diskCapacity, backupCountValue) {
+            if (isEmptyOrSpaces(backupSpaceValue) || (backupCountValue == 0)) {
+                backupSpace.value = 0;
+                return 0;
+            }
+
+            if (backupSpaceValue < 0) {
+                backupSpace.value = 0;
+                return 0;
+            } else if (backupSpaceValue > diskCapacity) {
+                backupSpace.value = diskCapacity;
+                return diskCapacity;
+            } else return backupSpaceValue;
         }
 
         function validateRamLimits (ramCapacity) {

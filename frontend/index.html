@@ -19,20 +19,19 @@
     <script src="index.js"></script>
 </head>
 <body>
-<div class="navbar navbar-static-top navbar-fixed-top">
-    <div class="container-fluid">
+<div class="navbar navbar-fixed-top">
+    <div class="container-fluid ">
         <!-- Brand and toggle get grouped for better mobile display -->
         <ul class="nav navbar-nav">
-            <li class="navItem_general"><p class="navbar-brand">Калькулятор</p></li>
+            <li class="navItem_general">
+                <p class="navbar-brand">Калькулятор</p>
+                <p class="navbar-brand">
+                    <img src="img/infoboxcloud-logo.svg" width="125">
+                </p>
+            </li>
         </ul>
-        <div class="navbar-header">
-            <p class="navbar-brand">
-                <img src="img/infoboxcloud-logo.svg" width="125">
-            </p>
-        </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -131,23 +130,22 @@
                 <!--<li class="navItem_general"><a href="https://infoboxcloud.ru/about/contacts/" target="_blank">Свяжитесь с нами</a></li>-->
                 <!--<li class="navItem_general"><a href="https://infoboxcloud.ru/login/" target="_blank">Вход для клиентов</a></li>-->
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="https://infoboxcloud.ru/request/" target="_blank">Хочу консультацию, демо</a></li>
-                <li class="dropdown nav_order_dropdown">
-                    <a href="#" class="dropdown-toggle nav_order_dropdown_text" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        Стать клиентом
-                        <span class="caret"></span></a>
-                    <ul class="dropdown-menu nav_order_dropdown_menu navItem_general_menu">
-                        <li><a href="https://infoboxcloud.ru/services/virtuozzo/order/" target="_blank">Virtuozzo Infrastructure</a></li>
-                        <li><a href="https://infoboxcloud.ru/services/azurepack/order/" target="_blank">Azure Pack Infrastructure</a></li>
-                        <li><a href="https://infoboxcloud.ru/services/azure/order/" target="_blank">Microsoft Azure</a></li>
-                        <li><a href="https://infoboxcloud.ru/services/privatecloud/order/" target="_blank">Dedicated Infrastructure</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="https://infoboxcloud.ru/request/" target="_blank">Что выбрать?</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="https://infoboxcloud.ru/request/" target="_blank">Хочу консультацию, демо</a></li>
+            <li class="dropdown nav_order_dropdown">
+                <a href="#" class="dropdown-toggle nav_order_dropdown_text" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    Стать клиентом
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu nav_order_dropdown_menu navItem_general_menu">
+                    <li><a href="https://infoboxcloud.ru/services/virtuozzo/order/" target="_blank">Virtuozzo Infrastructure</a></li>
+                    <li><a href="https://infoboxcloud.ru/services/azurepack/order/" target="_blank">Azure Pack Infrastructure</a></li>
+                    <li><a href="https://infoboxcloud.ru/services/azure/order/" target="_blank">Microsoft Azure</a></li>
+                    <li><a href="https://infoboxcloud.ru/services/privatecloud/order/" target="_blank">Dedicated Infrastructure</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="https://infoboxcloud.ru/request/" target="_blank">Что выбрать?</a></li>
+                </ul>
+            </li>
+        </ul>
     </div><!-- /.container-fluid -->
 </div>
 <div class="container-fluid container-calculator">
@@ -165,18 +163,16 @@
             </li>
         </ul>
         <div class="virtuozzo_tab">
-            <p>Oблачная платформа на технологиях Odin – лидера в сфере виртуализации и ПО для облачных решений,
-                идеально подходящая для малого и среднего бизнеса, разработчиков, веб-студий и ИТ-интеграторов.</p>
+            <p>Облачная инфраструктура на базе технологий Virtuozzo по максимально доступной стоимости.</p>
             При регистрации требуется пополнение баланса на 500 рублей. Оплата взимается на почасовой основе за ресурсы, выделенные серверам в панели управления. В любое время вы можете создавать, останавливать и удалять серверы, изменять объем ресурсов или использовать автомасштабирование.
-            <br><br>
             Официальные тарифные планы доступны <a href="https://infoboxcloud.ru/about/docs/" target="_blank">по ссылке</a>.
-            <h4>Укажите параметры облачного сервера:</h4>
+            <h4>Укажите известные параметры облачного сервера (что пока не известно - пропускайте):</h4>
             <div class="input-group inputServerInfo">
                 <span class="input-group-addon input-group-addon_first">Регион:</span>
                 <select class="form-control region">
-                    <option>Россия, дата-центр в Санкт-Петербурге (новая архитектура на быстрых SSD)</option>
+                    <option>Россия, дата-центр в Санкт-Петербурге (быстрые SSD, IPv6 бесплатно)</option>
                     <option>Россия, дата-центр в Москве, соответствующий TIER III Gold (SSD–кеширование)</option>
-                    <option>Европа, дата-центр в Амстердаме (новая архитектура на быстрых SSD)</option>
+                    <option>Европа, дата-центр в Амстердаме (быстрые SSD)</option>
                 </select>
             </div>
             <div class="input-group inputServerInfo">
@@ -204,8 +200,15 @@
                 <span class="input-group-addon input-group-addon_last">гигабайт</span>
             </div>
             <div class="input-group inputServerInfo">
+                <span class="input-group-addon input-group-addon_first">Хранить резервных копий</span>
+                <input type="text" class="form-control backupCount" placeholder="0" aria-describedby="basic-addon1"/>
+                <span class="input-group-addon input-group-addon_last">штук, объем каждой (занятое место на диске сервера)</span>
+                <input type="text" class="form-control backupSpace" placeholder="0" aria-describedby="basic-addon1"/>
+                <span class="input-group-addon input-group-addon_last">гигабайт</span>
+            </div>
+            <div class="input-group inputServerInfo">
                 <span class="input-group-addon input-group-addon_first">Количество внешних IPv4</span>
-                <input type="text" class="form-control ipv4" placeholder="от 0 до 10, IPv6 адреса предоставляются бесплатно!" aria-describedby="basic-addon1">
+                <input type="text" class="form-control ipv4" placeholder="от 0 до 10" aria-describedby="basic-addon1">
                 <span class="input-group-addon input-group-addon_last">штук</span>
             </div>
             <div class="input-group inputServerInfo">
@@ -268,6 +271,7 @@
                     <td>Частота vCPU</td>
                     <td>Объем RAM</td>
                     <td>Объем диска</td>
+                    <td>Резервные копии</td>
                     <td>Внешние IPv4</td>
                     <td>Исходящий трафик</td>
                     <td>Виртуализация</td>
@@ -284,13 +288,11 @@
         </div>
     </div>
 </div>
-<div class="navbar-fixed-bottom row-fluid footer">
-    <div class="navbar-inner">
-        <div class="footer-text">
+<div class="footer">
+        <div class="footer-text col-md-12 col-centered text-center">
             "Калькулятор облачной инфраструктуры InfoboxCloud". Обновление от 24.04.2016.
             © OOO «Национальные телекоммуникации», 2002-2016
         </div>
-    </div>
 </div>
 <!-- Yandex.Metrika counter --> <script type="text/javascript"> (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter31646678 = new Ya.Metrika({ id:31646678, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true, trackHash:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks"); </script> <noscript><div><img src="https://mc.yandex.ru/watch/31646678" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter -->
 </body>
