@@ -2,6 +2,53 @@
 (function () {
     Modules.Events.addStartupListener(run);
     function run() {
+        var initializeCloudPlatformSelectors = function () {
+            var cloudPlatformSelector_virtuozzo = document.getElementsByClassName("cloudPlatformSelector_virtuozzo")[0];
+            var cloudPlatformSelector_azurepack = document.getElementsByClassName("cloudPlatformSelector_azurepack")[0];
+            var cloudPlatform_virtuozzo_tab = document.getElementsByClassName("virtuozzo_tab")[0];
+            var cloudPlatform_azurepack_tab = document.getElementsByClassName("azurepack_tab")[0];
+            Modules.Events.addListener(cloudPlatformSelector_virtuozzo, "click", virtuozzoPlatformSelectorClicked);
+            Modules.Events.addListener(cloudPlatformSelector_azurepack, "click", azurePackPlatformSelectorClicked);
+
+            function virtuozzoPlatformSelectorClicked() {
+                classExchange(cloudPlatformSelector_virtuozzo, cloudPlatformSelector_azurepack, "active");
+                classExchange(cloudPlatform_azurepack_tab, cloudPlatform_virtuozzo_tab, "collapse");
+            }
+
+            function azurePackPlatformSelectorClicked() {
+                classExchange(cloudPlatformSelector_azurepack, cloudPlatformSelector_virtuozzo, "active");
+                classExchange(cloudPlatform_virtuozzo_tab, cloudPlatform_azurepack_tab, "collapse");
+            }
+
+            function classExchange(destinationElement, sourceElement, className) {
+                removeClass(sourceElement, className);
+                addClass(destinationElement, className);
+            }
+
+            function removeClass(element, className) {
+                var elementClasses = element.className.split(" ");
+                var i = elementClasses.indexOf(className);
+                if (i >= 0) {
+                    elementClasses.splice(i, 1);
+                    element.className = elementClasses.toString();
+                    return true;
+                } else return false;
+            }
+
+            function addClass(element, className) {
+                var elementClasses = element.className.split(" ");
+                if (elementClasses.indexOf(className) == -1) {
+                    elementClasses.push(" " + className);
+                    element.className = elementClasses.toString();
+                    return true;
+                } else return false;
+
+            }
+
+
+        };
+        initializeCloudPlatformSelectors();
+
         var price = new Price.VirtuozzoPrice();
         var virtuozzoCalculator = new Virtuozzo.Calculator(price);
 
