@@ -2,13 +2,14 @@
 <html lang="ru" ng-app="calculator">
 <head>
     <meta charset="utf-8">
-    <!--<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="Калькулятор стоимости облачной инфраструктуры в InfoboxCloud.">
+    <meta name="Keywords" content="InfoboxCloud, Infobox, облако, сервер, стоимость, калькулятор, расчет">
 
     <title>Калькулятор стоимости облака InfoboxCloud</title>
 
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css"/>
-
     <link rel="stylesheet" href="index.css" type="text/css"/>
 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -21,8 +22,19 @@
 <body>
 <div class="navbar navbar-fixed-top">
     <div class="container-fluid mainMenu">
+        <ul class="nav navbar-nav">
+            <li class="navItem_logo">
+                <div class="ic_logo">
+                </div>
+                <!--<a class="navbar-brand headerMenuItem" href="https://infoboxcloud.ru" target="_blank">-->
+                    <!--<img src="img/infoboxcloud-logo-white.svg" alt="InfoboxCloud" width="125"/>-->
+                <!--</a>-->
+            </li>
+        </ul>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
             <ul class="nav navbar-nav">
-                <li class="dropdown">
+                <li class="dropdown visible-lg visible-md">
                     <a href="#" class="dropdown-toggle headerMenuItem" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         Сервисы
                         <span class="caret"></span></a>
@@ -77,7 +89,7 @@
                         <li><a href="https://infoboxcloud.ru/request/" target="_blank">Что выбрать?</a></li>
                     </ul>
                 </li>
-                <li class="dropdown">
+                <li class="dropdown visible-lg visible-md">
                     <a href="#" class="dropdown-toggle headerMenuItem" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         Партнерам
                         <span class="caret"></span></a>
@@ -114,13 +126,13 @@
                         <li><a href="https://infoboxcloud.ru/partners/order/?" target="_blank">Стать партнером</a></li>
                     </ul>
                 </li>
-                <li><a class="headerMenuItem" href="https://infoboxcloud.ru/about/" target="_blank">Почему InfoboxCloud?</a></li>
+                <li class="visible-lg visible-md"><a class="headerMenuItem" href="https://infoboxcloud.ru/about/" target="_blank">Почему InfoboxCloud?</a></li>
                 <!--<li class="navItem_general"><a href="https://helpdesk.infobox.ru/Knowledgebase/List/Index/2/oblchnja&#45;&#45;infrstrukturhttps://helpdesk.infobox.ru/Knowledgebase/List/Index/2/oblchnja&#45;&#45;infrstruktur" target="_blank">Поддержка</a></li>-->
                 <!--<li class="navItem_general"><a href="https://infoboxcloud.ru/about/contacts/" target="_blank">Свяжитесь с нами</a></li>-->
                 <!--<li class="navItem_general"><a href="https://infoboxcloud.ru/login/" target="_blank">Вход для клиентов</a></li>-->
             </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li><a class="headerMenuItem" href="https://infoboxcloud.ru/request/" target="_blank">Хочу консультацию, демо</a></li>
+            <li><a class="headerMenuItem visible-lg visible-md" href="https://infoboxcloud.ru/request/" target="_blank">Хочу консультацию, демо</a></li>
             <li class="dropdown nav_order_dropdown">
                 <a href="#" class="dropdown-toggle nav_order_dropdown_text" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                     Стать клиентом
@@ -139,15 +151,20 @@
 </div>
 <div class="container-fluid container-calculator">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
             <h1 class="bHeader">Калькулятор InfoboxCloud</h1>
         </div>
-        <div class="col-md-8 col-md-offset-2">
-            <h1 class="bDescription">Добавьте необходимое количество серверов с требуемыми параметрами (Virtuozzo) и вы увидите, сколько будет стоить вся облачная инфраструктура в месяц.</h1>
+        <div class="col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 visible-lg visible-md">
+            <h1 class="bDescription">Добавьте необходимое количество серверов с требуемыми параметрами и вы увидите, сколько будет стоить вся облачная инфраструктура в месяц.</h1>
+        </div>
+        <div class="col-xs-12 col-sm-12 visible-xs visible-sm">
+            <h1 class="sDescription">Если вы используете планшет, пожалуйста переверните экран в горизонтальное положение. <br>
+            Если вы используете мобильный телефон или планшет с низким разрешением экрана - пожалуйста откройте калькулятор на компьютере.<br>
+            </h1>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-lg-8 col-lg-offset-2 col-mg-8 col-mg-offset-2 visible-lg visible-md">
             <div class="jumbotron jumbotron_cloud_server" ng-controller="inputCloudServerController">
                 <!--<h4>Выберите облачную платформу:</h4>-->
                 <ul class="nav nav-tabs">
@@ -159,7 +176,7 @@
                     </li>
                 </ul>
                 <div class="virtuozzo_tab">
-                    <div class="nHeader">Самые быстрые серверы в InfoboxCloud</div>
+                    <div class="nHeader">Доступное облако на быстрых SSD–дисках.</div>
                     <div class="nText">
                         При регистрации требуется пополнение баланса на 500 рублей. Оплата взимается на почасовой основе за ресурсы, выделенные серверам в панели управления. В любое время вы можете создавать, останавливать и удалять серверы, изменять объем ресурсов или использовать автомасштабирование.
                         Официальные тарифные планы доступны <a href="https://infoboxcloud.ru/about/docs/" target="_blank">по ссылке</a>.
@@ -258,7 +275,7 @@
             </div>
         </div>
         </div>
-    <div class="container-fluid container-results">
+    <div class="container-fluid container-results col-lg-12 col-mg-12 visible-lg visible-md">
         <div class="jumbotron jumbotron_results">
             <div class="resultSpace" ng-controller="resultsController">
                 <h3 class="resultHeader" name="resultHeader">Примерная стоимость облачной инфраструктуры: 0.00 руб.</h3>
@@ -291,10 +308,9 @@
         </div>
     </div>
     </div>
-
 </div>
-<div class="footer">
-        <div class="footer-text col-md-12 col-centered text-center">
+<div class="footer row">
+        <div class="footer-text col-md-10 col-md-offset-2 col-lg-10 col-lg-offset-2 col-xs-10 col-xs-offset-2 col-sm-10 col-sm-offset-2">
             "Калькулятор облачной инфраструктуры InfoboxCloud". Обновление от 11.07.2016.
             © OOO «Национальные телекоммуникации», 2002-2016
         </div>
