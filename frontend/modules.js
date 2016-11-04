@@ -1,6 +1,6 @@
 
 /*
- * Copyright 2012-2013 Yuri Trukhin
+ * Copyright 2012-2014 Yuri Trukhin
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -18,8 +18,8 @@
 /**
  * @fileOverview
  * @copyright (C) Yuri V. Trukhin.
- * @author Yuri V.Trukhin
- * @version 1.0-snapshot
+ * @author trukhinyuri <yuri@trukhin.com>
+ * @version 0.9.0
  * @license Apache License, Version 2.0. You may obtain a copy of the License at {@link http://www.apache.org/licenses/LICENSE-2.0}
  */
 
@@ -949,26 +949,49 @@ window.exports = window.exports || (window.exports = {});
          * @returns {String} Correct path or page directory
          */
         function _checkPath(path) {
-            var documentRootURL = Modules.DOM.getDocumentRootURL;
+            var documentRootURL = Modules.DOM.getDocumentRootURL();
             if (typeof (path) == "string") {
                 if (path[path.length-1] != "/") {
                     if (path[0] != "/") {
-                        return documentRootURL() + "/" + path + "/";
+                        return documentRootURL + "/" + path + "/";
                     }
                     else {
-                        return documentRootURL() + path + "/";
+                        return documentRootURL + path + "/";
                     }
                 }
                 else {
                     if (path[0] != "/") {
-                        return documentRootURL() + "/" + path;
+                        return documentRootURL + "/" + path;
                     } else {
                         return documentRootURL + path;
                     }
                 }
             }
             else {
-                return documentRootURL() + "/";
+                return documentRootURL + "/";
+            }
+        }
+
+        /**
+         * Check name correctness (remove extension for internal use)
+         * @private
+         * @method _checkName
+         * @memberOf Modules.Loader
+         * @param {String} itemName Location of the items
+         * @returns {String} Correct path or page directory
+         */
+        function _checkName(itemName) {
+            var correctName = itemName;
+            if (typeof (itemName) == "string") {
+                if (itemName.indexOf('.') === -1) {
+                    return correctName;
+                } else {
+                    correctName = itemName.substr(0, itemName.lastIndexOf('.')) || itemName;
+                    return correctName;
+                }
+            }
+            else {
+                console.warn("Error: itemName " + itemName + "is not string!");
             }
         }
 
@@ -986,27 +1009,33 @@ window.exports = window.exports || (window.exports = {});
             return result;
         }
 
-
         /**
          * Load CSS file to the document (adding correct link to the file)
          * @private
          * @method _loadCSS
          * @memberOf Modules.Loader
-         * @param {String} pathToItemFiles Location of the CSS file
+         * @param {String} correctPath Location of the CSS file
          * @param {String} itemName Name of the CSS file
          * @param {Function} callback Callback is called when the CSS file loaded on the page
          */
-        function _loadCSS (pathToItemFiles, itemName, callback) {
+        function _loadCSS (correctPath, itemName, callback) {
             var modulesCSSprefix = "modulesjs_css_";
+
+            var itemData = {"itemInfo": { "itemName" : itemName, "itemPath": correctPath }};
+            Modules.Events.dispatchCustomEvent(document, "css_" + itemName + "_loadingStarted", itemData);
+
             var cssLoaded = document.getElementsByClassName(modulesCSSprefix + itemName)[0];
             if (!cssLoaded) {
                 var css = document.createElement('link');
-                css.href = pathToItemFiles + ".css";
+                css.href = correctPath + itemName + ".css";
                 css.className = modulesCSSprefix + itemName;
                 css.type = "text/css";
                 css.rel = "stylesheet";
                 document.getElementsByTagName("head")[0].appendChild(css);
             }
+
+            Modules.Events.dispatchCustomEvent(document, "css_" + itemName + "_loaded", itemData);
+
             if (callback) {
                 callback();
             }
@@ -1037,18 +1066,23 @@ window.exports = window.exports || (window.exports = {});
          * @private
          * @method _loadJS
          * @memberOf Modules.Loader
-         * @param {String} pathToItemFiles Location of the JavaScript file
+         * @param {String} correctPath Location of the JavaScript file
          * @param {String} itemName Name of the JavaScript file
          * @param {Function} callback Callback is called when the JavaScript file loaded on the page
          */
-        function _loadJS (pathToItemFiles, itemName, callback) {
+        function _loadJS (correctPath, itemName, callback) {
             var modulesJsPrefix = "modulesjs_js_";
+
+            var itemData = {"itemInfo": { "itemName" : itemName, "itemPath": correctPath }};
+            Modules.Events.dispatchCustomEvent(document, "javascript_" + itemName + "_loadingStarted", itemData);
+
             var jsLoaded = document.getElementsByClassName(modulesJsPrefix + itemName)[0];
             if (jsLoaded) {
                 document.getElementsByTagName("head")[0].removeChild(jsLoaded);
             }
+
             var script = document.createElement('script');
-            script.src = pathToItemFiles + ".js";
+            script.src = correctPath + itemName + ".js";
             script.className = modulesJsPrefix + itemName;
             script.type = "text/javascript";
             script.async = true;
@@ -1058,6 +1092,7 @@ window.exports = window.exports || (window.exports = {});
                 var state = script.readyState;
                 if (!done && (!state || state === "loaded" || state === "complete")) {
                     done = true;
+                    Modules.Events.dispatchCustomEvent(document, "javascript_" + itemName + "_loaded", itemData);
                     if (callback) {
                         callback(itemName);
                     }
@@ -1102,6 +1137,32 @@ window.exports = window.exports || (window.exports = {});
                 _renderHTML(responseText, className, itemType, containerClassName, callback);
             }
             _loadHTMLInMemory(pathToItemFiles, itemName, loadedHandler);
+        }
+
+        function _loadHTMLTemplate(pathToItemFiles, itemName, className, itemType, containerClassName, dataSource, callback) {
+            function loadedHandler(responseText, name) {
+                var templatedText = insertTemplate(responseText, dataSource);
+                _renderHTML(templatedText, className, itemType, containerClassName, callback);
+            }
+            _loadHTMLInMemory(pathToItemFiles, itemName, loadedHandler);
+        }
+
+        function insertTemplate (responseText, dataSource) {
+            for (var key in dataSource) {
+                if (dataSource.hasOwnProperty(key)) {
+                    responseText = replaceAll(responseText, "$" + key + ";", dataSource[key]);
+                }
+            }
+
+            function replaceAll(str, find, replace) {
+                return str.replace(new RegExp(escapeRegExp(find), 'g'), replace);
+            }
+            //for secure replace
+            function escapeRegExp(str) {
+                return str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+            }
+
+            return responseText;
         }
 
         /**
@@ -1230,10 +1291,38 @@ window.exports = window.exports || (window.exports = {});
 
                 var pathToModuleFiles = modulePath + moduleName;
 
-                _loadCSS(pathToModuleFiles, moduleName, function() {
+                _loadCSS(modulePath, moduleName, function() {
                     _loadHTML(pathToModuleFiles, moduleName, className, Modules.MODULE, containerClassName, function() {
-                        _loadJS(pathToModuleFiles, moduleName, function() {
+                        _loadJS(modulePath, moduleName, function() {
                             Modules.Events.dispatchCustomEvent(document, "module_" + moduleName + "_loaded", itemData);
+                            if (callback) {
+                                callback();
+                            }
+                        });
+                    });
+                });
+            }
+        }
+
+        function _loadTemplate(correctPath, moduleName, className, callback, containerClassName, dataSource) {
+            setTimeout(function(){
+                loadSync(correctPath, moduleName, className, callback, containerClassName);
+            }, 0);
+
+            function loadSync (correctPath, moduleName, className, callback, containerClassName) {
+                var modulePath = _buildModulePath(correctPath, moduleName);
+
+                var itemData = {"itemInfo": {"itemName" : moduleName, "itemPath": modulePath, "className": className,
+                    "containerClassName" : containerClassName}};
+
+                Modules.Events.dispatchCustomEvent(document, "template_" + moduleName + "_loadingStarted", itemData);
+
+                var pathToModuleFiles = modulePath + moduleName;
+
+                _loadCSS(modulePath, moduleName, function() {
+                    _loadHTMLTemplate(pathToModuleFiles, moduleName, className, Modules.MODULE, containerClassName, dataSource, function() {
+                        _loadJS(modulePath, moduleName, function() {
+                            Modules.Events.dispatchCustomEvent(document, "template_" + moduleName + "_loaded", itemData);
                             if (callback) {
                                 callback();
                             }
@@ -1303,7 +1392,56 @@ window.exports = window.exports || (window.exports = {});
         }
 
         /**
+         * Load modules.js module in className from path
+         * @method loadModule
+         * @memberOf Modules.Loader
+         * @param {String | undefined} relativePath Relative path to the items folder
+         * @param {String} moduleName Name of the module
+         * @param {String} className Class on the page for loading item
+         * @param {Function} callback Callback is called when item loaded
+         * @param {String} containerClassName Class on the page, which parent for class for loading item
+         */
+        function loadModule (relativePath, moduleName, className, callback, containerClassName) {
+            var _correctPath = _checkPath(relativePath);
+            _loadModule(_correctPath, moduleName, className, callback, containerClassName);
+        }
+
+        function loadTemplate (relativePath, moduleName, className, dataSource, callback, containerClassName) {
+            var _correctPath = _checkPath(relativePath);
+            _loadTemplate(_correctPath, moduleName, className, callback, containerClassName, dataSource);
+        }
+
+        /**
+         * Load javascript file in className from path
+         * @method loadJS
+         * @memberOf Modules.Loader
+         * @param {String | undefined} relativePath Relative path to the items folder
+         * @param {String} itemName Name of the item
+         * @param {Function} callback Callback is called when item loaded
+         */
+        function loadJS (relativePath, itemName, callback) {
+            var _correctPath = _checkPath(relativePath);
+            var _correctName = _checkName(itemName);
+            _loadJS(_correctPath, _correctName, callback);
+        }
+
+        /**
+         * Load css file in className from path
+         * @method loadCSS
+         * @memberOf Modules.Loader
+         * @param {String | undefined} relativePath Relative path to the items folder
+         * @param {String} itemName Name of the item
+         * @param {Function} callback Callback is called when item loaded
+         */
+        function loadCSS (relativePath, itemName, callback) {
+            var _correctPath = _checkPath(relativePath);
+            var _correctName = _checkName(itemName);
+            _loadCSS(_correctPath, _correctName, callback);
+        }
+
+        /**
          * Load itemType in className from path
+         * @deprecated Since version 1.0
          * @method load
          * @memberOf Modules.Loader
          * @param {String} itemType ITEM_TYPE constant for item type. See {@link window.exports.Modules}
@@ -1315,9 +1453,14 @@ window.exports = window.exports || (window.exports = {});
          * @param {Object} dataSource Object with data for Modules.TEMPLATE
          */
         function load (itemType, relativePath, itemName, className, callback, containerClassName, dataSource) {
-            var _correctPath = _checkPath(relativePath);
             if (itemType === Modules.MODULE) {
-                _loadModule(_correctPath, itemName, className, callback, containerClassName);
+                loadModule(relativePath, itemName, className, callback, containerClassName);
+            }
+            if (itemType === Modules.JAVASCRIPT) {
+                loadJS(relativePath, itemName, callback);
+            }
+            if (itemType === Modules.CSS) {
+                loadCSS(relativePath, itemName, callback);
             }
 
 // else if (itemType === this.itemTypes.template) {
@@ -1348,6 +1491,10 @@ window.exports = window.exports || (window.exports = {});
             }
         }
 
+        Loader.loadModule = loadModule;
+        Loader.loadTemplate = loadTemplate;
+        Loader.loadJS = loadJS;
+        Loader.loadCSS = loadCSS;
         Loader.load = load;
         Loader.unload = unload;
     })(Modules.Loader || (Modules.Loader = {}));

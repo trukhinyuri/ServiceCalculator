@@ -1,0 +1,292 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+.container-calculator {
+    padding: 14px 14px 0 14px;
+    margin: 18px 0 0 0;
+}
+
+.container-results {
+    padding: 0 14px 0 14px;
+    margin: 0;
+}
+
+.mainMenu {
+    background: #262525;
+}
+
+.appHeader {
+    color: white;
+}
+
+.menuBar_headerMenuItem {
+    color: #cde3ed;
+}
+
+.bHeader {
+    color: rgb(0, 38, 70);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 10mm;
+    font-weight: 300;
+    line-height: 10mm;
+    padding: 0px;
+    text-align: center;
+    vertical-align: top;
+}
+
+.bDescription {
+    color: rgb(51, 51, 51);
+    float: left;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 6mm;
+    font-weight: 300;
+    line-height: 8mm;
+    /*margin: 0 0 10mm 0;*/
+    padding: 0px;
+    text-align: center;
+    vertical-align: top;
+}
+
+.sDescription {
+    color: rgb(51, 51, 51);
+    float: left;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 4mm;
+    font-weight: 300;
+    line-height: 8mm;
+    /*margin: 0 0 10mm 0;*/
+    padding: 0px;
+    text-align: justify;
+    vertical-align: top;
+}
+
+.nHeader {
+    color: rgb(51, 51, 51);
+    font-family: "Open Sans", sans-serif;
+    font-size: 6mm;
+    font-weight: 300;
+    line-height: 6mm;
+    margin: 2mm 0 2mm 0;
+}
+
+.nText {
+    color: rgb(51, 51, 51);
+    font-family: "Open Sans", sans-serif;
+    font-size: 4mm;
+    font-weight: 300;
+    line-height: 6mm;
+    margin: 1mm 0 3mm 0;
+}
+.menuBar_navItem_logo {
+    padding: 0 4mm 0 4mm;
+}
+.menuBar_navItem_logo:hover {
+    background: #f0eef5;
+    cursor: hand;
+}
+
+.menuBar_navItem_logo:hover > .menuBar_navItem_logo_ic {
+    background: url("img/infoboxcloud-logo.svg") no-repeat center;
+    background-size: 100%;
+}
+
+.navbar-nav:hover > .menuBar_navItem_logo {
+    cursor: pointer;
+}
+
+.menuBar_navItem_logo > .menuBar_navItem_logo_ic {
+    width: 125px;
+    height: 28px;
+    background: url("img/infoboxcloud-logo-white.svg") no-repeat center;
+    background-size: 100%;
+    cursor: hand;
+}
+
+.note {
+    font-size: 3mm;
+}
+
+.noBorder {
+    border: none;
+}
+
+.usualButtonBackground {
+    background: #f5f5f5;
+}
+
+.addButton {
+    background: #80cc28;
+}
+
+.clearListButton {
+    background: #f65343;
+}
+
+.input-group-addon {
+    background: #f5f5f5;
+}
+
+.cloudPlatformSelector_virtuozzo_tabImage {
+    height: 32px;
+}
+
+.input-group {
+    border: none;
+}
+
+.navbar-nav > li > a, .navbar-brand {
+    padding-top:4px !important;
+    padding-bottom:0 !important;
+    height: 28px;
+}
+
+.navbar {
+    min-height:28px !important;
+    margin: 0;
+    background: white;
+}
+
+.navbar-nav {
+    margin: 0;
+}
+
+.navbar-brand {
+    padding: 0 15px 0 0;
+}
+
+.navbar>.container .navbar-brand,.navbar>.container-fluid .navbar-brand {
+    margin: 0;
+}
+
+.navbar-collapse.collapse {
+    display: block!important;
+}
+
+.navbar-nav>li, .navbar-nav {
+    float: left !important;
+}
+
+.navbar-nav.navbar-right:last-child {
+    margin-right: -15px !important;
+}
+
+.navbar-right {
+    float: right!important;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+}
+
+.nav>.navItem_general>a {
+    color: grey;
+}
+
+.nav_order_dropdown_menu > li > a:hover, .dropdown-menu > li > a:focus {
+    background-image:none !important;
+}
+.nav_order_dropdown_menu > li > a:hover, .dropdown-menu > li > a:focus {
+    background-color:#80cc28;
+    color: white;
+}
+
+.nav>.nav_order_dropdown>a:focus, .nav>.nav_order_dropdown>a:hover {
+    background: #80cc28 none;
+    color: white;
+}
+
+.dropdown-header-description {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-generic {
+    background: transparent;
+}
+
+.footer {
+    background: white;
+    color: lightgrey;
+    width: 100%;
+}
+
+.footer-text {
+    padding: 1px 14px 1px 14px;
+    text-align: center;
+}
+
+.nav_order_dropdown {
+    background: #80cc28;
+}
+
+.nav_order_dropdown:hover {
+    background: #80cc28;
+}
+
+.nav_order_dropdown_text {
+    color: white;
+}
+
+
+.input-group-addon_first {
+    min-width:53mm;
+    text-align:left;
+}
+.input-group-addon_last {
+    min-width:25mm;
+    text-align:left;
+}
+
+.jumbotron_cloud_server {
+    margin: 0;
+    padding: 1mm;
+    background: white;
+    border: none;
+}
+.jumbotron_results {
+    margin: 0;
+    padding: 2mm;
+    background: white;
+}
+.resultSpace {
+    margin: 0 0 1mm 0;
+}
+.resultHeader {
+    margin: 0;
+}
+.resultServer {
+    border: 0.4mm solid #00b3ee;
+    margin: 3mm 0 3mm 0;
+    border-radius: 1mm;
+    padding: 1mm;
+}
+
+.table td {
+    text-align: center;
+}
+
+thead {
+    font-weight: bold;
+}
+
+.page-header {
+    margin: 0;
+    padding: 0;
+}
+
+.inputServerInfo {
+    min-width: 210mm;
+    max-width: 210mm;
+}
+
+.controlButtons {
+    min-width: 210mm;
+    max-width: 210mm;
+}
+
+
+
+

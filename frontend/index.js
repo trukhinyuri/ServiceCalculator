@@ -2,19 +2,15 @@
 (function () {
     Modules.Events.addStartupListener(run);
     function run() {
+        Modules.Loader.loadModule("modules", "menuBar", "menuBarContainer");
+
         var initializeCloudPlatformSelectors = function () {
-            var rootSiteNavigation = document.getElementsByClassName("navItem_logo")[0]
             var cloudPlatformSelector_virtuozzo = document.getElementsByClassName("cloudPlatformSelector_virtuozzo")[0];
             var cloudPlatformSelector_azurepack = document.getElementsByClassName("cloudPlatformSelector_azurepack")[0];
             var cloudPlatform_virtuozzo_tab = document.getElementsByClassName("virtuozzo_tab")[0];
             var cloudPlatform_azurepack_tab = document.getElementsByClassName("azurepack_tab")[0];
-            Modules.Events.addListener(rootSiteNavigation, "click", navigateToRootSite);
             Modules.Events.addListener(cloudPlatformSelector_virtuozzo, "click", virtuozzoPlatformSelectorClicked);
             Modules.Events.addListener(cloudPlatformSelector_azurepack, "click", azurePackPlatformSelectorClicked);
-            
-            function navigateToRootSite() {
-                var win = window.open("https://infoboxcloud.ru", '_blank');
-            }
 
             function virtuozzoPlatformSelectorClicked() {
                 classExchange(cloudPlatformSelector_virtuozzo, cloudPlatformSelector_azurepack, "active");
@@ -422,8 +418,8 @@
                 return 0;
             }
             if (trafficOutValue < minTrafficOut) {
-                trafficOut.value = price.currentPrice[region.selectedIndex].trafficFreeLim;
-                return price.currentPrice[region.selectedIndex].trafficFreeLim;
+                trafficOut.value = price.currentPrice[region.selectedIndex].limits.trafficFree;
+                return price.currentPrice[region.selectedIndex].limits.trafficFree;
             }
             return trafficOutValue;
         }

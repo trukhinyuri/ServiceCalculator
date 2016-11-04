@@ -134,9 +134,9 @@ var Virtuozzo;
         };
 
         Calculator.prototype._calculateTrafficOutCost = function (region, trafficOutCount) {
-            if (trafficOutCount < _price.currentPrice[region].trafficFreeLim) {
+            if (trafficOutCount < _price.currentPrice[region].limits.trafficFree) {
                 trafficOutCount = 0;
-            } else trafficOutCount = trafficOutCount - _price.currentPrice[region].trafficFreeLim;
+            } else trafficOutCount = trafficOutCount - _price.currentPrice[region].limits.trafficFree;
             var trafficOutCost = trafficOutCount*_price.currentPrice[region].trafficOutGb;
             return trafficOutCost.toFixed(2);
         };
