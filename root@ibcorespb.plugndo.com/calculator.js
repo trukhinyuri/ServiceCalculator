@@ -8,7 +8,7 @@ var Virtuozzo;
             if (price != null) {
                 _price = price;
             } else {
-                console.log("Error in calculator.js: please, set price");
+                console.log("Error in virtuozzo_calculator.js: please, set price");
             }
         }
         Calculator.prototype.addServer = function (server) {
@@ -140,7 +140,7 @@ var Virtuozzo;
                 OSCost = _price.currentPrice[region].winHour*totalHours;
                 return OSCost.toFixed(2);
             } else {
-                console.log("Error, calculator.js: Unknown OS");
+                console.log("Error, virtuozzo_calculator.js: Unknown OS");
                 return null;
             }
         };

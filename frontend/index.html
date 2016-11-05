@@ -17,7 +17,7 @@
 
     <script src="bower_components/modules.js/modules.js"></script>
     <script src="price.js"></script>
-    <script src="calculator.js"></script>
+    <script src="virtuozzo_calculator.js"></script>
     <script src="index.js"></script>
 </head>
 <body>
@@ -45,141 +45,94 @@
             <!--<h4>Выберите облачную платформу:</h4>-->
             <ul class="nav nav-tabs">
                 <li class="active cloudPlatformSelector_virtuozzo"><a href="#">
-                    <img class="cloudPlatformSelector_virtuozzo_tabImage" src="img/virtuozzo.svg">
+                    <img class="cloudPlatformSelector_virtuozzo_tabImage" src="img/virtuozzo.png"/>
                 </a>
                 </li>
-                <li class="cloudPlatformSelector_azurepack" style="visibility: hidden"><a href="#">Azure Pack Infrastructure</a>
+                <li class="cloudPlatformSelector_azurepack">
+                    <a href="#">
+                        <img class="cloudPlatformSelector_azurePack_tabImage" src="img/azurepack.png"/>
+                    </a>
                 </li>
             </ul>
-            <div class="virtuozzo_tab">
-                <div class="nHeader">Доступное облако на быстрых SSD–дисках.</div>
-                <div class="nText">
-                    При регистрации требуется пополнение баланса на 500 рублей. Оплата взимается на почасовой основе за ресурсы, выделенные серверам в панели управления. В любое время вы можете создавать, останавливать и удалять серверы, изменять объем ресурсов или использовать автомасштабирование.
-                    Официальные тарифные планы доступны <a href="https://infoboxcloud.ru/about/docs/" target="_blank">по ссылке</a>.
-                </div>
-                <h4>Укажите известные параметры облачного сервера (что пока не известно - пропускайте):</h4>
-                <div class="input-group inputServerInfo">
-                    <span class="input-group-addon input-group-addon_first">Регион:</span>
-                    <select class="form-control region">
-                        <option>Россия, дата-центр в Санкт-Петербурге (быстрые SSD, IPv6 бесплатно)</option>
-                        <option>Россия, дата-центр в Москве, соответствующий TIER III Gold (SSD–кеширование)</option>
-                        <option>Европа, дата-центр в Амстердаме (быстрые SSD)</option>
-                    </select>
-                </div>
-                <div class="input-group inputServerInfo">
-                    <span class="input-group-addon input-group-addon_first">Имя сервера</span>
-                    <input type="text" class="form-control serverName" placeholder="Облачный сервер" aria-label="basic-addon1">
-                </div>
-                <div class="input-group inputServerInfo">
-                    <span class="input-group-addon input-group-addon_first">Ядра процессора</span>
-                    <input type="text" class="form-control cores" placeholder="от 1 до 24" aria-label="basic-addon1">
-                    <span class="input-group-addon input-group-addon_last">штук</span>
-                </div>
-                <div class="input-group inputServerInfo">
-                    <span class="input-group-addon input-group-addon_first">Частота процессора</span>
-                    <input type="text" class="form-control frequency" placeholder="от 1 до 2.3" aria-describedby="basic-addon1">
-                    <span class="input-group-addon input-group-addon_last">гигагерц</span>
-                </div>
-                <div class="input-group inputServerInfo">
-                    <span class="input-group-addon input-group-addon_first">Оперативная память</span>
-                    <input type="text" class="form-control ram" placeholder="от 0.5 до 64" aria-describedby="basic-addon1">
-                    <span class="input-group-addon input-group-addon_last">гигабайт</span>
-                </div>
-                <div class="input-group inputServerInfo">
-                    <span class="input-group-addon input-group-addon_first">Дисковое пространство</span>
-                    <input type="text" class="form-control disk" placeholder="от 10 до 2000" aria-describedby="basic-addon1">
-                    <span class="input-group-addon input-group-addon_last">гигабайт</span>
-                </div>
-                <div class="input-group inputServerInfo">
-                    <span class="input-group-addon input-group-addon_first">Хранить резервных копий</span>
-                    <input type="text" class="form-control backupCount" placeholder="0" aria-describedby="basic-addon1"/>
-                    <span class="input-group-addon input-group-addon_last">штук, объем каждой (занятое место на диске сервера)</span>
-                    <input type="text" class="form-control backupSpace" placeholder="0" aria-describedby="basic-addon1"/>
-                    <span class="input-group-addon input-group-addon_last">гигабайт</span>
-                </div>
-                <div class="input-group inputServerInfo">
-                    <span class="input-group-addon input-group-addon_first">Количество внешних IPv4</span>
-                    <input type="text" class="form-control ipv4" placeholder="от 0 до 10" aria-describedby="basic-addon1">
-                    <span class="input-group-addon input-group-addon_last">штук</span>
-                </div>
-                <div class="input-group inputServerInfo">
-                    <span class="input-group-addon input-group-addon_first">Исходящий трафик</span>
-                    <input type="text" class="form-control trafficOut" placeholder="Первые 3072 гигабайта в месяц бесплатно!" aria-describedby="basic-addon1"/>
-                    <span class="input-group-addon input-group-addon_last">гигабайт</span>
-                </div>
-                <div class="input-group inputServerInfo">
-                    <span class="input-group-addon input-group-addon_first"><a href="https://infoboxcloud.ru/community/blog/iaas/220.html" target="_blank">Тип виртуализации</a></span>
-                    <select class="form-control vtType">
-                        <option>Контейнер</option>
-                        <option>Виртуальная машина (разрешить управление ядром ОС)</option>
-                    </select>
-                </div>
-                <div class="input-group inputServerInfo">
-                    <span class="input-group-addon input-group-addon_first">Операционная система</span>
-                    <select class="form-control osType">
-                        <option>Linux</option>
-                        <option>Windows</option>
-                    </select>
-                </div>
-                <div class="input-group inputServerInfo">
-                    <span class="input-group-addon input-group-addon_first">Запущен</span>
-                    <input type="text" class="form-control runningDays" placeholder="30" aria-describedby="basic-addon1"/>
-                    <span class="input-group-addon input-group-addon_last">дней</span>
-                    <input type="text" class="form-control runningHours" placeholder="0" aria-describedby="basic-addon1"/>
-                    <span class="input-group-addon input-group-addon_last">часов</span>
-                </div>
-                <div class="input-group inputServerInfo">
-                    <span class="input-group-addon input-group-addon_first">Остановлен</span>
-                    <input type="text" class="form-control stoppedDays" placeholder="0" aria-describedby="basic-addon1"/>
-                    <span class="input-group-addon input-group-addon_last">дней</span>
-                    <input type="text" class="form-control stoppedHours" placeholder="0" aria-describedby="basic-addon1"/>
-                    <span class="input-group-addon input-group-addon_last">часов</span>
-                </div>
-                </br>
-                <div class="btn-group controlButtons">
-                    <button type="button" class="btn btn-success noBorder addButton">Добавить сервер</button>
-                    <button type="button" class="btn btn-default noBorder usualButtonBackground clearItemsButton">Очистить заданные параметры</button>
-                    <button type="button" class="btn btn-default noBorder usualButtonBackground clearLastButton">Удалить последний сервер</button>
-                    <button type="button" class="btn btn-danger noBorder clearListButton">Очистить список серверов</button>
-                </div></div>
-            <div class="azurepack_tab collapse">
-                <input type="button"/>
+            <div class="virtuozzo_tab_Container">
+
             </div>
+            <div class="azurepack_tab_Container collapse">
+
+            </div>
+
         </div>
     </div>
 </div>
 
-<div class="container-fluid container-results col-lg-12 col-mg-12 visible-lg visible-md">
+<div class="container-fluid container-results col-lg-10 col-mg-10 visible-lg visible-md">
     <div class="jumbotron jumbotron_results">
         <div class="resultSpace" ng-controller="resultsController">
             <h3 class="resultHeader" name="resultHeader">Примерная стоимость облачной инфраструктуры: 0.00 руб.</h3>
         </div>
         <div class="downloadSpace"></div>
-        <table class="table table-hover table-condensed virtuozzoServersTable">
-            <caption>Virtuozzo Infrastructure</caption>
-            <thead>
-            <tr>
-                <td>Сервер</td>
-                <td>Регион</td>
-                <td>Ядра vCPU</td>
-                <td>Частота vCPU</td>
-                <td>Объем RAM</td>
-                <td>Объем диска</td>
-                <td>Резервные копии</td>
-                <td>Внешние IPv4</td>
-                <td>Исходящий трафик</td>
-                <td>Виртуализация</td>
-                <td>Операционная система</td>
-                <td>Запущен</td>
-                <td>Остановлен</td>
-                <td>Стоимость</td>
-            </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-        <div class="listSpace"></div>
+        <div class="virtuozzoResult_Container">
+            <table class="table table-hover table-condensed virtuozzoServersTable">
+                <caption>Virtuozzo Infrastructure</caption>
+                <thead>
+                <tr>
+                    <td>Сервер</td>
+                    <td>Регион</td>
+                    <td>Ядра vCPU</td>
+                    <td>Частота vCPU</td>
+                    <td>Объем RAM</td>
+                    <td>Объем диска</td>
+                    <td>Резервные копии</td>
+                    <td>Внешние IPv4</td>
+                    <td>Исходящий трафик</td>
+                    <td>Виртуализация</td>
+                    <td>Операционная система</td>
+                    <td>Запущен</td>
+                    <td>Остановлен</td>
+                    <td>Стоимость</td>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <div class="azurepackResult_Container">
+            <table class="table table-hover table-condensed azurepackServersTable">
+                <caption>Azure Pack Infrastructure</caption>
+                <thead>
+                <tr>
+                    <td>Сервер</td>
+                    <td>Ядра vCPU</td>
+                    <td>Объем RAM</td>
+                    <td>Объем диска</td>
+                    <td>Контрольные точки</td>
+                    <td>Внешние IPv4</td>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <table class="table table-hover table-condensed azurepackServersTable">
+                <thead>
+                <tr>
+                    <td>Подписка</td>
+                    <td>Ядра vCPU</td>
+                    <td>Объем RAM</td>
+                    <td>Объем диска</td>
+                    <td>Контрольные точки</td>
+                    <td>Внешние IPv4</td>
+                    <td>Виртуальные сети</td>
+                    <td>Site-To-Site VPN</td>
+                    <td>Скорость сети (в настоящий момент не ограничена)</td>
+                    <td>Стоимость</td>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
     </div>
+
 </div>
 
 <div class="footer row">
