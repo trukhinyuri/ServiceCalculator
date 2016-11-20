@@ -50,18 +50,39 @@ var AzurePack;
         //     return costOfInfrastructureWithDiscounts.toFixed(2);
         // };
 
-        // Calculator.prototype.getCostOfServer = function (server) {
-        //     var costOfServer =
-        //         this._calculateCPUCost(server.region, server.cores)
-        //         + this._calculateRAMCost(server)
-        //         + this._calculateStorageCost(server)
-        //         + this._calculateIPCost(server);
-        //     return costOfServer;
-        // };
+        Calculator.prototype.getCostOfServer = function (server) {
+            var costOfServer =
+                this._calculateCPUCost(server.region, server.cores)
+                + this._calculateRAMCost(server.region, server.ramGb)
+                + this._calculateDiskCost(server.region, server.diskGb)
+                + this._calculateSnapshotsCost(server.region, server.diskGb, server.snapshots)
+                + this._calculateIPCost(server.region, server.ipv4);
+            return costOfServer;
+        };
 
         Calculator.prototype._calculateCPUCost = function (region, cores) {
             var cpuCost = _price.currentPrice[region].vCoreMonth * cores;
             return cpuCost;
+        };
+
+        Calculator.prototype._calculateRAMCost = function (region, ramGb) {
+            var ramCost = _price.currentPrice[region].ramGbMonth * ramGb;
+            return ramCost;
+        };
+
+        Calculator.prototype._calculateDiskCost = function (region, diskGb) {
+            var diskCost = _price.currentPrice[region].diskGbMonth * diskGb;
+            return diskCost;
+        };
+
+        Calculator.prototype._calculateIPCost = function (region, ipv4) {
+            var ipCost = _price.currentPrice[region].ipv4Month * ipv4;
+            return ipCost;
+        };
+
+        Calculator.prototype._calculateSnapshotsCost = function (region, diskGb, snapshots) {
+            var snapshotsCost = _price.currentPrice[region].diskGbMonth * diskGb * snapshots;
+            return snapshotsCost;
         };
 
         return Calculator;

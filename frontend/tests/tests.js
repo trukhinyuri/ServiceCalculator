@@ -621,7 +621,146 @@ QUnit.test( "AzurePack.Calculator._calculateCPUCost(region=1, cores=2)", functio
 
     var expectedCost = 750;
     var actualCost = calculator._calculateCPUCost(region, cores);
-    assert.ok( expectedCost == actualCost, "Passed! actualCost: " + actualCost );
+    assert.ok( expectedCost == actualCost, "Passed! actualCPUCost: " + actualCost );
 });
 
+QUnit.test( "AzurePack.Calculator._calculateRAMCost(region=1, ramGb=2)", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var region = 1;
+    var cores = 2;
+    var serverName = "test";
+    var ramGb = 2;
+    var disk = 25;
+    var snapshots = 0;
+    var ipv4 = 1;
 
+    var server = new AzurePack.Server(
+        region,
+        serverName,
+        cores,
+        ramGb,
+        disk,
+        snapshots,
+        ipv4
+    );
+
+    calculator.addServer(server);
+
+    var expectedCost = 950;
+    var actualCost = calculator._calculateRAMCost(region, ramGb);
+    assert.ok( expectedCost == actualCost, "Passed! actualRAMCost: " + actualCost );
+});
+
+QUnit.test( "AzurePack.Calculator._calculateDiskCost(region=1, diskGb=25)", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var region = 1;
+    var cores = 2;
+    var serverName = "test";
+    var ramGb = 2;
+    var diskGb = 25;
+    var snapshots = 0;
+    var ipv4 = 1;
+
+    var server = new AzurePack.Server(
+        region,
+        serverName,
+        cores,
+        ramGb,
+        diskGb,
+        snapshots,
+        ipv4
+    );
+
+    calculator.addServer(server);
+
+    var expectedCost = 300;
+    var actualCost = calculator._calculateDiskCost(region, diskGb);
+    assert.ok( expectedCost == actualCost, "Passed! actualDiskCost: " + actualCost );
+});
+
+QUnit.test( "AzurePack.Calculator._calculateIPCost(region=1, ipv4=1)", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var region = 1;
+    var cores = 2;
+    var serverName = "test";
+    var ramGb = 2;
+    var diskGb = 25;
+    var snapshots = 0;
+    var ipv4 = 1;
+
+    var server = new AzurePack.Server(
+        region,
+        serverName,
+        cores,
+        ramGb,
+        diskGb,
+        snapshots,
+        ipv4
+    );
+
+    calculator.addServer(server);
+
+    var expectedCost = 90;
+    var actualCost = calculator._calculateIPCost(region, ipv4);
+    assert.ok( expectedCost == actualCost, "Passed! actualIPCost: " + actualCost );
+});
+
+QUnit.test( "AzurePack.Calculator._calculateSnapshotsCost(region=1, diskGB=25, snapshots=2)", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var region = 1;
+    var cores = 2;
+    var serverName = "test";
+    var ramGb = 2;
+    var diskGb = 25;
+    var snapshots = 2;
+    var ipv4 = 2;
+
+    var server = new AzurePack.Server(
+        region,
+        serverName,
+        cores,
+        ramGb,
+        diskGb,
+        snapshots,
+        ipv4
+    );
+
+    calculator.addServer(server);
+
+    var expectedCost = 600;
+    var actualCost = calculator._calculateSnapshotsCost(region, diskGb, snapshots);
+    assert.ok( expectedCost == actualCost, "Passed! actualSnapshotsCost: " + actualCost );
+});
+
+QUnit.test( "AzurePack.Calculator.getCostOfServer(region=1, servername=test, " +
+    "ramGb=2, diskGb=25, snapshots = 2, ipv4=2)", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var region = 1;
+    var cores = 2;
+    var serverName = "test";
+    var ramGb = 2;
+    var diskGb = 25;
+    var snapshots = 2;
+    var ipv4 = 2;
+
+    var server = new AzurePack.Server(
+        region,
+        serverName,
+        cores,
+        ramGb,
+        diskGb,
+        snapshots,
+        ipv4
+    );
+
+    calculator.addServer(server);
+
+    var expectedCost = 2780;
+    var actualCost = calculator.getCostOfServer(server);
+    assert.ok( expectedCost == actualCost, "Passed! actualServerCost: " + actualCost );
+});
