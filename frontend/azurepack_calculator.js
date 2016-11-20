@@ -27,6 +27,64 @@ var AzurePack;
             _servers.push(this._validateServer(server));
         };
 
+        Calculator.prototype.modifySubscription = function (vLANs, VPNs, discount) {
+            _vLANs = this.validatevLANsCount(vLANs);
+            _VPNs = this.validateVPNsCount(VPNs);
+            _discount = this.validateDiscountCount(discount);
+        };
+
+        function isNumeric(n) {
+            return !isNaN(parseFloat(n)) && isFinite(n);
+        }
+
+        Calculator.prototype.validatevLANsCount = function (vLANs) {
+            var _vLANs = vLANs;
+
+            if (!isNumeric(vLANs)) {
+                _vLANs = _price.currentPrice[1].defaults.vLANs;
+            }
+
+            if (vLANs < _price.currentPrice[1].defaults.vLANs) {
+                _vLANs = _price.currentPrice[1].defaults.vLANs;
+            }
+
+            return _vLANs;
+        };
+
+        Calculator.prototype.validateVPNsCount = function (VPNs) {
+            var _VPNs = VPNs;
+
+            if (!isNumeric(VPNs)) {
+                _VPNs = _price.currentPrice[1].defaults.VPNs;
+            }
+
+            if (VPNs < _price.currentPrice[1].defaults.VPNs) {
+                _VPNs = _price.currentPrice[1].defaults.VPNs;
+            }
+
+            return _VPNs;
+        };
+
+        Calculator.prototype.validateDiscountCount = function (discount) {
+            var _discount = null;
+
+            if (!isNumeric(discount)) {
+                _discount = _price.currentPrice[1].discounts[0];
+            }
+
+            for (var i in _price.currentPrice[1].discounts) {
+                if (discount == _price.currentPrice[1].discounts[i]) {
+                    _discount = discount;
+                }
+            }
+
+            if (_discount == null) {
+                _discount = _price.currentPrice[1].discounts[0];
+            }
+
+            return _discount;
+        }
+
         //TODO: Implement _validateServer
         Calculator.prototype._validateServer = function (server) {
             var _server = server;

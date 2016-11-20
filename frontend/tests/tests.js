@@ -764,3 +764,168 @@ QUnit.test( "AzurePack.Calculator.getCostOfServer(region=1, servername=test, " +
     var actualCost = calculator.getCostOfServer(server);
     assert.ok( expectedCost == actualCost, "Passed! actualServerCost: " + actualCost );
 });
+
+QUnit.test( "AzurePack.Calculator.validatevLANsCount(vLANs = 1)", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var vLANs = 1;
+
+    var expectedCount = 2;
+    var actualCount = calculator.validatevLANsCount(vLANs);
+
+    assert.ok( expectedCount == actualCount, "Passed! actualvLANsCount: " + actualCount );
+});
+
+QUnit.test( "AzurePack.Calculator.validatevLANsCount(vLANs = 0)", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var vLANs = 0;
+
+    var expectedCount = 2;
+    var actualCount = calculator.validatevLANsCount(vLANs);
+
+    assert.ok( expectedCount == actualCount, "Passed! actualvLANsCount: " + actualCount );
+});
+
+QUnit.test( "AzurePack.Calculator.validatevLANsCount(vLANs = -1)", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var vLANs = -1;
+
+    var expectedCount = 2;
+    var actualCount = calculator.validatevLANsCount(vLANs);
+
+    assert.ok( expectedCount == actualCount, "Passed! actualvLANsCount: " + actualCount );
+});
+
+QUnit.test( "AzurePack.Calculator.validatevLANsCount(vLANs = null)", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var vLANs = null;
+
+    var expectedCount = 2;
+    var actualCount = calculator.validatevLANsCount(vLANs);
+
+    assert.ok( expectedCount == actualCount, "Passed! actualvLANsCount: " + actualCount );
+});
+
+QUnit.test( "AzurePack.Calculator.validatevLANsCount(vLANs = 3)", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var vLANs = 3;
+
+    var expectedCount = 3;
+    var actualCount = calculator.validatevLANsCount(vLANs);
+
+    assert.ok( expectedCount == actualCount, "Passed! actualvLANsCount: " + actualCount );
+});
+
+QUnit.test( "AzurePack.Calculator.validateVPNsCount(VPNs = 0)", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var VPNs = 0;
+
+    var expectedCount = 2;
+    var actualCount = calculator.validateVPNsCount(VPNs);
+
+    assert.ok( expectedCount == actualCount, "Passed! actualVPNsCount: " + actualCount );
+});
+
+QUnit.test( "AzurePack.Calculator.validateVPNsCount(VPNs = -1)", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var VPNs = -1;
+
+    var expectedCount = 2;
+    var actualCount = calculator.validateVPNsCount(VPNs);
+
+    assert.ok( expectedCount == actualCount, "Passed! actualVPNsCount: " + actualCount );
+});
+
+QUnit.test( "AzurePack.Calculator.validateVPNsCount(VPNs = null)", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var VPNs = null;
+
+    var expectedCount = 2;
+    var actualCount = calculator.validateVPNsCount(VPNs);
+
+    assert.ok( expectedCount == actualCount, "Passed! actualVPNsCount: " + actualCount );
+});
+
+QUnit.test( "AzurePack.Calculator.validateVPNsCount(VPNs = 3)", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var VPNs = 3;
+
+    var expectedCount = 3;
+    var actualCount = calculator.validateVPNsCount(VPNs);
+
+    assert.ok( expectedCount == actualCount, "Passed! actualVPNsCount: " + actualCount );
+});
+
+QUnit.test( "AzurePack.Calculator.validateDiscountCount(discount = 0)", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var discount = 0;
+
+    var expectedCount = 1;
+    var actualCount = calculator.validateDiscountCount(discount);
+
+    assert.ok( expectedCount == actualCount, "Passed! actualDiscountCount: " + actualCount );
+});
+
+QUnit.test( "AzurePack.Calculator.validateDiscountCount(discount = 1)", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var discount = 1;
+
+    var expectedCount = 1;
+    var actualCount = calculator.validateDiscountCount(discount);
+
+    assert.ok( expectedCount == actualCount, "Passed! actualDiscountCount: " + actualCount );
+});
+
+QUnit.test( "AzurePack.Calculator.validateDiscountCount(discount = 0.95)", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var discount = 0.95;
+
+    var expectedCount = 0.95;
+    var actualCount = calculator.validateDiscountCount(discount);
+
+    assert.ok( expectedCount == actualCount, "Passed! actualDiscountCount: " + actualCount );
+});
+
+QUnit.test( "AzurePack.Calculator.validateDiscountCount(discount = 0.90)", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var discount = 0.90;
+
+    var expectedCount = 0.90;
+    var actualCount = calculator.validateDiscountCount(discount);
+
+    assert.ok( expectedCount == actualCount, "Passed! actualDiscountCount: " + actualCount );
+});
+
+QUnit.test( "AzurePack.Calculator.validateDiscountCount(discount = 0.80)", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var discount = 0.80;
+
+    var expectedCount = 1;
+    var actualCount = calculator.validateDiscountCount(discount);
+
+    assert.ok( expectedCount == actualCount, "Passed! actualDiscountCount: " + actualCount );
+});
+
+QUnit.test( "AzurePack.Calculator.validateDiscountCount(discount = text)", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var discount = "text";
+
+    var expectedCount = 1;
+    var actualCount = calculator.validateDiscountCount(discount);
+
+    assert.ok( expectedCount == actualCount, "Passed! actualDiscountCount: " + actualCount );
+});
