@@ -134,9 +134,9 @@ var Price;
                     "diskBackupMonth" : 12,
                     "ipv4Month" : 90,
                     "discounts": {
-                        "0" : 0,
-                        "1" : 5,
-                        "2" : 10
+                        "0" : 1,
+                        "1" : 0.95,
+                        "2" : 0.90
                     },
                     "limits" : {
                         "cpuCoresMin": 1,

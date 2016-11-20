@@ -1,6 +1,6 @@
-QUnit.test( "AzurePack.Calculator._calculateTotalHours(days=30, hours=4)", function(assert ) {
+QUnit.test( "Virtuozzo.Calculator._calculateTotalHours(days=30, hours=4)", function(assert ) {
     var price = new Price.VirtuozzoPrice();
-    var calculator = new AzurePack.Calculator(price);
+    var calculator = new Virtuozzo.Calculator(price);
     var days = 30;
     var hours = 4;
     var expectedHours = 724;
@@ -8,11 +8,11 @@ QUnit.test( "AzurePack.Calculator._calculateTotalHours(days=30, hours=4)", funct
     assert.ok( expectedHours == actualHours, "Passed! actualHours: " + actualHours );
 });
 
-QUnit.test( "AzurePack.Calculator._calculateCPURunningCost (" +
+QUnit.test( "Virtuozzo.Calculator._calculateCPURunningCost (" +
     "region=0, vCPUCoresCount=1, vCPUFrequencyGhz=1, vtType=0, runningDays=30, runningHours=1)", 
     function( assert ) {
     var price = new Price.VirtuozzoPrice();
-    var calculator = new AzurePack.Calculator(price);
+    var calculator = new Virtuozzo.Calculator(price);
     var region = 0; //spb
     var vCPUCoresCount = 1;
     var vCPUFrequencyGhz = 1;
@@ -26,11 +26,11 @@ QUnit.test( "AzurePack.Calculator._calculateCPURunningCost (" +
     assert.ok( expectedCPUCost == actualCPUCost, "Passed! actualCPUCost: " + actualCPUCost );
 });
 
-QUnit.test( "AzurePack.Calculator._calculateCPURunningCost (" +
+QUnit.test( "Virtuozzo.Calculator._calculateCPURunningCost (" +
     "region=0, vCPUCoresCount=2, vCPUFrequencyGhz=0.3, vtType=0, runningDays=2, runningHours=0)",
     function( assert ) {
         var price = new Price.VirtuozzoPrice();
-        var calculator = new AzurePack.Calculator(price);
+        var calculator = new Virtuozzo.Calculator(price);
         var region = 0; //spb
         var vCPUCoresCount = 2;
         var vCPUFrequencyGhz = 0.3;
@@ -44,11 +44,11 @@ QUnit.test( "AzurePack.Calculator._calculateCPURunningCost (" +
         assert.ok( expectedCPUCost == actualCPUCost, "Passed! actualCPUCost: " + actualCPUCost );
     });
 
-QUnit.test( "AzurePack.Calculator._calculateCPURunningCost (" +
+QUnit.test( "Virtuozzo.Calculator._calculateCPURunningCost (" +
     "region=0, vCPUCoresCount=2, vCPUFrequencyGhz=0.3, vtType=1, runningDays=2, runningHours=0)",
     function( assert ) {
         var price = new Price.VirtuozzoPrice();
-        var calculator = new AzurePack.Calculator(price);
+        var calculator = new Virtuozzo.Calculator(price);
         var region = 0; //spb
         var vCPUCoresCount = 2;
         var vCPUFrequencyGhz = 0.3;
@@ -62,11 +62,11 @@ QUnit.test( "AzurePack.Calculator._calculateCPURunningCost (" +
         assert.ok( expectedCPUCost == actualCPUCost, "Passed! actualCPUCost: " + actualCPUCost );
     });
 
-QUnit.test( "AzurePack.Calculator._calculateCPURunningCost (" +
+QUnit.test( "Virtuozzo.Calculator._calculateCPURunningCost (" +
     "region=1, vCPUCoresCount=2, vCPUFrequencyGhz=0.3, vtType=0, runningDays=2, runningHours=0)",
     function( assert ) {
         var price = new Price.VirtuozzoPrice();
-        var calculator = new AzurePack.Calculator(price);
+        var calculator = new Virtuozzo.Calculator(price);
         var region = 1; //msk
         var vCPUCoresCount = 2;
         var vCPUFrequencyGhz = 0.3;
@@ -80,11 +80,11 @@ QUnit.test( "AzurePack.Calculator._calculateCPURunningCost (" +
         assert.ok( expectedCPUCost == actualCPUCost, "Passed! actualCPUCost: " + actualCPUCost );
     });
 
-QUnit.test( "AzurePack.Calculator._calculateCPURunningCost (" +
+QUnit.test( "Virtuozzo.Calculator._calculateCPURunningCost (" +
     "region=1, vCPUCoresCount=2, vCPUFrequencyGhz=0.3, vtType=1, runningDays=2, runningHours=0)",
     function( assert ) {
         var price = new Price.VirtuozzoPrice();
-        var calculator = new AzurePack.Calculator(price);
+        var calculator = new Virtuozzo.Calculator(price);
         var region = 1; //msk
         var vCPUCoresCount = 2;
         var vCPUFrequencyGhz = 0.3;
@@ -98,11 +98,11 @@ QUnit.test( "AzurePack.Calculator._calculateCPURunningCost (" +
         assert.ok( expectedCPUCost == actualCPUCost, "Passed! actualCPUCost: " + actualCPUCost );
     });
 
-QUnit.test( "AzurePack.Calculator._calculateCPURunningCost (" +
+QUnit.test( "Virtuozzo.Calculator._calculateCPURunningCost (" +
     "region=2, vCPUCoresCount=2, vCPUFrequencyGhz=0.3, vtType=0, runningDays=2, runningHours=0)",
     function( assert ) {
         var price = new Price.VirtuozzoPrice();
-        var calculator = new AzurePack.Calculator(price);
+        var calculator = new Virtuozzo.Calculator(price);
         var region = 2; //ams
         var vCPUCoresCount = 2;
         var vCPUFrequencyGhz = 0.3;
@@ -116,11 +116,11 @@ QUnit.test( "AzurePack.Calculator._calculateCPURunningCost (" +
         assert.ok( expectedCPUCost == actualCPUCost, "Passed! actualCPUCost: " + actualCPUCost );
     });
 
-QUnit.test( "AzurePack.Calculator._calculateCPURunningCost (" +
+QUnit.test( "Virtuozzo.Calculator._calculateCPURunningCost (" +
     "region=2, vCPUCoresCount=2, vCPUFrequencyGhz=0.3, vtType=1, runningDays=2, runningHours=0)",
     function( assert ) {
         var price = new Price.VirtuozzoPrice();
-        var calculator = new AzurePack.Calculator(price);
+        var calculator = new Virtuozzo.Calculator(price);
         var region = 2; //ams
         var vCPUCoresCount = 2;
         var vCPUFrequencyGhz = 0.3;
@@ -134,11 +134,11 @@ QUnit.test( "AzurePack.Calculator._calculateCPURunningCost (" +
         assert.ok( expectedCPUCost == actualCPUCost, "Passed! actualCPUCost: " + actualCPUCost );
     });
 
-QUnit.test( "AzurePack.Calculator._calculateRamRunningCost (" +
+QUnit.test( "Virtuozzo.Calculator._calculateRamRunningCost (" +
     "region=0, ramCount=2, runningDays=2, runningHours=1 )",
     function( assert ) {
         var price = new Price.VirtuozzoPrice();
-        var calculator = new AzurePack.Calculator(price);
+        var calculator = new Virtuozzo.Calculator(price);
         var region = 0; //spb
         var ramCount = 2;
         var runningDays = 2;
@@ -149,11 +149,11 @@ QUnit.test( "AzurePack.Calculator._calculateRamRunningCost (" +
         assert.ok( expectedRamCost == actualRamCost, "Passed! actualRamCost: " + actualRamCost );
     });
 
-QUnit.test( "AzurePack.Calculator._calculateRamRunningCost (" +
+QUnit.test( "Virtuozzo.Calculator._calculateRamRunningCost (" +
     "region=1, ramCount=2, runningDays=2, runningHours=1 )",
     function( assert ) {
         var price = new Price.VirtuozzoPrice();
-        var calculator = new AzurePack.Calculator(price);
+        var calculator = new Virtuozzo.Calculator(price);
         var region = 1; //msk
         var ramCount = 2;
         var runningDays = 2;
@@ -164,11 +164,11 @@ QUnit.test( "AzurePack.Calculator._calculateRamRunningCost (" +
         assert.ok( expectedRamCost == actualRamCost, "Passed! actualRamCost: " + actualRamCost );
     });
 
-QUnit.test( "AzurePack.Calculator._calculateRamRunningCost (" +
+QUnit.test( "Virtuozzo.Calculator._calculateRamRunningCost (" +
     "region=2, ramCount=2, runningDays=2, runningHours=1 )",
     function( assert ) {
         var price = new Price.VirtuozzoPrice();
-        var calculator = new AzurePack.Calculator(price);
+        var calculator = new Virtuozzo.Calculator(price);
         var region = 2; //ams
         var ramCount = 2;
         var runningDays = 2;
@@ -179,11 +179,11 @@ QUnit.test( "AzurePack.Calculator._calculateRamRunningCost (" +
         assert.ok( expectedRamCost == actualRamCost, "Passed! actualRamCost: " + actualRamCost );
     });
 
-QUnit.test( "AzurePack.Calculator._calculateDiskCost (" +
+QUnit.test( "Virtuozzo.Calculator._calculateDiskCost (" +
     "region=0, diskCount=10, runningDays=2, runningHours=1 )",
     function( assert ) {
         var price = new Price.VirtuozzoPrice();
-        var calculator = new AzurePack.Calculator(price);
+        var calculator = new Virtuozzo.Calculator(price);
         var region = 0; //spb
         var diskCount = 10;
         var runningDays = 2;
@@ -194,11 +194,11 @@ QUnit.test( "AzurePack.Calculator._calculateDiskCost (" +
         assert.ok( expectedDiskCost == actualDiskCost, "Passed! actualDiskCost: " + actualDiskCost );
     });
 
-QUnit.test( "AzurePack.Calculator._calculateDiskCost (" +
+QUnit.test( "Virtuozzo.Calculator._calculateDiskCost (" +
     "region=1, diskCount=10, runningDays=2, runningHours=1 )",
     function( assert ) {
         var price = new Price.VirtuozzoPrice();
-        var calculator = new AzurePack.Calculator(price);
+        var calculator = new Virtuozzo.Calculator(price);
         var region = 1; //msk
         var diskCount = 10;
         var runningDays = 2;
@@ -209,11 +209,11 @@ QUnit.test( "AzurePack.Calculator._calculateDiskCost (" +
         assert.ok( expectedDiskCost == actualDiskCost, "Passed! actualDiskCost: " + actualDiskCost );
     });
 
-QUnit.test( "AzurePack.Calculator._calculateDiskCost (" +
+QUnit.test( "Virtuozzo.Calculator._calculateDiskCost (" +
     "region=1, diskCount=10, runningDays=2, runningHours=1 )",
     function( assert ) {
         var price = new Price.VirtuozzoPrice();
-        var calculator = new AzurePack.Calculator(price);
+        var calculator = new Virtuozzo.Calculator(price);
         var region = 2; //ams
         var diskCount = 10;
         var runningDays = 2;
@@ -224,11 +224,11 @@ QUnit.test( "AzurePack.Calculator._calculateDiskCost (" +
         assert.ok( expectedDiskCost == actualDiskCost, "Passed! actualDiskCost: " + actualDiskCost );
     });
 
-QUnit.test( "AzurePack.Calculator._calculateIPv4Cost (" +
+QUnit.test( "Virtuozzo.Calculator._calculateIPv4Cost (" +
     "region=0, ipv4Count=1, runningDays=2, runningHours=1 )",
     function( assert ) {
         var price = new Price.VirtuozzoPrice();
-        var calculator = new AzurePack.Calculator(price);
+        var calculator = new Virtuozzo.Calculator(price);
         var region = 0; //spb
         var ipv4Count = 1;
         var runningDays = 2;
@@ -239,11 +239,11 @@ QUnit.test( "AzurePack.Calculator._calculateIPv4Cost (" +
         assert.ok( expectedIPv4Cost == actualIPv4Cost, "Passed! actualIPv4Cost: " + actualIPv4Cost );
     });
 
-QUnit.test( "AzurePack.Calculator._calculateIPv4Cost (" +
+QUnit.test( "Virtuozzo.Calculator._calculateIPv4Cost (" +
     "region=1, ipv4Count=1, runningDays=2, runningHours=1 )",
     function( assert ) {
         var price = new Price.VirtuozzoPrice();
-        var calculator = new AzurePack.Calculator(price);
+        var calculator = new Virtuozzo.Calculator(price);
         var region = 1; //msk
         var ipv4Count = 1;
         var runningDays = 2;
@@ -254,11 +254,11 @@ QUnit.test( "AzurePack.Calculator._calculateIPv4Cost (" +
         assert.ok( expectedIPv4Cost == actualIPv4Cost, "Passed! actualIPv4Cost: " + actualIPv4Cost );
     });
 
-QUnit.test( "AzurePack.Calculator._calculateIPv4Cost (" +
+QUnit.test( "Virtuozzo.Calculator._calculateIPv4Cost (" +
     "region=2, ipv4Count=1, runningDays=2, runningHours=1 )",
     function( assert ) {
         var price = new Price.VirtuozzoPrice();
-        var calculator = new AzurePack.Calculator(price);
+        var calculator = new Virtuozzo.Calculator(price);
         var region = 2; //msk
         var ipv4Count = 1;
         var runningDays = 2;
@@ -269,11 +269,11 @@ QUnit.test( "AzurePack.Calculator._calculateIPv4Cost (" +
         assert.ok( expectedIPv4Cost == actualIPv4Cost, "Passed! actualIPv4Cost: " + actualIPv4Cost );
     });
 
-QUnit.test( "AzurePack.Calculator._calculateIPv4Cost (" +
+QUnit.test( "Virtuozzo.Calculator._calculateIPv4Cost (" +
     "region=0, ipv4Count=1, runningDays=2, runningHours=1 )",
     function( assert ) {
         var price = new Price.VirtuozzoPrice();
-        var calculator = new AzurePack.Calculator(price);
+        var calculator = new Virtuozzo.Calculator(price);
         var region = 0; //spb
         var ipv4Count = 1;
         var runningDays = 40;
@@ -284,11 +284,11 @@ QUnit.test( "AzurePack.Calculator._calculateIPv4Cost (" +
         assert.ok( expectedIPv4Cost == actualIPv4Cost, "Passed! actualIPv4Cost: " + actualIPv4Cost );
     });
 
-QUnit.test( "AzurePack.Calculator._calculateIPv4Cost (" +
+QUnit.test( "Virtuozzo.Calculator._calculateIPv4Cost (" +
     "region=1, ipv4Count=1, runningDays=2, runningHours=1 )",
     function( assert ) {
         var price = new Price.VirtuozzoPrice();
-        var calculator = new AzurePack.Calculator(price);
+        var calculator = new Virtuozzo.Calculator(price);
         var region = 1; //msk
         var ipv4Count = 1;
         var runningDays = 40;
@@ -299,11 +299,11 @@ QUnit.test( "AzurePack.Calculator._calculateIPv4Cost (" +
         assert.ok( expectedIPv4Cost == actualIPv4Cost, "Passed! actualIPv4Cost: " + actualIPv4Cost );
     });
 
-QUnit.test( "AzurePack.Calculator._calculateIPv4Cost (" +
+QUnit.test( "Virtuozzo.Calculator._calculateIPv4Cost (" +
     "region=2, ipv4Count=1, runningDays=2, runningHours=1 )",
     function( assert ) {
         var price = new Price.VirtuozzoPrice();
-        var calculator = new AzurePack.Calculator(price);
+        var calculator = new Virtuozzo.Calculator(price);
         var region = 2; //msk
         var ipv4Count = 1;
         var runningDays = 40;
@@ -314,11 +314,11 @@ QUnit.test( "AzurePack.Calculator._calculateIPv4Cost (" +
         assert.ok( expectedIPv4Cost == actualIPv4Cost, "Passed! actualIPv4Cost: " + actualIPv4Cost );
     });
 
-QUnit.test( "AzurePack.Calculator._calculateTrafficOutCost (" +
+QUnit.test( "Virtuozzo.Calculator._calculateTrafficOutCost (" +
     "region=0, trafficOutCount=3072 )",
     function( assert ) {
         var price = new Price.VirtuozzoPrice();
-        var calculator = new AzurePack.Calculator(price);
+        var calculator = new Virtuozzo.Calculator(price);
         var region = 0; //spb
         var trafficOutCount = 3072;
 
@@ -327,11 +327,11 @@ QUnit.test( "AzurePack.Calculator._calculateTrafficOutCost (" +
         assert.ok( expectedTrafficOutCost == actualTrafficOutCost, "Passed! actualTrafficOutCost: " + actualTrafficOutCost );
     });
 
-QUnit.test( "AzurePack.Calculator._calculateTrafficOutCost (" +
+QUnit.test( "Virtuozzo.Calculator._calculateTrafficOutCost (" +
     "region=0, trafficOutCount=3073 )",
     function( assert ) {
         var price = new Price.VirtuozzoPrice();
-        var calculator = new AzurePack.Calculator(price);
+        var calculator = new Virtuozzo.Calculator(price);
         var region = 0; //spb
         var trafficOutCount = 3073;
 
@@ -340,11 +340,11 @@ QUnit.test( "AzurePack.Calculator._calculateTrafficOutCost (" +
         assert.ok( expectedTrafficOutCost == actualTrafficOutCost, "Passed! actualTrafficOutCost: " + actualTrafficOutCost );
     });
 
-QUnit.test( "AzurePack.Calculator._calculateTrafficOutCost (" +
+QUnit.test( "Virtuozzo.Calculator._calculateTrafficOutCost (" +
     "region=1, trafficOutCount=3072 )",
     function( assert ) {
         var price = new Price.VirtuozzoPrice();
-        var calculator = new AzurePack.Calculator(price);
+        var calculator = new Virtuozzo.Calculator(price);
         var region = 1; //msk
         var trafficOutCount = 3072;
 
@@ -353,11 +353,11 @@ QUnit.test( "AzurePack.Calculator._calculateTrafficOutCost (" +
         assert.ok( expectedTrafficOutCost == actualTrafficOutCost, "Passed! actualTrafficOutCost: " + actualTrafficOutCost );
     });
 
-QUnit.test( "AzurePack.Calculator._calculateTrafficOutCost (" +
+QUnit.test( "Virtuozzo.Calculator._calculateTrafficOutCost (" +
     "region=1, trafficOutCount=3073 )",
     function( assert ) {
         var price = new Price.VirtuozzoPrice();
-        var calculator = new AzurePack.Calculator(price);
+        var calculator = new Virtuozzo.Calculator(price);
         var region = 1; //msk
         var trafficOutCount = 3073;
 
@@ -366,11 +366,11 @@ QUnit.test( "AzurePack.Calculator._calculateTrafficOutCost (" +
         assert.ok( expectedTrafficOutCost == actualTrafficOutCost, "Passed! actualTrafficOutCost: " + actualTrafficOutCost );
     });
 
-QUnit.test( "AzurePack.Calculator._calculateTrafficOutCost (" +
+QUnit.test( "Virtuozzo.Calculator._calculateTrafficOutCost (" +
     "region=2, trafficOutCount=3072 )",
     function( assert ) {
         var price = new Price.VirtuozzoPrice();
-        var calculator = new AzurePack.Calculator(price);
+        var calculator = new Virtuozzo.Calculator(price);
         var region = 2; //msk
         var trafficOutCount = 3072;
 
@@ -379,11 +379,11 @@ QUnit.test( "AzurePack.Calculator._calculateTrafficOutCost (" +
         assert.ok( expectedTrafficOutCost == actualTrafficOutCost, "Passed! actualTrafficOutCost: " + actualTrafficOutCost );
     });
 
-QUnit.test( "AzurePack.Calculator._calculateTrafficOutCost (" +
+QUnit.test( "Virtuozzo.Calculator._calculateTrafficOutCost (" +
     "region=2, trafficOutCount=3073 )",
     function( assert ) {
         var price = new Price.VirtuozzoPrice();
-        var calculator = new AzurePack.Calculator(price);
+        var calculator = new Virtuozzo.Calculator(price);
         var region = 2; //msk
         var trafficOutCount = 3073;
 
@@ -392,11 +392,11 @@ QUnit.test( "AzurePack.Calculator._calculateTrafficOutCost (" +
         assert.ok( expectedTrafficOutCost == actualTrafficOutCost, "Passed! actualTrafficOutCost: " + actualTrafficOutCost );
     });
 
-QUnit.test( "AzurePack.Calculator._calculateOSCost (" +
+QUnit.test( "Virtuozzo.Calculator._calculateOSCost (" +
     "region=0, osType=0, days=30, hours=0 )",
     function( assert ) {
         var price = new Price.VirtuozzoPrice();
-        var calculator = new AzurePack.Calculator(price);
+        var calculator = new Virtuozzo.Calculator(price);
         var region = 0; //spb
         var osType = 0;
         var days = 30;
@@ -407,11 +407,11 @@ QUnit.test( "AzurePack.Calculator._calculateOSCost (" +
         assert.ok( expectedOSCost == actualOSCost, "Passed! actualOSCost: " + actualOSCost );
     });
 
-QUnit.test( "AzurePack.Calculator._calculateOSCost (" +
+QUnit.test( "Virtuozzo.Calculator._calculateOSCost (" +
     "region=0, osType=1, days=30, hours=0 )",
     function( assert ) {
         var price = new Price.VirtuozzoPrice();
-        var calculator = new AzurePack.Calculator(price);
+        var calculator = new Virtuozzo.Calculator(price);
         var region = 0; //spb
         var osType = 1;
         var days = 30;
@@ -422,11 +422,11 @@ QUnit.test( "AzurePack.Calculator._calculateOSCost (" +
         assert.ok( expectedOSCost == actualOSCost, "Passed! actualOSCost: " + actualOSCost );
     });
 
-QUnit.test( "AzurePack.Calculator._calculateOSCost (" +
+QUnit.test( "Virtuozzo.Calculator._calculateOSCost (" +
     "region=1, osType=0, days=30, hours=0 )",
     function( assert ) {
         var price = new Price.VirtuozzoPrice();
-        var calculator = new AzurePack.Calculator(price);
+        var calculator = new Virtuozzo.Calculator(price);
         var region = 1; //msk
         var osType = 0;
         var days = 30;
@@ -437,11 +437,11 @@ QUnit.test( "AzurePack.Calculator._calculateOSCost (" +
         assert.ok( expectedOSCost == actualOSCost, "Passed! actualOSCost: " + actualOSCost );
     });
 
-QUnit.test( "AzurePack.Calculator._calculateOSCost (" +
+QUnit.test( "Virtuozzo.Calculator._calculateOSCost (" +
     "region=1, osType=1, days=30, hours=0 )",
     function( assert ) {
         var price = new Price.VirtuozzoPrice();
-        var calculator = new AzurePack.Calculator(price);
+        var calculator = new Virtuozzo.Calculator(price);
         var region = 1; //msk
         var osType = 1;
         var days = 30;
@@ -452,11 +452,11 @@ QUnit.test( "AzurePack.Calculator._calculateOSCost (" +
         assert.ok( expectedOSCost == actualOSCost, "Passed! actualOSCost: " + actualOSCost );
     });
 
-QUnit.test( "AzurePack.Calculator.getCostOfRunningServer (" +
+QUnit.test( "Virtuozzo.Calculator.getCostOfRunningServer (" +
     "regionValue = 0, serverNameValue = \"server\", coresValue = 1, frequencyValue = 1, ramValue = 1, diskValue = 10, ipv4Value = 1, trafficOutValue = 100, vtTypeIndex = 0, osTypeIndex = 0, runningDaysValue = 30, runningHoursValue = 0, stoppedDaysValue = 0, stoppedHoursValue = 0 )",
     function( assert ) {
         var price = new Price.VirtuozzoPrice();
-        var virtuozzoCalculator = new AzurePack.Calculator(price);
+        var virtuozzoCalculator = new Virtuozzo.Calculator(price);
 
         var regionValue = 0;
         var serverNameValue = "server";
@@ -475,7 +475,7 @@ QUnit.test( "AzurePack.Calculator.getCostOfRunningServer (" +
         var backupCountValue = 0;
         var backupSpaceValue = 0;
 
-        var virtuozzoServer = new AzurePack.Server(
+        var virtuozzoServer = new Virtuozzo.Server(
             regionValue,
             serverNameValue,
             coresValue,
@@ -500,11 +500,11 @@ QUnit.test( "AzurePack.Calculator.getCostOfRunningServer (" +
         assert.ok( expectedCostOfRunningServer == actualCostOfRunningServer, "Passed! actualCostOfRunningServer: " + actualCostOfRunningServer );
     });
 
-QUnit.test( "AzurePack.Calculator.getCostOfStoppedServer (" +
+QUnit.test( "Virtuozzo.Calculator.getCostOfStoppedServer (" +
     "regionValue = 0, serverNameValue = \"server\", coresValue = 1, frequencyValue = 1, ramValue = 1, diskValue = 10, ipv4Value = 1, trafficOutValue = 100, vtTypeIndex = 0, osTypeIndex = 0, runningDaysValue = 0, runningHoursValue = 0, stoppedDaysValue = 15, stoppedHoursValue = 0 )",
     function( assert ) {
         var price = new Price.VirtuozzoPrice();
-        var virtuozzoCalculator = new AzurePack.Calculator(price);
+        var virtuozzoCalculator = new Virtuozzo.Calculator(price);
 
         var regionValue = 0;
         var serverNameValue = "server";
@@ -523,7 +523,7 @@ QUnit.test( "AzurePack.Calculator.getCostOfStoppedServer (" +
         var backupCountValue = 0;
         var backupSpaceValue = 0;
 
-        var virtuozzoServer = new AzurePack.Server(
+        var virtuozzoServer = new Virtuozzo.Server(
             regionValue,
             serverNameValue,
             coresValue,
@@ -548,11 +548,11 @@ QUnit.test( "AzurePack.Calculator.getCostOfStoppedServer (" +
         assert.ok( expectedCostOfStoppedServer == actualCostOfStoppedServer, "Passed! actualCostOfStoppedServer: " + actualCostOfStoppedServer );
     });
 
-QUnit.test( "AzurePack.Calculator.getCostOfServer (" +
+QUnit.test( "Virtuozzo.Calculator.getCostOfServer (" +
     "regionValue = 0, serverNameValue = \"server\", coresValue = 1, frequencyValue = 1, ramValue = 1, diskValue = 10, ipv4Value = 1, trafficOutValue = 100, vtTypeIndex = 0, osTypeIndex = 0, runningDaysValue = 0, runningHoursValue = 1, stoppedDaysValue = 0, stoppedHoursValue = 1 )",
     function( assert ) {
         var price = new Price.VirtuozzoPrice();
-        var virtuozzoCalculator = new AzurePack.Calculator(price);
+        var virtuozzoCalculator = new Virtuozzo.Calculator(price);
 
         var regionValue = 0;
         var serverNameValue = "server";
@@ -571,7 +571,7 @@ QUnit.test( "AzurePack.Calculator.getCostOfServer (" +
         var backupCountValue = 0;
         var backupSpaceValue = 0;
 
-        var virtuozzoServer = new AzurePack.Server(
+        var virtuozzoServer = new Virtuozzo.Server(
             regionValue,
             serverNameValue,
             coresValue,
@@ -595,5 +595,33 @@ QUnit.test( "AzurePack.Calculator.getCostOfServer (" +
         var actualCostOfServer = virtuozzoCalculator.getCostOfServer(virtuozzoServer);
         assert.ok( expectedCostOfServer == actualCostOfServer, "Passed! actualCostOfServer: " + actualCostOfServer );
     });
+
+QUnit.test( "AzurePack.Calculator._calculateCPUCost(region=1, cores=2)", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var region = 1;
+    var cores = 2;
+    var serverName = "test";
+    var ram = 2;
+    var disk = 25;
+    var snapshots = 0;
+    var ipv4 = 1;
+
+    var server = new AzurePack.Server(
+        region,
+        serverName,
+        cores,
+        ram,
+        disk,
+        snapshots,
+        ipv4
+    );
+
+    calculator.addServer(server);
+
+    var expectedCost = 750;
+    var actualCost = calculator._calculateCPUCost(region, cores);
+    assert.ok( expectedCost == actualCost, "Passed! actualCost: " + actualCost );
+});
 
 
