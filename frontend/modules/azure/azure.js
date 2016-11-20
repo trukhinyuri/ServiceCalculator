@@ -88,80 +88,80 @@
 
 
 
-            virtuozzoCalculator.addServer(virtuozzoServer);
-            var costOfServer = virtuozzoCalculator.getCostOfServer(virtuozzoServer);
-            costOfServersList.push(parseFloat(costOfServer));
-            sum += parseFloat(costOfServer);
-            Modules.Events.Messages.send("updateVirtuozzoServersList", "");
+        virtuozzoCalculator.addServer(virtuozzoServer);
+        var costOfServer = virtuozzoCalculator.getCostOfServer(virtuozzoServer);
+        costOfServersList.push(parseFloat(costOfServer));
+        sum += parseFloat(costOfServer);
+        Modules.Events.Messages.send("updateVirtuozzoServersList", "");
 
-            var row = azurepackServersTable.insertRow(azurepackServersTable.rows.length);
-            var cellServerName = row.insertCell(0);
-            cellServerName.appendChild(document.createTextNode(serverNameValue));
+        var row = azurepackServersTable.insertRow(azurepackServersTable.rows.length);
+        var cellServerName = row.insertCell(0);
+        cellServerName.appendChild(document.createTextNode(serverNameValue));
 
-            var cellRegion = row.insertCell(1);
-            if (regionValue == 0) {
-                cellRegion.appendChild(document.createTextNode("Россия, Санкт-Петербург (SSD)"));
-            } else if (regionValue == 1) {
-                cellRegion.appendChild(document.createTextNode("Россия, Москва (Tier III Gold, SSD-cache)"));
-            } else if (regionValue == 2) {
-                cellRegion.appendChild(document.createTextNode("Европа, Амстердам (SSD)"));
-            }
+        var cellRegion = row.insertCell(1);
+        if (regionValue == 0) {
+            cellRegion.appendChild(document.createTextNode("Россия, Санкт-Петербург (SSD)"));
+        } else if (regionValue == 1) {
+            cellRegion.appendChild(document.createTextNode("Россия, Москва (Tier III Gold, SSD-cache)"));
+        } else if (regionValue == 2) {
+            cellRegion.appendChild(document.createTextNode("Европа, Амстердам (SSD)"));
+        }
 
-            var cellCores = row.insertCell(2);
-            cellCores.appendChild(document.createTextNode(coresValue));
+        var cellCores = row.insertCell(2);
+        cellCores.appendChild(document.createTextNode(coresValue));
 
-            var cellFrequency = row.insertCell(3);
-            cellFrequency.appendChild(document.createTextNode(frequencyValue + " ГГц."));
+        var cellFrequency = row.insertCell(3);
+        cellFrequency.appendChild(document.createTextNode(frequencyValue + " ГГц."));
 
-            var cellRam = row.insertCell(4);
-            cellRam.appendChild(document.createTextNode(ramValue + " ГБ."));
+        var cellRam = row.insertCell(4);
+        cellRam.appendChild(document.createTextNode(ramValue + " ГБ."));
 
-            var cellDisk = row.insertCell(5);
-            cellDisk.appendChild(document.createTextNode(diskValue + " ГБ."));
+        var cellDisk = row.insertCell(5);
+        cellDisk.appendChild(document.createTextNode(diskValue + " ГБ."));
 
-            var cellBackups = row.insertCell(6);
-            cellBackups.appendChild(document.createTextNode(backupCountValue * backupSpaceValue + " ГБ."));
+        var cellBackups = row.insertCell(6);
+        cellBackups.appendChild(document.createTextNode(backupCountValue * backupSpaceValue + " ГБ."));
 
-            var cellIPv4 = row.insertCell(7);
-            cellIPv4.appendChild(document.createTextNode(ipv4Value));
+        var cellIPv4 = row.insertCell(7);
+        cellIPv4.appendChild(document.createTextNode(ipv4Value));
 
-            var cellTrafficOut = row.insertCell(8);
-            cellTrafficOut.appendChild(document.createTextNode(trafficOutValue + " ГБ."));
+        var cellTrafficOut = row.insertCell(8);
+        cellTrafficOut.appendChild(document.createTextNode(trafficOutValue + " ГБ."));
 
-            var cellVtType = row.insertCell(9);
-            if (vtTypeIndex == 1) {
-                cellVtType.appendChild(document.createTextNode("Виртуальная машина"));
-            } else {
-                cellVtType.appendChild(document.createTextNode(vtType.value));
-            }
+        var cellVtType = row.insertCell(9);
+        if (vtTypeIndex == 1) {
+            cellVtType.appendChild(document.createTextNode("Виртуальная машина"));
+        } else {
+            cellVtType.appendChild(document.createTextNode(vtType.value));
+        }
 
-            var cellOSType = row.insertCell(10);
-            cellOSType.appendChild(document.createTextNode(osType.value));
+        var cellOSType = row.insertCell(10);
+        cellOSType.appendChild(document.createTextNode(osType.value));
 
-            var cellRunning = row.insertCell(11);
-            if ((parseFloat(runningDaysValue) != 0) && (parseFloat(runningHoursValue) != 0)) {
-                cellRunning.appendChild(document.createTextNode(runningDaysValue + " дн., " + runningHoursValue + "ч."));
-            } else if ((parseFloat(runningDaysValue) == 0) && (parseFloat(runningHoursValue) != 0)) {
-                cellRunning.appendChild(document.createTextNode(runningHoursValue + " ч."));
-            } else if ((parseFloat(runningDaysValue) != 0) && (parseFloat(runningHoursValue) == 0)) {
-                cellRunning.appendChild(document.createTextNode(runningDaysValue + " дн."));
-            } else if ((parseFloat(runningDaysValue) == 0) && (parseFloat(runningHoursValue) == 0)) {
-                cellRunning.appendChild(document.createTextNode("-"));
-            }
+        var cellRunning = row.insertCell(11);
+        if ((parseFloat(runningDaysValue) != 0) && (parseFloat(runningHoursValue) != 0)) {
+            cellRunning.appendChild(document.createTextNode(runningDaysValue + " дн., " + runningHoursValue + "ч."));
+        } else if ((parseFloat(runningDaysValue) == 0) && (parseFloat(runningHoursValue) != 0)) {
+            cellRunning.appendChild(document.createTextNode(runningHoursValue + " ч."));
+        } else if ((parseFloat(runningDaysValue) != 0) && (parseFloat(runningHoursValue) == 0)) {
+            cellRunning.appendChild(document.createTextNode(runningDaysValue + " дн."));
+        } else if ((parseFloat(runningDaysValue) == 0) && (parseFloat(runningHoursValue) == 0)) {
+            cellRunning.appendChild(document.createTextNode("-"));
+        }
 
-            var cellStopped = row.insertCell(12);
-            if ((parseFloat(stoppedDaysValue) != 0) && (parseFloat(stoppedHoursValue) != 0)) {
-                cellStopped.appendChild(document.createTextNode(stoppedDaysValue + " дн., " + stoppedHoursValue + "ч."));
-            } else if ((parseFloat(stoppedDaysValue) == 0) && (parseFloat(stoppedHoursValue) != 0)) {
-                cellStopped.appendChild(document.createTextNode(stoppedHoursValue + " ч."));
-            } else if ((parseFloat(stoppedDaysValue) != 0) && (parseFloat(stoppedHoursValue) == 0)) {
-                cellStopped.appendChild(document.createTextNode(stoppedDaysValue + " дн."));
-            } else if ((parseFloat(stoppedDaysValue) == 0) && (parseFloat(stoppedHoursValue) == 0)) {
-                cellStopped.appendChild(document.createTextNode("-"));
-            }
+        var cellStopped = row.insertCell(12);
+        if ((parseFloat(stoppedDaysValue) != 0) && (parseFloat(stoppedHoursValue) != 0)) {
+            cellStopped.appendChild(document.createTextNode(stoppedDaysValue + " дн., " + stoppedHoursValue + "ч."));
+        } else if ((parseFloat(stoppedDaysValue) == 0) && (parseFloat(stoppedHoursValue) != 0)) {
+            cellStopped.appendChild(document.createTextNode(stoppedHoursValue + " ч."));
+        } else if ((parseFloat(stoppedDaysValue) != 0) && (parseFloat(stoppedHoursValue) == 0)) {
+            cellStopped.appendChild(document.createTextNode(stoppedDaysValue + " дн."));
+        } else if ((parseFloat(stoppedDaysValue) == 0) && (parseFloat(stoppedHoursValue) == 0)) {
+            cellStopped.appendChild(document.createTextNode("-"));
+        }
 
-            var cellServerCost = row.insertCell(13);
-            cellServerCost.appendChild(document.createTextNode(costOfServer + " руб."));
+        var cellServerCost = row.insertCell(13);
+        cellServerCost.appendChild(document.createTextNode(costOfServer + " руб."));
 
 
         updateResult();

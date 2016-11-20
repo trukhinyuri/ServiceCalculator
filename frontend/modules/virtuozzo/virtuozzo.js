@@ -4,6 +4,42 @@
     var price = new Price.VirtuozzoPrice();
     var virtuozzoCalculator = new Virtuozzo.Calculator(price);
 
+    var addButton = document.getElementsByClassName("virtuozzo_addButton")[0];
+    var clearItemsButton = document.getElementsByClassName("virtuozzo_clearItemsButton")[0];
+    var clearListButton = document.getElementsByClassName("virtuozzo_clearListButton")[0];
+    var clearLastButton = document.getElementsByClassName("virtuozzo_clearLastButton")[0];
+    var resultSpace = document.getElementsByClassName("resultSpace")[0];
+    var downloadSpace = document.getElementsByClassName("downloadSpace")[0];
+
+    Modules.Events.addListener(addButton, "click", addToList);
+    Modules.Events.addListener(clearItemsButton, "click", clearItems);
+    Modules.Events.addListener(clearListButton, "click", clearList);
+    Modules.Events.addListener(clearLastButton, "click", clearLast);
+
+    var region = document.getElementsByClassName("virtuozzo_region")[0];
+    var serverName = document.getElementsByClassName("virtuozzo_serverName")[0];
+    var cores = document.getElementsByClassName("virtuozzo_cores")[0];
+    var frequency = document.getElementsByClassName("virtuozzo_frequency")[0];
+    var disk = document.getElementsByClassName("virtuozzo_disk")[0];
+    var backupCount = document.getElementsByClassName("virtuozzo_backupCount")[0];
+    var backupSpace = document.getElementsByClassName("virtuozzo_backupSpace")[0];
+    var ram = document.getElementsByClassName("virtuozzo_ram")[0];
+    var ipv4 = document.getElementsByClassName("virtuozzo_ipv4")[0];
+    var trafficOut = document.getElementsByClassName("virtuozzo_trafficOut")[0];
+    var vtType = document.getElementsByClassName("virtuozzo_vtType")[0];
+    var osType = document.getElementsByClassName("virtuozzo_osType")[0];
+    var runningDays = document.getElementsByClassName("virtuozzo_runningDays")[0];
+    var runningHours = document.getElementsByClassName("virtuozzo_runningHours")[0];
+    var stoppedDays = document.getElementsByClassName("virtuozzo_stoppedDays")[0];
+    var stoppedHours = document.getElementsByClassName("virtuozzo_stoppedHours")[0];
+    var virtuozzoServersTable = document.getElementsByClassName("virtuozzoServersTable")[0].getElementsByTagName('tbody')[0];
+
+    var sum = 0;
+    var costOfServersList = [];
+    var exportDoc = "";
+    var exportResult = "";
+    serverName.focus();
+
     //limits
     var minCPUCores = 1;
     var maxCPUCores = 24;
@@ -16,45 +52,6 @@
     var minipv4 = 0;
     var maxipv4 = 10;
     var minTrafficOut = 0;
-
-    var addButton = document.getElementsByClassName("virtuozzo_addButton")[0];
-    var clearItemsButton = document.getElementsByClassName("virtuozzo_clearItemsButton")[0];
-    var clearListButton = document.getElementsByClassName("virtuozzo_clearListButton")[0];
-    var clearLastButton = document.getElementsByClassName("virtuozzo_clearLastButton")[0];
-    var listSpace = document.getElementsByClassName("listSpace")[0];
-    var resultSpace = document.getElementsByClassName("resultSpace")[0];
-    var downloadSpace = document.getElementsByClassName("downloadSpace")[0];
-
-    Modules.Events.addListener(addButton, "click", addToList);
-    Modules.Events.addListener(clearItemsButton, "click", clearItems);
-    Modules.Events.addListener(clearListButton, "click", clearList);
-    Modules.Events.addListener(clearLastButton, "click", clearLast);
-
-    var region = document.getElementsByClassName("region")[0];
-    var serverName = document.getElementsByClassName("serverName")[0];
-    var cores = document.getElementsByClassName("cores")[0];
-    var frequency = document.getElementsByClassName("frequency")[0];
-    var disk = document.getElementsByClassName("disk")[0];
-    var backupCount = document.getElementsByClassName("backupCount")[0];
-    var backupSpace = document.getElementsByClassName("backupSpace")[0];
-    var ram = document.getElementsByClassName("ram")[0];
-    var ipv4 = document.getElementsByClassName("ipv4")[0];
-    var trafficOut = document.getElementsByClassName("trafficOut")[0];
-    var vtType = document.getElementsByClassName("vtType")[0];
-    var osType = document.getElementsByClassName("osType")[0];
-    var runningDays = document.getElementsByClassName("runningDays")[0];
-    var runningHours = document.getElementsByClassName("runningHours")[0];
-    var stoppedDays = document.getElementsByClassName("stoppedDays")[0];
-    var stoppedHours = document.getElementsByClassName("stoppedHours")[0];
-    var virtuozzoServersTable = document.getElementsByClassName("virtuozzoServersTable")[0].getElementsByTagName('tbody')[0];
-
-    var sum = 0;
-    var costOfServersList = [];
-    var exportDoc = "";
-    var exportResult = "";
-    serverName.focus();
-
-
 
     function addToList() {
         var regionValue = region.selectedIndex;

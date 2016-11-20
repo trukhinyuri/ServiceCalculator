@@ -14,10 +14,12 @@
 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/papaparse/papaparse.js"></script>
 
     <script src="bower_components/modules.js/modules.js"></script>
     <script src="price.js"></script>
     <script src="virtuozzo_calculator.js"></script>
+    <script src="azurepack_calculator.js"></script>
     <script src="index.js"></script>
 </head>
 <body>
@@ -53,6 +55,11 @@
                         <img class="cloudPlatformSelector_azurePack_tabImage" src="img/azurepack.png"/>
                     </a>
                 </li>
+                <!--<li class="cloudPlatformSelector_azure">-->
+                    <!--<a href="#">-->
+                        <!--<img class="cloudPlatformSelector_azure_tabImage" src="img/azurepack.png"/>-->
+                    <!--</a>-->
+                <!--</li>-->
             </ul>
             <div class="virtuozzo_tab_Container">
 
@@ -60,6 +67,9 @@
             <div class="azurepack_tab_Container collapse">
 
             </div>
+            <!--<div class="azure_tab_Container collapse">-->
+
+            <!--</div>-->
 
         </div>
     </div>
@@ -112,7 +122,7 @@
                 <tbody>
                 </tbody>
             </table>
-            <table class="table table-hover table-condensed azurepackServersTable">
+            <table class="table table-hover table-condensed azurepackInfrastructureTable">
                 <thead>
                 <tr>
                     <td>Подписка</td>

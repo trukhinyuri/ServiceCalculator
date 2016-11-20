@@ -5,12 +5,15 @@
         Modules.Loader.loadModule("modules", "menuBar", "menuBarContainer");
         Modules.Loader.loadModule("modules", "virtuozzo", "virtuozzo_tab_Container");
         Modules.Loader.loadModule("modules", "azurepack", "azurepack_tab_Container");
+        // Modules.Loader.loadModule("modules", "azure", "azure_tab_Container");
 
         var initializeCloudPlatformSelectors = function () {
             var cloudPlatformSelector_virtuozzo = document.getElementsByClassName("cloudPlatformSelector_virtuozzo")[0];
             var cloudPlatformSelector_azurepack = document.getElementsByClassName("cloudPlatformSelector_azurepack")[0];
+            var cloudPlatformSelector_azure = document.getElementsByClassName("cloudPlatformSelector_azure")[0];
             var cloudPlatform_virtuozzo_tab = document.getElementsByClassName("virtuozzo_tab_Container")[0];
             var cloudPlatform_azurepack_tab = document.getElementsByClassName("azurepack_tab_Container")[0];
+            var cloudPlatform_azure_tab = document.getElementsByClassName("azure_tab_Container")[0];
             Modules.Events.addListener(cloudPlatformSelector_virtuozzo, "click", virtuozzoPlatformSelectorClicked);
             Modules.Events.addListener(cloudPlatformSelector_azurepack, "click", azurePackPlatformSelectorClicked);
 

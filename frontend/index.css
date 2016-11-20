@@ -79,6 +79,10 @@ html, body {
     width: 30mm;
 }
 
+.cloudPlatformSelector_azure_tabImage {
+    width: 30mm;
+}
+
 .input-group {
     border: none;
 }

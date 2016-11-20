@@ -56,7 +56,7 @@
         initializeCloudPlatformSelectors();
 
         var price = new Price.VirtuozzoPrice();
-        var virtuozzoCalculator = new Virtuozzo.Calculator(price);
+        var virtuozzoCalculator = new AzurePack.Calculator(price);
 
         //limits
         var minCPUCores = 1;
@@ -153,7 +153,7 @@
             console.log("validated_stoppedHours:" + stoppedHoursValue);
 
             if (runningDaysValue | runningHoursValue | stoppedDaysValue | stoppedHoursValue != 0) {
-                var virtuozzoServer = new Virtuozzo.Server(
+                var virtuozzoServer = new AzurePack.Server(
                     regionValue,
                     serverNameValue,
                     coresValue,

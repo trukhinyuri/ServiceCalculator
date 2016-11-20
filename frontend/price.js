@@ -122,5 +122,44 @@ var Price;
         }
         return VirtuozzoPrice;
     }());
+
+    var AzurePackPrice = (function () {
+        function AzurePackPrice() {
+            this.currentPrice = {
+                "1" : {
+                    "region": "Россия, дата-центр в Москве",
+                    "vCoreMonth" : 375,
+                    "ramGbMonth" : 475,
+                    "diskGbMonth" : 12,
+                    "diskBackupMonth" : 12,
+                    "ipv4Month" : 90,
+                    "discounts": {
+                        "0" : 0,
+                        "1" : 5,
+                        "2" : 10
+                    },
+                    "limits" : {
+                        "cpuCoresMin": 1,
+                        "cpuCoresMax": 48,
+                        "vCoreMaxPower": 0.9,
+                        "ramMin": 2,
+                        "ramMax": 256,
+                        "diskMin": 25,
+                        "diskMax": 65536,
+                        "ipv4Min": 0,
+                        "ipv4Max": 10
+                    },
+                    "defaults" : {
+                        "serverName": "Облачный сервер",
+                        "backupCount" : 0,
+                        "vLANs": 2,
+                        "VPNs" : 2
+                    }
+                }
+            };
+        }
+        return AzurePackPrice;
+    }());
     Price.VirtuozzoPrice = VirtuozzoPrice;
+    Price.AzurePackPrice = AzurePackPrice;
 })(Price || (Price = {}));

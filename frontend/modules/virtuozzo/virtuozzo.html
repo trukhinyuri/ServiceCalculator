@@ -9,79 +9,79 @@
 <h4>Укажите известные параметры облачного сервера (что пока не известно - пропускайте):</h4>
 <div class="input-group virtuozzo_inputServerInfo">
     <span class="input-group-addon virtuozzo_input-group-addon input-group-addon_first virtuozzo_input-group-addon_first">Регион:</span>
-    <select class="form-control region">
-        <option>Россия, дата-центр в Санкт-Петербурге (быстрые SSD, IPv6 бесплатно)</option>
+    <select class="form-control virtuozzo_region">
+        <option>Россия, дата-центр в Санкт-Петербурге (SSD, IPv6 бесплатно)</option>
         <option>Россия, дата-центр в Москве, соответствующий TIER III Gold (SSD–кеширование)</option>
-        <option>Европа, дата-центр в Амстердаме (быстрые SSD)</option>
+        <option>Европа, дата-центр в Амстердаме (SSD)</option>
     </select>
 </div>
 <div class="input-group virtuozzo_inputServerInfo">
     <span class="input-group-addon virtuozzo_input-group-addon input-group-addon_first virtuozzo_input-group-addon_first">Имя сервера</span>
-    <input type="text" class="form-control serverName" placeholder="Облачный сервер" aria-label="basic-addon1">
+    <input type="text" class="form-control virtuozzo_serverName" placeholder="Облачный сервер" aria-label="basic-addon1">
 </div>
 <div class="input-group virtuozzo_inputServerInfo">
     <span class="input-group-addon virtuozzo_input-group-addon input-group-addon_first virtuozzo_input-group-addon_first">Ядра процессора</span>
-    <input type="text" class="form-control cores" placeholder="от 1 до 24" aria-label="basic-addon1">
+    <input type="text" class="form-control virtuozzo_cores" placeholder="от 1 до 24" aria-label="basic-addon1">
     <span class="input-group-addon virtuozzo_input-group-addon input-group-addon_last virtuozzo_input-group-addon_last">штук</span>
 </div>
 <div class="input-group virtuozzo_inputServerInfo">
     <span class="input-group-addon virtuozzo_input-group-addon input-group-addon_first virtuozzo_input-group-addon_first">Частота процессора</span>
-    <input type="text" class="form-control frequency" placeholder="от 1 до 2.3" aria-describedby="basic-addon1">
+    <input type="text" class="form-control virtuozzo_frequency" placeholder="от 1 до 2.3" aria-describedby="basic-addon1">
     <span class="input-group-addon virtuozzo_input-group-addon input-group-addon_last virtuozzo_input-group-addon_last">гигагерц</span>
 </div>
 <div class="input-group virtuozzo_inputServerInfo">
     <span class="input-group-addon virtuozzo_input-group-addon input-group-addon_first virtuozzo_input-group-addon_first">Оперативная память</span>
-    <input type="text" class="form-control ram" placeholder="от 0.5 до 64" aria-describedby="basic-addon1">
+    <input type="text" class="form-control virtuozzo_ram" placeholder="от 0.5 до 64" aria-describedby="basic-addon1">
     <span class="input-group-addon virtuozzo_input-group-addon input-group-addon_last virtuozzo_input-group-addon_last">гигабайт</span>
 </div>
 <div class="input-group virtuozzo_inputServerInfo">
     <span class="input-group-addon virtuozzo_input-group-addon input-group-addon_first virtuozzo_input-group-addon_first">Дисковое пространство</span>
-    <input type="text" class="form-control disk" placeholder="от 10 до 2000" aria-describedby="basic-addon1">
+    <input type="text" class="form-control virtuozzo_disk" placeholder="от 10 до 2000" aria-describedby="basic-addon1">
     <span class="input-group-addon virtuozzo_input-group-addon input-group-addon_last virtuozzo_input-group-addon_last">гигабайт</span>
 </div>
 <div class="input-group virtuozzo_inputServerInfo">
     <span class="input-group-addon virtuozzo_input-group-addon input-group-addon_first virtuozzo_input-group-addon_first">Хранить резервных копий</span>
-    <input type="text" class="form-control backupCount" placeholder="0" aria-describedby="basic-addon1"/>
+    <input type="text" class="form-control virtuozzo_backupCount" placeholder="0" aria-describedby="basic-addon1"/>
     <span class="input-group-addon virtuozzo_input-group-addon input-group-addon_last virtuozzo_input-group-addon_last">штук, объем каждой (занятое место на диске сервера)</span>
-    <input type="text" class="form-control backupSpace" placeholder="0" aria-describedby="basic-addon1"/>
+    <input type="text" class="form-control virtuozzo_backupSpace" placeholder="0" aria-describedby="basic-addon1"/>
     <span class="input-group-addon virtuozzo_input-group-addon input-group-addon_last virtuozzo_input-group-addon_last">гигабайт</span>
 </div>
 <div class="input-group virtuozzo_inputServerInfo">
     <span class="input-group-addon virtuozzo_input-group-addon input-group-addon_first virtuozzo_input-group-addon_first">Количество внешних IPv4</span>
-    <input type="text" class="form-control ipv4" placeholder="от 0 до 10" aria-describedby="basic-addon1">
+    <input type="text" class="form-control virtuozzo_ipv4" placeholder="от 0 до 10" aria-describedby="basic-addon1">
     <span class="input-group-addon virtuozzo_input-group-addon input-group-addon_last virtuozzo_input-group-addon_last">штук</span>
 </div>
 <div class="input-group virtuozzo_inputServerInfo">
     <span class="input-group-addon virtuozzo_input-group-addon input-group-addon_first virtuozzo_input-group-addon_first">Исходящий трафик</span>
-    <input type="text" class="form-control trafficOut" placeholder="Первые 3072 гигабайта в месяц бесплатно!" aria-describedby="basic-addon1"/>
+    <input type="text" class="form-control virtuozzo_trafficOut" placeholder="Первые 3072 гигабайта в месяц бесплатно!" aria-describedby="basic-addon1"/>
     <span class="input-group-addon virtuozzo_input-group-addon input-group-addon_last virtuozzo_input-group-addon_last">гигабайт</span>
 </div>
 <div class="input-group virtuozzo_inputServerInfo">
     <span class="input-group-addon virtuozzo_input-group-addon input-group-addon_first virtuozzo_input-group-addon_first"><a href="https://infoboxcloud.ru/community/blog/iaas/220.html" target="_blank">Тип виртуализации</a></span>
-    <select class="form-control vtType">
+    <select class="form-control virtuozzo_vtType">
         <option>Контейнер</option>
         <option>Виртуальная машина (разрешить управление ядром ОС)</option>
     </select>
 </div>
 <div class="input-group virtuozzo_inputServerInfo">
     <span class="input-group-addon virtuozzo_input-group-addon input-group-addon_first virtuozzo_input-group-addon_first">Операционная система</span>
-    <select class="form-control osType">
+    <select class="form-control virtuozzo_osType">
         <option>Linux</option>
         <option>Windows</option>
     </select>
 </div>
 <div class="input-group virtuozzo_inputServerInfo">
     <span class="input-group-addon virtuozzo_input-group-addon input-group-addon_first virtuozzo_input-group-addon_first">Запущен</span>
-    <input type="text" class="form-control runningDays" placeholder="30" aria-describedby="basic-addon1"/>
+    <input type="text" class="form-control virtuozzo_runningDays" placeholder="30" aria-describedby="basic-addon1"/>
     <span class="input-group-addon virtuozzo_input-group-addon input-group-addon_last virtuozzo_input-group-addon_last">дней</span>
-    <input type="text" class="form-control runningHours" placeholder="0" aria-describedby="basic-addon1"/>
+    <input type="text" class="form-control virtuozzo_runningHours" placeholder="0" aria-describedby="basic-addon1"/>
     <span class="input-group-addon virtuozzo_input-group-addon input-group-addon_last virtuozzo_input-group-addon_last">часов</span>
 </div>
 <div class="input-group virtuozzo_inputServerInfo">
     <span class="input-group-addon virtuozzo_input-group-addon input-group-addon_first virtuozzo_input-group-addon_first">Остановлен</span>
-    <input type="text" class="form-control stoppedDays" placeholder="0" aria-describedby="basic-addon1"/>
+    <input type="text" class="form-control virtuozzo_stoppedDays" placeholder="0" aria-describedby="basic-addon1"/>
     <span class="input-group-addon virtuozzo_input-group-addon input-group-addon_last virtuozzo_input-group-addon_last">дней</span>
-    <input type="text" class="form-control stoppedHours" placeholder="0" aria-describedby="basic-addon1"/>
+    <input type="text" class="form-control virtuozzo_stoppedHours" placeholder="0" aria-describedby="basic-addon1"/>
     <span class="input-group-addon virtuozzo_input-group-addon input-group-addon_last virtuozzo_input-group-addon_last">часов</span>
 </div>
 <br>
