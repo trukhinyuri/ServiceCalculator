@@ -57,10 +57,13 @@
     });
 
     Modules.Events.addListener(virtuozzoServersTable, "contextmenu", function (e) {
-        selectedRow = event.target.parentNode.rowIndex - 1;
+        selectedRow = e.target.parentNode.rowIndex - 1;
         menu.popup(e); // e || {left: 'Number', top: 'Number', direction: '', width: 'Number'}
-        e.preventDefault();
-    });
+
+        if (e.stopPropagation) e.stopPropagation();
+        if (e.preventDefault) e.preventDefault();
+        e.cancelBubble = true;
+    }, false);
 
     function deleteTableItem(i) {
         var sumString = virtuozzoServersTable.rows[i].cells[13].innerHTML;

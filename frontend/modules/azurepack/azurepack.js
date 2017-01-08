@@ -50,9 +50,12 @@
     });
 
     Modules.Events.addListener(azurepackServersTable, "contextmenu", function (e) {
-        selectedRow = event.target.parentNode.rowIndex - 1;
+        selectedRow = e.target.parentNode.rowIndex - 1;
         menu.popup(e); // e || {left: 'Number', top: 'Number', direction: '', width: 'Number'}
-        e.preventDefault();
+
+        if (e.preventDefault) e.preventDefault();
+        if (e.stopPropagation) e.stopPropagation();
+        e.cancelBubble = true;
     });
 
     function deleteTableItem(i) {
