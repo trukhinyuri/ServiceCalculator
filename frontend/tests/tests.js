@@ -619,7 +619,7 @@ QUnit.test( "AzurePack.Calculator._calculateCPUCost(region=1, cores=2)", functio
 
     calculator.addServer(server);
 
-    var expectedCost = 750;
+    var expectedCost = 675;
     var actualCost = calculator._calculateCPUCost(region, cores);
     assert.ok( expectedCost == actualCost, "Passed! actualCPUCost: " + actualCost );
 });
@@ -760,7 +760,7 @@ QUnit.test( "AzurePack.Calculator.getCostOfServer(region=1, servername=test, " +
 
     calculator.addServer(server);
 
-    var expectedCost = 2780;
+    var expectedCost = 2705;
     var actualCost = calculator.getCostOfServer(server);
     assert.ok( expectedCost == actualCost, "Passed! actualServerCost: " + actualCost );
 });
@@ -928,4 +928,235 @@ QUnit.test( "AzurePack.Calculator.validateDiscountCount(discount = text)", funct
     var actualCount = calculator.validateDiscountCount(discount);
 
     assert.ok( expectedCount == actualCount, "Passed! actualDiscountCount: " + actualCount );
+});
+
+QUnit.test( "AzurePack.Calculator.validateServerRegion(region = 1)", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var region = 1;
+
+    var expected = 1;
+    var actual = calculator.validateServerRegion(region);
+
+    assert.ok( expected == actual, "Passed! actualRegion: " + actual );
+});
+
+QUnit.test( "AzurePack.Calculator.validateServerRegion(region = 2)", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var region = 2;
+
+    var expected = 1;
+    var actual = calculator.validateServerRegion(region);
+
+    assert.ok( expected == actual, "Passed! actualRegion: " + actual );
+});
+
+QUnit.test( "AzurePack.Calculator.validateServerRegion(region = -1)", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var region = -1;
+
+    var expected = 1;
+    var actual = calculator.validateServerRegion(region);
+
+    assert.ok( expected == actual, "Passed! actualRegion: " + actual );
+});
+
+QUnit.test( "AzurePack.Calculator.validateServerRegion(region = text)", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var region = "text";
+
+    var expected = 1;
+    var actual = calculator.validateServerRegion(region);
+
+    assert.ok( expected == actual, "Passed! actualRegion: " + actual );
+});
+
+QUnit.test( "AzurePack.Calculator.validateServerName(serverName = server)", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var serverName = "server";
+
+    var expected = "server";
+    var actual = calculator.validateServerName(serverName);
+
+    assert.ok( expected == actual, "Passed! actualServerName: " + actual );
+});
+
+QUnit.test( "AzurePack.Calculator.validateServerName(serverName = )", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var serverName = "";
+
+    var expected = "Облачный сервер";
+    var actual = calculator.validateServerName(serverName);
+
+    assert.ok( expected == actual, "Passed! actualServerName: " + actual );
+});
+
+QUnit.test( "AzurePack.Calculator.validateServerName(serverName = 1эс)", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var serverName = "1эс";
+
+    var expected = "1эс";
+    var actual = calculator.validateServerName(serverName);
+
+    assert.ok( expected == actual, "Passed! actualServerName: " + actual );
+});
+
+QUnit.test( "AzurePack.Calculator.validateServerCores(cores = 3)", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var cores = 3;
+
+    var expected = 3;
+    var actual = calculator.validateServerCores(cores);
+
+    assert.ok( expected == actual, "Passed! actualCoresCount: " + actual );
+});
+
+QUnit.test( "AzurePack.Calculator.validateServerCores(cores = 1)", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var cores = 1;
+
+    var expected = 1;
+    var actual = calculator.validateServerCores(cores);
+
+    assert.ok( expected == actual, "Passed! actualCoresCount: " + actual );
+});
+
+QUnit.test( "AzurePack.Calculator.validateServerCores(cores = 48)", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var cores = 48;
+
+    var expected = 48;
+    var actual = calculator.validateServerCores(cores);
+
+    assert.ok( expected == actual, "Passed! actualCoresCount: " + actual );
+});
+
+QUnit.test( "AzurePack.Calculator.validateServerCores(cores = 0)", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var cores = 0;
+
+    var expected = 1;
+    var actual = calculator.validateServerCores(cores);
+
+    assert.ok( expected == actual, "Passed! actualCoresCount: " + actual );
+});
+
+QUnit.test( "AzurePack.Calculator.validateServerCores(cores = 49)", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var cores = 49;
+
+    var expected = 48;
+    var actual = calculator.validateServerCores(cores);
+
+    assert.ok( expected == actual, "Passed! actualCoresCount: " + actual );
+});
+
+QUnit.test( "AzurePack.Calculator.validateServerCores(cores = undefined)", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var cores = undefined;
+
+    var expected = 1;
+    var actual = calculator.validateServerCores(cores);
+
+    assert.ok( expected == actual, "Passed! actualCoresCount: " + actual );
+});
+
+QUnit.test( "AzurePack.Calculator.validateServerRam(ramGb = 2)", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var ramGb = 2;
+
+    var expected = 2;
+    var actual = calculator.validateServerRam(ramGb);
+
+    assert.ok( expected == actual, "Passed! actualRamCount: " + actual );
+});
+
+QUnit.test( "AzurePack.Calculator.validateServerRam(ramGb = 1)", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var ramGb = 1;
+
+    var expected = 2;
+    var actual = calculator.validateServerRam(ramGb);
+
+    assert.ok( expected == actual, "Passed! actualRamCount: " + actual );
+});
+
+QUnit.test( "AzurePack.Calculator.validateServerRam(ramGb = 256)", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var ramGb = 256;
+
+    var expected = 256;
+    var actual = calculator.validateServerRam(ramGb);
+
+    assert.ok( expected == actual, "Passed! actualRamCount: " + actual );
+});
+
+QUnit.test( "AzurePack.Calculator.validateServerRam(ramGb = 257)", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var ramGb = 257;
+
+    var expected = 256;
+    var actual = calculator.validateServerRam(ramGb);
+
+    assert.ok( expected == actual, "Passed! actualRamCount: " + actual );
+});
+
+QUnit.test( "AzurePack.Calculator.validateServerRam(ramGb = )", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var ramGb = "";
+
+    var expected = 2;
+    var actual = calculator.validateServerRam(ramGb);
+
+    assert.ok( expected == actual, "Passed! actualRamCount: " + actual );
+});
+
+QUnit.test( "AzurePack.Calculator.validateServerDisk(diskGb = 25)", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var diskGb = 25;
+
+    var expected = 25;
+    var actual = calculator.validateServerDisk(diskGb);
+
+    assert.ok( expected == actual, "Passed! actualDiskCount: " + actual );
+});
+
+QUnit.test( "AzurePack.Calculator.validateServerDisk(diskGb = 65535)", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var diskGb = 65535;
+
+    var expected = 65535;
+    var actual = calculator.validateServerDisk(diskGb);
+
+    assert.ok( expected == actual, "Passed! actualDiskCount: " + actual );
+});
+
+QUnit.test( "AzurePack.Calculator.validateServerDisk(diskGb = 10)", function(assert ) {
+    var price = new Price.AzurePackPrice();
+    var calculator = new AzurePack.Calculator(price);
+    var diskGb = 10;
+
+    var expected = 25;
+    var actual = calculator.validateServerDisk(diskGb);
+
+    assert.ok( expected == actual, "Passed! actualDiskCount: " + actual );
 });

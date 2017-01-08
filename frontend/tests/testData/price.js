@@ -146,7 +146,7 @@ var Price;
                         "ramMin": 2,
                         "ramMax": 256,
                         "diskMin": 25,
-                        "diskMax": 65536,
+                        "diskMax": 65535,
                         "ipv4Min": 0,
                         "ipv4Max": 10
                     },

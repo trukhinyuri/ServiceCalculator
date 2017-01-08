@@ -128,7 +128,7 @@ html, body {
     padding: 2mm;
     background: white;
 }
-.resultSpace {
+.totalCostSpace {
     margin: 0 0 1mm 0;
 }
 .resultHeader {
@@ -153,6 +153,8 @@ html, body {
 thead {
     font-weight: bold;
 }
+
+
 
 
 

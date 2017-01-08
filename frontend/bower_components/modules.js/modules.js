@@ -1139,6 +1139,32 @@ window.exports = window.exports || (window.exports = {});
             _loadHTMLInMemory(pathToItemFiles, itemName, loadedHandler);
         }
 
+        function _loadHTMLTemplate(pathToItemFiles, itemName, className, itemType, containerClassName, dataSource, callback) {
+            function loadedHandler(responseText, name) {
+                var templatedText = insertTemplate(responseText, dataSource);
+                _renderHTML(templatedText, className, itemType, containerClassName, callback);
+            }
+            _loadHTMLInMemory(pathToItemFiles, itemName, loadedHandler);
+        }
+
+        function insertTemplate (responseText, dataSource) {
+            for (var key in dataSource) {
+                if (dataSource.hasOwnProperty(key)) {
+                    responseText = replaceAll(responseText, "$" + key + ";", dataSource[key]);
+                }
+            }
+
+            function replaceAll(str, find, replace) {
+                return str.replace(new RegExp(escapeRegExp(find), 'g'), replace);
+            }
+            //for secure replace
+            function escapeRegExp(str) {
+                return str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+            }
+
+            return responseText;
+        }
+
         /**
          * Unload content of HTML file from the document
          * @private
@@ -1278,6 +1304,34 @@ window.exports = window.exports || (window.exports = {});
             }
         }
 
+        function _loadTemplate(correctPath, moduleName, className, callback, containerClassName, dataSource) {
+            setTimeout(function(){
+                loadSync(correctPath, moduleName, className, callback, containerClassName);
+            }, 0);
+
+            function loadSync (correctPath, moduleName, className, callback, containerClassName) {
+                var modulePath = _buildModulePath(correctPath, moduleName);
+
+                var itemData = {"itemInfo": {"itemName" : moduleName, "itemPath": modulePath, "className": className,
+                    "containerClassName" : containerClassName}};
+
+                Modules.Events.dispatchCustomEvent(document, "template_" + moduleName + "_loadingStarted", itemData);
+
+                var pathToModuleFiles = modulePath + moduleName;
+
+                _loadCSS(modulePath, moduleName, function() {
+                    _loadHTMLTemplate(pathToModuleFiles, moduleName, className, Modules.MODULE, containerClassName, dataSource, function() {
+                        _loadJS(modulePath, moduleName, function() {
+                            Modules.Events.dispatchCustomEvent(document, "template_" + moduleName + "_loaded", itemData);
+                            if (callback) {
+                                callback();
+                            }
+                        });
+                    });
+                });
+            }
+        }
+
         /**
          * Get number of modules loaded on the page
          * @private
@@ -1350,6 +1404,11 @@ window.exports = window.exports || (window.exports = {});
         function loadModule (relativePath, moduleName, className, callback, containerClassName) {
             var _correctPath = _checkPath(relativePath);
             _loadModule(_correctPath, moduleName, className, callback, containerClassName);
+        }
+
+        function loadTemplate (relativePath, moduleName, className, dataSource, callback, containerClassName) {
+            var _correctPath = _checkPath(relativePath);
+            _loadTemplate(_correctPath, moduleName, className, callback, containerClassName, dataSource);
         }
 
         /**
@@ -1433,6 +1492,7 @@ window.exports = window.exports || (window.exports = {});
         }
 
         Loader.loadModule = loadModule;
+        Loader.loadTemplate = loadTemplate;
         Loader.loadJS = loadJS;
         Loader.loadCSS = loadCSS;
         Loader.load = load;

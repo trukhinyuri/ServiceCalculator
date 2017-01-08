@@ -10,12 +10,17 @@
 
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="bower_components/ax5ui-menu/dist/ax5menu.css"/>
     <link rel="stylesheet" href="index.css" type="text/css"/>
 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="bower_components/papaparse/papaparse.js"></script>
+    <script src="bower_components/ax5core/dist/ax5core.min.js"></script>
+    <script src="bower_components/ax5ui-menu/dist/ax5menu.min.js"></script>
 
+    <script src="esx.js"></script>
+    <script src="checkBrowserCompatibility.js"></script>
     <script src="bower_components/modules.js/modules.js"></script>
     <script src="price.js"></script>
     <script src="virtuozzo_calculator.js"></script>
@@ -77,69 +82,14 @@
 
 <div class="container-fluid container-results col-lg-10 col-mg-10 visible-lg visible-md">
     <div class="jumbotron jumbotron_results">
-        <div class="resultSpace" ng-controller="resultsController">
-            <h3 class="resultHeader" name="resultHeader">Примерная стоимость облачной инфраструктуры: 0.00 руб.</h3>
+        <div class="totalCostSpace">
         </div>
         <div class="downloadSpace"></div>
         <div class="virtuozzoResult_Container">
-            <table class="table table-hover table-condensed virtuozzoServersTable">
-                <caption>Virtuozzo Infrastructure</caption>
-                <thead>
-                <tr>
-                    <td>Сервер</td>
-                    <td>Регион</td>
-                    <td>Ядра vCPU</td>
-                    <td>Частота vCPU</td>
-                    <td>Объем RAM</td>
-                    <td>Объем диска</td>
-                    <td>Резервные копии</td>
-                    <td>Внешние IPv4</td>
-                    <td>Исходящий трафик</td>
-                    <td>Виртуализация</td>
-                    <td>Операционная система</td>
-                    <td>Запущен</td>
-                    <td>Остановлен</td>
-                    <td>Стоимость</td>
-                </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
+
         </div>
         <div class="azurepackResult_Container">
-            <table class="table table-hover table-condensed azurepackServersTable">
-                <caption>Azure Pack Infrastructure</caption>
-                <thead>
-                <tr>
-                    <td>Сервер</td>
-                    <td>Ядра vCPU</td>
-                    <td>Объем RAM</td>
-                    <td>Объем диска</td>
-                    <td>Контрольные точки</td>
-                    <td>Внешние IPv4</td>
-                </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-            <table class="table table-hover table-condensed azurepackInfrastructureTable">
-                <thead>
-                <tr>
-                    <td>Подписка</td>
-                    <td>Ядра vCPU</td>
-                    <td>Объем RAM</td>
-                    <td>Объем диска</td>
-                    <td>Контрольные точки</td>
-                    <td>Внешние IPv4</td>
-                    <td>Виртуальные сети</td>
-                    <td>Site-To-Site VPN</td>
-                    <td>Скорость сети (в настоящий момент не ограничена)</td>
-                    <td>Стоимость</td>
-                </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
+
         </div>
     </div>
 
@@ -147,8 +97,7 @@
 
 <div class="footer row">
         <div class="footer-text col-md-10 col-md-offset-2 col-lg-10 col-lg-offset-2 col-xs-10 col-xs-offset-2 col-sm-10 col-sm-offset-2">
-            "Калькулятор облачной инфраструктуры InfoboxCloud". Обновление от 04.11.2016.
-            © OOO «Национальные телекоммуникации», 2002-2016
+            "Калькулятор облачной инфраструктуры InfoboxCloud". Обновление от 01.01.2017.
         </div>
 </div>
 <!-- Yandex.Metrika counter --> <script type="text/javascript"> (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter31646678 = new Ya.Metrika({ id:31646678, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true, trackHash:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks"); </script> <noscript><div><img src="https://mc.yandex.ru/watch/31646678" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter -->

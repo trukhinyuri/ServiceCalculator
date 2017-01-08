@@ -24,7 +24,7 @@ var AzurePack;
         }
 
         Calculator.prototype.addServer = function (server) {
-            _servers.push(this._validateServer(server));
+            _servers.push(this.validateServer(server));
         };
 
         Calculator.prototype.modifySubscription = function (vLANs, VPNs, discount) {
@@ -35,6 +35,10 @@ var AzurePack;
 
         function isNumeric(n) {
             return !isNaN(parseFloat(n)) && isFinite(n);
+        }
+
+        function isEmptyOrSpaces(str){
+            return str === null || str.match(/^ *$/) !== null;
         }
 
         Calculator.prototype.validatevLANsCount = function (vLANs) {
@@ -83,14 +87,143 @@ var AzurePack;
             }
 
             return _discount;
-        }
+        };
 
-        //TODO: Implement _validateServer
-        Calculator.prototype._validateServer = function (server) {
-            var _server = server;
+        Calculator.prototype.validateServer = function (server) {
+            var _server = new AzurePack.Server (
+                this.validateServerRegion(server.region),
+                this.validateServerName(server.serverName),
+                this.validateServerCores(server.cores),
+                this.validateServerRam(server.ramGb),
+                //TODO Disk Validator requires OS knowledge
+                this.validateServerDisk(server.diskGb),
+                server.snapshots,
+                server.ipv4
+            );
             return _server;
         }
 
+        Calculator.prototype.validateServerRegion = function (region) {
+            var _region = null;
+
+            if (!isNumeric(region)) {
+                _region = 1;
+            }
+
+            for (var i in _price.currentPrice) {
+                if (region == i) {
+                    _region = region;
+                }
+            }
+
+            if (_region == null) {
+                _region = 1;
+            }
+
+            return _region;
+        };
+
+        Calculator.prototype.validateServerName = function (serverName) {
+            var _serverName = null;
+
+            if (isEmptyOrSpaces(serverName)) {
+                _serverName = _price.currentPrice[1].defaults.serverName;
+                return _serverName;
+            } else {
+                _serverName = serverName;
+                return _serverName;
+            }
+        };
+
+        Calculator.prototype.validateServerCores = function (cores) {
+            var _cores = cores;
+
+            if (!isNumeric(cores)) {
+                _cores = _price.currentPrice[1].limits.cpuCoresMin;
+            }
+
+            if (cores < _price.currentPrice[1].limits.cpuCoresMin) {
+                _cores = _price.currentPrice[1].limits.cpuCoresMin;
+            } else if (cores > _price.currentPrice[1].limits.cpuCoresMax) {
+                _cores = _price.currentPrice[1].limits.cpuCoresMax;
+            }
+
+            return _cores;
+        };
+
+        Calculator.prototype.validateServerRam = function (ramGb) {
+            var _ramGb = null;
+
+            if (!isNumeric(ramGb)) {
+                _ramGb = _price.currentPrice[1].limits.ramMin;
+                return _ramGb;
+            }
+
+            if (ramGb < _price.currentPrice[1].limits.ramMin) {
+                _ramGb = _price.currentPrice[1].limits.ramMin;
+                return _ramGb;
+            } else if (ramGb > _price.currentPrice[1].limits.ramMax) {
+                _ramGb = _price.currentPrice[1].limits.ramMax;
+                return _ramGb;
+            }
+
+            if (_ramGb == null) {
+                _ramGb = ramGb;
+            }
+
+            return _ramGb;
+        };
+
+        Calculator.prototype.validateServerDisk = function (diskGb) {
+            var _diskGb = diskGb;
+
+            if (!isNumeric(diskGb)) {
+                _diskGb = _price.currentPrice[1].limits.diskMin;
+                return _diskGb;
+            }
+
+            if (diskGb < _price.currentPrice[1].limits.diskMin) {
+                _diskGb = _price.currentPrice[1].limits.diskMin;
+                return _diskGb;
+            } else if (diskGb > _price.currentPrice[1].limits.diskMax) {
+                _diskGb = _price.currentPrice[1].limits.diskMax;
+                return _diskGb;
+            }
+
+            return _diskGb;
+        };
+
+        Calculator.prototype.validateServerSnapshots = function (snapshots) {
+            var _cores = cores;
+
+            if (!isNumeric(cores)) {
+                _cores = _price.currentPrice[1].limits.cpuCoresMin;
+            }
+
+            if (cores < _price.currentPrice[1].limits.cpuCoresMin) {
+                _cores = _price.currentPrice[1].limits.cpuCoresMin;
+            } else if (cores > _price.currentPrice[1].limits.cpuCoresMax) {
+                _cores = _price.currentPrice[1].limits.cpuCoresMax;
+            }
+
+            return snapshots;
+        };
+
+        Calculator.prototype.validateServerIPv4 = function (ipv4) {
+            var _cores = cores;
+
+            if (!isNumeric(cores)) {
+                _cores = _price.currentPrice[1].limits.cpuCoresMin;
+            }
+
+            if (cores < _price.currentPrice[1].limits.cpuCoresMin) {
+                _cores = _price.currentPrice[1].limits.cpuCoresMin;
+            } else if (cores > _price.currentPrice[1].limits.cpuCoresMax) {
+                _cores = _price.currentPrice[1].limits.cpuCoresMax;
+            }
+
+            return ipv4;
+        };
 
         Calculator.prototype.getServers = function () {
             return _servers;
@@ -119,7 +252,9 @@ var AzurePack;
         };
 
         Calculator.prototype._calculateCPUCost = function (region, cores) {
-            var cpuCost = _price.currentPrice[region].vCoreMonth * cores;
+            var cpuCost = _price.currentPrice[region].vCoreMonth
+                * _price.currentPrice[region].limits.vCoreMaxPower
+                * cores;
             return cpuCost;
         };
 

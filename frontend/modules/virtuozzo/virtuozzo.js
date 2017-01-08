@@ -7,14 +7,12 @@
     var addButton = document.getElementsByClassName("virtuozzo_addButton")[0];
     var clearItemsButton = document.getElementsByClassName("virtuozzo_clearItemsButton")[0];
     var clearListButton = document.getElementsByClassName("virtuozzo_clearListButton")[0];
-    var clearLastButton = document.getElementsByClassName("virtuozzo_clearLastButton")[0];
     var resultSpace = document.getElementsByClassName("resultSpace")[0];
     var downloadSpace = document.getElementsByClassName("downloadSpace")[0];
 
     Modules.Events.addListener(addButton, "click", addToList);
     Modules.Events.addListener(clearItemsButton, "click", clearItems);
     Modules.Events.addListener(clearListButton, "click", clearList);
-    Modules.Events.addListener(clearLastButton, "click", clearLast);
 
     var region = document.getElementsByClassName("virtuozzo_region")[0];
     var serverName = document.getElementsByClassName("virtuozzo_serverName")[0];
@@ -33,6 +31,56 @@
     var stoppedDays = document.getElementsByClassName("virtuozzo_stoppedDays")[0];
     var stoppedHours = document.getElementsByClassName("virtuozzo_stoppedHours")[0];
     var virtuozzoServersTable = document.getElementsByClassName("virtuozzoServersTable")[0].getElementsByTagName('tbody')[0];
+    var virtuozzoServersTableOwn = document.getElementsByClassName("virtuozzoServersTable")[0];
+
+
+    var selectedRow = null;
+    var menu = new ax5.ui.menu({
+        theme: 'default',
+        items: [
+            {
+                id: 0,
+                label: "Клонировать"
+            },
+            {
+                id: 1,
+                label: "Удалить"
+            }
+        ],
+        onClick: function (e) {
+            if (this.id == 1) {
+                deleteTableItem(selectedRow);
+            } else if (this.id == 0) {
+                cloneTableItem(selectedRow);
+            }
+        }
+    });
+
+    Modules.Events.addListener(virtuozzoServersTable, "contextmenu", function (e) {
+        selectedRow = event.target.parentNode.rowIndex - 1;
+        menu.popup(e); // e || {left: 'Number', top: 'Number', direction: '', width: 'Number'}
+        e.preventDefault();
+    });
+
+    function deleteTableItem(i) {
+        var sumString = virtuozzoServersTable.rows[i].cells[13].innerHTML;
+        var sum = parseFloat(sumString.replace(" руб.", ""));
+        Modules.Events.Messages.send("removeCost", sum);
+
+        virtuozzoServersTable.deleteRow(i);
+    }
+
+    function cloneTableItem(i) {
+        var sumString = virtuozzoServersTable.rows[i].cells[13].innerHTML;
+        var sum = parseFloat(sumString.replace(" руб.", ""));
+        Modules.Events.Messages.send("addCost", sum);
+
+        var rowClone = virtuozzoServersTable.rows[i];
+        virtuozzoServersTable.innerHTML += rowClone.innerHTML;
+    }
+
+
+
 
     var sum = 0;
     var costOfServersList = [];
@@ -54,6 +102,8 @@
     var minTrafficOut = 0;
 
     function addToList() {
+        showResultsTable();
+        
         var regionValue = region.selectedIndex;
         console.log("region:" + region.value);
         var serverNameValue = validateServerName(serverName.value);
@@ -118,7 +168,7 @@
             var costOfServer = virtuozzoCalculator.getCostOfServer(virtuozzoServer);
             costOfServersList.push(parseFloat(costOfServer));
             sum += parseFloat(costOfServer);
-            Modules.Events.Messages.send("updateVirtuozzoServersList", "");
+            Modules.Events.Messages.send("addCost", costOfServer);
 
             var row = virtuozzoServersTable.insertRow(virtuozzoServersTable.rows.length);
             var cellServerName = row.insertCell(0);
@@ -190,42 +240,60 @@
             cellServerCost.appendChild(document.createTextNode(costOfServer + " руб."));
         } else clearItems();
 
-        updateResult();
+
         serverName.focus();
+    }
+    
+    function showResultsTable() {
+        virtuozzoServersTableOwn.style.visibility = "visible";
     }
 
     function clearItems() {
+        serverName.focus();
         serverName.value = "";
+        cores.focus();
         cores.value = "";
+        frequency.focus();
         frequency.value = "";
+        disk.focus();
         disk.value = "";
+        backupCount.focus();
         backupCount.value = "";
+        backupSpace.focus();
         backupSpace.value = "";
+        ram.focus();
         ram.value = "";
+        ipv4.focus();
         ipv4.value = "";
+        trafficOut.focus();
         trafficOut.value = "";
+        runningDays.focus();
         runningDays.value = "";
+        runningHours.focus();
         runningHours.value = "";
+        stoppedDays.focus();
         stoppedDays.value = "";
+        stoppedHours.focus();
         stoppedHours.value = "";
+        serverName.focus();
     }
     function clearList() {
         while(virtuozzoServersTable.rows[0]) virtuozzoServersTable.deleteRow(0);
         sum = 0;
         costOfServersList = [];
-        updateResult();
+
     }
     function clearLast() {
+        var sumLastString = virtuozzoServersTable.rows[virtuozzoServersTable.rows.length - 1].cells[13].innerHTML;
+        var sumLast = parseFloat(sumLastString.replace(" руб.", ""));
+        Modules.Events.Messages.send("removeCost", sumLast);
+
         virtuozzoServersTable.deleteRow(virtuozzoServersTable.rows.length -1);
         sum = sum - costOfServersList[costOfServersList.length - 1];
         costOfServersList.pop();
-        updateResult();
+
     }
 
-    function updateResult() {
-        resultSpace.innerHTML = "<h3 class='resultHeader'>" + "Примерная стоимость облачной инфраструктуры: " + parseFloat(sum).toFixed(2).toString() + " руб."+ "</h3>";
-        exportResult = "Примерная стоимость облачной инфраструктуры: " + parseFloat(sum).toFixed(2).toString() + " руб. в месяц" + "\r\n";
-    }
 
     function generateExportLink(content) {
         downloadSpace.innerHTML = "";
@@ -248,6 +316,7 @@
 
     function validateServerName(serverNameValue) {
         if (isEmptyOrSpaces(serverNameValue) == true) {
+            serverName.focus();
             serverName.value = "Облачный сервер";
             return "Облачный сервер";
         } else {
@@ -261,14 +330,17 @@
 
     function validateCPULimits(coresValue) {
         if (isEmptyOrSpaces(coresValue)) {
+            cores.focus();
             cores.value = minCPUCores;
             return minCPUCores;
         }
 
         if (coresValue < minCPUCores) {
+            cores.focus();
             cores.value = minCPUCores;
             return minCPUCores;
         } else if (coresValue > maxCPUCores) {
+            cores.focus();
             cores.value = maxCPUCores;
             return maxCPUCores;
         }
@@ -277,13 +349,16 @@
 
     function validateFrequencyLimits(frequencyValue) {
         if (isEmptyOrSpaces(frequencyValue)) {
+            frequency.focus();
             frequency.value = minFrequency;
             return minFrequency;
         }
         if (frequencyValue < minFrequency) {
+            frequency.focus();
             frequency.value = minFrequency;
             return minFrequency;
         } else if (frequencyValue > maxFrequency) {
+            frequency.focus();
             frequency.value = maxFrequency;
             return maxFrequency;
         }
@@ -292,13 +367,16 @@
 
     function validateDiskLimits (diskCapacity) {
         if (isEmptyOrSpaces(diskCapacity)) {
+            disk.focus();
             disk.value = minDiskCapacity;
             return minDiskCapacity;
         }
         if (diskCapacity < minDiskCapacity) {
+            disk.focus();
             disk.value = minDiskCapacity;
             return minDiskCapacity;
         } else if (diskCapacity > maxDiskCapacity) {
+            disk.focus();
             disk.value = maxDiskCapacity;
             return maxDiskCapacity;
         }
@@ -307,11 +385,13 @@
 
     function validatebackupCount(backupCountValue) {
         if (isEmptyOrSpaces(backupCountValue)) {
+            backupCount.focus();
             backupCount.value = 0;
             return 0;
         }
 
         if (backupCountValue < 0) {
+            backupCount.focus();
             backupCount.value = 0;
             return 0;
         } else return backupCountValue;
@@ -319,14 +399,17 @@
 
     function validatebackupSpace(backupSpaceValue, diskCapacity, backupCountValue) {
         if (isEmptyOrSpaces(backupSpaceValue) || (backupCountValue == 0)) {
+            backupSpace.focus();
             backupSpace.value = 0;
             return 0;
         }
 
         if (backupSpaceValue < 0) {
+            backupSpace.focus();
             backupSpace.value = 0;
             return 0;
         } else if (backupSpaceValue > diskCapacity) {
+            backupSpace.focus();
             backupSpace.value = diskCapacity;
             return diskCapacity;
         } else return backupSpaceValue;
@@ -334,13 +417,16 @@
 
     function validateRamLimits (ramCapacity) {
         if (isEmptyOrSpaces(ramCapacity)) {
+            ram.focus();
             ram.value = minRamCapacity;
             return minRamCapacity;
         }
         if (ramCapacity < minRamCapacity) {
+            ram.focus();
             ram.value = minRamCapacity;
             return minRamCapacity;
         } else if (ramCapacity > maxRamCapacity) {
+            ram.focus();
             ram.value = maxRamCapacity;
             return maxRamCapacity;
         }
@@ -348,13 +434,16 @@
     }
     function validateipv4Limits (ipv4Count) {
         if (isEmptyOrSpaces(ipv4Count)) {
+            ipv4.focus();
             ipv4.value = 1;
             return 1; //Recommended minimum 1 ipv4 adress for internet access.
         }
         if (ipv4Count < minipv4) {
+            ipv4.focus();
             ipv4.value = minipv4;
             return minipv4;
         } else if (ipv4Count > maxipv4) {
+            ipv4.focus();
             ipv4.value = maxipv4;
             return maxipv4;
         }
@@ -362,10 +451,12 @@
     }
     function validateTrafficOutLimits (trafficOutValue) {
         if (isEmptyOrSpaces(trafficOutValue)) {
+            trafficOut.focus();
             trafficOut.value = 0;
             return 0;
         }
         if (trafficOutValue < minTrafficOut) {
+            trafficOut.focus();
             trafficOut.value = price.currentPrice[region.selectedIndex].limits.trafficFree;
             return price.currentPrice[region.selectedIndex].limits.trafficFree;
         }
@@ -374,9 +465,11 @@
 
     function validateRunningDays(runningDaysValue) {
         if (isEmptyOrSpaces(runningDaysValue) == true) {
+            runningDays.focus();
             runningDays.value = 30;
             return 30;
         } else if (runningDaysValue < 0) {
+            runningDays.focus();
             runningDays.value = 0;
             return 0;
         } else
@@ -385,9 +478,11 @@
 
     function validateRunningHours(runningHoursValue) {
         if (isEmptyOrSpaces(runningHoursValue) == true) {
+            runningHours.focus();
             runningHours.value = 0;
             return 0;
         } else if (runningHoursValue < 0) {
+            runningHours.focus();
             runningHours.value = 0;
             return 0;
         } else
@@ -396,9 +491,11 @@
 
     function validateStoppedDays(stoppedDaysValue) {
         if (isEmptyOrSpaces(stoppedDaysValue) == true) {
+            stoppedDays.focus();
             stoppedDays.value = 0;
             return 0;
         } else if (stoppedDaysValue < 0) {
+            stoppedDays.focus();
             stoppedDays.value = 0;
             return 0;
         } else
@@ -407,9 +504,11 @@
 
     function validateStoppedHours(stoppedHoursValue) {
         if (isEmptyOrSpaces(stoppedHoursValue) == true) {
+            stoppedHours.focus();
             stoppedHours.value = 0;
             return 0;
         } else if (stoppedHoursValue < 0) {
+            stoppedHours.focus();
             stoppedHours.value = 0;
             return stoppedHours.value;
         } else

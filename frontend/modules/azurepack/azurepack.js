@@ -1,5 +1,5 @@
 "use strict";
-(function(){
+(function() {
 
     var price = new Price.AzurePackPrice();
     var azurepackCalculator = new AzurePack.Calculator(price);
@@ -7,14 +7,12 @@
     var addButton = document.getElementsByClassName("azurepack_addButton")[0];
     var clearItemsButton = document.getElementsByClassName("azurepack_clearItemsButton")[0];
     var clearListButton = document.getElementsByClassName("azurepack_clearListButton")[0];
-    var clearLastButton = document.getElementsByClassName("azurepack_clearLastButton")[0];
     var resultSpace = document.getElementsByClassName("resultSpace")[0];
     var downloadSpace = document.getElementsByClassName("downloadSpace")[0];
 
     Modules.Events.addListener(addButton, "click", addToList);
     Modules.Events.addListener(clearItemsButton, "click", clearItems);
     Modules.Events.addListener(clearListButton, "click", clearList);
-    Modules.Events.addListener(clearLastButton, "click", clearLast);
 
     var serverName = document.getElementsByClassName("azurepack_serverName")[0];
     var cores = document.getElementsByClassName("azurepack_cores")[0];
@@ -26,7 +24,53 @@
     var VPNs = document.getElementsByClassName("azurepack_VPNs")[0];
     var discounts = document.getElementsByClassName("azurepack_discounts")[0];
     var azurepackServersTable = document.getElementsByClassName("azurepackServersTable")[0].getElementsByTagName('tbody')[0];
-    var azurepackInfrastructureTable = document.getElementsByClassName("azurepackInfrastructureTable")[0].getElementsByTagName('tbody')[0];
+    var azurepackServersTableOwn = document.getElementsByClassName("azurepackServersTable")[0];
+    // var azurepackInfrastructureTable = document.getElementsByClassName("azurepackInfrastructureTable")[0].getElementsByTagName('tbody')[0];
+
+    var selectedRow = null;
+    var menu = new ax5.ui.menu({
+        theme: 'default',
+        items: [
+            {
+                id: 0,
+                label: "Клонировать"
+            },
+            {
+                id: 1,
+                label: "Удалить"
+            }
+        ],
+        onClick: function (e) {
+            if (this.id == 1) {
+                deleteTableItem(selectedRow);
+            } else if (this.id == 0) {
+                cloneTableItem(selectedRow);
+            }
+        }
+    });
+
+    Modules.Events.addListener(azurepackServersTable, "contextmenu", function (e) {
+        selectedRow = event.target.parentNode.rowIndex - 1;
+        menu.popup(e); // e || {left: 'Number', top: 'Number', direction: '', width: 'Number'}
+        e.preventDefault();
+    });
+
+    function deleteTableItem(i) {
+        var sumString = azurepackServersTable.rows[i].cells[7].innerHTML;
+        var sum = parseFloat(sumString.replace(" руб.", ""));
+        Modules.Events.Messages.send("removeCost", sum);
+
+        azurepackServersTable.deleteRow(i);
+    }
+
+    function cloneTableItem(i) {
+        var sumString = azurepackServersTable.rows[i].cells[7].innerHTML;
+        var sum = parseFloat(sumString.replace(" руб.", ""));
+        Modules.Events.Messages.send("addCost", sum);
+
+        var rowClone = azurepackServersTable.rows[i];
+        azurepackServersTable.innerHTML += rowClone.innerHTML;
+    }
 
     var sum = 0;
     var costOfServersList = [];
@@ -51,6 +95,8 @@
 
 
     function addToList() {
+        showResultsTable();
+
         var regionValue = 1;
         console.log("azurepack_region:" + regionValue);
         var serverNameValue = validateServerName(serverName.value);
@@ -65,12 +111,12 @@
         console.log("azurepack_validated_snapshotsCapacity:" + snapshotsValue);
         var ipv4Value = validateipv4Limits(isNumberInputCorrect(ipv4.value));
         console.log("azurepack_validated_ipv4Limits:" + ipv4Value);
-        var vLANsValue = validatevLANsLimits(isNumberInputCorrect(vLANs.value));
-        console.log("azurepack_validated_vLANsLimits:" + vLANsValue);
-        var VPNsValue = validateVPNsLimits(isNumberInputCorrect(VPNs.value));
-        console.log("azurepack_validated_vLANsLimits:" + VPNsValue);
-        var discountValue = discounts.selectedIndex;
-        console.log("region:" + discounts.value);
+        // var vLANsValue = validatevLANsLimits(isNumberInputCorrect(vLANs.value));
+        // console.log("azurepack_validated_vLANsLimits:" + vLANsValue);
+        // var VPNsValue = validateVPNsLimits(isNumberInputCorrect(VPNs.value));
+        // console.log("azurepack_validated_vLANsLimits:" + VPNsValue);
+        // var discountValue = discounts.selectedIndex;
+        // console.log("region:" + discounts.value);
 
         var azurepackServer = new AzurePack.Server(
             regionValue,
@@ -82,106 +128,68 @@
             ipv4Value
         );
 
-        azurepackCalculator.addServer(azurepackServer);
-        var costOfInfrastructure = azurepackCalculator.getCostOfInfrastructure();
+
+        var costOfServer = azurepackCalculator.getCostOfServer(azurepackServer);
+
+        costOfServersList.push(parseFloat(costOfServer));
+        sum += parseFloat(costOfServer);
+        Modules.Events.Messages.send("addCost", costOfServer);
+
+        var row = azurepackServersTable.insertRow(azurepackServersTable.rows.length);
+        var cellServerName = row.insertCell(0);
+         cellServerName.appendChild(document.createTextNode(serverNameValue));
+
+         var cellRegion = row.insertCell(1);
+         if (regionValue == 0) {
+             cellRegion.appendChild(document.createTextNode("Россия, Санкт-Петербург (SSD)"));
+         } else if (regionValue == 1) {
+             cellRegion.appendChild(document.createTextNode("Россия, Москва (Tier III Gold, SSD-cache)"));
+         } else if (regionValue == 2) {
+             cellRegion.appendChild(document.createTextNode("Европа, Амстердам (SSD)"));
+         }
+
+         var cellCores = row.insertCell(2);
+         cellCores.appendChild(document.createTextNode(coresValue));
 
 
+         var cellRam = row.insertCell(3);
+         cellRam.appendChild(document.createTextNode(ramValue + " ГБ."));
 
+         var cellDisk = row.insertCell(4);
+         cellDisk.appendChild(document.createTextNode(diskValue + " ГБ."));
 
-            virtuozzoCalculator.addServer(virtuozzoServer);
-            var costOfServer = virtuozzoCalculator.getCostOfServer(virtuozzoServer);
-            costOfServersList.push(parseFloat(costOfServer));
-            sum += parseFloat(costOfServer);
-            Modules.Events.Messages.send("updateVirtuozzoServersList", "");
+         var cellSnapshots = row.insertCell(5);
+        cellSnapshots.appendChild(document.createTextNode(snapshotsValue * diskValue + " ГБ."));
 
-            var row = azurepackServersTable.insertRow(azurepackServersTable.rows.length);
-            var cellServerName = row.insertCell(0);
-            cellServerName.appendChild(document.createTextNode(serverNameValue));
+         var cellIPv4 = row.insertCell(6);
+         cellIPv4.appendChild(document.createTextNode(ipv4Value));
 
-            var cellRegion = row.insertCell(1);
-            if (regionValue == 0) {
-                cellRegion.appendChild(document.createTextNode("Россия, Санкт-Петербург (SSD)"));
-            } else if (regionValue == 1) {
-                cellRegion.appendChild(document.createTextNode("Россия, Москва (Tier III Gold, SSD-cache)"));
-            } else if (regionValue == 2) {
-                cellRegion.appendChild(document.createTextNode("Европа, Амстердам (SSD)"));
-            }
-
-            var cellCores = row.insertCell(2);
-            cellCores.appendChild(document.createTextNode(coresValue));
-
-            var cellFrequency = row.insertCell(3);
-            cellFrequency.appendChild(document.createTextNode(frequencyValue + " ГГц."));
-
-            var cellRam = row.insertCell(4);
-            cellRam.appendChild(document.createTextNode(ramValue + " ГБ."));
-
-            var cellDisk = row.insertCell(5);
-            cellDisk.appendChild(document.createTextNode(diskValue + " ГБ."));
-
-            var cellBackups = row.insertCell(6);
-            cellBackups.appendChild(document.createTextNode(backupCountValue * backupSpaceValue + " ГБ."));
-
-            var cellIPv4 = row.insertCell(7);
-            cellIPv4.appendChild(document.createTextNode(ipv4Value));
-
-            var cellTrafficOut = row.insertCell(8);
-            cellTrafficOut.appendChild(document.createTextNode(trafficOutValue + " ГБ."));
-
-            var cellVtType = row.insertCell(9);
-            if (vtTypeIndex == 1) {
-                cellVtType.appendChild(document.createTextNode("Виртуальная машина"));
-            } else {
-                cellVtType.appendChild(document.createTextNode(vtType.value));
-            }
-
-            var cellOSType = row.insertCell(10);
-            cellOSType.appendChild(document.createTextNode(osType.value));
-
-            var cellRunning = row.insertCell(11);
-            if ((parseFloat(runningDaysValue) != 0) && (parseFloat(runningHoursValue) != 0)) {
-                cellRunning.appendChild(document.createTextNode(runningDaysValue + " дн., " + runningHoursValue + "ч."));
-            } else if ((parseFloat(runningDaysValue) == 0) && (parseFloat(runningHoursValue) != 0)) {
-                cellRunning.appendChild(document.createTextNode(runningHoursValue + " ч."));
-            } else if ((parseFloat(runningDaysValue) != 0) && (parseFloat(runningHoursValue) == 0)) {
-                cellRunning.appendChild(document.createTextNode(runningDaysValue + " дн."));
-            } else if ((parseFloat(runningDaysValue) == 0) && (parseFloat(runningHoursValue) == 0)) {
-                cellRunning.appendChild(document.createTextNode("-"));
-            }
-
-            var cellStopped = row.insertCell(12);
-            if ((parseFloat(stoppedDaysValue) != 0) && (parseFloat(stoppedHoursValue) != 0)) {
-                cellStopped.appendChild(document.createTextNode(stoppedDaysValue + " дн., " + stoppedHoursValue + "ч."));
-            } else if ((parseFloat(stoppedDaysValue) == 0) && (parseFloat(stoppedHoursValue) != 0)) {
-                cellStopped.appendChild(document.createTextNode(stoppedHoursValue + " ч."));
-            } else if ((parseFloat(stoppedDaysValue) != 0) && (parseFloat(stoppedHoursValue) == 0)) {
-                cellStopped.appendChild(document.createTextNode(stoppedDaysValue + " дн."));
-            } else if ((parseFloat(stoppedDaysValue) == 0) && (parseFloat(stoppedHoursValue) == 0)) {
-                cellStopped.appendChild(document.createTextNode("-"));
-            }
-
-            var cellServerCost = row.insertCell(13);
-            cellServerCost.appendChild(document.createTextNode(costOfServer + " руб."));
+         var cellServerCost = row.insertCell(7);
+         cellServerCost.appendChild(document.createTextNode(costOfServer + " руб."));
 
 
         updateResult();
         serverName.focus();
     }
 
+    function showResultsTable() {
+        azurepackServersTableOwn.style.visibility = "visible";
+    }
+
     function clearItems() {
+        serverName.focus();
         serverName.value = "";
+        cores.focus();
         cores.value = "";
-        frequency.value = "";
+        disk.focus();
         disk.value = "";
-        snapshotCount.value = "";
-        backupSpace.value = "";
+        snapshots.focus();
+        snapshots.value = "";
+        ram.focus();
         ram.value = "";
+        ipv4.focus();
         ipv4.value = "";
-        trafficOut.value = "";
-        runningDays.value = "";
-        runningHours.value = "";
-        stoppedDays.value = "";
-        stoppedHours.value = "";
+        serverName.focus();
     }
     function clearList() {
         while(azurepackServersTable.rows[0]) azurepackServersTable.deleteRow(0);
@@ -190,6 +198,10 @@
         updateResult();
     }
     function clearLast() {
+        var sumLastString = azurepackServersTable.rows[azurepackServersTable.rows.length - 1].cells[7].innerHTML;
+        var sumLast = parseFloat(sumLastString.replace(" руб.", ""));
+        Modules.Events.Messages.send("removeCost", sumLast);
+
         azurepackServersTable.deleteRow(azurepackServersTable.rows.length -1);
         sum = sum - costOfServersList[costOfServersList.length - 1];
         costOfServersList.pop();
@@ -197,8 +209,8 @@
     }
 
     function updateResult() {
-        resultSpace.innerHTML = "<h3 class='resultHeader'>" + "Примерная стоимость облачной инфраструктуры: " + parseFloat(sum).toFixed(2).toString() + " руб."+ "</h3>";
-        exportResult = "Примерная стоимость облачной инфраструктуры: " + parseFloat(sum).toFixed(2).toString() + " руб. в месяц" + "\r\n";
+        // resultSpace.innerHTML = "<h3 class='resultHeader'>" + "Примерная стоимость облачной инфраструктуры: " + parseFloat(sum).toFixed(2).toString() + " руб."+ "</h3>";
+        // exportResult = "Примерная стоимость облачной инфраструктуры: " + parseFloat(sum).toFixed(2).toString() + " руб. в месяц" + "\r\n";
     }
 
     function generateExportLink(content) {
@@ -222,6 +234,7 @@
 
     function validateServerName(serverNameValue) {
         if (isEmptyOrSpaces(serverNameValue) == true) {
+            serverName.focus();
             serverName.value = "Облачный сервер";
             return "Облачный сервер";
         } else {
@@ -235,14 +248,17 @@
 
     function validateCPULimits(coresValue) {
         if (isEmptyOrSpaces(coresValue)) {
+            cores.focus();
             cores.value = minCPUCores;
             return minCPUCores;
         }
 
         if (coresValue < minCPUCores) {
+            cores.focus();
             cores.value = minCPUCores;
             return minCPUCores;
         } else if (coresValue > maxCPUCores) {
+            cores.focus();
             cores.value = maxCPUCores;
             return maxCPUCores;
         }
@@ -251,13 +267,16 @@
 
     function validateDiskLimits (diskCapacity) {
         if (isEmptyOrSpaces(diskCapacity)) {
+            disk.focus();
             disk.value = minDiskCapacity;
             return minDiskCapacity;
         }
         if (diskCapacity < minDiskCapacity) {
+            disk.focus();
             disk.value = minDiskCapacity;
             return minDiskCapacity;
         } else if (diskCapacity > maxDiskCapacity) {
+            disk.focus();
             disk.value = maxDiskCapacity;
             return maxDiskCapacity;
         }
@@ -278,11 +297,13 @@
 
     function validatebackupCount(backupCountValue) {
         if (isEmptyOrSpaces(backupCountValue)) {
+            snapshotCount.focus();
             snapshotCount.value = 0;
             return 0;
         }
 
         if (backupCountValue < 0) {
+            snapshotCount.focus();
             snapshotCount.value = 0;
             return 0;
         } else return backupCountValue;
@@ -290,14 +311,17 @@
 
     function validatebackupSpace(backupSpaceValue, diskCapacity, backupCountValue) {
         if (isEmptyOrSpaces(backupSpaceValue) || (backupCountValue == 0)) {
+            backupSpace.focus();
             backupSpace.value = 0;
             return 0;
         }
 
         if (backupSpaceValue < 0) {
+            backupSpace.focus();
             backupSpace.value = 0;
             return 0;
         } else if (backupSpaceValue > diskCapacity) {
+            backupSpace.focus();
             backupSpace.value = diskCapacity;
             return diskCapacity;
         } else return backupSpaceValue;
@@ -305,13 +329,16 @@
 
     function validateRamLimits (ramCapacity) {
         if (isEmptyOrSpaces(ramCapacity)) {
+            ram.focus();
             ram.value = minRamCapacity;
             return minRamCapacity;
         }
         if (ramCapacity < minRamCapacity) {
+            ram.focus();
             ram.value = minRamCapacity;
             return minRamCapacity;
         } else if (ramCapacity > maxRamCapacity) {
+            ram.focus();
             ram.value = maxRamCapacity;
             return maxRamCapacity;
         }
@@ -319,13 +346,16 @@
     }
     function validateipv4Limits (ipv4Count) {
         if (isEmptyOrSpaces(ipv4Count)) {
+            ipv4.focus();
             ipv4.value = 1;
             return 1; //Recommended minimum 1 ipv4 adress for internet access.
         }
         if (ipv4Count < minipv4) {
+            ipv4.focus();
             ipv4.value = minipv4;
             return minipv4;
         } else if (ipv4Count > maxipv4) {
+            ipv4.focus();
             ipv4.value = maxipv4;
             return maxipv4;
         }
@@ -334,10 +364,12 @@
 
     function validatevLANsLimits(vLANsCount) {
         if (isEmptyOrSpaces(vLANsCount)) {
+            vLANs.focus();
             vLANs.value = vLANsDefault;
             return vLANsDefault;
         }
         if (vLANsCount < minvLANs) {
+            vLANs.focus();
             vLANs.value = minvLANs;
             return minvLANs;
         }
@@ -346,15 +378,15 @@
 
     function validateVPNsLimits(VPNsCount) {
         if (isEmptyOrSpaces(VPNsCount)) {
+            VPNs.focus();
             VPNs.value = VPNsDefault;
             return VPNsDefault;
         }
         if (VPNsCount < minVPNs) {
+            VPNs.focus();
             VPNs.value = minVPNs;
             return minVPNs;
         }
         else return VPNsCount;
     }
-
-
 }());
