@@ -24,8 +24,10 @@
     var VPNs = document.getElementsByClassName("azurepack_VPNs")[0];
     var discounts = document.getElementsByClassName("azurepack_discounts")[0];
     var azurepackServersTable = document.getElementsByClassName("azurepackServersTable")[0].getElementsByTagName('tbody')[0];
+    var virtuozzoServersTable = document.getElementsByClassName("virtuozzoServersTable")[0].getElementsByTagName('tbody')[0];
     var azurepackServersTableOwn = document.getElementsByClassName("azurepackServersTable")[0];
-    // var azurepackInfrastructureTable = document.getElementsByClassName("azurepackInfrastructureTable")[0].getElementsByTagName('tbody')[0];
+    var virtuozzoServersTableOwn = document.getElementsByClassName("virtuozzoServersTable")[0];
+
 
     var selectedRow = null;
     var menu = new ax5.ui.menu({
@@ -66,7 +68,7 @@
         azurepackServersTable.deleteRow(i);
 
         if (azurepackServersTable.rows.length == 0) {
-            hideResultsTable();
+            hideAzurePackResultsTable();
         }
     }
 
@@ -102,7 +104,7 @@
 
 
     function addToList() {
-        showResultsTable();
+        showAzurePackResultsTable();
 
         var regionValue = 1;
         console.log("azurepack_region:" + regionValue);
@@ -179,12 +181,20 @@
         serverName.focus();
     }
 
-    function showResultsTable() {
+    function showAzurePackResultsTable() {
         azurepackServersTableOwn.parentNode.className = azurepackServersTableOwn.parentNode.className.replace("collapse", "");
     }
 
-    function hideResultsTable() {
+    function hideAzurePackResultsTable() {
         azurepackServersTableOwn.parentNode.className += " collapse";
+    }
+
+    function showVirtuozzoResultsTable() {
+        virtuozzoServersTableOwn.parentNode.className = virtuozzoServersTableOwn.parentNode.className.replace("collapse", "");
+    }
+
+    function hideVirtuozzoResultsTable() {
+        virtuozzoServersTableOwn.parentNode.className += " collapse";
     }
 
     function clearItems() {
@@ -203,11 +213,13 @@
         serverName.focus();
     }
     function clearList() {
+        while(virtuozzoServersTable.rows[0]) virtuozzoServersTable.deleteRow(0);
         while(azurepackServersTable.rows[0]) azurepackServersTable.deleteRow(0);
         sum = 0;
         costOfServersList = [];
         updateResult();
-        hideResultsTable();
+        hideAzurePackResultsTable();
+        hideVirtuozzoResultsTable();
         Modules.Events.Messages.send("resetCost");
     }
     function clearLast() {

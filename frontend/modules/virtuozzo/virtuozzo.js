@@ -31,7 +31,9 @@
     var stoppedDays = document.getElementsByClassName("virtuozzo_stoppedDays")[0];
     var stoppedHours = document.getElementsByClassName("virtuozzo_stoppedHours")[0];
     var virtuozzoServersTable = document.getElementsByClassName("virtuozzoServersTable")[0].getElementsByTagName('tbody')[0];
+    var azurepackServersTable = document.getElementsByClassName("azurepackServersTable")[0].getElementsByTagName('tbody')[0];
     var virtuozzoServersTableOwn = document.getElementsByClassName("virtuozzoServersTable")[0];
+    var azurepackServersTableOwn = document.getElementsByClassName("azurepackServersTable")[0];
 
 
     var selectedRow = null;
@@ -74,7 +76,7 @@
         virtuozzoServersTable.deleteRow(i);
 
         if (virtuozzoServersTable.rows.length == 0) {
-            hideResultsTable();
+            hideVirtuozzoResultsTable();
         }
     }
 
@@ -110,7 +112,7 @@
     var minTrafficOut = 0;
 
     function addToList() {
-        showResultsTable();
+        showVirtuozzoResultsTable();
         
         var regionValue = region.selectedIndex;
         console.log("region:" + region.value);
@@ -252,12 +254,20 @@
         serverName.focus();
     }
     
-    function showResultsTable() {
+    function showVirtuozzoResultsTable() {
         virtuozzoServersTableOwn.parentNode.className = virtuozzoServersTableOwn.parentNode.className.replace("collapse", "");
     }
 
-    function hideResultsTable() {
+    function hideVirtuozzoResultsTable() {
         virtuozzoServersTableOwn.parentNode.className += " collapse";
+    }
+
+    function showAzurePackResultsTable() {
+        azurepackServersTableOwn.parentNode.className = azurepackServersTableOwn.parentNode.className.replace("collapse", "");
+    }
+
+    function hideAzurePackResultsTable() {
+        azurepackServersTableOwn.parentNode.className += " collapse";
     }
 
 
@@ -292,9 +302,11 @@
     }
     function clearList() {
         while(virtuozzoServersTable.rows[0]) virtuozzoServersTable.deleteRow(0);
+        while(azurepackServersTable.rows[0]) azurepackServersTable.deleteRow(0);
         sum = 0;
         costOfServersList = [];
-        hideResultsTable();
+        hideAzurePackResultsTable();
+        hideVirtuozzoResultsTable();
         Modules.Events.Messages.send("resetCost");
 
     }
