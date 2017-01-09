@@ -63,7 +63,8 @@
         if (e.stopPropagation) e.stopPropagation();
         if (e.preventDefault) e.preventDefault();
         e.cancelBubble = true;
-    }, false);
+    }, true);
+
 
     function deleteTableItem(i) {
         var sumString = virtuozzoServersTable.rows[i].cells[13].innerHTML;
