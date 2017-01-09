@@ -64,6 +64,10 @@
         Modules.Events.Messages.send("removeCost", sum);
 
         azurepackServersTable.deleteRow(i);
+
+        if (azurepackServersTable.rows.length == 0) {
+            hideResultsTable();
+        }
     }
 
     function cloneTableItem(i) {
@@ -176,7 +180,11 @@
     }
 
     function showResultsTable() {
-        azurepackServersTableOwn.style.visibility = "visible";
+        azurepackServersTableOwn.parentNode.className = azurepackServersTableOwn.parentNode.className.replace("collapse", "");
+    }
+
+    function hideResultsTable() {
+        azurepackServersTableOwn.parentNode.className += " collapse";
     }
 
     function clearItems() {
@@ -199,6 +207,7 @@
         sum = 0;
         costOfServersList = [];
         updateResult();
+        hideResultsTable();
     }
     function clearLast() {
         var sumLastString = azurepackServersTable.rows[azurepackServersTable.rows.length - 1].cells[7].innerHTML;

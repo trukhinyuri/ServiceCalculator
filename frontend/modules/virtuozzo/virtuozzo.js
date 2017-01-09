@@ -72,6 +72,10 @@
         Modules.Events.Messages.send("removeCost", sum);
 
         virtuozzoServersTable.deleteRow(i);
+
+        if (virtuozzoServersTable.rows.length == 0) {
+            hideResultsTable();
+        }
     }
 
     function cloneTableItem(i) {
@@ -249,8 +253,13 @@
     }
     
     function showResultsTable() {
-        virtuozzoServersTableOwn.style.visibility = "visible";
+        virtuozzoServersTableOwn.parentNode.className = virtuozzoServersTableOwn.parentNode.className.replace("collapse", "");
     }
+
+    function hideResultsTable() {
+        virtuozzoServersTableOwn.parentNode.className += " collapse";
+    }
+
 
     function clearItems() {
         serverName.focus();
@@ -285,6 +294,7 @@
         while(virtuozzoServersTable.rows[0]) virtuozzoServersTable.deleteRow(0);
         sum = 0;
         costOfServersList = [];
+        hideResultsTable();
 
     }
     function clearLast() {
