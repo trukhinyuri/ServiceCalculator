@@ -295,6 +295,7 @@
         sum = 0;
         costOfServersList = [];
         hideResultsTable();
+        Modules.Events.Messages.send("resetCost");
 
     }
     function clearLast() {

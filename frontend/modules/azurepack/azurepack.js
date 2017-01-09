@@ -208,6 +208,7 @@
         costOfServersList = [];
         updateResult();
         hideResultsTable();
+        Modules.Events.Messages.send("resetCost");
     }
     function clearLast() {
         var sumLastString = azurepackServersTable.rows[azurepackServersTable.rows.length - 1].cells[7].innerHTML;
