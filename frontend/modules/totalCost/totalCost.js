@@ -22,6 +22,7 @@
     }
 
     function resetCost(e) {
+        totalCost = 0;
         updateTotalCost(0);
     }
 

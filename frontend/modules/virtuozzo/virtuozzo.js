@@ -31,9 +31,8 @@
     var stoppedDays = document.getElementsByClassName("virtuozzo_stoppedDays")[0];
     var stoppedHours = document.getElementsByClassName("virtuozzo_stoppedHours")[0];
     var virtuozzoServersTable = document.getElementsByClassName("virtuozzoServersTable")[0].getElementsByTagName('tbody')[0];
-    var azurepackServersTable = document.getElementsByClassName("azurepackServersTable")[0].getElementsByTagName('tbody')[0];
     var virtuozzoServersTableOwn = document.getElementsByClassName("virtuozzoServersTable")[0];
-    var azurepackServersTableOwn = document.getElementsByClassName("azurepackServersTable")[0];
+    var resultsTables = document.getElementsByClassName("resultsTable");
 
 
     var selectedRow = null;
@@ -260,14 +259,20 @@
 
     function hideVirtuozzoResultsTable() {
         virtuozzoServersTableOwn.parentNode.className += " collapse";
+
     }
 
-    function showAzurePackResultsTable() {
-        azurepackServersTableOwn.parentNode.className = azurepackServersTableOwn.parentNode.className.replace("collapse", "");
+    function hideResultsTables() {
+        for (var i = 0; i < resultsTables.length; i++) {
+            resultsTables[i].parentNode.className += " collapse";
+
+        }
     }
 
-    function hideAzurePackResultsTable() {
-        azurepackServersTableOwn.parentNode.className += " collapse";
+    function removeItemsFromResultsTables() {
+        for (var i = 0; i < resultsTables.length; i++) {
+            while(resultsTables[i].getElementsByTagName('tbody')[0].rows[0]) resultsTables[i].getElementsByTagName('tbody')[0].deleteRow(0);
+        }
     }
 
 
@@ -301,12 +306,10 @@
         serverName.focus();
     }
     function clearList() {
-        while(virtuozzoServersTable.rows[0]) virtuozzoServersTable.deleteRow(0);
-        while(azurepackServersTable.rows[0]) azurepackServersTable.deleteRow(0);
+        removeItemsFromResultsTables();
         sum = 0;
         costOfServersList = [];
-        hideAzurePackResultsTable();
-        hideVirtuozzoResultsTable();
+        hideResultsTables();
         Modules.Events.Messages.send("resetCost");
 
     }

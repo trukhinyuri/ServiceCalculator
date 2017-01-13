@@ -9,10 +9,12 @@
     var clearListButton = document.getElementsByClassName("azurepack_clearListButton")[0];
     var resultSpace = document.getElementsByClassName("resultSpace")[0];
     var downloadSpace = document.getElementsByClassName("downloadSpace")[0];
+    var updateResourcesButton = document.getElementsByClassName("azurepack_updateResourcesButton")[0];
 
     Modules.Events.addListener(addButton, "click", addToList);
     Modules.Events.addListener(clearItemsButton, "click", clearItems);
     Modules.Events.addListener(clearListButton, "click", clearList);
+    Modules.Events.addListener(updateResourcesButton, "click", updateResources);
 
     var serverName = document.getElementsByClassName("azurepack_serverName")[0];
     var cores = document.getElementsByClassName("azurepack_cores")[0];
@@ -24,9 +26,10 @@
     var VPNs = document.getElementsByClassName("azurepack_VPNs")[0];
     var discounts = document.getElementsByClassName("azurepack_discounts")[0];
     var azurepackServersTable = document.getElementsByClassName("azurepackServersTable")[0].getElementsByTagName('tbody')[0];
-    var virtuozzoServersTable = document.getElementsByClassName("virtuozzoServersTable")[0].getElementsByTagName('tbody')[0];
     var azurepackServersTableOwn = document.getElementsByClassName("azurepackServersTable")[0];
-    var virtuozzoServersTableOwn = document.getElementsByClassName("virtuozzoServersTable")[0];
+    var resultsTables = document.getElementsByClassName("resultsTable");
+    var azurepackInfrastructureTable = document.getElementsByClassName("azurepackInfrastructureTable")[0].getElementsByTagName('tbody')[0];
+    var azurepackInfrastructureTableOwn = document.getElementsByClassName("azurepackInfrastructureTable")[0];
 
 
     var selectedRow = null;
@@ -120,10 +123,7 @@
         console.log("azurepack_validated_snapshotsCapacity:" + snapshotsValue);
         var ipv4Value = validateipv4Limits(isNumberInputCorrect(ipv4.value));
         console.log("azurepack_validated_ipv4Limits:" + ipv4Value);
-        // var vLANsValue = validatevLANsLimits(isNumberInputCorrect(vLANs.value));
-        // console.log("azurepack_validated_vLANsLimits:" + vLANsValue);
-        // var VPNsValue = validateVPNsLimits(isNumberInputCorrect(VPNs.value));
-        // console.log("azurepack_validated_vLANsLimits:" + VPNsValue);
+
         // var discountValue = discounts.selectedIndex;
         // console.log("region:" + discounts.value);
 
@@ -144,15 +144,16 @@
         sum += parseFloat(costOfServer);
         Modules.Events.Messages.send("addCost", costOfServer);
 
+
         var row = azurepackServersTable.insertRow(azurepackServersTable.rows.length);
         var cellServerName = row.insertCell(0);
-         cellServerName.appendChild(document.createTextNode(serverNameValue));
+        cellServerName.appendChild(document.createTextNode(serverNameValue));
 
          var cellRegion = row.insertCell(1);
          if (regionValue == 0) {
              cellRegion.appendChild(document.createTextNode("Россия, Санкт-Петербург (SSD)"));
          } else if (regionValue == 1) {
-             cellRegion.appendChild(document.createTextNode("Россия, Москва (Tier III Gold, SSD-cache)"));
+             cellRegion.appendChild(document.createTextNode("Россия, Москва (Tier III Gold, SSD + NLSAS СХД)"));
          } else if (regionValue == 2) {
              cellRegion.appendChild(document.createTextNode("Европа, Амстердам (SSD)"));
          }
@@ -176,9 +177,78 @@
          var cellServerCost = row.insertCell(7);
          cellServerCost.appendChild(document.createTextNode(costOfServer + " руб."));
 
+        updateAzurePackInfrastructureTable();
+
 
         updateResult();
         serverName.focus();
+    }
+
+    function updateAzurePackInfrastructureTable() {
+        var regionValue = 1;
+        console.log("azurepack_region:" + regionValue);
+        var vLANsValue = validatevLANsLimits(isNumberInputCorrect(vLANs.value));
+        console.log("azurepack_validated_vLANsLimits:" + vLANsValue);
+        var VPNsValue = validateVPNsLimits(isNumberInputCorrect(VPNs.value));
+        console.log("azurepack_validated_vLANsLimits:" + VPNsValue);
+
+        var azurepackAdditionalResources = new AzurePack.AdditionalSubscriptionResources(
+            regionValue,
+            vLANsValue,
+            VPNsValue
+        );
+
+        var costOfvLANs = azurepackCalculator.getCostOfvLANs(azurepackAdditionalResources);
+        var costOfVPNs = azurepackCalculator.getCostOfVPNs(azurepackAdditionalResources);
+
+
+
+        if ((azurepackInfrastructureTable.rows.length == 0) && (azurepackServersTable.rows.length != 0)) {
+            var VLANRow = azurepackInfrastructureTable.insertRow(azurepackInfrastructureTable.rows.length);
+            var resourceVLANName = VLANRow.insertCell(0);
+            resourceVLANName.appendChild(document.createTextNode("Виртуальные сети (vLAN)"));
+
+            var countVLAN = VLANRow.insertCell(1);
+            countVLAN.appendChild(document.createTextNode(vLANsValue));
+
+            var costVLAN = VLANRow.insertCell(2);
+            costVLAN.appendChild(document.createTextNode(costOfvLANs + " руб."));
+
+            var VPNRow = azurepackInfrastructureTable.insertRow(azurepackInfrastructureTable.rows.length);
+            var resourceVPNName = VPNRow.insertCell(0);
+            resourceVPNName.appendChild(document.createTextNode("Site-To-Site VPN /IPSec IKEv2/"));
+
+            var countVPN = VPNRow.insertCell(1);
+            countVPN.appendChild(document.createTextNode(VPNsValue));
+
+            var costVPN = VPNRow.insertCell(2);
+            costVPN.appendChild(document.createTextNode(costOfVPNs + " руб."));
+
+            Modules.Events.Messages.send("addCost", costOfvLANs);
+            Modules.Events.Messages.send("addCost", costOfVPNs);
+
+        } else {
+            var oldCostOfvLANsString = azurepackInfrastructureTable.rows[0].cells[2].innerHTML;
+            var oldCostOfvLANs = parseFloat(oldCostOfvLANsString.replace(" руб.", ""));
+
+            var oldCostOfVPNsString = azurepackInfrastructureTable.rows[1].cells[2].innerHTML;
+            var oldCostOfVPNs = parseFloat(oldCostOfVPNsString.replace(" руб.", ""));
+
+            var diffvLANsCost = costOfvLANs - oldCostOfvLANs;
+            var diffVPNsCost = costOfVPNs - oldCostOfVPNs;
+
+            azurepackInfrastructureTable.rows[0].cells[1].innerHTML = vLANsValue;
+            azurepackInfrastructureTable.rows[0].cells[2].innerHTML = costOfvLANs + " руб.";
+            azurepackInfrastructureTable.rows[1].cells[1].innerHTML = VPNsValue;
+            azurepackInfrastructureTable.rows[1].cells[2].innerHTML = costOfVPNs + " руб.";
+
+            Modules.Events.Messages.send("addCost", diffvLANsCost);
+            Modules.Events.Messages.send("addCost", diffVPNsCost);
+        }
+    }
+
+    function updateResources() {
+        updateAzurePackInfrastructureTable();
     }
 
     function showAzurePackResultsTable() {
@@ -187,15 +257,23 @@
 
     function hideAzurePackResultsTable() {
         azurepackServersTableOwn.parentNode.className += " collapse";
+
     }
 
-    function showVirtuozzoResultsTable() {
-        virtuozzoServersTableOwn.parentNode.className = virtuozzoServersTableOwn.parentNode.className.replace("collapse", "");
+    function hideResultsTables() {
+        for (var i = 0; i < resultsTables.length; i++) {
+            resultsTables[i].parentNode.className += " collapse";
+
+        }
     }
 
-    function hideVirtuozzoResultsTable() {
-        virtuozzoServersTableOwn.parentNode.className += " collapse";
+    function removeItemsFromResultsTables() {
+        for (var i = 1; i < resultsTables.length; i++) {
+            while(resultsTables[i].getElementsByTagName('tbody')[0].rows[0]) resultsTables[i].getElementsByTagName('tbody')[0].deleteRow(0);
+        }
     }
+
+
 
     function clearItems() {
         serverName.focus();
@@ -213,13 +291,12 @@
         serverName.focus();
     }
     function clearList() {
-        while(virtuozzoServersTable.rows[0]) virtuozzoServersTable.deleteRow(0);
-        while(azurepackServersTable.rows[0]) azurepackServersTable.deleteRow(0);
+
+        removeItemsFromResultsTables();
         sum = 0;
         costOfServersList = [];
         updateResult();
-        hideAzurePackResultsTable();
-        hideVirtuozzoResultsTable();
+        hideResultsTables();
         Modules.Events.Messages.send("resetCost");
     }
     function clearLast() {

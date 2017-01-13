@@ -14,6 +14,10 @@
     background: #f65343;
 }
 
+.azurepack_updateResourcesButton {
+    background: #68bf2f;
+}
+
 .azurepack_nHeader {
     color: rgb(51, 51, 51);
     font-family: "Open Sans", sans-serif;

@@ -133,6 +133,8 @@ var Price;
                     "diskGbMonth" : 12,
                     "diskBackupMonth" : 12,
                     "ipv4Month" : 90,
+                    "vLANMonth" : 50,
+                    "VPNMonth" : 100,
                     "discounts": {
                         "0" : 1,
                         "1" : 0.95,

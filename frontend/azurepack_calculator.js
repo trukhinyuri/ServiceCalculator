@@ -251,6 +251,25 @@ var AzurePack;
             return costOfServer;
         };
 
+        Calculator.prototype.getCostOfAdditionalSubscriptionResources = function (resources) {
+            var costOfResources =
+                this._calculateVLANsCost(resources.region, resources.vLANs)
+                + this._calculateVPNsCost(resources.region, resources.VPNs);
+            return costOfResources;
+        };
+
+        Calculator.prototype.getCostOfvLANs = function (resources) {
+            var costOfvLANs =
+                this._calculateVLANsCost(resources.region, resources.vLANs);
+            return costOfvLANs;
+        };
+
+        Calculator.prototype.getCostOfVPNs = function (resources) {
+            var costOfVPNs =
+                this._calculateVPNsCost(resources.region, resources.VPNs);
+            return costOfVPNs;
+        };
+
         Calculator.prototype._calculateCPUCost = function (region, cores) {
             var cpuCost = _price.currentPrice[region].vCoreMonth
                 * _price.currentPrice[region].limits.vCoreMaxPower
@@ -278,6 +297,24 @@ var AzurePack;
             return snapshotsCost;
         };
 
+        Calculator.prototype._calculateVLANsCost = function (region, vLANs) {
+            var vLANsCost = 0;
+            if (vLANs > _price.currentPrice[region].defaults.vLANs) {
+                vLANsCost = _price.currentPrice[region].vLANMonth * (vLANs - _price.currentPrice[region].defaults.vLANs);
+            }
+
+            return vLANsCost;
+        };
+
+        Calculator.prototype._calculateVPNsCost = function (region, VPNs) {
+            var VPNsCost = 0;
+            if (VPNs > _price.currentPrice[region].defaults.VPNs) {
+                VPNsCost = _price.currentPrice[region].VPNMonth * (VPNs - _price.currentPrice[region].defaults.VPNs);
+            }
+
+            return VPNsCost;
+        };
+
         return Calculator;
     }());
 
@@ -302,6 +339,20 @@ var AzurePack;
         return Server;
     }());
 
+    var AdditionalSubscriptionResources = (function(){
+        function AdditionalSubscriptionResources(
+            region,
+            vLANs,
+            VPNs
+        ) {
+            this.region = region;
+            this.vLANs = vLANs;
+            this.VPNs = VPNs;
+        }
+        return AdditionalSubscriptionResources;
+    }());
+
     AzurePack.Calculator = Calculator;
     AzurePack.Server = Server;
+    AzurePack.AdditionalSubscriptionResources = AdditionalSubscriptionResources;
 })(AzurePack || (AzurePack = {}));

@@ -1,0 +1,16 @@
+.azurepackServersTable_tbody {
+    cursor: default;
+}
+
+.azurepackInfrastructureTable_tbody {
+    cursor: default;
+}
+.azurepackServersTable_lastTD {
+    white-space: nowrap;
+    width: 1px;
+}
+
+.azurepackInfrastructureTable_lastTD {
+    white-space: nowrap;
+    width: 1px;
+}
