@@ -20,7 +20,7 @@
     var frequency = document.getElementsByClassName("virtuozzo_frequency")[0];
     var disk = document.getElementsByClassName("virtuozzo_disk")[0];
     var backupCount = document.getElementsByClassName("virtuozzo_backupCount")[0];
-    var backupSpace = document.getElementsByClassName("virtuozzo_backupSpace")[0];
+    // var backupSpace = document.getElementsByClassName("virtuozzo_backupSpace")[0];
     var ram = document.getElementsByClassName("virtuozzo_ram")[0];
     var ipv4 = document.getElementsByClassName("virtuozzo_ipv4")[0];
     var trafficOut = document.getElementsByClassName("virtuozzo_trafficOut")[0];
@@ -41,21 +41,133 @@
         items: [
             {
                 id: 0,
-                label: "Клонировать"
+                label: "↑ Использовать в форме"
             },
             {
                 id: 1,
+                label: "Клонировать"
+            },
+            {
+                id: 2,
                 label: "Удалить"
             }
         ],
         onClick: function (e) {
-            if (this.id == 1) {
-                deleteTableItem(selectedRow);
-            } else if (this.id == 0) {
+            if (this.id == 0) {
+                fillInputForm(selectedRow);
+            } else if (this.id == 1) {
                 cloneTableItem(selectedRow);
+            } else if (this.id == 2) {
+                deleteTableItem(selectedRow);
             }
         }
     });
+
+    function fillInputForm(i) {
+
+        serverName.value = virtuozzoServersTable.rows[i].cells[0].innerHTML;
+
+        var regionSelectedIndexString = virtuozzoServersTable.rows[i].cells[1].innerHTML;
+        var expr0 = "Россия, Санкт-Петербург (SSD)";
+        var expr1 = "Россия, Москва (Tier III Gold, SSD-cache)";
+        var expr2 = "Европа, Амстердам (SSD)";
+        if (regionSelectedIndexString.localeCompare(expr0) == 0) {
+            region.selectedIndex = 0;
+        } else if (regionSelectedIndexString.localeCompare(expr1) == 0) {
+            region.selectedIndex = 1;
+        } else if (regionSelectedIndexString.localeCompare(expr2) == 0) {
+            region.selectedIndex = 2;
+        }
+
+        cores.value = virtuozzoServersTable.rows[i].cells[2].innerHTML;
+
+        var frequencyValueString = virtuozzoServersTable.rows[i].cells[3].innerHTML;
+        frequency.value = parseFloat(frequencyValueString.replace(" ГГц.", ""));
+
+        var ramValueString = virtuozzoServersTable.rows[i].cells[4].innerHTML;
+        ram.value = parseFloat(ramValueString.replace(" ГБ.", ""));
+
+        var diskValueString = virtuozzoServersTable.rows[i].cells[5].innerHTML;
+        var diskValue = parseFloat(diskValueString.replace(" ГБ.", ""))
+        disk.value = diskValue;
+
+        var backupCountValueString = virtuozzoServersTable.rows[i].cells[6].innerHTML;
+        var backupCountGbValue = parseFloat(backupCountValueString.replace(" ГБ.", ""));
+        var backupCountValue = backupCountGbValue / diskValue;
+        backupCount.value = backupCountValue;
+
+        ipv4.value = virtuozzoServersTable.rows[i].cells[7].innerHTML;
+
+        var trafficOutValueString = virtuozzoServersTable.rows[i].cells[8].innerHTML;
+        trafficOut.value = parseFloat(trafficOutValueString.replace(" ГБ.", ""));
+
+        var vtTypeSelectedIndexString = virtuozzoServersTable.rows[i].cells[9].innerHTML;
+        var virt0 = "Контейнер";
+        var virt1 = "Виртуальная машина";
+
+        if (vtTypeSelectedIndexString.localeCompare(virt0) == 0) {
+            vtType.selectedIndex = 0;
+        } else if (vtTypeSelectedIndexString.localeCompare(virt1) == 0) {
+            vtType.selectedIndex = 1;
+        }
+
+        var osTypeSelectedIndexString = virtuozzoServersTable.rows[i].cells[10].innerHTML;
+        var os0 = "Linux";
+        var os1 = "Windows";
+
+        if (osTypeSelectedIndexString.localeCompare(os0) == 0) {
+            osType.selectedIndex = 0;
+        } else if (osTypeSelectedIndexString.localeCompare(os1) == 0) {
+            osType.selectedIndex = 1;
+        }
+
+        var runningDaysHoursValueString = virtuozzoServersTable.rows[i].cells[11].innerHTML;
+        if (runningDaysHoursValueString.indexOf(',') > -1) {
+            var runningDaysValueString = runningDaysHoursValueString.substr(0, runningDaysHoursValueString.indexOf(','));
+            var runningDaysValue = runningDaysValueString.replace(" дн.","");
+            runningDays.value = runningDaysValue;
+
+            var runningHoursValueStringWithSymbol = runningDaysHoursValueString.substr(runningDaysHoursValueString.indexOf(','), runningDaysHoursValueString.length);
+            var runningHoursValueString = runningHoursValueStringWithSymbol.replace(", ", "");
+            var runningHoursValue = runningHoursValueString.replace("ч.","");
+            runningHours.value = runningHoursValue;
+        } else if (runningDaysHoursValueString.localeCompare("-") == 0) {
+            runningDays.value = 0;
+            runningHours.value = 0;
+        } else if (runningDaysHoursValueString.indexOf('ч') > -1) {
+            var runningHoursValue = runningDaysHoursValueString.replace("ч.","");
+            runningDays.value = 0;
+            runningHours.value = runningHoursValue;
+
+        } else {
+            var runningDaysValue = runningDaysHoursValueString.replace(" дн.","");
+            runningDays.value = runningDaysValue;
+            runningHours.value = 0;
+        }
+
+        var stoppedDaysHoursValueString = virtuozzoServersTable.rows[i].cells[12].innerHTML;
+        if (stoppedDaysHoursValueString.indexOf(',') > -1) {
+            var stoppedDaysValueString = stoppedDaysHoursValueString.substr(0, stoppedDaysHoursValueString.indexOf(','));
+            var stoppedDaysValue = stoppedDaysValueString.replace(" дн.","");
+            stoppedDays.value = stoppedDaysValue;
+
+            var stoppedHoursValueStringWithSymbol = stoppedDaysHoursValueString.substr(stoppedDaysHoursValueString.indexOf(','), stoppedDaysHoursValueString.length);
+            var stoppedHoursValueString = stoppedHoursValueStringWithSymbol.replace(", ", "");
+            var stoppedHoursValue = stoppedHoursValueString.replace("ч.","");
+            stoppedHours.value = stoppedHoursValue;
+        } else if (stoppedDaysHoursValueString.localeCompare("-") == 0){
+            stoppedDays.value = 0;
+            stoppedHours.value = 0;
+        } else if (stoppedDaysHoursValueString.indexOf('ч') > -1) {
+            var stoppedHoursValue = stoppedDaysHoursValueString.replace("ч.","");
+            stoppedDays.value = 0;
+            stoppedHours.value = stoppedHoursValue;
+        } else {
+            var stoppedDaysValue = stoppedDaysHoursValueString.replace(" дн.","");
+            stoppedDays.value = stoppedDaysValue;
+            stoppedHours.value = 0;
+        }
+    }
 
     Modules.Events.addListener(virtuozzoServersTable, "contextmenu", function (e) {
         selectedRow = e.target.parentNode.rowIndex - 1;
@@ -125,8 +237,8 @@
         console.log("validated_diskCapacity:" + diskValue);
         var backupCountValue = validatebackupCount(isNumberInputCorrect(backupCount.value));
         console.log("validated_backupCountValue:" + backupCountValue);
-        var backupSpaceValue = validatebackupSpace(isNumberInputCorrect(backupSpace.value), parseFloat(diskValue), parseFloat(backupCountValue));
-        console.log("validated_backupSpaceValue:" + backupSpaceValue);
+        // var backupSpaceValue = validatebackupSpace(isNumberInputCorrect(backupSpace.value), parseFloat(diskValue), parseFloat(backupCountValue));
+        // console.log("validated_backupSpaceValue:" + backupSpaceValue);
         var ramValue = validateRamLimits(isNumberInputCorrect(ram.value));
         console.log("validated_RamCapacity:" + ramValue);
         var ipv4Value = validateipv4Limits(isNumberInputCorrect(ipv4.value));
@@ -163,7 +275,7 @@
                 ramValue,
                 diskValue,
                 backupCountValue,
-                backupSpaceValue,
+                diskValue,
                 ipv4Value,
                 trafficOutValue,
                 vtTypeIndex,
@@ -205,7 +317,7 @@
             cellDisk.appendChild(document.createTextNode(diskValue + " ГБ."));
 
             var cellBackups = row.insertCell(6);
-            cellBackups.appendChild(document.createTextNode(backupCountValue * backupSpaceValue + " ГБ."));
+            cellBackups.appendChild(document.createTextNode(backupCountValue * diskValue + " ГБ."));
 
             var cellIPv4 = row.insertCell(7);
             cellIPv4.appendChild(document.createTextNode(ipv4Value));

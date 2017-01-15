@@ -149,7 +149,8 @@ var Price;
                         "diskMin": 25,
                         "diskMax": 65536,
                         "ipv4Min": 0,
-                        "ipv4Max": 10
+                        "ipv4Max": 10,
+                        "diskStepGb": 50
                     },
                     "defaults" : {
                         "serverName": "Облачный сервер",

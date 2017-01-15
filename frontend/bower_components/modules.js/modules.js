@@ -1277,9 +1277,9 @@ window.exports = window.exports || (window.exports = {});
          * @param {String} [containerClassName = undefined] Container class of className for adequate definition place for item loading
          */
         function _loadModule (correctPath, moduleName, className, callback, containerClassName) {
-            setTimeout(function(){
+            requestAnimationFrame(function(){
                 loadSync(correctPath, moduleName, className, callback, containerClassName);
-            }, 0);
+            });
 
             function loadSync (correctPath, moduleName, className, callback, containerClassName) {
                 var modulePath = _buildModulePath(correctPath, moduleName);
@@ -1305,9 +1305,9 @@ window.exports = window.exports || (window.exports = {});
         }
 
         function _loadTemplate(correctPath, moduleName, className, callback, containerClassName, dataSource) {
-            setTimeout(function(){
+            requestAnimationFrame(function(){
                 loadSync(correctPath, moduleName, className, callback, containerClassName);
-            }, 0);
+            });
 
             function loadSync (correctPath, moduleName, className, callback, containerClassName) {
                 var modulePath = _buildModulePath(correctPath, moduleName);
@@ -1357,9 +1357,10 @@ window.exports = window.exports || (window.exports = {});
          * @param {String} [containerClassName = undefined] Container class of className for adequate definition place for item loading
          */
         function _unloadModule(moduleName, className, callback, containerClassName) {
-            setTimeout(function(){
+            requestAnimationFrame(function(){
                 unloadSync(moduleName, className, callback, containerClassName);
-            }, 0);
+            });
+
             function unloadSync (moduleName, className, callback, containerClassName) {
                 var itemData = {"itemInfo": {"itemName" : moduleName, "className": className,
                     "containerClassName" : containerClassName, "isJSCSSUnloaded": false}};

@@ -16,6 +16,7 @@
     Modules.Events.addListener(clearListButton, "click", clearList);
     Modules.Events.addListener(updateResourcesButton, "click", updateResources);
 
+    var region = document.getElementsByClassName("azurepack_region")[0];
     var serverName = document.getElementsByClassName("azurepack_serverName")[0];
     var cores = document.getElementsByClassName("azurepack_cores")[0];
     var disk = document.getElementsByClassName("azurepack_disk")[0];
@@ -38,21 +39,48 @@
         items: [
             {
                 id: 0,
-                label: "Клонировать"
+                label: "↑ Использовать в форме"
             },
             {
                 id: 1,
+                label: "Клонировать"
+            },
+            {
+                id: 2,
                 label: "Удалить"
             }
         ],
         onClick: function (e) {
-            if (this.id == 1) {
-                deleteTableItem(selectedRow);
-            } else if (this.id == 0) {
+            if (this.id == 0) {
+                fillInputForm(selectedRow);
+            } else if (this.id == 1) {
                 cloneTableItem(selectedRow);
+            } else if (this.id == 2) {
+                deleteTableItem(selectedRow);
             }
         }
     });
+
+    function fillInputForm(i) {
+        serverName.value = azurepackServersTable.rows[i].cells[0].innerHTML;
+
+        cores.value = azurepackServersTable.rows[i].cells[2].innerHTML;
+
+        var ramValueString = azurepackServersTable.rows[i].cells[3].innerHTML;
+        ram.value = parseFloat(ramValueString.replace(" ГБ.", ""));
+
+        var diskValueString = azurepackServersTable.rows[i].cells[4].innerHTML;
+        var diskValue = parseFloat(diskValueString.replace(" ГБ.", ""))
+        disk.value = diskValue;
+
+        var snapshotsValueString = azurepackServersTable.rows[i].cells[5].innerHTML;
+        var snapshotsGbValue = parseFloat(snapshotsValueString.replace(" ГБ.", ""));
+        var snapshotsValue = snapshotsGbValue / diskValue;
+        snapshots.value = snapshotsValue;
+
+        ipv4.value = azurepackServersTable.rows[i].cells[6].innerHTML;
+
+    }
 
     Modules.Events.addListener(azurepackServersTable, "contextmenu", function (e) {
         selectedRow = e.target.parentNode.rowIndex - 1;
