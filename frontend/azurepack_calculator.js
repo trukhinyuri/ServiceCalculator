@@ -247,8 +247,18 @@ var AzurePack;
                 + this._calculateRAMCost(server.region, server.ramGb)
                 + this._calculateDiskCost(server.region, server.diskGb)
                 + this._calculateSnapshotsCost(server.region, server.diskGb, server.snapshots)
-                + this._calculateIPCost(server.region, server.ipv4);
+                + this._calculateIPCost(server.region, server.ipv4)
+                + this._calculateUtilizationCost(server.region, server.cores, server.ramGb);
             return costOfServer;
+        };
+
+        Calculator.prototype._calculateUtilizationCost = function (region, cores, ramGb) {
+            if (parseFloat(cores) > parseFloat(ramGb)) {
+                var utilizationRatio = cores - ramGb;
+                var utilizationCost = this._calculateRAMCost(region, utilizationRatio);
+                return utilizationCost;
+            }
+            return 0;
         };
 
         Calculator.prototype.getCostOfAdditionalSubscriptionResources = function (resources) {
