@@ -33,6 +33,7 @@
     var virtuozzoServersTable = document.getElementsByClassName("virtuozzoServersTable")[0].getElementsByTagName('tbody')[0];
     var virtuozzoServersTableOwn = document.getElementsByClassName("virtuozzoServersTable")[0];
     var resultsTables = document.getElementsByClassName("resultsTable");
+    var clearableTables = document.getElementsByClassName("clearableTable");
 
 
     var selectedRow = null;
@@ -65,8 +66,10 @@
 
     function fillInputForm(i) {
 
+        serverName.focus();
         serverName.value = virtuozzoServersTable.rows[i].cells[0].innerHTML;
 
+        region.focus();
         var regionSelectedIndexString = virtuozzoServersTable.rows[i].cells[1].innerHTML;
         var expr0 = "Россия, Санкт-Петербург (SSD)";
         var expr1 = "Россия, Москва (Tier III Gold, SSD-cache)";
@@ -79,28 +82,36 @@
             region.selectedIndex = 2;
         }
 
+        cores.focus();
         cores.value = virtuozzoServersTable.rows[i].cells[2].innerHTML;
 
+        frequency.focus();
         var frequencyValueString = virtuozzoServersTable.rows[i].cells[3].innerHTML;
         frequency.value = parseFloat(frequencyValueString.replace(" ГГц.", ""));
 
+        ram.focus();
         var ramValueString = virtuozzoServersTable.rows[i].cells[4].innerHTML;
         ram.value = parseFloat(ramValueString.replace(" ГБ.", ""));
 
+        disk.focus();
         var diskValueString = virtuozzoServersTable.rows[i].cells[5].innerHTML;
         var diskValue = parseFloat(diskValueString.replace(" ГБ.", ""))
         disk.value = diskValue;
 
+        backupCount.focus();
         var backupCountValueString = virtuozzoServersTable.rows[i].cells[6].innerHTML;
         var backupCountGbValue = parseFloat(backupCountValueString.replace(" ГБ.", ""));
         var backupCountValue = backupCountGbValue / diskValue;
         backupCount.value = backupCountValue;
 
+        ipv4.focus();
         ipv4.value = virtuozzoServersTable.rows[i].cells[7].innerHTML;
 
+        trafficOut.focus();
         var trafficOutValueString = virtuozzoServersTable.rows[i].cells[8].innerHTML;
         trafficOut.value = parseFloat(trafficOutValueString.replace(" ГБ.", ""));
 
+        vtType.focus();
         var vtTypeSelectedIndexString = virtuozzoServersTable.rows[i].cells[9].innerHTML;
         var virt0 = "Контейнер";
         var virt1 = "Виртуальная машина";
@@ -111,6 +122,7 @@
             vtType.selectedIndex = 1;
         }
 
+        osType.focus();
         var osTypeSelectedIndexString = virtuozzoServersTable.rows[i].cells[10].innerHTML;
         var os0 = "Linux";
         var os1 = "Windows";
@@ -125,23 +137,32 @@
         if (runningDaysHoursValueString.indexOf(',') > -1) {
             var runningDaysValueString = runningDaysHoursValueString.substr(0, runningDaysHoursValueString.indexOf(','));
             var runningDaysValue = runningDaysValueString.replace(" дн.","");
+            runningDays.focus();
             runningDays.value = runningDaysValue;
 
             var runningHoursValueStringWithSymbol = runningDaysHoursValueString.substr(runningDaysHoursValueString.indexOf(','), runningDaysHoursValueString.length);
             var runningHoursValueString = runningHoursValueStringWithSymbol.replace(", ", "");
             var runningHoursValue = runningHoursValueString.replace("ч.","");
+            runningHours.focus();
             runningHours.value = runningHoursValue;
         } else if (runningDaysHoursValueString.localeCompare("-") == 0) {
+            runningDays.focus();
             runningDays.value = 0;
+            runningHours.focus();
             runningHours.value = 0;
         } else if (runningDaysHoursValueString.indexOf('ч') > -1) {
             var runningHoursValue = runningDaysHoursValueString.replace("ч.","");
+            runningDays.focus();
             runningDays.value = 0;
+            runningHours.focus();
             runningHours.value = runningHoursValue;
 
         } else {
             var runningDaysValue = runningDaysHoursValueString.replace(" дн.","");
+            runningDays.focus();
             runningDays.value = runningDaysValue;
+
+            runningHours.focus();
             runningHours.value = 0;
         }
 
@@ -149,6 +170,7 @@
         if (stoppedDaysHoursValueString.indexOf(',') > -1) {
             var stoppedDaysValueString = stoppedDaysHoursValueString.substr(0, stoppedDaysHoursValueString.indexOf(','));
             var stoppedDaysValue = stoppedDaysValueString.replace(" дн.","");
+            stoppedDays.focus();
             stoppedDays.value = stoppedDaysValue;
 
             var stoppedHoursValueStringWithSymbol = stoppedDaysHoursValueString.substr(stoppedDaysHoursValueString.indexOf(','), stoppedDaysHoursValueString.length);
@@ -156,17 +178,24 @@
             var stoppedHoursValue = stoppedHoursValueString.replace("ч.","");
             stoppedHours.value = stoppedHoursValue;
         } else if (stoppedDaysHoursValueString.localeCompare("-") == 0){
+            stoppedDays.focus();
             stoppedDays.value = 0;
+            stoppedHours.focus();
             stoppedHours.value = 0;
         } else if (stoppedDaysHoursValueString.indexOf('ч') > -1) {
             var stoppedHoursValue = stoppedDaysHoursValueString.replace("ч.","");
+            stoppedDays.focus();
             stoppedDays.value = 0;
+            stoppedHours.focus();
             stoppedHours.value = stoppedHoursValue;
         } else {
             var stoppedDaysValue = stoppedDaysHoursValueString.replace(" дн.","");
+            stoppedDays.focus();
             stoppedDays.value = stoppedDaysValue;
+            stoppedHours.focus();
             stoppedHours.value = 0;
         }
+        serverName.focus();
     }
 
     Modules.Events.addListener(virtuozzoServersTable, "contextmenu", function (e) {
@@ -376,14 +405,15 @@
 
     function hideResultsTables() {
         for (var i = 0; i < resultsTables.length; i++) {
-            resultsTables[i].parentNode.className += " collapse";
-
+            if (resultsTables[i].parentNode.className.indexOf("collapse") == -1) {
+                resultsTables[i].parentNode.className += " collapse";
+            }
         }
     }
 
-    function removeItemsFromResultsTables() {
-        for (var i = 0; i < resultsTables.length; i++) {
-            while(resultsTables[i].getElementsByTagName('tbody')[0].rows[0]) resultsTables[i].getElementsByTagName('tbody')[0].deleteRow(0);
+    function removeItemsFromClearableTables() {
+        for (var i = 0; i < clearableTables.length; i++) {
+            while(clearableTables[i].getElementsByTagName('tbody')[0].rows[0]) clearableTables[i].getElementsByTagName('tbody')[0].deleteRow(0);
         }
     }
 
@@ -391,6 +421,8 @@
     function clearItems() {
         serverName.focus();
         serverName.value = "";
+        region.focus();
+        region.selectedIndex = 0;
         cores.focus();
         cores.value = "";
         frequency.focus();
@@ -399,12 +431,17 @@
         disk.value = "";
         backupCount.focus();
         backupCount.value = "";
-        backupSpace.focus();
-        backupSpace.value = "";
+        // backupSpace.focus();
+        // backupSpace.value = "";
         ram.focus();
         ram.value = "";
         ipv4.focus();
         ipv4.value = "";
+        vtType.focus();
+        vtType.selectedIndex = 0;
+        osType.focus();
+        osType.selectedIndex = 0;
+
         trafficOut.focus();
         trafficOut.value = "";
         runningDays.focus();
@@ -418,7 +455,7 @@
         serverName.focus();
     }
     function clearList() {
-        removeItemsFromResultsTables();
+        removeItemsFromClearableTables();
         sum = 0;
         costOfServersList = [];
         hideResultsTables();

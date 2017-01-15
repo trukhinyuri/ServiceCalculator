@@ -29,6 +29,7 @@
     var azurepackServersTable = document.getElementsByClassName("azurepackServersTable")[0].getElementsByTagName('tbody')[0];
     var azurepackServersTableOwn = document.getElementsByClassName("azurepackServersTable")[0];
     var resultsTables = document.getElementsByClassName("resultsTable");
+    var clearableTables = document.getElementsByClassName("clearableTable");
     var azurepackInfrastructureTable = document.getElementsByClassName("azurepackInfrastructureTable")[0].getElementsByTagName('tbody')[0];
     var azurepackInfrastructureTableOwn = document.getElementsByClassName("azurepackInfrastructureTable")[0];
 
@@ -62,23 +63,31 @@
     });
 
     function fillInputForm(i) {
+        serverName.focus();
         serverName.value = azurepackServersTable.rows[i].cells[0].innerHTML;
 
+        cores.focus();
         cores.value = azurepackServersTable.rows[i].cells[2].innerHTML;
 
+        ram.focus();
         var ramValueString = azurepackServersTable.rows[i].cells[3].innerHTML;
         ram.value = parseFloat(ramValueString.replace(" ГБ.", ""));
 
+        disk.focus();
         var diskValueString = azurepackServersTable.rows[i].cells[4].innerHTML;
         var diskValue = parseFloat(diskValueString.replace(" ГБ.", ""))
         disk.value = diskValue;
 
+        snapshots.focus();
         var snapshotsValueString = azurepackServersTable.rows[i].cells[5].innerHTML;
         var snapshotsGbValue = parseFloat(snapshotsValueString.replace(" ГБ.", ""));
         var snapshotsValue = snapshotsGbValue / diskValue;
         snapshots.value = snapshotsValue;
 
+        ipv4.focus();
         ipv4.value = azurepackServersTable.rows[i].cells[6].innerHTML;
+
+        serverName.focus();
 
     }
 
@@ -92,11 +101,26 @@
     });
 
     function deleteTableItem(i) {
+        
+
         var sumString = azurepackServersTable.rows[i].cells[7].innerHTML;
         var sum = parseFloat(sumString.replace(" руб.", ""));
         Modules.Events.Messages.send("removeCost", sum);
 
         azurepackServersTable.deleteRow(i);
+
+        var nonOptimalUtilizationRam = checkNonOptimalUtilizationRam();
+        var costOfNonOptimalUtilizationRam = azurepackCalculator.getCostOfRam(1, nonOptimalUtilizationRam);
+
+        var oldCostOfNonOptimalUtilizationRamString = azurepackInfrastructureTable.rows[2].cells[2].innerHTML;
+        var oldCostOfNonOptimalUtilizationRam = parseFloat(oldCostOfNonOptimalUtilizationRamString.replace(" руб.", ""));
+
+        var diffCostOfNonOptimalUtilizationRam = costOfNonOptimalUtilizationRam - oldCostOfNonOptimalUtilizationRam;
+
+        azurepackInfrastructureTable.rows[2].cells[1].innerHTML = nonOptimalUtilizationRam + " Гб.";
+        azurepackInfrastructureTable.rows[2].cells[2].innerHTML = costOfNonOptimalUtilizationRam + " руб.";
+
+        Modules.Events.Messages.send("addCost", diffCostOfNonOptimalUtilizationRam);
 
         if (azurepackServersTable.rows.length == 0) {
             hideAzurePackResultsTable();
@@ -129,8 +153,10 @@
     var maxipv4 = 10;
     var vLANsDefault = 2;
     var minvLANs = 2;
+    var maxvLANs = 10000;
     var VPNsDefault = 2;
     var minVPNs = 2;
+    var maxVPNs = 10000;
 
 
 
@@ -207,8 +233,6 @@
 
         updateAzurePackInfrastructureTable();
 
-
-        updateResult();
         serverName.focus();
     }
 
@@ -229,7 +253,8 @@
         var costOfvLANs = azurepackCalculator.getCostOfvLANs(azurepackAdditionalResources);
         var costOfVPNs = azurepackCalculator.getCostOfVPNs(azurepackAdditionalResources);
 
-
+        var nonOptimalUtilizationRam = checkNonOptimalUtilizationRam();
+        var costOfNonOptimalUtilizationRam = azurepackCalculator.getCostOfRam(1, nonOptimalUtilizationRam);
 
         if ((azurepackInfrastructureTable.rows.length == 0) && (azurepackServersTable.rows.length != 0)) {
             var VLANRow = azurepackInfrastructureTable.insertRow(azurepackInfrastructureTable.rows.length);
@@ -252,8 +277,19 @@
             var costVPN = VPNRow.insertCell(2);
             costVPN.appendChild(document.createTextNode(costOfVPNs + " руб."));
 
+            var nonOptimalMemoryRow = azurepackInfrastructureTable.insertRow(azurepackInfrastructureTable.rows.length);
+            var resourceNonOptimalRamName = nonOptimalMemoryRow.insertCell(0);
+            resourceNonOptimalRamName.appendChild(document.createTextNode("Нераспределенный объем RAM (ядер vCPU не должно быть больше количества Гб. RAM в подписке)"));
+
+            var countNonOptimalRam = nonOptimalMemoryRow.insertCell(1);
+            countNonOptimalRam.appendChild(document.createTextNode(nonOptimalUtilizationRam + " Гб."))
+
+            var costNonOptimalRam = nonOptimalMemoryRow.insertCell(2);
+            costNonOptimalRam.appendChild(document.createTextNode(costOfNonOptimalUtilizationRam + " руб."))
+
             Modules.Events.Messages.send("addCost", costOfvLANs);
             Modules.Events.Messages.send("addCost", costOfVPNs);
+            Modules.Events.Messages.send("addCost", costOfNonOptimalUtilizationRam);
 
         } else {
             var oldCostOfvLANsString = azurepackInfrastructureTable.rows[0].cells[2].innerHTML;
@@ -262,17 +298,40 @@
             var oldCostOfVPNsString = azurepackInfrastructureTable.rows[1].cells[2].innerHTML;
             var oldCostOfVPNs = parseFloat(oldCostOfVPNsString.replace(" руб.", ""));
 
+            var oldCostOfNonOptimalUtilizationRamString = azurepackInfrastructureTable.rows[2].cells[2].innerHTML;
+            var oldCostOfNonOptimalUtilizationRam = parseFloat(oldCostOfNonOptimalUtilizationRamString.replace(" руб.", ""));
+
             var diffvLANsCost = costOfvLANs - oldCostOfvLANs;
             var diffVPNsCost = costOfVPNs - oldCostOfVPNs;
+            var diffCostOfNonOptimalUtilizationRam = costOfNonOptimalUtilizationRam - oldCostOfNonOptimalUtilizationRam;
 
             azurepackInfrastructureTable.rows[0].cells[1].innerHTML = vLANsValue;
             azurepackInfrastructureTable.rows[0].cells[2].innerHTML = costOfvLANs + " руб.";
             azurepackInfrastructureTable.rows[1].cells[1].innerHTML = VPNsValue;
             azurepackInfrastructureTable.rows[1].cells[2].innerHTML = costOfVPNs + " руб.";
+            azurepackInfrastructureTable.rows[2].cells[1].innerHTML = nonOptimalUtilizationRam + " Гб.";
+            azurepackInfrastructureTable.rows[2].cells[2].innerHTML = costOfNonOptimalUtilizationRam + " руб.";
 
             Modules.Events.Messages.send("addCost", diffvLANsCost);
             Modules.Events.Messages.send("addCost", diffVPNsCost);
+            Modules.Events.Messages.send("addCost", diffCostOfNonOptimalUtilizationRam);
         }
+    }
+
+    function checkNonOptimalUtilizationRam() {
+        var sumCores = 0;
+        var sumRamGb = 0;
+        var sumRamGbString = "";
+        var nonOptimalRamCount = 0;
+        for (var i = 0; i < azurepackServersTable.rows.length; i++) {
+            sumCores += parseFloat(azurepackServersTable.rows[i].cells[2].innerHTML);
+            sumRamGbString = azurepackServersTable.rows[i].cells[3].innerHTML;
+            sumRamGb += parseFloat(sumRamGbString.replace(" ГБ.", ""));
+        }
+        if (sumCores > sumRamGb) {
+            return sumCores - sumRamGb;
+        }
+        return 0;
     }
 
     function updateResources() {
@@ -290,14 +349,17 @@
 
     function hideResultsTables() {
         for (var i = 0; i < resultsTables.length; i++) {
-            resultsTables[i].parentNode.className += " collapse";
-
+            if (resultsTables[i].parentNode.className.indexOf("collapse") == -1) {
+                resultsTables[i].parentNode.className += " collapse";
+            }
         }
     }
 
-    function removeItemsFromResultsTables() {
-        for (var i = 1; i < resultsTables.length; i++) {
-            while(resultsTables[i].getElementsByTagName('tbody')[0].rows[0]) resultsTables[i].getElementsByTagName('tbody')[0].deleteRow(0);
+    function removeItemsFromClearableTables() {
+        for (var i = 0; i < clearableTables.length; i++) {
+            while(clearableTables[i].getElementsByTagName('tbody')[0].rows[0]) {
+                clearableTables[i].getElementsByTagName('tbody')[0].deleteRow(0);
+            }
         }
     }
 
@@ -320,12 +382,10 @@
     }
     function clearList() {
 
-        removeItemsFromResultsTables();
-        sum = 0;
-        costOfServersList = [];
-        updateResult();
+        removeItemsFromClearableTables();
         hideResultsTables();
         Modules.Events.Messages.send("resetCost");
+        serverName.focus();
     }
     function clearLast() {
         var sumLastString = azurepackServersTable.rows[azurepackServersTable.rows.length - 1].cells[7].innerHTML;
@@ -335,13 +395,8 @@
         azurepackServersTable.deleteRow(azurepackServersTable.rows.length -1);
         sum = sum - costOfServersList[costOfServersList.length - 1];
         costOfServersList.pop();
-        updateResult();
     }
 
-    function updateResult() {
-        // resultSpace.innerHTML = "<h3 class='resultHeader'>" + "Примерная стоимость облачной инфраструктуры: " + parseFloat(sum).toFixed(2).toString() + " руб."+ "</h3>";
-        // exportResult = "Примерная стоимость облачной инфраструктуры: " + parseFloat(sum).toFixed(2).toString() + " руб. в месяц" + "\r\n";
-    }
 
     function generateExportLink(content) {
         downloadSpace.innerHTML = "";
@@ -409,6 +464,11 @@
             disk.focus();
             disk.value = maxDiskCapacity;
             return maxDiskCapacity;
+        } else if (diskCapacity % 25 != 0) {
+            disk.focus();
+            var correctedDiskCapacity = parseFloat(diskCapacity) + (25 - (parseFloat(diskCapacity) % 25));
+            disk.value = correctedDiskCapacity;
+            return correctedDiskCapacity;
         }
         return diskCapacity;
     }
@@ -502,6 +562,10 @@
             vLANs.focus();
             vLANs.value = minvLANs;
             return minvLANs;
+        } else if (vLANsCount > maxvLANs) {
+            vLANs.focus();
+            vLANs.value = maxvLANs;
+            return maxvLANs;
         }
         else return vLANsCount;
     }
@@ -516,6 +580,10 @@
             VPNs.focus();
             VPNs.value = minVPNs;
             return minVPNs;
+        } else if (VPNsCount > maxVPNs) {
+            VPNs.focus();
+            VPNs.value = maxVPNs;
+            return maxVPNs;
         }
         else return VPNsCount;
     }
