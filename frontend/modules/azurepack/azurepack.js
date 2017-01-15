@@ -153,10 +153,10 @@
     var maxipv4 = 10;
     var vLANsDefault = 2;
     var minvLANs = 2;
-    var maxvLANs = 10000;
+    var maxvLANs = 9999;
     var VPNsDefault = 2;
     var minVPNs = 2;
-    var maxVPNs = 10000;
+    var maxVPNs = 9999;
 
 
 
@@ -363,8 +363,6 @@
         }
     }
 
-
-
     function clearItems() {
         serverName.focus();
         serverName.value = "";
@@ -378,6 +376,10 @@
         ram.value = "";
         ipv4.focus();
         ipv4.value = "";
+        vLANs.focus();
+        vLANs.value = "";
+        VPNs.focus();
+        VPNs.value = "";
         serverName.focus();
     }
     function clearList() {
