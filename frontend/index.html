@@ -19,13 +19,13 @@
     <script src="bower_components/ax5core/dist/ax5core.min.js"></script>
     <script src="bower_components/ax5ui-menu/dist/ax5menu.min.js"></script>
 
-    <script src="esx.min.js"></script>
-    <script src="checkBrowserCompatibility.min.js"></script>
-    <script src="bower_components/modules.js/modules.min.js"></script>
-    <script src="price.min.js"></script>
-    <script src="virtuozzo_calculator.min.js"></script>
-    <script src="azurepack_calculator.min.js"></script>
-    <script src="index.min.js"></script>
+    <script src="esx.js"></script>
+    <script src="checkBrowserCompatibility.js"></script>
+    <script src="bower_components/modules.js/modules.js"></script>
+    <script src="price.js"></script>
+    <script src="virtuozzo_calculator.js"></script>
+    <script src="azurepack_calculator.js"></script>
+    <script src="index.js"></script>
 </head>
 <body>
 <div class="menuBarContainer">
@@ -51,13 +51,18 @@
         <div class="jumbotron jumbotron_cloud_server" ng-controller="inputCloudServerController">
             <!--<h4>Выберите облачную платформу:</h4>-->
             <ul class="nav nav-tabs">
-                <li class="active cloudPlatformSelector_virtuozzo"><a href="#">
-                    <img class="cloudPlatformSelector_virtuozzo_tabImage" src="img/virtuozzo.png"/>
+                <li class="cloudPlatformSelectors cloudPlatformSelector_virtuozzo active"><a href="#">
+                    <img class="tabImage cloudPlatformSelector_virtuozzo_tabImage" src="img/virtuozzo.png"/>
                 </a>
                 </li>
-                <li class="cloudPlatformSelector_azurepack">
+                <li class="cloudPlatformSelectors cloudPlatformSelector_azurepack">
                     <a href="#">
-                        <img class="cloudPlatformSelector_azurePack_tabImage" src="img/azurepack.png"/>
+                        <img class="tabImage cloudPlatformSelector_azurePack_tabImage" src="img/azurepack.png"/>
+                    </a>
+                </li>
+                <li class="cloudPlatformSelectors cloudPlatformSelector_license">
+                    <a href="#">
+                        <img class="tabImage cloudPlatformSelector_license_tabImage" src="img/license.png"/>
                     </a>
                 </li>
                 <!--<li class="cloudPlatformSelector_azure">-->
@@ -66,10 +71,13 @@
                     <!--</a>-->
                 <!--</li>-->
             </ul>
-            <div class="virtuozzo_tab_Container">
+            <div class="tabContainers virtuozzo_tab_Container">
 
             </div>
-            <div class="azurepack_tab_Container collapse">
+            <div class="tabContainers azurepack_tab_Container collapse">
+
+            </div>
+            <div class="tabContainers license_tab_Container collapse">
 
             </div>
             <!--<div class="azure_tab_Container collapse">-->
@@ -88,6 +96,8 @@
         <div class="collapse virtuozzoResult_Container">
         </div>
         <div class="collapse azurepackResult_Container">
+        </div>
+        <div class="collapse licenseResult_Container">
         </div>
     </div>
 

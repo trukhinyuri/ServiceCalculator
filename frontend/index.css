@@ -70,15 +70,7 @@ html, body {
     background: #f5f5f5;
 }
 
-.cloudPlatformSelector_virtuozzo_tabImage {
-    width: 30mm;
-}
-
-.cloudPlatformSelector_azurePack_tabImage {
-    width: 30mm;
-}
-
-.cloudPlatformSelector_azure_tabImage {
+.tabImage {
     width: 30mm;
 }
 
