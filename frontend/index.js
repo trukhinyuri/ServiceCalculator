@@ -16,11 +16,11 @@
         Modules.Loader.loadModule("modules", "menuBar", "menuBarContainer");
         Modules.Loader.loadModule("modules", "virtuozzo", "virtuozzo_tab_Container");
         Modules.Loader.loadModule("modules", "azurepack", "azurepack_tab_Container");
-        Modules.Loader.loadModule("modules", "license", "license_tab_Container");
+        // Modules.Loader.loadModule("modules", "license", "license_tab_Container");
         Modules.Loader.loadModule("modules", "totalCost", "totalCostSpace");
         Modules.Loader.loadModule("modules", "virtuozzoResults", "virtuozzoResult_Container");
         Modules.Loader.loadModule("modules", "azurepackResults", "azurepackResult_Container");
-        Modules.Loader.loadModule("modules", "licenseResults", "licenseResult_Container");
+        // Modules.Loader.loadModule("modules", "licenseResults", "licenseResult_Container");
 
         // Modules.Loader.loadModule("modules", "azure", "azure_tab_Container");
 
@@ -29,7 +29,7 @@
         var cloudPlatformSelector_license = document.getElementsByClassName("cloudPlatformSelector_license")[0];
         var cloudPlatform_virtuozzo_tab = document.getElementsByClassName("virtuozzo_tab_Container")[0];
         var cloudPlatform_azurepack_tab = document.getElementsByClassName("azurepack_tab_Container")[0];
-        var cloudPlatform_license_tab = document.getElementsByClassName("license_tab_Container")[0];
+        // var cloudPlatform_license_tab = document.getElementsByClassName("license_tab_Container")[0];
         var cloudPlatformSelectors = document.getElementsByClassName("cloudPlatformSelectors");
         var tabContainers = document.getElementsByClassName("tabContainers");
 
@@ -67,21 +67,6 @@
              }
         }
 
-        function virtuozzoPlatformSelectorClicked() {
-            classExchange(cloudPlatformSelector_virtuozzo, cloudPlatformSelector_azurepack, "active");
-            classExchange(cloudPlatform_azurepack_tab, cloudPlatform_virtuozzo_tab, "collapse");
-        }
-
-        function azurePackPlatformSelectorClicked() {
-            classExchange(cloudPlatformSelector_azurepack, cloudPlatformSelector_virtuozzo, "active");
-            classExchange(cloudPlatform_virtuozzo_tab, cloudPlatform_azurepack_tab, "collapse");
-        }
-
-        function classExchange(destinationElement, sourceElement, className) {
-            removeClass(sourceElement, className);
-            addClass(destinationElement, className);
-        }
-
         function removeClass(element, className) {
             element.classList.remove(className);
         }
@@ -95,9 +80,7 @@
         function initializeCloudPlatformSelectors() {
             Modules.Events.addListener(cloudPlatformSelector_virtuozzo, "click", tabClicked);
             Modules.Events.addListener(cloudPlatformSelector_azurepack, "click", tabClicked);
-            Modules.Events.addListener(cloudPlatformSelector_license, "click", tabClicked);
-            // Modules.Events.addListener(cloudPlatformSelector_virtuozzo, "click", virtuozzoPlatformSelectorClicked);
-            // Modules.Events.addListener(cloudPlatformSelector_azurepack, "click", azurePackPlatformSelectorClicked);
+            // Modules.Events.addListener(cloudPlatformSelector_license, "click", tabClicked);
         }
 
         function queryHandler(queryObject) {
@@ -108,9 +91,9 @@
                 else if (queryObject.url.localeCompare('azurepack') == 0) {
                     tabClicked(cloudPlatformSelector_azurepack);
                 }
-                else if (queryObject.url.localeCompare('license') == 0) {
-                    tabClicked(cloudPlatformSelector_license);
-                }
+                // else if (queryObject.url.localeCompare('license') == 0) {
+                //     tabClicked(cloudPlatformSelector_license);
+                // }
             }
         }
 

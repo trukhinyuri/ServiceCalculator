@@ -24,9 +24,14 @@
     margin: 1mm 0 3mm 0;
 }
 
-.license_inputServerInfo {
+.license_inputLicenseInfo {
     min-width: 210mm;
     max-width: 210mm;
+}
+
+.license_licenseSelector {
+    max-height: 10px;
+    overflow-y:scroll;
 }
 
 .license_controlButtons {
