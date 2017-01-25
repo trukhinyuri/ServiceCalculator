@@ -33,15 +33,17 @@
         var cloudPlatformSelectors = document.getElementsByClassName("cloudPlatformSelectors");
         var tabContainers = document.getElementsByClassName("tabContainers");
 
-        function tabClicked(source) {
+        function tabClicked(e, source) {
             var clickedCloudPlatformSelectorClassName;
             var clickedCloudPlatformSelector;
             if (source instanceof Element) {
                 clickedCloudPlatformSelectorClassName = source.className;
                 clickedCloudPlatformSelector = source;
             } else {
-                clickedCloudPlatformSelectorClassName = event.srcElement.parentNode.parentNode.className;
-                clickedCloudPlatformSelector = event.srcElement.parentNode.parentNode;
+                var e = window.event || e;
+                var targ = e.target || e.srcElement;
+                clickedCloudPlatformSelectorClassName = targ.parentNode.parentNode.className;
+                clickedCloudPlatformSelector = targ.parentNode.parentNode;
             }
 
 
@@ -86,10 +88,10 @@
         function queryHandler(queryObject) {
             if (queryObject.url) {
                 if (queryObject.url.localeCompare('virtuozzo') == 0) {
-                    tabClicked(cloudPlatformSelector_virtuozzo);
+                    tabClicked(null, cloudPlatformSelector_virtuozzo);
                 }
                 else if (queryObject.url.localeCompare('azurepack') == 0) {
-                    tabClicked(cloudPlatformSelector_azurepack);
+                    tabClicked(null, cloudPlatformSelector_azurepack);
                 }
                 // else if (queryObject.url.localeCompare('license') == 0) {
                 //     tabClicked(cloudPlatformSelector_license);
