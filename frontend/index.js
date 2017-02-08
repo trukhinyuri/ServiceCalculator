@@ -3,7 +3,7 @@
     var parseQueryString = function( queryString ) {
         var params = {}, queries, temp, i, l;
         // Split into key/value pairs
-        queries = queryString.split("&amp;");
+        queries = queryString.split("&");
         // Convert the array of strings into an object
         for ( i = 0, l = queries.length; i < l; i++ ) {
             temp = queries[i].split('=');
@@ -11,9 +11,10 @@
         }
         return params;
     };
-
-    function run() {
+    
+    function loadRussianCalculator() {
         Modules.Loader.loadModule("modules", "menuBar", "menuBarContainer");
+        Modules.Loader.loadModule("modules", "calculatorCommons", "calculatorCommons_Container");
         Modules.Loader.loadModule("modules", "virtuozzo", "virtuozzo_tab_Container");
         Modules.Loader.loadModule("modules", "azurepack", "azurepack_tab_Container");
         // Modules.Loader.loadModule("modules", "license", "license_tab_Container");
@@ -23,17 +24,30 @@
         // Modules.Loader.loadModule("modules", "licenseResults", "licenseResult_Container");
 
         // Modules.Loader.loadModule("modules", "azure", "azure_tab_Container");
+    }
+    
+    function loadEnglishCalculator() {
+        // Modules.Loader.loadModule("modules", "menuBar_en", "menuBarContainer");
+        Modules.Loader.loadModule("modules", "calculatorCommons_en", "calculatorCommons_Container");
+        Modules.Loader.loadModule("modules", "azurepack_en", "azurepack_tab_Container");
+        Modules.Loader.loadModule("modules", "azurepackResults_en", "azurepackResult_Container");
+        Modules.Loader.loadModule("modules", "totalCost_en", "totalCostSpace");
+    }
 
-        var cloudPlatformSelector_virtuozzo = document.getElementsByClassName("cloudPlatformSelector_virtuozzo")[0];
-        var cloudPlatformSelector_azurepack = document.getElementsByClassName("cloudPlatformSelector_azurepack")[0];
-        var cloudPlatformSelector_license = document.getElementsByClassName("cloudPlatformSelector_license")[0];
-        var cloudPlatform_virtuozzo_tab = document.getElementsByClassName("virtuozzo_tab_Container")[0];
-        var cloudPlatform_azurepack_tab = document.getElementsByClassName("azurepack_tab_Container")[0];
-        // var cloudPlatform_license_tab = document.getElementsByClassName("license_tab_Container")[0];
-        var cloudPlatformSelectors = document.getElementsByClassName("cloudPlatformSelectors");
-        var tabContainers = document.getElementsByClassName("tabContainers");
+    function run() {
+        var queryObject = parseQueryString(window.location.search.substring(1));
+        queryHandler(queryObject);
 
         function tabClicked(e, source) {
+            var cloudPlatformSelector_virtuozzo = document.getElementsByClassName("cloudPlatformSelector_virtuozzo")[0];
+            var cloudPlatformSelector_azurepack = document.getElementsByClassName("cloudPlatformSelector_azurepack")[0];
+            var cloudPlatformSelector_license = document.getElementsByClassName("cloudPlatformSelector_license")[0];
+            var cloudPlatform_virtuozzo_tab = document.getElementsByClassName("virtuozzo_tab_Container")[0];
+            var cloudPlatform_azurepack_tab = document.getElementsByClassName("azurepack_tab_Container")[0];
+            // var cloudPlatform_license_tab = document.getElementsByClassName("license_tab_Container")[0];
+            var cloudPlatformSelectors = document.getElementsByClassName("cloudPlatformSelectors");
+            var tabContainers = document.getElementsByClassName("tabContainers");
+
             var clickedCloudPlatformSelectorClassName;
             var clickedCloudPlatformSelector;
             if (source instanceof Element) {
@@ -69,6 +83,8 @@
              }
         }
 
+
+
         function removeClass(element, className) {
             element.classList.remove(className);
         }
@@ -80,12 +96,40 @@
         }
 
         function initializeCloudPlatformSelectors() {
+            var cloudPlatformSelector_virtuozzo = document.getElementsByClassName("cloudPlatformSelector_virtuozzo")[0];
+            var cloudPlatformSelector_azurepack = document.getElementsByClassName("cloudPlatformSelector_azurepack")[0];
+            var cloudPlatformSelector_license = document.getElementsByClassName("cloudPlatformSelector_license")[0];
+            var cloudPlatform_virtuozzo_tab = document.getElementsByClassName("virtuozzo_tab_Container")[0];
+            var cloudPlatform_azurepack_tab = document.getElementsByClassName("azurepack_tab_Container")[0];
+            // var cloudPlatform_license_tab = document.getElementsByClassName("license_tab_Container")[0];
+            var cloudPlatformSelectors = document.getElementsByClassName("cloudPlatformSelectors");
+            var tabContainers = document.getElementsByClassName("tabContainers");
+
             Modules.Events.addListener(cloudPlatformSelector_virtuozzo, "click", tabClicked);
             Modules.Events.addListener(cloudPlatformSelector_azurepack, "click", tabClicked);
             // Modules.Events.addListener(cloudPlatformSelector_license, "click", tabClicked);
         }
 
         function queryHandler(queryObject) {
+            if (queryObject.lang) {
+                if (queryObject.lang.localeCompare('en_euro') == 0) {
+                    loadEnglishCalculator();
+                } else if (queryObject.lang.localeCompare('ru_rub') == 0) {
+                    loadRussianCalculator();
+                }
+            } else {
+                loadRussianCalculator();
+            }
+
+            var cloudPlatformSelector_virtuozzo = document.getElementsByClassName("cloudPlatformSelector_virtuozzo")[0];
+            var cloudPlatformSelector_azurepack = document.getElementsByClassName("cloudPlatformSelector_azurepack")[0];
+            var cloudPlatformSelector_license = document.getElementsByClassName("cloudPlatformSelector_license")[0];
+            var cloudPlatform_virtuozzo_tab = document.getElementsByClassName("virtuozzo_tab_Container")[0];
+            var cloudPlatform_azurepack_tab = document.getElementsByClassName("azurepack_tab_Container")[0];
+            // var cloudPlatform_license_tab = document.getElementsByClassName("license_tab_Container")[0];
+            var cloudPlatformSelectors = document.getElementsByClassName("cloudPlatformSelectors");
+            var tabContainers = document.getElementsByClassName("tabContainers");
+
             if (queryObject.url) {
                 if (queryObject.url.localeCompare('virtuozzo') == 0) {
                     tabClicked(null, cloudPlatformSelector_virtuozzo);
@@ -101,8 +145,7 @@
 
         initializeCloudPlatformSelectors();
 
-        var queryObject = parseQueryString(window.location.search.substring(1));
-        queryHandler(queryObject);
+
     }
 
     Modules.Events.addStartupListener(run);

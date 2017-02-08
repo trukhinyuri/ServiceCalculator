@@ -128,9 +128,9 @@ var Price;
             this.currentPrice = {
                 "1" : {
                     "region": "Россия, дата-центр в Москве",
-                    "vCoreMonth" : 641,
-                    "ramGbMonth" : 316,
-                    "diskGbMonth" : 14,
+                    "vCoreMonth" : 800,
+                    "ramGbMonth" : 350,
+                    "diskGbMonth" : 9.5,
                     "diskBackupMonth" : 14,
                     "ipv4Month" : 90,
                     "vLANMonth" : 50,
