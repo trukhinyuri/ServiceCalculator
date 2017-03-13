@@ -1412,6 +1412,16 @@ window.exports = window.exports || (window.exports = {});
             _loadTemplate(_correctPath, moduleName, className, callback, containerClassName, dataSource);
         }
 
+        function onTemplateLoaded (templateName, handle) {
+            var templateElements = document.getElementsByClassName(templateName);
+            for (var currentId = 0; currentId < templateElements.length; currentId++) {
+                if (templateElements[currentId].getAttribute("data-" + "templateLoaded") == null) {
+                    handle(templateElements[currentId], currentId);
+                    templateElements[currentId].setAttribute("data-" + "templateLoaded", true);
+                }
+            }
+        }
+
         /**
          * Load javascript file in className from path
          * @method loadJS
@@ -1494,6 +1504,7 @@ window.exports = window.exports || (window.exports = {});
 
         Loader.loadModule = loadModule;
         Loader.loadTemplate = loadTemplate;
+        Loader.onTemplateLoaded = onTemplateLoaded;
         Loader.loadJS = loadJS;
         Loader.loadCSS = loadCSS;
         Loader.load = load;

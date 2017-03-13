@@ -32,6 +32,7 @@
         Modules.Loader.loadModule("modules", "azurepack_en", "azurepack_tab_Container");
         Modules.Loader.loadModule("modules", "azurepackResults_en", "azurepackResult_Container");
         Modules.Loader.loadModule("modules", "totalCost_en", "totalCostSpace");
+
     }
 
     function run() {
@@ -111,16 +112,6 @@
         }
 
         function queryHandler(queryObject) {
-            if (queryObject.lang) {
-                if (queryObject.lang.localeCompare('en_euro') == 0) {
-                    loadEnglishCalculator();
-                } else if (queryObject.lang.localeCompare('ru_rub') == 0) {
-                    loadRussianCalculator();
-                }
-            } else {
-                loadRussianCalculator();
-            }
-
             var cloudPlatformSelector_virtuozzo = document.getElementsByClassName("cloudPlatformSelector_virtuozzo")[0];
             var cloudPlatformSelector_azurepack = document.getElementsByClassName("cloudPlatformSelector_azurepack")[0];
             var cloudPlatformSelector_license = document.getElementsByClassName("cloudPlatformSelector_license")[0];
@@ -129,6 +120,19 @@
             // var cloudPlatform_license_tab = document.getElementsByClassName("license_tab_Container")[0];
             var cloudPlatformSelectors = document.getElementsByClassName("cloudPlatformSelectors");
             var tabContainers = document.getElementsByClassName("tabContainers");
+
+            if (queryObject.lang) {
+                if (queryObject.lang.localeCompare('en_euro') == 0) {
+                    loadEnglishCalculator();
+                    cloudPlatformSelector_virtuozzo.style.visibility = "hidden";
+                } else if (queryObject.lang.localeCompare('ru_rub') == 0) {
+                    loadRussianCalculator();
+                }
+            } else {
+                loadRussianCalculator();
+            }
+
+
 
             if (queryObject.url) {
                 if (queryObject.url.localeCompare('virtuozzo') == 0) {
