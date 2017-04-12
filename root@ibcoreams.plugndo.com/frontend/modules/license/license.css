@@ -1,0 +1,53 @@
+.license_addButton  {
+    background: #68bf2f;
+}
+
+.license_clearListButton {
+    background: #f65343;
+}
+
+.license_nHeader {
+    color: rgb(51, 51, 51);
+    font-family: "Open Sans", sans-serif;
+    font-size: 6mm;
+    font-weight: 300;
+    line-height: 6mm;
+    margin: 2mm 0 2mm 0;
+}
+
+.license_nText {
+    color: rgb(51, 51, 51);
+    font-family: "Open Sans", sans-serif;
+    font-size: 4mm;
+    font-weight: 300;
+    line-height: 6mm;
+    margin: 1mm 0 3mm 0;
+}
+
+.license_inputLicenseInfo {
+    min-width: 210mm;
+    max-width: 210mm;
+}
+
+.license_licenseSelector {
+    max-height: 10px;
+    overflow-y:scroll;
+}
+
+.license_controlButtons {
+    min-width: 210mm;
+    max-width: 210mm;
+}
+
+.license_input-group-addon_first {
+    min-width:53mm;
+    text-align:left;
+}
+.license_input-group-addon_last {
+    min-width:25mm;
+    text-align:left;
+}
+
+.license_input-group-addon {
+    text-align: left;
+}

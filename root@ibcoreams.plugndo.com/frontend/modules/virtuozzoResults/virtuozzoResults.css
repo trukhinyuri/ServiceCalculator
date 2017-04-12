@@ -1,0 +1,8 @@
+.virtuozzoServersTable_tbody {
+    cursor: default;
+}
+
+.virtuozzoServersTable_lastTD {
+    white-space: nowrap;
+    width: 1px;
+}
