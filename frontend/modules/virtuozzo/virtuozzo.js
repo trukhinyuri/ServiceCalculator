@@ -72,14 +72,11 @@
         region.focus();
         var regionSelectedIndexString = virtuozzoServersTable.rows[i].cells[1].innerHTML;
         var expr0 = "Россия, Санкт-Петербург (SSD)";
-        var expr1 = "Россия, Москва (Tier III Gold, SSD-cache)";
-        var expr2 = "Европа, Амстердам (SSD)";
+        var expr1 = "Европа, Амстердам (SSD)";
         if (regionSelectedIndexString.localeCompare(expr0) == 0) {
             region.selectedIndex = 0;
         } else if (regionSelectedIndexString.localeCompare(expr1) == 0) {
             region.selectedIndex = 1;
-        } else if (regionSelectedIndexString.localeCompare(expr2) == 0) {
-            region.selectedIndex = 2;
         }
 
         cores.focus();
@@ -328,8 +325,6 @@
             if (regionValue == 0) {
                 cellRegion.appendChild(document.createTextNode("Россия, Санкт-Петербург (SSD)"));
             } else if (regionValue == 1) {
-                cellRegion.appendChild(document.createTextNode("Россия, Москва (Tier III Gold, SSD-cache)"));
-            } else if (regionValue == 2) {
                 cellRegion.appendChild(document.createTextNode("Европа, Амстердам (SSD)"));
             }
 
