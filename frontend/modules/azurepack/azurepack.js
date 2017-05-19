@@ -207,7 +207,7 @@
          if (regionValue == 0) {
              cellRegion.appendChild(document.createTextNode("Россия, Санкт-Петербург (SSD)"));
          } else if (regionValue == 1) {
-             cellRegion.appendChild(document.createTextNode("Россия, Москва (Tier III Gold, SSD + NLSAS СХД)"));
+             cellRegion.appendChild(document.createTextNode("Россия, Санкт-Петербург (SSD + NLSAS СХД)"));
          } else if (regionValue == 2) {
              cellRegion.appendChild(document.createTextNode("Европа, Амстердам (SSD)"));
          }
