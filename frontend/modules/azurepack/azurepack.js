@@ -1,7 +1,7 @@
 "use strict";
 (function() {
 
-    var price = new Price.AzurePackPrice();
+    var price = new PriceES2015.AzurePack();
     var azurepackCalculator = new AzurePack.Calculator(price);
 
     var addButton = document.getElementsByClassName("azurepack_addButton")[0];

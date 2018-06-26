@@ -69,7 +69,7 @@
 }
 
 .menuBar_navItem_logo:hover > .menuBar_navItem_logo_ic {
-    background: url("img/infoboxcloud-logo.svg") no-repeat center;
+    background: url("img/infobox-logo.svg") no-repeat center;
     background-size: 100%;
 }
 
@@ -78,9 +78,9 @@
 }
 
 .menuBar_navItem_logo > .menuBar_navItem_logo_ic {
-    width: 125px;
+    width: 82px;
     height: 28px;
-    background: url("img/infoboxcloud-logo-white.svg") no-repeat center;
+    background: url("img/infobox-logo-white.svg") no-repeat center;
     background-size: 100%;
     cursor: hand;
 }

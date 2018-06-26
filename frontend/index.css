@@ -18,23 +18,22 @@ html, body {
 }
 
 .bHeader {
-    color: rgb(0, 38, 70);
-    font-family: 'Open Sans', sans-serif;
-    font-size: 10mm;
-    font-weight: 300;
-    line-height: 10mm;
+    color: #444B55;
+    font-family: 'Arial', sans-serif;
+    font-size: 8mm;
+    line-height: 8mm;
     padding: 0px;
     text-align: center;
     vertical-align: top;
 }
 
 .bDescription {
-    color: rgb(51, 51, 51);
-    float: left;
+    color: #444B55;
+    float: inside;
     font-family: 'Open Sans', sans-serif;
-    font-size: 6mm;
+    font-size: 5mm;
     font-weight: 300;
-    line-height: 8mm;
+    line-height: 5mm;
     /*margin: 0 0 10mm 0;*/
     padding: 0px;
     text-align: center;
@@ -42,12 +41,12 @@ html, body {
 }
 
 .sDescription {
-    color: rgb(51, 51, 51);
+    color: #444B55;
     float: left;
     font-family: 'Open Sans', sans-serif;
-    font-size: 4mm;
+    font-size: 5mm;
     font-weight: 300;
-    line-height: 8mm;
+    line-height: 5mm;
     /*margin: 0 0 10mm 0;*/
     padding: 0px;
     text-align: justify;

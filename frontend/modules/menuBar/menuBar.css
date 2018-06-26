@@ -51,13 +51,13 @@
     background-image:none !important;
 }
 .nav_order_dropdown_menu > li > a:hover, .dropdown-menu > li > a:focus {
-    background-color:#80cc28;
-    color: white;
+    background-color: #FFC42C;
+    color: #262525;
 }
 
 .nav>.nav_order_dropdown>a:focus, .nav>.nav_order_dropdown>a:hover {
-    background: #80cc28 none;
-    color: white;
+    background: #FFC42C none;
+    color: #262525;
 }
 
 .menuBar_navItem_logo {
@@ -69,7 +69,7 @@
 }
 
 .menuBar_navItem_logo:hover > .menuBar_navItem_logo_ic {
-    background: url("img/infoboxcloud-logo.svg") no-repeat center;
+    background: url("img/infobox-logo.svg") no-repeat center;
     background-size: 100%;
 }
 
@@ -78,9 +78,9 @@
 }
 
 .menuBar_navItem_logo > .menuBar_navItem_logo_ic {
-    width: 125px;
+    width: 82px;
     height: 28px;
-    background: url("img/infoboxcloud-logo-white.svg") no-repeat center;
+    background: url("img/infobox-logo.svg") no-repeat center;
     background-size: 100%;
     cursor: hand;
 }
@@ -90,21 +90,21 @@
 }
 
 .nav_order_dropdown {
-    background: #80cc28;
+    background: #FFC42C;
 }
 
 .nav_order_dropdown:hover {
-    background: #80cc28;
+    background: #FFC42C;
 }
 
 .nav_order_dropdown_text {
-    color: white;
+    color: #262525;
 }
 
 .menuBar {
-    background: #262525;
+    background: #F6F6F6;
 }
 
 .menuBar_headerMenuItem {
-    color: #cde3ed;
+    color: #262525;
 }
