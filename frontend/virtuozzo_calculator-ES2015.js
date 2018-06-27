@@ -59,14 +59,16 @@ let Virtuozzo;
             let backupCost = this._calculateBackupCost(server.region, server.backupCount, server.backupSpace, server.stoppedDays, server.stoppedHours);
             console.log("backupCost: " + backupCost);
 
-            let ipv4Cost = undefined;
-            if ((server.runningDays === 0) && (server.runningHours === 0)) {
-                ipv4Cost = this._calculateIPv4Cost(server.region, server.ipv4Count,
-                    server.stoppedDays, server.stoppedHours);
-                console.log("IPv4StoppedCost: " + ipv4Cost);
-            } else {
-                ipv4Cost = 0; //calculated in running server cost
-            }
+            // let ipv4Cost = undefined;
+            // if ((server.runningDays === 0) && (server.runningHours === 0)) {
+            //     ipv4Cost = this._calculateIPv4Cost(server.region, server.ipv4Count, server.isMonthIPPayments,
+            //         server.stoppedDays, server.stoppedHours);
+            //     console.log("IPv4StoppedCost: " + ipv4Cost);
+            // } else {
+            //     ipv4Cost = 0; //calculated in running server cost
+            // }
+            let ipv4Cost = this._calculateIPv4Cost(server.region, server.ipv4Count, server.isMonthIPPayments, server.stoppedDays, server.stoppedHours);
+            console.log("ipv4CostStopped: " + ipv4Cost);
 
             let OSCost = this._calculateOSCost(server.region, server.osType, server.stoppedDays, server.stoppedHours);
             console.log("OSCost: " + OSCost);

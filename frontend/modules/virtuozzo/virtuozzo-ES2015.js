@@ -73,7 +73,7 @@ VIRTUOZZO.Controller = class {
         //priceConfiguration
         let trafficFreeLim = currentPrice.configuration.trafficFreeLim;
         let isTrafficUnlim = currentPrice.configuration.isTrafficUnlim;
-        let isMonthIPPayments = currentPrice.configuration.hourlyIPPayments;
+        let isMonthIPPayments = currentPrice.configuration.isMonthIPPayments;
 
         //setPlaceholders
         serverName.placeholder = priceDefaults.serverName;
@@ -83,7 +83,7 @@ VIRTUOZZO.Controller = class {
         disk.placeholder = "от " + priceLimits.minDiskCapacity + " до " + priceLimits.maxDiskCapacity;
         backupCount.placeholder = priceDefaults.backupCount;
         ipv4.placeholder = "от " + priceLimits.minIPv4 + " до " + priceLimits.maxIPv4;
-        trafficOut.placeholder = priceDefaults.trafficDefault;
+        trafficOut.placeholder = priceConfiguration.trafficFreeLim;
 
         if (isTrafficUnlim == true) {
             addClass(trafficGroup, "virtuozzo_groupTrafficDefaultContainer_collapsed");
@@ -390,7 +390,7 @@ VIRTUOZZO.Controller = class {
             let trafficOutValue = validateTrafficOutLimits(isNumberInputCorrect(trafficOut.value));
             console.log("validated_TrafficLimits:" + trafficOutValue);
             //windows must be only vm
-            if (osType.selectedIndex == 1) {
+            if (osType.value.localeCompare(priceLimits.osType[1]) === 0) {
                 vtType.selectedIndex = 1;
             }
             let vtTypeIndex = vtType.selectedIndex;
@@ -441,11 +441,7 @@ VIRTUOZZO.Controller = class {
                 cellServerName.appendChild(document.createTextNode(serverNameValue));
 
                 let cellRegion = row.insertCell(1);
-                if (regionValue == 0) {
-                    cellRegion.appendChild(document.createTextNode(currentPrice.region));
-                } else if (regionValue == 1) {
-                    cellRegion.appendChild(document.createTextNode(currentPrice.region));
-                }
+                cellRegion.appendChild(document.createTextNode(currentPrice.region));
 
                 let cellCores = row.insertCell(2);
                 cellCores.appendChild(document.createTextNode(coresValue));
@@ -473,14 +469,10 @@ VIRTUOZZO.Controller = class {
                 }
 
                 let cellVtType = row.insertCell(9);
-                if (vtTypeIndex == 1) {
-                    cellVtType.appendChild(document.createTextNode("Виртуальная машина"));
-                } else {
-                    cellVtType.appendChild(document.createTextNode(vtType.value));
-                }
+                cellVtType.appendChild(document.createTextNode(priceLimits.vtType[vtTypeIndex]));
 
                 let cellOSType = row.insertCell(10);
-                cellOSType.appendChild(document.createTextNode(osType.value));
+                cellOSType.appendChild(document.createTextNode(priceLimits.osType[osTypeIndex]));
 
                 let cellRunning = row.insertCell(11);
                 if ((parseFloat(runningDaysValue) != 0) && (parseFloat(runningHoursValue) != 0)) {
@@ -749,14 +741,14 @@ VIRTUOZZO.Controller = class {
         function validateTrafficOutLimits (trafficOutValue) {
             if (isEmptyOrSpaces(trafficOutValue)) {
                 trafficOut.focus();
-                trafficOut.value = 0;
-                return 0;
-            }
-            if (trafficOutValue < trafficFreeLim ) {
+                trafficOut.value = trafficFreeLim;
+                return trafficFreeLim;
+            } else if (trafficOutValue < trafficFreeLim ) {
                 trafficOut.focus();
                 trafficOut.value = trafficFreeLim ;
                 return trafficFreeLim;
             }
+
             return trafficOutValue;
         }
 
