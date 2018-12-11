@@ -15,11 +15,13 @@
     function loadRussianCalculator() {
         Modules.Loader.loadModule("modules", "menuBar", "menuBarContainer");
         Modules.Loader.loadModule("modules", "calculatorCommons", "calculatorCommons_Container");
-        Modules.Loader.loadModule("modules", "virtuozzo", "virtuozzo_tab_Container");
+        Modules.Loader.loadModule("modules", "totalCost", "totalCostSpace");
+        Modules.Loader.loadModule("modules", "virtuozzoResults", "virtuozzoResult_Container", function () {
+            Modules.Loader.loadModule("modules", "virtuozzo", "virtuozzo_tab_Container");
+        });
+
         Modules.Loader.loadModule("modules", "azurepack", "azurepack_tab_Container");
         // Modules.Loader.loadModule("modules", "license", "license_tab_Container");
-        Modules.Loader.loadModule("modules", "totalCost", "totalCostSpace");
-        Modules.Loader.loadModule("modules", "virtuozzoResults", "virtuozzoResult_Container");
         Modules.Loader.loadModule("modules", "azurepackResults", "azurepackResult_Container");
         // Modules.Loader.loadModule("modules", "licenseResults", "licenseResult_Container");
 

@@ -4,7 +4,101 @@ PriceES2015.Virtuozzo = class {
     get currentPrice() {
         return {
             "0" : {
-            "region": "Россия, Санкт-Петербург (подписка Virtuozzo Infrastructure SPB)",
+                "region": "Россия, Санкт-Петербург (подписка InfoboxCloud SPB)",
+                "winHour" : 1.5,
+                "cpuContainerGhzHour" : 0.3,
+                "cpuVMGhzHour" : 0.35,
+                "ramGbHour" : 0.19,
+                "diskGbHour" : 0.008,
+                "balancerHour" : 1.75,
+                "diskBackupHour" : 0.005,
+                "diskImagesHour" : 0.005,
+                "trafficIn" : 0,
+                "trafficOutGb" : 0,
+                "ipv4Hour" : 0.125,
+                "ipv6Hour": 0,
+                "days" : 31,
+                "hours" : 24,
+                "minPaymentForActivation" : 500,
+                "limits" : {
+                    "minCPUCores": 1,
+                    "maxCPUCores": 24,
+                    "minCPUFrequency": 0.3,
+                    "maxCPUFrequency": 2.3,
+                    "minRamCapacity": 1,
+                    "maxRamCapacity": 64,
+                    "minDiskCapacity": 10,
+                    "maxDiskCapacity": 2000,
+                    "minIPv4": 0,
+                    "maxIPv4": 10,
+                    "vtType": ["Контейнер", "Виртуальная машина (разрешить управление ядром ОС)"],
+                    "osType": ["Linux", "Windows"]
+                },
+                "configuration": {
+                    "trafficFreeLim": 0,
+                    "isTrafficUnlim": true,
+                    "isMonthIPPayments": false
+                },
+                "defaults" : {
+                    "serverName": "Облачный сервер",
+                    "backupCount" : 0,
+                    "backupSize" : 0,
+                    "trafficDefault": 0,
+                    "runningDays" : 31,
+                    "stoppedDays" : 0,
+                    "runningHours" : 0,
+                    "stoppedHours" : 0
+                }
+            },
+            "1" : {
+                "region": "(архив) Европа, Амстердам (подписка InfoboxCloud AMS)",
+                "winHour" : 1.5,
+                "cpuContainerGhzHour" : 0.3,
+                "cpuVMGhzHour" : 0.35,
+                "ramGbHour" : 0.19,
+                "diskGbHour" : 0.008,
+                "balancerHour" : 1.75,
+                "diskBackupHour" : 0.005,
+                "diskImagesHour" : 0.005,
+                "trafficIn" : 0,
+                "trafficOutGb" : 0,
+                "ipv4Hour" : 0.125,
+                "ipv6Hour": 0,
+                "days" : 31,
+                "hours" : 24,
+                "minPaymentForActivation" : 500,
+                "limits" : {
+                    "minCPUCores": 1,
+                    "maxCPUCores": 24,
+                    "minCPUFrequency": 0.3,
+                    "maxCPUFrequency": 2.3,
+                    "minRamCapacity": 1,
+                    "maxRamCapacity": 64,
+                    "minDiskCapacity": 10,
+                    "maxDiskCapacity": 2000,
+                    "minIPv4": 0,
+                    "maxIPv4": 10,
+                    "vtType": ["Контейнер", "Виртуальная машина (разрешить управление ядром ОС)"],
+                    "osType": ["Linux", "Windows"]
+                },
+                "configuration": {
+                    "trafficFreeLim": 0,
+                    "isTrafficUnlim": true,
+                    "isMonthIPPayments": false
+                },
+                "defaults" : {
+                    "serverName": "Облачный сервер",
+                    "backupCount" : 0,
+                    "backupSize" : 0,
+                    "trafficDefault": 0,
+                    "runningDays" : 31,
+                    "stoppedDays" : 0,
+                    "runningHours" : 0,
+                    "stoppedHours" : 0
+                }
+            },
+            "2" : {
+            "region": "(архив) Россия, Санкт-Петербург (подписка Virtuozzo Infrastructure SPB)",
                 "winHour" : 0.695,
                 "cpuContainerGhzHour" : 0.272,
                 "cpuVMGhzHour" : 0.272,
@@ -50,8 +144,8 @@ PriceES2015.Virtuozzo = class {
                     "stoppedHours" : 0
             }
         },
-            "1" : {
-            "region": "Европа, Амстердам (подписка Virtuozzo Infrastructure AMS)",
+            "3" : {
+            "region": "(архив) Европа, Амстердам (подписка Virtuozzo Infrastructure AMS)",
                 "winHour" : 0.695,
                 "cpuContainerGhzHour" : 0.272,
                 "cpuVMGhzHour" : 0.272,
@@ -97,100 +191,6 @@ PriceES2015.Virtuozzo = class {
                     "stoppedHours" : 0
                 }
         },
-            "2" : {
-                "region": "(скоро!) Россия, Санкт-Петербург (подписка InfoboxCloud SPB)",
-                "winHour" : 1.5,
-                "cpuContainerGhzHour" : 0.3,
-                "cpuVMGhzHour" : 0.35,
-                "ramGbHour" : 0.19,
-                "diskGbHour" : 0.008,
-                "balancerHour" : 1.75,
-                "diskBackupHour" : 0.005,
-                "diskImagesHour" : 0.005,
-                "trafficIn" : 0,
-                "trafficOutGb" : 0,
-                "ipv4Hour" : 0.125,
-                "ipv6Hour": 0,
-                "days" : 31,
-                "hours" : 24,
-                "minPaymentForActivation" : 500,
-                "limits" : {
-                    "minCPUCores": 1,
-                    "maxCPUCores": 24,
-                    "minCPUFrequency": 0.3,
-                    "maxCPUFrequency": 2.3,
-                    "minRamCapacity": 1,
-                    "maxRamCapacity": 64,
-                    "minDiskCapacity": 10,
-                    "maxDiskCapacity": 2000,
-                    "minIPv4": 0,
-                    "maxIPv4": 10,
-                    "vtType": ["Контейнер", "Виртуальная машина (разрешить управление ядром ОС)"],
-                    "osType": ["Linux", "Windows"]
-                },
-                "configuration": {
-                    "trafficFreeLim": 0,
-                    "isTrafficUnlim": true,
-                    "isMonthIPPayments": false
-                },
-                "defaults" : {
-                    "serverName": "Облачный сервер",
-                    "backupCount" : 0,
-                    "backupSize" : 0,
-                    "trafficDefault": 0,
-                    "runningDays" : 31,
-                    "stoppedDays" : 0,
-                    "runningHours" : 0,
-                    "stoppedHours" : 0
-                }
-            },
-            "3" : {
-                "region": "(скоро!) Европа, Амстердам (подписка InfoboxCloud AMS)",
-                "winHour" : 1.5,
-                "cpuContainerGhzHour" : 0.3,
-                "cpuVMGhzHour" : 0.35,
-                "ramGbHour" : 0.19,
-                "diskGbHour" : 0.008,
-                "balancerHour" : 1.75,
-                "diskBackupHour" : 0.005,
-                "diskImagesHour" : 0.005,
-                "trafficIn" : 0,
-                "trafficOutGb" : 0,
-                "ipv4Hour" : 0.125,
-                "ipv6Hour": 0,
-                "days" : 31,
-                "hours" : 24,
-                "minPaymentForActivation" : 500,
-                "limits" : {
-                    "minCPUCores": 1,
-                    "maxCPUCores": 24,
-                    "minCPUFrequency": 0.3,
-                    "maxCPUFrequency": 2.3,
-                    "minRamCapacity": 1,
-                    "maxRamCapacity": 64,
-                    "minDiskCapacity": 10,
-                    "maxDiskCapacity": 2000,
-                    "minIPv4": 0,
-                    "maxIPv4": 10,
-                    "vtType": ["Контейнер", "Виртуальная машина (разрешить управление ядром ОС)"],
-                    "osType": ["Linux", "Windows"]
-                },
-                "configuration": {
-                    "trafficFreeLim": 0,
-                    "isTrafficUnlim": true,
-                    "isMonthIPPayments": false
-                },
-                "defaults" : {
-                    "serverName": "Облачный сервер",
-                    "backupCount" : 0,
-                    "backupSize" : 0,
-                    "trafficDefault": 0,
-                    "runningDays" : 31,
-                    "stoppedDays" : 0,
-                    "runningHours" : 0,
-                    "stoppedHours" : 0
-                }
-            },
             "4" : {
                 "region": "(архив) Россия, Санкт-Петербург (подписка Azure Pack Infrastructure)",
                 "winHour" : 0,
@@ -238,6 +238,53 @@ PriceES2015.Virtuozzo = class {
                     "stoppedHours" : 0
                 }
             },
+            "5" : {
+            "region": "(архив) Россия, Санкт-Петербург (подписка Cloud Servers SPB-2)",
+                "winHour" : 0.695,
+                "cpuContainerGhzHour" : 0.272,
+                "cpuVMGhzHour" : 0.272,
+                "ramGbHour" : 0.417,
+                "diskGbHour" : 0.017,
+                "balancerHour" : 1.75,
+                "diskBackupHour" : 0.01,
+                "diskImagesHour" : 0.01,
+                "trafficIn" : 0,
+                "trafficOutGb" : 0.90,
+                "ipv4Hour" : 0.125,
+                "ipv6Hour": 0,
+                "days" : 31,
+                "hours" : 24,
+                "minPaymentForActivation" : 500,
+                "limits" : {
+                    "minCPUCores": 1,
+                    "maxCPUCores": 24,
+                    "minCPUFrequency": 1,
+                    "maxCPUFrequency": 2.3,
+                    "minRamCapacity": 1,
+                    "maxRamCapacity": 64,
+                    "minDiskCapacity": 10,
+                    "maxDiskCapacity": 2000,
+                    "minIPv4": 0,
+                    "maxIPv4": 10,
+                    "vtType": ["Контейнер", "Виртуальная машина (разрешено управление ядром ОС)"],
+                    "osType": ["Linux", "Windows"]
+            },
+            "configuration": {
+                "trafficFreeLim": 0,
+                    "isTrafficUnlim": false,
+                    "isMonthIPPayments": true
+            },
+            "defaults" : {
+                "serverName": "Облачный сервер",
+                    "backupCount" : 0,
+                    "backupSize" : 0,
+                    "trafficDefault": 0,
+                    "runningDays" : 31,
+                    "stoppedDays" : 0,
+                    "runningHours" : 0,
+                    "stoppedHours" : 0
+            }
+        }
             // "0" : {
             //     "region": "Россия, дата-центр в Санкт-Петербурге",
             //     "winHour" : 0.695,
