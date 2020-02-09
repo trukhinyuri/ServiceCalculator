@@ -1,0 +1,7 @@
+{
+  "name": "ServiceCalculator",
+  "version": "0.0.0",
+  "dependencies": {
+    "mts-components": ""
+  }
+}

@@ -1,0 +1,35 @@
+@font-face {
+    font-family: "MTSSansWeb";
+    src: url("../../fonts/MTSSans-Regular.otf") format("opentype");
+}
+
+* {
+    font-family: MTSSansWeb, Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.calculatorHeader {
+    padding: 2mm 2mm 0mm 2mm;
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr;
+
+}
+
+.calculatorHeader_header {
+    justify-self: center;
+    padding: 2mm 2mm 1mm 2mm;
+}
+
+.calculatorHeader_header_text {
+    font-size: 7mm;
+}
+
+.calculatorHeader_subHeader {
+    justify-self: center;
+    font-size: 3mm;
+    line-height: 5mm;
+    padding: 1mm 2mm 4mm 2mm;
+}
+

@@ -1,0 +1,26 @@
+@font-face {
+    font-family: "MTSSansWeb";
+    src: url("../../fonts/MTSSans-Regular.otf") format("opentype");
+}
+
+* {
+    font-family: MTSSansWeb, Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.results {
+    width: 100mm;
+    padding: 2mm;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+            "tabs contentSpace"
+            "clear contentSpace";
+}
+
+.results_header {
+    font-size: 5mm;
+    font-weight: bold;
+}
