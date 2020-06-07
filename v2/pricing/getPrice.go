@@ -1,11 +1,27 @@
 package pricing
 
-import "net/http"
+import (
+	"encoding/json"
+	"net/http"
+)
 
-func GetPrice(w http.ResponseWriter, r *http.Request) {
-
+type Result struct {
+	Price  int
 }
 
-func getPrice(w string) {
+func GetPrice(w http.ResponseWriter, r *http.Request) {
+	result := Result{}
+	result.Price = getPriceCurrent("");
 
+	resultJSON, err := json.Marshal(result)
+	if err != nil {
+		panic(err)
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(resultJSON)
+}
+
+func getPriceCurrent(w string) int {
+	return 0;
 }

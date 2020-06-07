@@ -1,6 +1,6 @@
 @font-face {
     font-family: "MTSSansWeb";
-    src: url("/fonts/MTSSans-Regular.otf") format("opentype");
+    src: url("/v2/frontendular.otf") format("opentype");
 }
 
 * {

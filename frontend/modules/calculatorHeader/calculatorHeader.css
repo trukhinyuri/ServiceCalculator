@@ -1,0 +1,27 @@
+@font-face {
+    font-family: "MTSSansWeb";
+    src: url("../../fonts/MTSSans-Regular.otf") format("opentype");
+}
+
+* {
+    font-family: MTSSansWeb, Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.calculatorHeader {
+    padding: 2mm;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr;
+
+}
+
+.calculatorHeader_header {
+    justify-self: center;
+}
+
+.calculatorHeader_subHeader {
+    justify-self: center;
+}
+

@@ -20,6 +20,15 @@
             "clear contentSpace";
 }
 
+.virtuozzoServersTable_tbody {
+    cursor: default;
+}
+
+.virtuozzoServersTable_lastTD {
+    white-space: nowrap;
+    width: 1px;
+}
+
 .results_header {
     font-size: 5mm;
     font-weight: bold;

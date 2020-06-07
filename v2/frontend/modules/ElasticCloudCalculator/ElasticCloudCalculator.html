@@ -24,33 +24,26 @@
         </div>
         <div class="ecc_chooser_name ecc_chooser_name_tarifModel">Оплата</div>
         <div class="tab_chooser ecc_chooser_value_tarifModel">
-            <div id="0" class="tab_chooser_links tab_chooser_links_selected">Фиксированная в месяц</div>
-            <div id="1" class="tab_chooser_links tab_chooser_links_unselected">По мере использования</div>
+            <div id="0" class="tab_chooser_links tab_chooser_links_unselected"></div>
+            <div id="1" class="tab_chooser_links tab_chooser_links_unselected"></div>
         </div>
 
         <div class="ecc_chooser_name ecc_chooser_name_region">Регион</div>
         <div class="tab_chooser ecc_chooser_value_region">
-            <div id="0" class="tab_chooser_links tab_chooser_links_selected">Москва</div>
-            <div id="1" class="tab_chooser_links tab_chooser_links_unselected">Санкт-Петербург</div>
-            <div id="2" class="tab_chooser_links tab_chooser_links_unselected">Новосибирск</div>
-            <div id="3" class="tab_chooser_links tab_chooser_links_unselected">Владивосток</div>
+            <div id="0" class="tab_chooser_links tab_chooser_links_unselected"></div>
+            <div id="1" class="tab_chooser_links tab_chooser_links_unselected"></div>
+            <div id="2" class="tab_chooser_links tab_chooser_links_unselected"></div>
+            <div id="3" class="tab_chooser_links tab_chooser_links_unselected"></div>
         </div>
 
         <div class="ecc_chooser_name ecc_chooser_name_dc">Дата-центр</div>
         <div class="ecc_chooser_value_dc">
             <select class="custom-select ecc_chooser_value ecc_chooser_value_dc_select">
-                <!-- <option class="ecc_chooser_value_option" value="0" selected>Авантаж</option> -->
-                 <option class="ecc_chooser_value_option" value="1" selected>DataPro</option>
-                 <option class="ecc_chooser_value_option" value="2">КЦОД (недоступно для новых подключений)</option>
              </select>
          </div>
          <div class="ecc_chooser_name ecc_chooser_name_segment">Сегмент</div>
          <div class="ecc_chooser_value ecc_chooser_value_segment">
              <select class="custom-select ecc_chooser_value ecc_chooser_value_segment_select">
-                 <!-- <option value="1" selected>Standard (2,6 ГГц Xeon E5-2660 v3)</option> -->
-                 <option class="ecc_chooser_value_option" value="2">Bronze (2,3 ГГц Xeon Gold 6140)</option>
-                 <option class="ecc_chooser_value_option" value="3">Silver (2,6 ГГц Xeon Gold 6132)</option>
-                 <option class="ecc_chooser_value_option" value="4">Gold (3,5 ГГц Xeon Gold 6144)</option>
              </select>
          </div>
         <div class="ecc_toDO_Pool">
@@ -96,14 +89,19 @@
         <div class="ecc_toDO_Options">
             Опции:
         </div>
-
+        <div class="ecc_chooser_name ecc_chooser_name_Windows">Требуется Windows</div>
+        <div class="ecc_chooser_value ecc_chooser_value_Windows">
+            <select class="custom-select ecc_chooser_value ecc_chooser_value_Windows_select">
+                <option class="ecc_chooser_value_option" value="1">Нет</option>
+                <option class="ecc_chooser_value_option" value="2">Да</option>
+            </select>
+        </div>
         <div class="ecc_chooser_name ecc_chooser_name_Internet">Интернет-канал</div>
         <div class="ecc_chooser_value ecc_chooser_value_Internet">
             <select class="custom-select ecc_chooser_value ecc_chooser_value_Internet_select">
-                <!-- <option value="1" selected>Standard (2,6 ГГц Xeon E5-2660 v3)</option> -->
-                <option class="ecc_chooser_value_option" value="2">100 МБит/с</option>
-                <option class="ecc_chooser_value_option" value="3">250 МБит/с</option>
-                <option class="ecc_chooser_value_option" value="4">500 МБит/с</option>
+                <option class="ecc_chooser_value_option" value="1">100 МБит/с</option>
+                <option class="ecc_chooser_value_option" value="2">250 МБит/с</option>
+                <option class="ecc_chooser_value_option" value="3">500 МБит/с</option>
                 <option class="ecc_chooser_value_option" value="4">1 ГБит/с</option>
             </select>
         </div>
@@ -118,6 +116,14 @@
             <input type="text" placeholder="от 1 до ∞" class="ecc_chooser_value_input ecc_chooser_value_IPv6_input" value="бесплатно"  disabled/>
         </div>
         <div class="ecc_chooser_dimension ecc_chooser_dimension_IPv6"></div>
+
+        <div class="ecc_chooser_name ecc_chooser_name_IPv4subnet">IPv4 в одной подсети</div>
+        <div class="ecc_chooser_value ecc_chooser_value_IPv4subnet">
+            <select class="custom-select ecc_chooser_value ecc_chooser_value_IPv4subnet_select">
+                <option class="ecc_chooser_value_option" value="1">Нет</option>
+                <option class="ecc_chooser_value_option" value="2">Да</option>
+            </select>
+        </div>
 
         <div class="ecc_chooser_name ecc_chooser_name_vBackup">Backup хранилище</div>
         <div class="ecc_chooser_value ecc_chooser_value_vBackup">
@@ -152,6 +158,6 @@
         </div>
     </div>
     <div class="ecc_addTo_result">
-        <span class="ecc_previewCalc_header">Добавить к расчету →</span>
+        <span class="ecc_addTo_result_text">Добавить к расчету →</span>
     </div>
  </div>

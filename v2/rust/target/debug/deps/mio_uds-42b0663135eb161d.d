@@ -1,0 +1,11 @@
+/Users/trukhinyuri/Sources/ServiceCalculator/v2/ServiceCalculator/target/debug/deps/mio_uds-42b0663135eb161d.rmeta: /Users/trukhinyuri/.cargo/registry/src/github.com-1ecc6299db9ec823/mio-uds-0.6.7/src/lib.rs /Users/trukhinyuri/.cargo/registry/src/github.com-1ecc6299db9ec823/mio-uds-0.6.7/src/datagram.rs /Users/trukhinyuri/.cargo/registry/src/github.com-1ecc6299db9ec823/mio-uds-0.6.7/src/listener.rs /Users/trukhinyuri/.cargo/registry/src/github.com-1ecc6299db9ec823/mio-uds-0.6.7/src/socket.rs /Users/trukhinyuri/.cargo/registry/src/github.com-1ecc6299db9ec823/mio-uds-0.6.7/src/stream.rs
+
+/Users/trukhinyuri/Sources/ServiceCalculator/v2/ServiceCalculator/target/debug/deps/libmio_uds-42b0663135eb161d.rlib: /Users/trukhinyuri/.cargo/registry/src/github.com-1ecc6299db9ec823/mio-uds-0.6.7/src/lib.rs /Users/trukhinyuri/.cargo/registry/src/github.com-1ecc6299db9ec823/mio-uds-0.6.7/src/datagram.rs /Users/trukhinyuri/.cargo/registry/src/github.com-1ecc6299db9ec823/mio-uds-0.6.7/src/listener.rs /Users/trukhinyuri/.cargo/registry/src/github.com-1ecc6299db9ec823/mio-uds-0.6.7/src/socket.rs /Users/trukhinyuri/.cargo/registry/src/github.com-1ecc6299db9ec823/mio-uds-0.6.7/src/stream.rs
+
+/Users/trukhinyuri/Sources/ServiceCalculator/v2/ServiceCalculator/target/debug/deps/mio_uds-42b0663135eb161d.d: /Users/trukhinyuri/.cargo/registry/src/github.com-1ecc6299db9ec823/mio-uds-0.6.7/src/lib.rs /Users/trukhinyuri/.cargo/registry/src/github.com-1ecc6299db9ec823/mio-uds-0.6.7/src/datagram.rs /Users/trukhinyuri/.cargo/registry/src/github.com-1ecc6299db9ec823/mio-uds-0.6.7/src/listener.rs /Users/trukhinyuri/.cargo/registry/src/github.com-1ecc6299db9ec823/mio-uds-0.6.7/src/socket.rs /Users/trukhinyuri/.cargo/registry/src/github.com-1ecc6299db9ec823/mio-uds-0.6.7/src/stream.rs
+
+/Users/trukhinyuri/.cargo/registry/src/github.com-1ecc6299db9ec823/mio-uds-0.6.7/src/lib.rs:
+/Users/trukhinyuri/.cargo/registry/src/github.com-1ecc6299db9ec823/mio-uds-0.6.7/src/datagram.rs:
+/Users/trukhinyuri/.cargo/registry/src/github.com-1ecc6299db9ec823/mio-uds-0.6.7/src/listener.rs:
+/Users/trukhinyuri/.cargo/registry/src/github.com-1ecc6299db9ec823/mio-uds-0.6.7/src/socket.rs:
+/Users/trukhinyuri/.cargo/registry/src/github.com-1ecc6299db9ec823/mio-uds-0.6.7/src/stream.rs:

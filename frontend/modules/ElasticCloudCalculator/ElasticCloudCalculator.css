@@ -1,0 +1,300 @@
+@font-face {
+    font-family: "MTSSansWeb";
+    src: url("../../fonts/MTSSans-Regular.otf") format("opentype");
+}
+
+* {
+    font-family: MTSSansWeb, Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.ecc {
+    display: grid;
+    grid-auto-rows: auto;
+    grid-gap: 2mm;
+    grid-template-columns: auto;
+    grid-template-areas:
+            "header"
+            "subHeader"
+            "chooser"
+}
+
+.ecc_header {
+    justify-self: left;
+    grid-area: header;
+}
+
+.ecc_subheader {
+    justify-self: left;
+    grid-area: subHeader;
+}
+.ecc_toDO_DC {
+    grid-area: toDO_DC;
+    font-weight: bold;
+    font-size: 5mm;
+}
+
+.ecc_toDO_Pool {
+    grid-area: toDO_Pool;
+    font-weight: bold;
+    font-size: 5mm;
+    margin: 4mm 0 0 0;
+}
+
+.ecc_common_pool_comment {
+    grid-area: common_pool_comment;
+    font-weight: normal;
+    font-size: 4mm;
+    margin: 4mm 0 0 0;
+}
+
+.ecc_chooser {
+    padding: 2mm 0 0 0;
+    justify-self: stretch;
+    grid-area: chooser;
+    display: grid;
+    grid-auto-rows: auto;
+    grid-template-columns: auto 1fr auto;
+    grid-column-gap: 2mm;
+    grid-template-areas:
+            "toDO_DC toDO_DC toDO_DC"
+            "name_tarifModel value_tarifModel value_tarifModel"
+            "name_region value_region value_region"
+            "name_dc value_dc value_dc"
+            "name_segment value_segment value_segment"
+            "toDO_Pool toDO_Pool toDO_Pool"
+            "name_calculationModel value_calculationModel value_calculationModel"
+            "common_pool_comment common_pool_comment common_pool_comment"
+            "name_vCPU value_vCPU dimension_vCPU"
+            "name_RAM value_RAM dimension_RAM";
+
+}
+
+.ecc_chooser_name .ecc_chooser_value {
+    justify-self: stretch;
+}
+.ecc_chooser_name {
+    padding: 1mm 3mm 1mm 3mm;
+
+    font-family: "MTSSansWeb", serif;
+    font-size: 4mm;
+}
+
+.ecc_chooser_name_tarifModel {
+    grid-area: name_tarifModel;
+    margin: 4mm 0 0 0;
+}
+
+.ecc_chooser_value_tarifModel {
+    grid-area: value_tarifModel;
+    margin: 4mm 0 0 0;
+}
+
+.ecc_chooser_name_dc {
+    grid-area: name_dc;
+    margin: 2mm 0 0 0;
+}
+
+.ecc_chooser_value_dc_select {
+}
+
+.ecc_chooser_name_region {
+    grid-area: name_region;
+    margin: 2mm 0 0 0;
+}
+
+.ecc_chooser_value_dc {
+    grid-area: value_dc;
+    margin: 2mm 0 0 0;
+}
+
+.ecc_chooser_value_region {
+    grid-area: value_region;
+    margin: 2mm 0 0 0;
+}
+
+.ecc_chooser_name_segment {
+    grid-area: name_segment;
+    display: grid;
+    margin: 2mm 0 0 0;
+}
+
+.ecc_chooser_value_segment {
+    grid-area: value_segment;
+    margin: 2mm 0 0 0;
+}
+
+.ecc_chooser_name_calculationModel {
+    grid-area: name_calculationModel;
+    margin: 4mm 0 0 0;
+}
+
+.ecc_chooser_value_calculationModel {
+    grid-area: value_calculationModel;
+    margin: 4mm 0 0 0;
+}
+
+/*.ecc_chooser_commonResources {*/
+/*    padding: 2mm 0 0 0;*/
+/*    justify-self: stretch;*/
+/*    grid-area: chooser_commonResources;*/
+/*    display: grid;*/
+/*    grid-auto-rows: 1fr;*/
+/*    grid-template-columns: auto 1fr minmax(10mm, auto);*/
+/*    grid-column-gap: 2mm;*/
+/*    grid-row-gap: 2mm;*/
+/*    grid-template-areas:*/
+/*            "name_vCPU value_vCPU dimension"*/
+/*}*/
+
+.ecc_chooser_name_vCPU {
+    grid-area: name_vCPU;
+    align-self: center;
+    margin: 4mm 0 0 0;
+}
+
+.ecc_chooser_value_vCPU {
+    display: grid;
+    grid-area: value_vCPU;
+    margin: 4mm 0 0 0;
+}
+
+.ecc_chooser_name_RAM {
+    grid-area: name_RAM;
+    align-self: center;
+    margin: 2mm 0 0 0;
+}
+
+.ecc_chooser_value_RAM {
+    display: grid;
+    grid-area: value_RAM;
+    margin: 2mm 0 0 0;
+}
+
+
+
+.ecc_chooser_value_input {
+    justify-self: stretch;
+    padding: 1.5mm 1.8mm;
+    border: 0.4mm solid #dbdee5;
+    border-radius: 4px;
+    font-size: 4mm;
+}
+
+/*.ecc_chooser_value_input:focus {*/
+/*    justify-self: stretch;*/
+/*    padding: 1.5mm 1.8mm;*/
+/*    border: 0.4mm solid #dbdee5;*/
+/*    border-radius: 4px;*/
+/*    font-size: 4mm;*/
+/*}*/
+
+.ecc_chooser_dimension {
+    grid-area: dimension;
+    align-self: center;
+    color: black;
+}
+
+.ecc_chooser_dimension_vCPU {
+    grid-area: dimension_vCPU;
+    align-self: center;
+    color: black;
+}
+
+.ecc_chooser_dimension_RAM {
+    grid-area: dimension_RAM;
+    align-self: center;
+    color: black;
+}
+
+
+
+.custom-select {
+    grid-area: selector;
+    background: white;
+    font-family: "MTSSansWeb", serif;
+    font-size: 4mm;
+    height: 8mm;
+    border: 0.2mm solid #dbdee5;
+    width:100%;
+}
+
+.ecc_chooser_value_tarifModel {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+    background-color: #f1f1f1;
+    justify-self: stretch;
+}
+
+.ecc_chooser_value_calculationModel {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+    background-color: #f1f1f1;
+    justify-self: stretch;
+}
+
+.ecc_chooser_value_region {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    background-color: #f1f1f1;
+    justify-self: stretch;
+}
+
+.tab_chooser_links {
+    padding: 2mm 4mm 2mm 4mm;
+    height: 6mm;
+    display: grid;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    justify-self: stretch;
+    justify-content: center;
+    transition: 0.3s;
+    font-size: 4mm;
+}
+
+
+/* Change background color of buttons on hover */
+.tab_chooser_links:hover {
+    background-color: #e7e7e7;
+    color: black;
+}
+
+.tab_chooser_links_selected, .tab_chooser_links_selected:hover {
+    background-color: #dcdcdc;
+    color: black;
+    justify-self: stretch;
+}
+
+.tab_chooser_links_unselected {
+    background-color: #f3f3f3;
+    color: black;
+    justify-self: stretch;
+}
+
+.tab_chooser_links_inactive {
+    background-color: white;
+    color: white;
+    pointer-events: none;
+    justify-self: stretch;
+}
+
+.calculationPoolOrServerChooser {
+    display: grid;
+    background: yellow;
+    justify-self: stretch;
+}
+
+
+
+
+
+
+
+
+
+

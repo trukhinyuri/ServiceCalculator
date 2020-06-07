@@ -1,0 +1,2881 @@
+{
+  "id": 0,
+  "name": "ElasticCloud",
+  "version": "2020-05-21",
+  "billingModel": [
+                     {
+                       "id": 0,
+                       "name": "FLAT",
+                       "l18n" : {
+                         "ru": "Фиксированная в месяц",
+                         "en": "Fixed per month"
+                       },
+                       "regions": [
+                                    {
+                                      "id": 0,
+                                      "name": "MSK",
+                                      "l18n" : {
+                                        "ru": "Москва",
+                                        "en": "Moscow"
+                                      },
+                                      "datacenters": [
+                                        {
+                                          "id": 0,
+                                          "name": "Avantage",
+                                          "l18n" : {
+                                            "ru": "Авантаж",
+                                            "en": "Avantage"
+                                          },
+                                          "segments" : [
+                                            {
+                                              "id": 0,
+                                              "name": "Silver_2.0",
+                                              "l18n" : {
+                                                "ru": "Silver 2.0 (2,6 ГГц Xeon Gold 6240, TurboBoost 3,9 ГГц)",
+                                                "en": "Silver 2.0 (2,6 GHz Xeon Gold 6240, TurboBoost 3,9 GHz)"
+                                              },
+                                              "minimalVMConfig": {
+                                                "vCPU": 1
+                                                , "RAM": 1
+                                                , "linuxStorage": 16
+                                                , "windowsStorage": 40
+                                              },
+                                              "maxVMConfig": {
+                                                "vCPU": 72
+                                              , "RAM": 512
+                                              , "storage": 61440
+                                              },
+                                              "resourcesPricing": {
+                                                "vCPUPrice": {
+                                                  "id": 0,
+                                                  "name": "vCPUPrice",
+                                                  "l18n": {
+                                                    "ru": "vCPU ядра",
+                                                    "en": "vCPU cores"
+                                                  },
+                                                  "currencyPrice": [
+                                                    {
+                                                      "id": 0,
+                                                      "name": "RUBperMonth",
+                                                      "l18n": {
+                                                        "ru": "руб. в мес.",
+                                                        "en": "rub. per month"
+                                                      },
+                                                      "value": 480
+                                                    }
+                                                  ]
+                                                }
+                                                , "RAMPrice": {
+                                                  "id": 0,
+                                                  "name": "RAMPrice",
+                                                  "l18n": {
+                                                    "ru": "RAM оперативная память",
+                                                    "en": "RAM random access memory"
+                                                  },
+                                                  "currencyPrice": [
+                                                    {
+                                                      "id": 0,
+                                                      "name": "RUBperMonth",
+                                                      "l18n": {
+                                                        "ru": "руб. в мес.",
+                                                        "en": "rub. per month"
+                                                      },
+                                                      "value": 380
+                                                    }
+                                                  ]
+                                                }
+                                                , "StoragePrice": [
+                                                  {
+                                                    "id": 0,
+                                                    "name": "StorageTier0Price",
+                                                    "l18n": {
+                                                      "ru": "SSD Basic (0,4 IOPS на 1 ГБ)",
+                                                      "en": "SSD Basic (0,4 IOPS per 1 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 5
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "id": 1,
+                                                    "name": "StorageTier1Price",
+                                                    "l18n": {
+                                                      "ru": "SSD Fast (2 IOPS на 1 ГБ)",
+                                                      "en": "SSD Fast (2 IOPS per 1 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 8
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "id": 2,
+                                                    "name": "StorageTier2Price",
+                                                    "l18n": {
+                                                      "ru": "SSD Ultra (10 IOPS на 1 ГБ)",
+                                                      "en": "SSD Ultra (10 IOPS per 1 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 20
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            } ,
+                                            {
+                                              "id": 1,
+                                              "name": "Gold_2.0",
+                                              "l18n" : {
+                                                "ru": "Gold 2.0 (3,1 ГГц Xeon Gold 6254, TurboBoost 4,0 ГГц)",
+                                                "en": "Gold 2.0 (3,1 GHz Xeon Gold 6254, TurboBoost 4,0 GHz)"
+                                              },
+                                              "minimalVMConfig": {
+                                                "vCPU": 1
+                                              , "RAM": 1
+                                              , "linuxStorage": 16
+                                              , "windowsStorage": 40
+                                              },
+                                              "maxVMConfig": {
+                                                "vCPU": 144
+                                              , "RAM": 1536
+                                              , "storage": 61440
+                                              },
+                                              "resourcesPricing": {
+                                                "vCPUPrice": {
+                                                  "id": 0,
+                                                  "name": "vCPUPrice",
+                                                  "l18n": {
+                                                    "ru": "vCPU ядра",
+                                                    "en": "vCPU cores"
+                                                  },
+                                                  "currencyPrice": [
+                                                    {
+                                                      "id": 0,
+                                                      "name": "RUBperMonth",
+                                                      "l18n": {
+                                                        "ru": "руб. в мес.",
+                                                        "en": "rub. per month"
+                                                      },
+                                                      "value": 750
+                                                    }
+                                                  ]
+                                                }
+                                              , "RAMPrice": {
+                                                  "id": 0,
+                                                  "name": "RAMPrice",
+                                                  "l18n": {
+                                                    "ru": "RAM оперативная память",
+                                                    "en": "RAM random access memory"
+                                                  },
+                                                  "currencyPrice": [
+                                                    {
+                                                      "id": 0,
+                                                      "name": "RUBperMonth",
+                                                      "l18n": {
+                                                        "ru": "руб. в мес.",
+                                                        "en": "rub. per month"
+                                                      },
+                                                      "value": 380
+                                                    }
+                                                  ]
+                                                }
+                                              , "StoragePrice": [
+                                                  {
+                                                    "id": 0,
+                                                    "name": "StorageTier0Price",
+                                                    "l18n": {
+                                                      "ru": "SSD Basic (0,4 IOPS на 1 ГБ)",
+                                                      "en": "SSD Basic (0,4 IOPS per 1 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 5
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "id": 1,
+                                                    "name": "StorageTier1Price",
+                                                    "l18n": {
+                                                      "ru": "SSD Fast (2 IOPS на 1 ГБ)",
+                                                      "en": "SSD Fast (2 IOPS per 1 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 8
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "id": 2,
+                                                    "name": "StorageTier2Price",
+                                                    "l18n": {
+                                                      "ru": "SSD Ultra (10 IOPS на 1 ГБ)",
+                                                      "en": "SSD Ultra (10 IOPS per 1 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 20
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            }
+                                          ]
+                                        }
+                                        , {
+                                          "id": 1,
+                                          "name": "DataPro",
+                                          "l18n" : {
+                                            "ru": "DataPro",
+                                            "en": "DataPro"
+                                          },
+                                          "segments" : [
+                                            {
+                                              "id": 0,
+                                              "name": "Bronze",
+                                              "l18n" : {
+                                                "ru": "Bronze (2,3 ГГц Xeon Gold 6140, TurboBoost 3,7 ГГц)",
+                                                "en": "Bronze (2,3 GHz Xeon Gold 6140, TurboBoost 3,7 GHz)"
+                                              },
+                                              "minimalVMConfig": {
+                                                "vCPU": 1
+                                              , "RAM": 1
+                                              , "linuxStorage": 16
+                                              , "windowsStorage": 40
+                                              },
+                                              "maxVMConfig": {
+                                                "vCPU": 72
+                                              , "RAM": 512
+                                              , "storage": 61440
+                                              },
+                                              "resourcesPricing": {
+                                                "vCPUPrice": {
+                                                  "id": 0,
+                                                  "name": "vCPUPrice",
+                                                  "l18n": {
+                                                    "ru": "vCPU ядра",
+                                                    "en": "vCPU cores"
+                                                  },
+                                                  "currencyPrice": [
+                                                    {
+                                                      "id": 0,
+                                                      "name": "RUBperMonth",
+                                                      "l18n": {
+                                                        "ru": "руб. в мес.",
+                                                        "en": "rub. per month"
+                                                      },
+                                                      "value": 380
+                                                    }
+                                                  ]
+                                                }
+                                              , "RAMPrice": {
+                                                  "id": 0,
+                                                  "name": "RAMPrice",
+                                                  "l18n": {
+                                                    "ru": "RAM оперативная память",
+                                                    "en": "RAM random access memory"
+                                                  },
+                                                  "currencyPrice": [
+                                                    {
+                                                      "id": 0,
+                                                      "name": "RUBperMonth",
+                                                      "l18n": {
+                                                        "ru": "руб. в мес.",
+                                                        "en": "rub. per month"
+                                                      },
+                                                      "value": 380
+                                                    }
+                                                  ]
+                                                }
+                                              , "StoragePrice": [
+                                                  {
+                                                    "id": 0,
+                                                    "name": "StorageTier0Price",
+                                                    "l18n": {
+                                                      "ru": "nonSSD (50 IOPS на 500 ГБ)",
+                                                      "en": "nonSSD (50 IOPS per 500 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 5
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "id": 1,
+                                                    "name": "StorageTier1Price",
+                                                    "l18n": {
+                                                      "ru": "SAS (250 IOPS на 500 ГБ)",
+                                                      "en": "SAS (250 IOPS per 500 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 8
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "id": 2,
+                                                    "name": "StorageTier2Price",
+                                                    "l18n": {
+                                                      "ru": "SSD (500 IOPS на 500 ГБ)",
+                                                      "en": "SSD (500 IOPS per 500 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 20
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            }
+                                          , {
+                                              "id": 1,
+                                              "name": "Silver",
+                                              "l18n" : {
+                                                "ru": "Silver (2,6 ГГц Xeon Gold 6132, TurboBoost 3,7 ГГц)",
+                                                "en": "Silver (2,6 GHz Xeon Gold 6132, TurboBoost 3,7 GHz)"
+                                              },
+                                              "minimalVMConfig": {
+                                                "vCPU": 1
+                                              , "RAM": 1
+                                              , "linuxStorage": 16
+                                              , "windowsStorage": 40
+                                              },
+                                              "maxVMConfig": {
+                                                "vCPU": 112
+                                              , "RAM": 1536
+                                              , "storage": 61440
+                                              },
+                                              "resourcesPricing": {
+                                                "vCPUPrice": {
+                                                  "id": 0,
+                                                  "name": "vCPUPrice",
+                                                  "l18n": {
+                                                    "ru": "vCPU ядра",
+                                                    "en": "vCPU cores"
+                                                  },
+                                                  "currencyPrice": [
+                                                    {
+                                                      "id": 0,
+                                                      "name": "RUBperMonth",
+                                                      "l18n": {
+                                                        "ru": "руб. в мес.",
+                                                        "en": "rub. per month"
+                                                      },
+                                                      "value": 480
+                                                    }
+                                                  ]
+                                                }
+                                              , "RAMPrice": {
+                                                  "id": 0,
+                                                  "name": "RAMPrice",
+                                                  "l18n": {
+                                                    "ru": "RAM оперативная память",
+                                                    "en": "RAM random access memory"
+                                                  },
+                                                  "currencyPrice": [
+                                                    {
+                                                      "id": 0,
+                                                      "name": "RUBperMonth",
+                                                      "l18n": {
+                                                        "ru": "руб. в мес.",
+                                                        "en": "rub. per month"
+                                                      },
+                                                      "value": 380
+                                                    }
+                                                  ]
+                                                }
+                                              , "StoragePrice": [
+                                                  {
+                                                    "id": 0,
+                                                    "name": "StorageTier0Price",
+                                                    "l18n": {
+                                                      "ru": "nonSSD (50 IOPS на 500 ГБ)",
+                                                      "en": "nonSSD (50 IOPS per 500 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 5
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "id": 1,
+                                                    "name": "StorageTier1Price",
+                                                    "l18n": {
+                                                      "ru": "SAS (250 IOPS на 500 ГБ)",
+                                                      "en": "SAS (250 IOPS per 500 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 8
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "id": 2,
+                                                    "name": "StorageTier2Price",
+                                                    "l18n": {
+                                                      "ru": "SSD (500 IOPS на 500 ГБ)",
+                                                      "en": "SSD (500 IOPS per 500 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 20
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            }
+                                          , {
+                                              "id": 2,
+                                              "name": "Gold",
+                                              "l18n" : {
+                                                "ru": "Gold (3,5 ГГц Xeon Gold 6144, TurboBoost 4,2 ГГц)",
+                                                "en": "Gold (3,5 GHz Xeon Gold 6144, TurboBoost 4,2 GHz)"
+                                              },
+                                              "minimalVMConfig": {
+                                                "vCPU": 1
+                                              , "RAM": 1
+                                              , "linuxStorage": 16
+                                              , "windowsStorage": 40
+                                              },
+                                              "maxVMConfig": {
+                                                "vCPU": 32
+                                              , "RAM": 768
+                                              , "storage": 61440
+                                              },
+                                              "resourcesPricing": {
+                                                "vCPUPrice": {
+                                                  "id": 0,
+                                                  "name": "vCPUPrice",
+                                                  "l18n": {
+                                                    "ru": "vCPU ядра",
+                                                    "en": "vCPU cores"
+                                                  },
+                                                  "currencyPrice": [
+                                                    {
+                                                      "id": 0,
+                                                      "name": "RUBperMonth",
+                                                      "l18n": {
+                                                        "ru": "руб. в мес.",
+                                                        "en": "rub. per month"
+                                                      },
+                                                      "value": 750
+                                                    }
+                                                  ]
+                                                }
+                                              , "RAMPrice": {
+                                                  "id": 0,
+                                                  "name": "RAMPrice",
+                                                  "l18n": {
+                                                    "ru": "RAM оперативная память",
+                                                    "en": "RAM random access memory"
+                                                  },
+                                                  "currencyPrice": [
+                                                    {
+                                                      "id": 0,
+                                                      "name": "RUBperMonth",
+                                                      "l18n": {
+                                                        "ru": "руб. в мес.",
+                                                        "en": "rub. per month"
+                                                      },
+                                                      "value": 380
+                                                    }
+                                                  ]
+                                                }
+                                              , "StoragePrice": [
+                                                  {
+                                                    "id": 0,
+                                                    "name": "StorageTier0Price",
+                                                    "l18n": {
+                                                      "ru": "nonSSD (50 IOPS на 500 ГБ)",
+                                                      "en": "nonSSD (50 IOPS per 500 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 5
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "id": 1,
+                                                    "name": "StorageTier1Price",
+                                                    "l18n": {
+                                                      "ru": "SAS (250 IOPS на 500 ГБ)",
+                                                      "en": "SAS (250 IOPS per 500 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 8
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "id": 2,
+                                                    "name": "StorageTier2Price",
+                                                    "l18n": {
+                                                      "ru": "SSD (500 IOPS на 500 ГБ)",
+                                                      "en": "SSD (500 IOPS per 500 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 20
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            }
+                                          ]
+                                        }
+                                        , {
+                                          "id": 2,
+                                          "name": "CDC",
+                                          "l18n" : {
+                                            "ru": "КЦОД (недоступно для новых подключений)",
+                                            "en": "Corporate Datacenter (unavailable to new users)"
+                                          },
+                                          "segments" : [
+                                            {
+                                              "id": 0,
+                                              "name": "Standard",
+                                              "l18n" : {
+                                                "ru": "Standard (2,6 ГГц Xeon E5-2660 v3, TurboBoost 3,3 ГГц)",
+                                                "en": "Standard (2,6 GHz Xeon E5-2660 v3, TurboBoost 3,3 GHz)"
+                                              },
+                                              "minimalVMConfig": {
+                                                "vCPU": 1
+                                              , "RAM": 1
+                                              , "linuxStorage": 16
+                                              , "windowsStorage": 40
+                                              },
+                                              "maxVMConfig": {
+                                                "vCPU": 40
+                                              , "RAM": 256
+                                              , "storage": 61440
+                                              },
+                                              "resourcesPricing": {
+                                                "vCPUPrice": {
+                                                  "id": 0,
+                                                  "name": "vCPUPrice",
+                                                  "l18n": {
+                                                    "ru": "vCPU ядра",
+                                                    "en": "vCPU cores"
+                                                  },
+                                                  "currencyPrice": [
+                                                    {
+                                                      "id": 0,
+                                                      "name": "RUBperMonth",
+                                                      "l18n": {
+                                                        "ru": "руб. в мес.",
+                                                        "en": "rub. per month"
+                                                      },
+                                                      "value": 380
+                                                    }
+                                                  ]
+                                                }
+                                              , "RAMPrice": {
+                                                  "id": 0,
+                                                  "name": "RAMPrice",
+                                                  "l18n": {
+                                                    "ru": "RAM оперативная память",
+                                                    "en": "RAM random access memory"
+                                                  },
+                                                  "currencyPrice": [
+                                                    {
+                                                      "id": 0,
+                                                      "name": "RUBperMonth",
+                                                      "l18n": {
+                                                        "ru": "руб. в мес.",
+                                                        "en": "rub. per month"
+                                                      },
+                                                      "value": 380
+                                                    }
+                                                  ]
+                                                }
+                                              , "StoragePrice": [
+                                                  {
+                                                    "id": 0,
+                                                    "name": "StorageTier0Price",
+                                                    "l18n": {
+                                                      "ru": "nonSSD (50 IOPS на 500 ГБ)",
+                                                      "en": "nonSSD (50 IOPS per 500 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 5
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "id": 1,
+                                                    "name": "StorageTier1Price",
+                                                    "l18n": {
+                                                      "ru": "SAS (250 IOPS на 500 ГБ)",
+                                                      "en": "SAS (250 IOPS per 500 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 8
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "id": 2,
+                                                    "name": "StorageTier2Price",
+                                                    "l18n": {
+                                                      "ru": "SSD (500 IOPS на 500 ГБ)",
+                                                      "en": "SSD (500 IOPS per 500 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 20
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            }
+                                          , {
+                                              "id": 1,
+                                              "name": "Silver",
+                                              "l18n" : {
+                                                "ru": "Silver (2,6 ГГц Xeon Gold 6132, TurboBoost 3,7 ГГц)",
+                                                "en": "Silver (2,6 GHz Xeon Gold 6132, TurboBoost 3,7 GHz)"
+                                              },
+                                              "minimalVMConfig": {
+                                                "vCPU": 1
+                                              , "RAM": 1
+                                              , "linuxStorage": 16
+                                              , "windowsStorage": 40
+                                              },
+                                              "maxVMConfig": {
+                                                "vCPU": 112
+                                              , "RAM": 1536
+                                              , "storage": 61440
+                                              },
+                                              "resourcesPricing": {
+                                                "vCPUPrice": {
+                                                  "id": 0,
+                                                  "name": "vCPUPrice",
+                                                  "l18n": {
+                                                    "ru": "vCPU ядра",
+                                                    "en": "vCPU cores"
+                                                  },
+                                                  "currencyPrice": [
+                                                    {
+                                                      "id": 0,
+                                                      "name": "RUBperMonth",
+                                                      "l18n": {
+                                                        "ru": "руб. в мес.",
+                                                        "en": "rub. per month"
+                                                      },
+                                                      "value": 480
+                                                    }
+                                                  ]
+                                                }
+                                              , "RAMPrice": {
+                                                  "id": 0,
+                                                  "name": "RAMPrice",
+                                                  "l18n": {
+                                                    "ru": "RAM оперативная память",
+                                                    "en": "RAM random access memory"
+                                                  },
+                                                  "currencyPrice": [
+                                                    {
+                                                      "id": 0,
+                                                      "name": "RUBperMonth",
+                                                      "l18n": {
+                                                        "ru": "руб. в мес.",
+                                                        "en": "rub. per month"
+                                                      },
+                                                      "value": 380
+                                                    }
+                                                  ]
+                                                }
+                                              , "StoragePrice": [
+                                                  {
+                                                    "id": 0,
+                                                    "name": "StorageTier0Price",
+                                                    "l18n": {
+                                                      "ru": "nonSSD (50 IOPS на 500 ГБ)",
+                                                      "en": "nonSSD (50 IOPS per 500 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 5
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "id": 1,
+                                                    "name": "StorageTier1Price",
+                                                    "l18n": {
+                                                      "ru": "SAS (250 IOPS на 500 ГБ)",
+                                                      "en": "SAS (250 IOPS per 500 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 8
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "id": 2,
+                                                    "name": "StorageTier2Price",
+                                                    "l18n": {
+                                                      "ru": "SSD (500 IOPS на 500 ГБ)",
+                                                      "en": "SSD (500 IOPS per 500 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 20
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            }
+                                          , {
+                                              "id": 2,
+                                              "name": "Gold",
+                                              "l18n" : {
+                                                "ru": "Gold (3,5 ГГц Xeon Gold 6144, TurboBoost 4,2 ГГц)",
+                                                "en": "Gold (3,5 GHz Xeon Gold 6144, TurboBoost 4,2 GHz)"
+                                              },
+                                              "minimalVMConfig": {
+                                                "vCPU": 1
+                                              , "RAM": 1
+                                              , "linuxStorage": 16
+                                              , "windowsStorage": 40
+                                              },
+                                              "maxVMConfig": {
+                                                "vCPU": 32
+                                              , "RAM": 768
+                                              , "storage": 61440
+                                              },
+                                              "resourcesPricing": {
+                                                "vCPUPrice": {
+                                                  "id": 0,
+                                                  "name": "vCPUPrice",
+                                                  "l18n": {
+                                                    "ru": "vCPU ядра",
+                                                    "en": "vCPU cores"
+                                                  },
+                                                  "currencyPrice": [
+                                                    {
+                                                      "id": 0,
+                                                      "name": "RUBperMonth",
+                                                      "l18n": {
+                                                        "ru": "руб. в мес.",
+                                                        "en": "rub. per month"
+                                                      },
+                                                      "value": 750
+                                                    }
+                                                  ]
+                                                }
+                                              , "RAMPrice": {
+                                                  "id": 0,
+                                                  "name": "RAMPrice",
+                                                  "l18n": {
+                                                    "ru": "RAM оперативная память",
+                                                    "en": "RAM random access memory"
+                                                  },
+                                                  "currencyPrice": [
+                                                    {
+                                                      "id": 0,
+                                                      "name": "RUBperMonth",
+                                                      "l18n": {
+                                                        "ru": "руб. в мес.",
+                                                        "en": "rub. per month"
+                                                      },
+                                                      "value": 380
+                                                    }
+                                                  ]
+                                                }
+                                              , "StoragePrice": [
+                                                  {
+                                                    "id": 0,
+                                                    "name": "StorageTier0Price",
+                                                    "l18n": {
+                                                      "ru": "nonSSD (50 IOPS на 500 ГБ)",
+                                                      "en": "nonSSD (50 IOPS per 500 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 5
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "id": 1,
+                                                    "name": "StorageTier1Price",
+                                                    "l18n": {
+                                                      "ru": "SAS (250 IOPS на 500 ГБ)",
+                                                      "en": "SAS (250 IOPS per 500 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 8
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "id": 2,
+                                                    "name": "StorageTier2Price",
+                                                    "l18n": {
+                                                      "ru": "SSD (500 IOPS на 500 ГБ)",
+                                                      "en": "SSD (500 IOPS per 500 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 20
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                    , {
+                                      "id": 1,
+                                      "name": "SPB",
+                                      "l18n": {
+                                        "ru": "Санкт-Петербург",
+                                        "en": "Saint Petersburg"
+                                      },
+                                      "datacenters": [
+                                        {
+                                          "id": 0,
+                                          "name": "SPB-1",
+                                          "l18n" : {
+                                            "ru": "Санкт-Петербург - 1",
+                                            "en": "Saint Petersburg - 1"
+                                          },
+                                          "segments" : [
+                                            {
+                                              "id": 0,
+                                              "name": "Standard",
+                                              "l18n" : {
+                                                "ru": "Standard (2,6 ГГц Xeon E5-2660 v3, TurboBoost 3,3 ГГц)",
+                                                "en": "Standard (2,6 GHz Xeon E5-2660 v3, TurboBoost 3,3 GHz)"
+                                              },
+                                              "minimalVMConfig": {
+                                                "vCPU": 1
+                                              , "RAM": 1
+                                              , "linuxStorage": 16
+                                              , "windowsStorage": 40
+                                              },
+                                              "maxVMConfig": {
+                                                "vCPU": 40
+                                              , "RAM": 256
+                                              , "storage": 61440
+                                              },
+                                              "resourcesPricing": {
+                                                "vCPUPrice": {
+                                                  "id": 0,
+                                                  "name": "vCPUPrice",
+                                                  "l18n": {
+                                                    "ru": "vCPU ядра",
+                                                    "en": "vCPU cores"
+                                                  },
+                                                  "currencyPrice": [
+                                                    {
+                                                      "id": 0,
+                                                      "name": "RUBperMonth",
+                                                      "l18n": {
+                                                        "ru": "руб. в мес.",
+                                                        "en": "rub. per month"
+                                                      },
+                                                      "value": 380
+                                                    }
+                                                  ]
+                                                }
+                                              , "RAMPrice": {
+                                                  "id": 0,
+                                                  "name": "RAMPrice",
+                                                  "l18n": {
+                                                    "ru": "RAM оперативная память",
+                                                    "en": "RAM random access memory"
+                                                  },
+                                                  "currencyPrice": [
+                                                    {
+                                                      "id": 0,
+                                                      "name": "RUBperMonth",
+                                                      "l18n": {
+                                                        "ru": "руб. в мес.",
+                                                        "en": "rub. per month"
+                                                      },
+                                                      "value": 380
+                                                    }
+                                                  ]
+                                                }
+                                              , "StoragePrice": [
+                                                  {
+                                                    "id": 0,
+                                                    "name": "StorageTier0Price",
+                                                    "l18n": {
+                                                      "ru": "nonSSD (50 IOPS на 500 ГБ)",
+                                                      "en": "nonSSD (50 IOPS per 500 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 5
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "id": 1,
+                                                    "name": "StorageTier1Price",
+                                                    "l18n": {
+                                                      "ru": "SAS (250 IOPS на 500 ГБ)",
+                                                      "en": "SAS (250 IOPS per 500 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 8
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "id": 2,
+                                                    "name": "StorageTier2Price",
+                                                    "l18n": {
+                                                      "ru": "SSD (500 IOPS на 500 ГБ)",
+                                                      "en": "SSD (500 IOPS per 500 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 20
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                    , {
+                                      "id": 2,
+                                      "name": "NSK",
+                                      "l18n" : {
+                                        "ru": "Новосибирск",
+                                        "en": "Novosibirsk"
+                                      },
+                                      "datacenters": [
+                                        {
+                                          "id": 0,
+                                          "name": "NSK-1",
+                                          "l18n" : {
+                                            "ru": "Новосибирск - 1",
+                                            "en": "Novosibirsk - 1"
+                                          },
+                                          "segments" : [
+                                            {
+                                              "id": 0,
+                                              "name": "Standard",
+                                              "l18n" : {
+                                                "ru": "Standard (2,6 ГГц Xeon E5-2660 v3, TurboBoost 3,3 ГГц)",
+                                                "en": "Standard (2,6 GHz Xeon E5-2660 v3, TurboBoost 3,3 GHz)"
+                                              },
+                                              "minimalVMConfig": {
+                                                "vCPU": 1
+                                              , "RAM": 1
+                                              , "linuxStorage": 16
+                                              , "windowsStorage": 40
+                                              },
+                                              "maxVMConfig": {
+                                                "vCPU": 40
+                                              , "RAM": 256
+                                              , "storage": 61440
+                                              },
+                                              "resourcesPricing": {
+                                                "vCPUPrice": {
+                                                  "id": 0,
+                                                  "name": "vCPUPrice",
+                                                  "l18n": {
+                                                    "ru": "vCPU ядра",
+                                                    "en": "vCPU cores"
+                                                  },
+                                                  "currencyPrice": [
+                                                    {
+                                                      "id": 0,
+                                                      "name": "RUBperMonth",
+                                                      "l18n": {
+                                                        "ru": "руб. в мес.",
+                                                        "en": "rub. per month"
+                                                      },
+                                                      "value": 380
+                                                    }
+                                                  ]
+                                                }
+                                              , "RAMPrice": {
+                                                  "id": 0,
+                                                  "name": "RAMPrice",
+                                                  "l18n": {
+                                                    "ru": "RAM оперативная память",
+                                                    "en": "RAM random access memory"
+                                                  },
+                                                  "currencyPrice": [
+                                                    {
+                                                      "id": 0,
+                                                      "name": "RUBperMonth",
+                                                      "l18n": {
+                                                        "ru": "руб. в мес.",
+                                                        "en": "rub. per month"
+                                                      },
+                                                      "value": 380
+                                                    }
+                                                  ]
+                                                }
+                                              , "StoragePrice": [
+                                                  {
+                                                    "id": 0,
+                                                    "name": "StorageTier0Price",
+                                                    "l18n": {
+                                                      "ru": "nonSSD (50 IOPS на 500 ГБ)",
+                                                      "en": "nonSSD (50 IOPS per 500 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 5
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "id": 1,
+                                                    "name": "StorageTier1Price",
+                                                    "l18n": {
+                                                      "ru": "SAS (250 IOPS на 500 ГБ)",
+                                                      "en": "SAS (250 IOPS per 500 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 8
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "id": 2,
+                                                    "name": "StorageTier2Price",
+                                                    "l18n": {
+                                                      "ru": "SSD (500 IOPS на 500 ГБ)",
+                                                      "en": "SSD (500 IOPS per 500 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 20
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            }
+                                            , {
+                                              "id": 1,
+                                              "name": "Silver_2.0",
+                                              "l18n" : {
+                                                "ru": "Silver 2.0 (2,6 ГГц Xeon Gold 6240, TurboBoost 3,9 ГГц)",
+                                                "en": "Silver 2.0 (2,6 GHz Xeon Gold 6240, TurboBoost 3,9 GHz)"
+                                              },
+                                              "minimalVMConfig": {
+                                                "vCPU": 1
+                                              , "RAM": 1
+                                              , "linuxStorage": 16
+                                              , "windowsStorage": 40
+                                              },
+                                              "maxVMConfig": {
+                                                "vCPU": 72
+                                              , "RAM": 512
+                                              , "storage": 61440
+                                              },
+                                              "resourcesPricing": {
+                                                "vCPUPrice": {
+                                                  "id": 0,
+                                                  "name": "vCPUPrice",
+                                                  "l18n": {
+                                                    "ru": "vCPU ядра",
+                                                    "en": "vCPU cores"
+                                                  },
+                                                  "currencyPrice": [
+                                                    {
+                                                      "id": 0,
+                                                      "name": "RUBperMonth",
+                                                      "l18n": {
+                                                        "ru": "руб. в мес.",
+                                                        "en": "rub. per month"
+                                                      },
+                                                      "value": 480
+                                                    }
+                                                  ]
+                                                }
+                                              , "RAMPrice": {
+                                                  "id": 0,
+                                                  "name": "RAMPrice",
+                                                  "l18n": {
+                                                    "ru": "RAM оперативная память",
+                                                    "en": "RAM random access memory"
+                                                  },
+                                                  "currencyPrice": [
+                                                    {
+                                                      "id": 0,
+                                                      "name": "RUBperMonth",
+                                                      "l18n": {
+                                                        "ru": "руб. в мес.",
+                                                        "en": "rub. per month"
+                                                      },
+                                                      "value": 380
+                                                    }
+                                                  ]
+                                                }
+                                              , "StoragePrice": [
+                                                  {
+                                                    "id": 0,
+                                                    "name": "StorageTier0Price",
+                                                    "l18n": {
+                                                      "ru": "SSD Basic (0,4 IOPS на 1 ГБ)",
+                                                      "en": "SSD Basic (0,4 IOPS per 1 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 5
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "id": 1,
+                                                    "name": "StorageTier1Price",
+                                                    "l18n": {
+                                                      "ru": "SSD Fast (2 IOPS на 1 ГБ)",
+                                                      "en": "SSD Fast (2 IOPS per 1 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 8
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "id": 2,
+                                                    "name": "StorageTier2Price",
+                                                    "l18n": {
+                                                      "ru": "SSD Ultra (10 IOPS на 1 ГБ)",
+                                                      "en": "SSD Ultra (10 IOPS per 1 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 20
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            } ,
+                                            {
+                                              "id": 2,
+                                              "name": "Gold_2.0",
+                                              "l18n" : {
+                                                "ru": "Gold 2.0 (3,1 ГГц Xeon Gold 6254, TurboBoost 4,0 ГГц)",
+                                                "en": "Gold 2.0 (3,1 GHz Xeon Gold 6254, TurboBoost 4,0 GHz)"
+                                              },
+                                              "minimalVMConfig": {
+                                                "vCPU": 1
+                                              , "RAM": 1
+                                              , "linuxStorage": 16
+                                              , "windowsStorage": 40
+                                              },
+                                              "maxVMConfig": {
+                                                "vCPU": 144
+                                              , "RAM": 1536
+                                              , "storage": 61440
+                                              },
+                                              "resourcesPricing": {
+                                                "vCPUPrice": {
+                                                  "id": 0,
+                                                  "name": "vCPUPrice",
+                                                  "l18n": {
+                                                    "ru": "vCPU ядра",
+                                                    "en": "vCPU cores"
+                                                  },
+                                                  "currencyPrice": [
+                                                    {
+                                                      "id": 0,
+                                                      "name": "RUBperMonth",
+                                                      "l18n": {
+                                                        "ru": "руб. в мес.",
+                                                        "en": "rub. per month"
+                                                      },
+                                                      "value": 750
+                                                    }
+                                                  ]
+                                                }
+                                              , "RAMPrice": {
+                                                  "id": 0,
+                                                  "name": "RAMPrice",
+                                                  "l18n": {
+                                                    "ru": "RAM оперативная память",
+                                                    "en": "RAM random access memory"
+                                                  },
+                                                  "currencyPrice": [
+                                                    {
+                                                      "id": 0,
+                                                      "name": "RUBperMonth",
+                                                      "l18n": {
+                                                        "ru": "руб. в мес.",
+                                                        "en": "rub. per month"
+                                                      },
+                                                      "value": 380
+                                                    }
+                                                  ]
+                                                }
+                                              , "StoragePrice": [
+                                                  {
+                                                    "id": 0,
+                                                    "name": "StorageTier0Price",
+                                                    "l18n": {
+                                                      "ru": "SSD Basic (0,4 IOPS на 1 ГБ)",
+                                                      "en": "SSD Basic (0,4 IOPS per 1 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 5
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "id": 1,
+                                                    "name": "StorageTier1Price",
+                                                    "l18n": {
+                                                      "ru": "SSD Fast (2 IOPS на 1 ГБ)",
+                                                      "en": "SSD Fast (2 IOPS per 1 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 8
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "id": 2,
+                                                    "name": "StorageTier2Price",
+                                                    "l18n": {
+                                                      "ru": "SSD Ultra (10 IOPS на 1 ГБ)",
+                                                      "en": "SSD Ultra (10 IOPS per 1 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 20
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                    , {
+                                      "id": 3,
+                                      "name": "VLD",
+                                      "l18n" : {
+                                        "ru": "Владивосток",
+                                        "en": "Vladivostok"
+                                      },
+                                      "datacenters": [
+                                        {
+                                          "id": 0,
+                                          "name": "VLD-1",
+                                          "l18n" : {
+                                            "ru": "Владивосток - 1",
+                                            "en": "Vladivostok - 1"
+                                          },
+                                          "segments" : [
+                                            {
+                                              "id": 0,
+                                              "name": "Standard",
+                                              "l18n" : {
+                                                "ru": "Standard (2,6 ГГц Xeon E5-2660 v3, TurboBoost 3,3 ГГц)",
+                                                "en": "Standard (2,6 GHz Xeon E5-2660 v3, TurboBoost 3,3 GHz)"
+                                              },
+                                              "minimalVMConfig": {
+                                                "vCPU": 1
+                                              , "RAM": 1
+                                              , "linuxStorage": 16
+                                              , "windowsStorage": 40
+                                              },
+                                              "maxVMConfig": {
+                                                "vCPU": 40
+                                              , "RAM": 256
+                                              , "storage": 61440
+                                              },
+                                              "resourcesPricing": {
+                                                "vCPUPrice": {
+                                                  "id": 0,
+                                                  "name": "vCPUPrice",
+                                                  "l18n": {
+                                                    "ru": "vCPU ядра",
+                                                    "en": "vCPU cores"
+                                                  },
+                                                  "currencyPrice": [
+                                                    {
+                                                      "id": 0,
+                                                      "name": "RUBperMonth",
+                                                      "l18n": {
+                                                        "ru": "руб. в мес.",
+                                                        "en": "rub. per month"
+                                                      },
+                                                      "value": 380
+                                                    }
+                                                  ]
+                                                }
+                                              , "RAMPrice": {
+                                                  "id": 0,
+                                                  "name": "RAMPrice",
+                                                  "l18n": {
+                                                    "ru": "RAM оперативная память",
+                                                    "en": "RAM random access memory"
+                                                  },
+                                                  "currencyPrice": [
+                                                    {
+                                                      "id": 0,
+                                                      "name": "RUBperMonth",
+                                                      "l18n": {
+                                                        "ru": "руб. в мес.",
+                                                        "en": "rub. per month"
+                                                      },
+                                                      "value": 380
+                                                    }
+                                                  ]
+                                                }
+                                              , "StoragePrice": [
+                                                  {
+                                                    "id": 0,
+                                                    "name": "StorageTier0Price",
+                                                    "l18n": {
+                                                      "ru": "nonSSD (50 IOPS на 500 ГБ)",
+                                                      "en": "nonSSD (50 IOPS per 500 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 5
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "id": 1,
+                                                    "name": "StorageTier1Price",
+                                                    "l18n": {
+                                                      "ru": "SAS (250 IOPS на 500 ГБ)",
+                                                      "en": "SAS (250 IOPS per 500 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 8
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "id": 2,
+                                                    "name": "StorageTier2Price",
+                                                    "l18n": {
+                                                      "ru": "SSD (500 IOPS на 500 ГБ)",
+                                                      "en": "SSD (500 IOPS per 500 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 20
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            }
+                                          , {
+                                              "id": 1,
+                                              "name": "Silver_2.0",
+                                              "l18n" : {
+                                                "ru": "Silver 2.0 (2,6 ГГц Xeon Gold 6240, TurboBoost 3,9 ГГц)",
+                                                "en": "Silver 2.0 (2,6 GHz Xeon Gold 6240, TurboBoost 3,9 GHz)"
+                                              },
+                                              "minimalVMConfig": {
+                                                "vCPU": 1
+                                              , "RAM": 1
+                                              , "linuxStorage": 16
+                                              , "windowsStorage": 40
+                                              },
+                                              "maxVMConfig": {
+                                                "vCPU": 72
+                                              , "RAM": 512
+                                              , "storage": 61440
+                                              },
+                                              "resourcesPricing": {
+                                                "vCPUPrice": {
+                                                  "id": 0,
+                                                  "name": "vCPUPrice",
+                                                  "l18n": {
+                                                    "ru": "vCPU ядра",
+                                                    "en": "vCPU cores"
+                                                  },
+                                                  "currencyPrice": [
+                                                    {
+                                                      "id": 0,
+                                                      "name": "RUBperMonth",
+                                                      "l18n": {
+                                                        "ru": "руб. в мес.",
+                                                        "en": "rub. per month"
+                                                      },
+                                                      "value": 480
+                                                    }
+                                                  ]
+                                                }
+                                              , "RAMPrice": {
+                                                  "id": 0,
+                                                  "name": "RAMPrice",
+                                                  "l18n": {
+                                                    "ru": "RAM оперативная память",
+                                                    "en": "RAM random access memory"
+                                                  },
+                                                  "currencyPrice": [
+                                                    {
+                                                      "id": 0,
+                                                      "name": "RUBperMonth",
+                                                      "l18n": {
+                                                        "ru": "руб. в мес.",
+                                                        "en": "rub. per month"
+                                                      },
+                                                      "value": 380
+                                                    }
+                                                  ]
+                                                }
+                                              , "StoragePrice": [
+                                                  {
+                                                    "id": 0,
+                                                    "name": "StorageTier0Price",
+                                                    "l18n": {
+                                                      "ru": "SSD Basic (0,4 IOPS на 1 ГБ)",
+                                                      "en": "SSD Basic (0,4 IOPS per 1 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 5
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "id": 1,
+                                                    "name": "StorageTier1Price",
+                                                    "l18n": {
+                                                      "ru": "SSD Fast (2 IOPS на 1 ГБ)",
+                                                      "en": "SSD Fast (2 IOPS per 1 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 8
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "id": 2,
+                                                    "name": "StorageTier2Price",
+                                                    "l18n": {
+                                                      "ru": "SSD Ultra (10 IOPS на 1 ГБ)",
+                                                      "en": "SSD Ultra (10 IOPS per 1 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 20
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            } ,
+                                            {
+                                              "id": 2,
+                                              "name": "Gold_2.0",
+                                              "l18n" : {
+                                                "ru": "Gold 2.0 (3,1 ГГц Xeon Gold 6254, TurboBoost 4,0 ГГц)",
+                                                "en": "Gold 2.0 (3,1 GHz Xeon Gold 6254, TurboBoost 4,0 GHz)"
+                                              },
+                                              "minimalVMConfig": {
+                                                "vCPU": 1
+                                              , "RAM": 1
+                                              , "linuxStorage": 16
+                                              , "windowsStorage": 40
+                                              },
+                                              "maxVMConfig": {
+                                                "vCPU": 144
+                                              , "RAM": 1536
+                                              , "storage": 61440
+                                              },
+                                              "resourcesPricing": {
+                                                "vCPUPrice": {
+                                                  "id": 0,
+                                                  "name": "vCPUPrice",
+                                                  "l18n": {
+                                                    "ru": "vCPU ядра",
+                                                    "en": "vCPU cores"
+                                                  },
+                                                  "currencyPrice": [
+                                                    {
+                                                      "id": 0,
+                                                      "name": "RUBperMonth",
+                                                      "l18n": {
+                                                        "ru": "руб. в мес.",
+                                                        "en": "rub. per month"
+                                                      },
+                                                      "value": 750
+                                                    }
+                                                  ]
+                                                }
+                                              , "RAMPrice": {
+                                                  "id": 0,
+                                                  "name": "RAMPrice",
+                                                  "l18n": {
+                                                    "ru": "RAM оперативная память",
+                                                    "en": "RAM random access memory"
+                                                  },
+                                                  "currencyPrice": [
+                                                    {
+                                                      "id": 0,
+                                                      "name": "RUBperMonth",
+                                                      "l18n": {
+                                                        "ru": "руб. в мес.",
+                                                        "en": "rub. per month"
+                                                      },
+                                                      "value": 380
+                                                    }
+                                                  ]
+                                                }
+                                              , "StoragePrice": [
+                                                  {
+                                                    "id": 0,
+                                                    "name": "StorageTier0Price",
+                                                    "l18n": {
+                                                      "ru": "SSD Basic (0,4 IOPS на 1 ГБ)",
+                                                      "en": "SSD Basic (0,4 IOPS per 1 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 5
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "id": 1,
+                                                    "name": "StorageTier1Price",
+                                                    "l18n": {
+                                                      "ru": "SSD Fast (2 IOPS на 1 ГБ)",
+                                                      "en": "SSD Fast (2 IOPS per 1 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 8
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "id": 2,
+                                                    "name": "StorageTier2Price",
+                                                    "l18n": {
+                                                      "ru": "SSD Ultra (10 IOPS на 1 ГБ)",
+                                                      "en": "SSD Ultra (10 IOPS per 1 GB)"
+                                                    },
+                                                    "currencyPrice": [
+                                                      {
+                                                        "id": 0,
+                                                        "name": "RUBperMonth",
+                                                        "l18n": {
+                                                          "ru": "руб. в мес.",
+                                                          "en": "rub. per month"
+                                                        },
+                                                        "value": 20
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                       ]
+                     }
+                     , {
+                         "id": 1,
+                         "name": "PAYG",
+                         "l18n" : {
+                           "ru": "По мере использования",
+                           "en": "PayAsYouGo"
+                         },
+                         "regions": [
+                           {
+                             "id": 0,
+                             "name": "MSK",
+                             "l18n" : {
+                               "ru": "Москва",
+                               "en": "Moscow"
+                             },
+                             "datacenters": [
+                               {
+                                 "id": 0,
+                                 "name": "Avantage",
+                                 "l18n" : {
+                                   "ru": "Авантаж",
+                                   "en": "Avantage"
+                                 },
+                                 "segments" : [
+                                   {
+                                     "id": 0,
+                                     "name": "Silver_2.0",
+                                     "l18n" : {
+                                       "ru": "Silver 2.0 (2,6 ГГц Xeon Gold 6240, TurboBoost 3,9 ГГц)",
+                                       "en": "Silver 2.0 (2,6 GHz Xeon Gold 6240, TurboBoost 3,9 GHz)"
+                                     },
+                                     "minimalVMConfig": {
+                                       "vCPU": 1
+                                     , "RAM": 1
+                                     , "linuxStorage": 16
+                                     , "windowsStorage": 40
+                                     },
+                                     "maxVMConfig": {
+                                       "vCPU": 72
+                                     , "RAM": 512
+                                     , "storage": 61440
+                                     },
+                                     "resourcesPricing": {
+                                       "vCPUPrice": {
+                                         "id": 0,
+                                         "name": "vCPUPrice",
+                                         "l18n": {
+                                           "ru": "vCPU ядра",
+                                           "en": "vCPU cores"
+                                         },
+                                         "currencyPrice": [
+                                           {
+                                             "id": 0,
+                                             "name": "RUBperHour",
+                                             "l18n": {
+                                               "ru": "руб. в час",
+                                               "en": "rub. per hour"
+                                             },
+                                             "value": 1
+                                           }
+                                         ]
+                                       }
+                                     , "RAMPrice": {
+                                         "id": 0,
+                                         "name": "RAMPrice",
+                                         "l18n": {
+                                           "ru": "RAM оперативная память",
+                                           "en": "RAM random access memory"
+                                         },
+                                         "currencyPrice": [
+                                           {
+                                             "id": 0,
+                                             "name": "RUBperHour",
+                                             "l18n": {
+                                               "ru": "руб. в час",
+                                               "en": "rub. per hour"
+                                             },
+                                             "value": 0.8
+                                           }
+                                         ]
+                                       }
+                                     , "StoragePrice": [
+                                         {
+                                           "id": 0,
+                                           "name": "StorageTier0Price",
+                                           "l18n": {
+                                             "ru": "SSD Basic (0,4 IOPS на 1 ГБ)",
+                                             "en": "SSD Basic (0,4 IOPS per 1 GB)"
+                                           },
+                                           "currencyPrice": [
+                                             {
+                                               "id": 0,
+                                               "name": "RUBperHour",
+                                               "l18n": {
+                                                 "ru": "руб. в час",
+                                                 "en": "rub. per hour"
+                                               },
+                                               "value": 0.01
+                                             }
+                                           ]
+                                         },
+                                         {
+                                           "id": 1,
+                                           "name": "StorageTier1Price",
+                                           "l18n": {
+                                             "ru": "SSD Fast (2 IOPS на 1 ГБ)",
+                                             "en": "SSD Fast (2 IOPS per 1 GB)"
+                                           },
+                                           "currencyPrice": [
+                                             {
+                                               "id": 0,
+                                               "name": "RUBperHour",
+                                               "l18n": {
+                                                 "ru": "руб. в час",
+                                                 "en": "rub. per hour"
+                                               },
+                                               "value": 0.02
+                                             }
+                                           ]
+                                         },
+                                         {
+                                           "id": 2,
+                                           "name": "StorageTier2Price",
+                                           "l18n": {
+                                             "ru": "SSD Ultra (10 IOPS на 1 ГБ)",
+                                             "en": "SSD Ultra (10 IOPS per 1 GB)"
+                                           },
+                                           "currencyPrice": [
+                                             {
+                                               "id": 0,
+                                               "name": "RUBperHour",
+                                               "l18n": {
+                                                 "ru": "руб. в час",
+                                                 "en": "rub. per hour"
+                                               },
+                                               "value": 0.04
+                                             }
+                                           ]
+                                         }
+                                       ]
+                                     }
+                                   } ,
+                                   {
+                                     "id": 1,
+                                     "name": "Gold_2.0",
+                                     "l18n" : {
+                                       "ru": "Gold 2.0 (3,1 ГГц Xeon Gold 6254, TurboBoost 4,0 ГГц)",
+                                       "en": "Gold 2.0 (3,1 GHz Xeon Gold 6254, TurboBoost 4,0 GHz)"
+                                     },
+                                     "minimalVMConfig": {
+                                       "vCPU": 1
+                                     , "RAM": 1
+                                     , "linuxStorage": 16
+                                     , "windowsStorage": 40
+                                     },
+                                     "maxVMConfig": {
+                                       "vCPU": 144
+                                     , "RAM": 1536
+                                     , "storage": 61440
+                                     },
+                                     "resourcesPricing": {
+                                       "vCPUPrice": {
+                                         "id": 0,
+                                         "name": "vCPUPrice",
+                                         "l18n": {
+                                           "ru": "vCPU ядра",
+                                           "en": "vCPU cores"
+                                         },
+                                         "currencyPrice": [
+                                           {
+                                             "id": 0,
+                                             "name": "RUBperHour",
+                                             "l18n": {
+                                               "ru": "руб. в час",
+                                               "en": "rub. per hour"
+                                             },
+                                             "value": 1.57
+                                           }
+                                         ]
+                                       }
+                                     , "RAMPrice": {
+                                         "id": 0,
+                                         "name": "RAMPrice",
+                                         "l18n": {
+                                           "ru": "RAM оперативная память",
+                                           "en": "RAM random access memory"
+                                         },
+                                         "currencyPrice": [
+                                           {
+                                             "id": 0,
+                                             "name": "RUBperHour",
+                                             "l18n": {
+                                               "ru": "руб. в час",
+                                               "en": "rub. per hour"
+                                             },
+                                             "value": 0.8
+                                           }
+                                         ]
+                                       }
+                                     , "StoragePrice": [
+                                         {
+                                           "id": 0,
+                                           "name": "StorageTier0Price",
+                                           "l18n": {
+                                             "ru": "SSD Basic (0,4 IOPS на 1 ГБ)",
+                                             "en": "SSD Basic (0,4 IOPS per 1 GB)"
+                                           },
+                                           "currencyPrice": [
+                                             {
+                                               "id": 0,
+                                               "name": "RUBperHour",
+                                               "l18n": {
+                                                 "ru": "руб. в час",
+                                                 "en": "rub. per hour"
+                                               },
+                                               "value": 0.01
+                                             }
+                                           ]
+                                         },
+                                         {
+                                           "id": 1,
+                                           "name": "StorageTier1Price",
+                                           "l18n": {
+                                             "ru": "SSD Fast (2 IOPS на 1 ГБ)",
+                                             "en": "SSD Fast (2 IOPS per 1 GB)"
+                                           },
+                                           "currencyPrice": [
+                                             {
+                                               "id": 0,
+                                               "name": "RUBperHour",
+                                               "l18n": {
+                                                 "ru": "руб. в час",
+                                                 "en": "rub. per hour"
+                                               },
+                                               "value": 0.02
+                                             }
+                                           ]
+                                         },
+                                         {
+                                           "id": 2,
+                                           "name": "StorageTier2Price",
+                                           "l18n": {
+                                             "ru": "SSD Ultra (10 IOPS на 1 ГБ)",
+                                             "en": "SSD Ultra (10 IOPS per 1 GB)"
+                                           },
+                                           "currencyPrice": [
+                                             {
+                                               "id": 0,
+                                               "name": "RUBperHour",
+                                               "l18n": {
+                                                 "ru": "руб. в час",
+                                                 "en": "rub. per hour"
+                                               },
+                                               "value": 0.04
+                                             }
+                                           ]
+                                         }
+                                       ]
+                                     }
+                                   }
+                                 ]
+                               }
+                             , {
+                                 "id": 1,
+                                 "name": "DataPro",
+                                 "l18n" : {
+                                   "ru": "DataPro",
+                                   "en": "DataPro"
+                                 },
+                                 "segments" : [
+                                   {
+                                     "id": 0,
+                                     "name": "Bronze",
+                                     "l18n" : {
+                                       "ru": "Bronze (2,3 ГГц Xeon Gold 6140, TurboBoost 3,7 ГГц)",
+                                       "en": "Bronze (2,3 GHz Xeon Gold 6140, TurboBoost 3,7 GHz)"
+                                     },
+                                     "minimalVMConfig": {
+                                       "vCPU": 1
+                                     , "RAM": 1
+                                     , "linuxStorage": 16
+                                     , "windowsStorage": 40
+                                     },
+                                     "maxVMConfig": {
+                                       "vCPU": 72
+                                     , "RAM": 512
+                                     , "storage": 61440
+                                     },
+                                     "resourcesPricing": {
+                                       "vCPUPrice": {
+                                         "id": 0,
+                                         "name": "vCPUPrice",
+                                         "l18n": {
+                                           "ru": "vCPU ядра",
+                                           "en": "vCPU cores"
+                                         },
+                                         "currencyPrice": [
+                                           {
+                                             "id": 0,
+                                             "name": "RUBperHour",
+                                             "l18n": {
+                                               "ru": "руб. в час",
+                                               "en": "rub. per hour"
+                                             },
+                                             "value": 0.8
+                                           }
+                                         ]
+                                       }
+                                     , "RAMPrice": {
+                                         "id": 0,
+                                         "name": "RAMPrice",
+                                         "l18n": {
+                                           "ru": "RAM оперативная память",
+                                           "en": "RAM random access memory"
+                                         },
+                                         "currencyPrice": [
+                                           {
+                                             "id": 0,
+                                             "name": "RUBperHour",
+                                             "l18n": {
+                                               "ru": "руб. в час",
+                                               "en": "rub. per hour"
+                                             },
+                                             "value": 0.8
+                                           }
+                                         ]
+                                       }
+                                     , "StoragePrice": [
+                                         {
+                                           "id": 0,
+                                           "name": "StorageTier0Price",
+                                           "l18n": {
+                                             "ru": "nonSSD (50 IOPS на 500 ГБ)",
+                                             "en": "nonSSD (50 IOPS per 500 GB)"
+                                           },
+                                           "currencyPrice": [
+                                             {
+                                               "id": 0,
+                                               "name": "RUBperHour",
+                                               "l18n": {
+                                                 "ru": "руб. в час",
+                                                 "en": "rub. per hour"
+                                               },
+                                               "value": 0.01
+                                             }
+                                           ]
+                                         },
+                                         {
+                                           "id": 1,
+                                           "name": "StorageTier1Price",
+                                           "l18n": {
+                                             "ru": "SAS (250 IOPS на 500 ГБ)",
+                                             "en": "SAS (250 IOPS per 500 GB)"
+                                           },
+                                           "currencyPrice": [
+                                             {
+                                               "id": 0,
+                                               "name": "RUBperHour",
+                                               "l18n": {
+                                                 "ru": "руб. в час",
+                                                 "en": "rub. per hour"
+                                               },
+                                               "value": 0.02
+                                             }
+                                           ]
+                                         },
+                                         {
+                                           "id": 2,
+                                           "name": "StorageTier2Price",
+                                           "l18n": {
+                                             "ru": "SSD (500 IOPS на 500 ГБ)",
+                                             "en": "SSD (500 IOPS per 500 GB)"
+                                           },
+                                           "currencyPrice": [
+                                             {
+                                               "id": 0,
+                                               "name": "RUBperHour",
+                                               "l18n": {
+                                                 "ru": "руб. в час",
+                                                 "en": "rub. per hour"
+                                               },
+                                               "value": 0.04
+                                             }
+                                           ]
+                                         }
+                                       ]
+                                     }
+                                   }
+                                 , {
+                                     "id": 1,
+                                     "name": "Silver",
+                                     "l18n" : {
+                                       "ru": "Silver (2,6 ГГц Xeon Gold 6132, TurboBoost 3,7 ГГц)",
+                                       "en": "Silver (2,6 GHz Xeon Gold 6132, TurboBoost 3,7 GHz)"
+                                     },
+                                     "minimalVMConfig": {
+                                       "vCPU": 1
+                                     , "RAM": 1
+                                     , "linuxStorage": 16
+                                     , "windowsStorage": 40
+                                     },
+                                     "maxVMConfig": {
+                                       "vCPU": 112
+                                     , "RAM": 1536
+                                     , "storage": 61440
+                                     },
+                                     "resourcesPricing": {
+                                       "vCPUPrice": {
+                                         "id": 0,
+                                         "name": "vCPUPrice",
+                                         "l18n": {
+                                           "ru": "vCPU ядра",
+                                           "en": "vCPU cores"
+                                         },
+                                         "currencyPrice": [
+                                           {
+                                             "id": 0,
+                                             "name": "RUBperHour",
+                                             "l18n": {
+                                               "ru": "руб. в час",
+                                               "en": "rub. per hour"
+                                             },
+                                             "value": 1
+                                           }
+                                         ]
+                                       }
+                                     , "RAMPrice": {
+                                         "id": 0,
+                                         "name": "RAMPrice",
+                                         "l18n": {
+                                           "ru": "RAM оперативная память",
+                                           "en": "RAM random access memory"
+                                         },
+                                         "currencyPrice": [
+                                           {
+                                             "id": 0,
+                                             "name": "RUBperHour",
+                                             "l18n": {
+                                               "ru": "руб. в час",
+                                               "en": "rub. per hour"
+                                             },
+                                             "value": 0.8
+                                           }
+                                         ]
+                                       }
+                                     , "StoragePrice": [
+                                         {
+                                           "id": 0,
+                                           "name": "StorageTier0Price",
+                                           "l18n": {
+                                             "ru": "nonSSD (50 IOPS на 500 ГБ)",
+                                             "en": "nonSSD (50 IOPS per 500 GB)"
+                                           },
+                                           "currencyPrice": [
+                                             {
+                                               "id": 0,
+                                               "name": "RUBperHour",
+                                               "l18n": {
+                                                 "ru": "руб. в час",
+                                                 "en": "rub. per hour"
+                                               },
+                                               "value": 0.01
+                                             }
+                                           ]
+                                         },
+                                         {
+                                           "id": 1,
+                                           "name": "StorageTier1Price",
+                                           "l18n": {
+                                             "ru": "SAS (250 IOPS на 500 ГБ)",
+                                             "en": "SAS (250 IOPS per 500 GB)"
+                                           },
+                                           "currencyPrice": [
+                                             {
+                                               "id": 0,
+                                               "name": "RUBperHour",
+                                               "l18n": {
+                                                 "ru": "руб. в час",
+                                                 "en": "rub. per hour"
+                                               },
+                                               "value": 0.02
+                                             }
+                                           ]
+                                         },
+                                         {
+                                           "id": 2,
+                                           "name": "StorageTier2Price",
+                                           "l18n": {
+                                             "ru": "SSD (500 IOPS на 500 ГБ)",
+                                             "en": "SSD (500 IOPS per 500 GB)"
+                                           },
+                                           "currencyPrice": [
+                                             {
+                                               "id": 0,
+                                               "name": "RUBperHour",
+                                               "l18n": {
+                                                 "ru": "руб. в час",
+                                                 "en": "rub. per hour"
+                                               },
+                                               "value": 0.04
+                                             }
+                                           ]
+                                         }
+                                       ]
+                                     }
+                                   }
+                                 , {
+                                     "id": 2,
+                                     "name": "Gold",
+                                     "l18n" : {
+                                       "ru": "Gold (3,5 ГГц Xeon Gold 6144, TurboBoost 4,2 ГГц)",
+                                       "en": "Gold (3,5 GHz Xeon Gold 6144, TurboBoost 4,2 GHz)"
+                                     },
+                                     "minimalVMConfig": {
+                                       "vCPU": 1
+                                     , "RAM": 1
+                                     , "linuxStorage": 16
+                                     , "windowsStorage": 40
+                                     },
+                                     "maxVMConfig": {
+                                       "vCPU": 32
+                                     , "RAM": 768
+                                     , "storage": 61440
+                                     },
+                                     "resourcesPricing": {
+                                       "vCPUPrice": {
+                                         "id": 0,
+                                         "name": "vCPUPrice",
+                                         "l18n": {
+                                           "ru": "vCPU ядра",
+                                           "en": "vCPU cores"
+                                         },
+                                         "currencyPrice": [
+                                           {
+                                             "id": 0,
+                                             "name": "RUBperHour",
+                                             "l18n": {
+                                               "ru": "руб. в час",
+                                               "en": "rub. per hour"
+                                             },
+                                             "value": 1.57
+                                           }
+                                         ]
+                                       }
+                                     , "RAMPrice": {
+                                         "id": 0,
+                                         "name": "RAMPrice",
+                                         "l18n": {
+                                           "ru": "RAM оперативная память",
+                                           "en": "RAM random access memory"
+                                         },
+                                         "currencyPrice": [
+                                           {
+                                             "id": 0,
+                                             "name": "RUBperHour",
+                                             "l18n": {
+                                               "ru": "руб. в час",
+                                               "en": "rub. per hour"
+                                             },
+                                             "value": 0.8
+                                           }
+                                         ]
+                                       }
+                                     , "StoragePrice": [
+                                         {
+                                           "id": 0,
+                                           "name": "StorageTier0Price",
+                                           "l18n": {
+                                             "ru": "nonSSD (50 IOPS на 500 ГБ)",
+                                             "en": "nonSSD (50 IOPS per 500 GB)"
+                                           },
+                                           "currencyPrice": [
+                                             {
+                                               "id": 0,
+                                               "name": "RUBperHour",
+                                               "l18n": {
+                                                 "ru": "руб. в час",
+                                                 "en": "rub. per hour"
+                                               },
+                                               "value": 0.01
+                                             }
+                                           ]
+                                         },
+                                         {
+                                           "id": 1,
+                                           "name": "StorageTier1Price",
+                                           "l18n": {
+                                             "ru": "SAS (250 IOPS на 500 ГБ)",
+                                             "en": "SAS (250 IOPS per 500 GB)"
+                                           },
+                                           "currencyPrice": [
+                                             {
+                                               "id": 0,
+                                               "name": "RUBperHour",
+                                               "l18n": {
+                                                 "ru": "руб. в час",
+                                                 "en": "rub. per hour"
+                                               },
+                                               "value": 0.02
+                                             }
+                                           ]
+                                         },
+                                         {
+                                           "id": 2,
+                                           "name": "StorageTier2Price",
+                                           "l18n": {
+                                             "ru": "SSD (500 IOPS на 500 ГБ)",
+                                             "en": "SSD (500 IOPS per 500 GB)"
+                                           },
+                                           "currencyPrice": [
+                                             {
+                                               "id": 0,
+                                               "name": "RUBperHour",
+                                               "l18n": {
+                                                 "ru": "руб. в час",
+                                                 "en": "rub. per hour"
+                                               },
+                                               "value": 0.04
+                                             }
+                                           ]
+                                         }
+                                       ]
+                                     }
+                                   }
+                                 ]
+                               }
+                             , {
+                                 "id": 2,
+                                 "name": "CDC",
+                                 "l18n" : {
+                                   "ru": "КЦОД (недоступно для новых подключений)",
+                                   "en": "Corporate Datacenter (unavailable to new users)"
+                                 },
+                                 "segments" : [
+                                   {
+                                     "id": 0,
+                                     "name": "Standard",
+                                     "l18n" : {
+                                       "ru": "Standard (2,6 ГГц Xeon E5-2660 v3, TurboBoost 3,3 ГГц)",
+                                       "en": "Standard (2,6 GHz Xeon E5-2660 v3, TurboBoost 3,3 GHz)"
+                                     },
+                                     "minimalVMConfig": {
+                                       "vCPU": 1
+                                     , "RAM": 1
+                                     , "linuxStorage": 16
+                                     , "windowsStorage": 40
+                                     },
+                                     "maxVMConfig": {
+                                       "vCPU": 40
+                                     , "RAM": 256
+                                     , "storage": 61440
+                                     },
+                                     "resourcesPricing": {
+                                       "vCPUPrice": {
+                                         "id": 0,
+                                         "name": "vCPUPrice",
+                                         "l18n": {
+                                           "ru": "vCPU ядра",
+                                           "en": "vCPU cores"
+                                         },
+                                         "currencyPrice": [
+                                           {
+                                             "id": 0,
+                                             "name": "RUBperHour",
+                                             "l18n": {
+                                               "ru": "руб. в час",
+                                               "en": "rub. per hour"
+                                             },
+                                             "value": 0.8
+                                           }
+                                         ]
+                                       }
+                                     , "RAMPrice": {
+                                         "id": 0,
+                                         "name": "RAMPrice",
+                                         "l18n": {
+                                           "ru": "RAM оперативная память",
+                                           "en": "RAM random access memory"
+                                         },
+                                         "currencyPrice": [
+                                           {
+                                             "id": 0,
+                                             "name": "RUBperHour",
+                                             "l18n": {
+                                               "ru": "руб. в час",
+                                               "en": "rub. per hour"
+                                             },
+                                             "value": 0.8
+                                           }
+                                         ]
+                                       }
+                                     , "StoragePrice": [
+                                         {
+                                           "id": 0,
+                                           "name": "StorageTier0Price",
+                                           "l18n": {
+                                             "ru": "nonSSD (50 IOPS на 500 ГБ)",
+                                             "en": "nonSSD (50 IOPS per 500 GB)"
+                                           },
+                                           "currencyPrice": [
+                                             {
+                                               "id": 0,
+                                               "name": "RUBperHour",
+                                               "l18n": {
+                                                 "ru": "руб. в час",
+                                                 "en": "rub. per hour"
+                                               },
+                                               "value": 0.01
+                                             }
+                                           ]
+                                         },
+                                         {
+                                           "id": 1,
+                                           "name": "StorageTier1Price",
+                                           "l18n": {
+                                             "ru": "SAS (250 IOPS на 500 ГБ)",
+                                             "en": "SAS (250 IOPS per 500 GB)"
+                                           },
+                                           "currencyPrice": [
+                                             {
+                                               "id": 0,
+                                               "name": "RUBperHour",
+                                               "l18n": {
+                                                 "ru": "руб. в час",
+                                                 "en": "rub. per hour"
+                                               },
+                                               "value": 0.02
+                                             }
+                                           ]
+                                         },
+                                         {
+                                           "id": 2,
+                                           "name": "StorageTier2Price",
+                                           "l18n": {
+                                             "ru": "SSD (500 IOPS на 500 ГБ)",
+                                             "en": "SSD (500 IOPS per 500 GB)"
+                                           },
+                                           "currencyPrice": [
+                                             {
+                                               "id": 0,
+                                               "name": "RUBperHour",
+                                               "l18n": {
+                                                 "ru": "руб. в час",
+                                                 "en": "rub. per hour"
+                                               },
+                                               "value": 0.04
+                                             }
+                                           ]
+                                         }
+                                       ]
+                                     }
+                                   }
+                                 , {
+                                     "id": 1,
+                                     "name": "Silver",
+                                     "l18n" : {
+                                       "ru": "Silver (2,6 ГГц Xeon Gold 6132, TurboBoost 3,7 ГГц)",
+                                       "en": "Silver (2,6 GHz Xeon Gold 6132, TurboBoost 3,7 GHz)"
+                                     },
+                                     "minimalVMConfig": {
+                                       "vCPU": 1
+                                     , "RAM": 1
+                                     , "linuxStorage": 16
+                                     , "windowsStorage": 40
+                                     },
+                                     "maxVMConfig": {
+                                       "vCPU": 112
+                                     , "RAM": 1536
+                                     , "storage": 61440
+                                     },
+                                     "resourcesPricing": {
+                                       "vCPUPrice": {
+                                         "id": 0,
+                                         "name": "vCPUPrice",
+                                         "l18n": {
+                                           "ru": "vCPU ядра",
+                                           "en": "vCPU cores"
+                                         },
+                                         "currencyPrice": [
+                                           {
+                                             "id": 0,
+                                             "name": "RUBperHour",
+                                             "l18n": {
+                                               "ru": "руб. в час",
+                                               "en": "rub. per hour"
+                                             },
+                                             "value": 1
+                                           }
+                                         ]
+                                       }
+                                     , "RAMPrice": {
+                                         "id": 0,
+                                         "name": "RAMPrice",
+                                         "l18n": {
+                                           "ru": "RAM оперативная память",
+                                           "en": "RAM random access memory"
+                                         },
+                                         "currencyPrice": [
+                                           {
+                                             "id": 0,
+                                             "name": "RUBperHour",
+                                             "l18n": {
+                                               "ru": "руб. в час",
+                                               "en": "rub. per hour"
+                                             },
+                                             "value": 0.8
+                                           }
+                                         ]
+                                       }
+                                     , "StoragePrice": [
+                                         {
+                                           "id": 0,
+                                           "name": "StorageTier0Price",
+                                           "l18n": {
+                                             "ru": "nonSSD (50 IOPS на 500 ГБ)",
+                                             "en": "nonSSD (50 IOPS per 500 GB)"
+                                           },
+                                           "currencyPrice": [
+                                             {
+                                               "id": 0,
+                                               "name": "RUBperHour",
+                                               "l18n": {
+                                                 "ru": "руб. в час",
+                                                 "en": "rub. per hour"
+                                               },
+                                               "value": 0.01
+                                             }
+                                           ]
+                                         },
+                                         {
+                                           "id": 1,
+                                           "name": "StorageTier1Price",
+                                           "l18n": {
+                                             "ru": "SAS (250 IOPS на 500 ГБ)",
+                                             "en": "SAS (250 IOPS per 500 GB)"
+                                           },
+                                           "currencyPrice": [
+                                             {
+                                               "id": 0,
+                                               "name": "RUBperHour",
+                                               "l18n": {
+                                                 "ru": "руб. в час",
+                                                 "en": "rub. per hour"
+                                               },
+                                               "value": 0.02
+                                             }
+                                           ]
+                                         },
+                                         {
+                                           "id": 2,
+                                           "name": "StorageTier2Price",
+                                           "l18n": {
+                                             "ru": "SSD (500 IOPS на 500 ГБ)",
+                                             "en": "SSD (500 IOPS per 500 GB)"
+                                           },
+                                           "currencyPrice": [
+                                             {
+                                               "id": 0,
+                                               "name": "RUBperHour",
+                                               "l18n": {
+                                                 "ru": "руб. в час",
+                                                 "en": "rub. per hour"
+                                               },
+                                               "value": 0.04
+                                             }
+                                           ]
+                                         }
+                                       ]
+                                     }
+                                   }
+                                 , {
+                                     "id": 2,
+                                     "name": "Gold",
+                                     "l18n" : {
+                                       "ru": "Gold (3,5 ГГц Xeon Gold 6144, TurboBoost 4,2 ГГц)",
+                                       "en": "Gold (3,5 GHz Xeon Gold 6144, TurboBoost 4,2 GHz)"
+                                     },
+                                     "minimalVMConfig": {
+                                       "vCPU": 1
+                                     , "RAM": 1
+                                     , "linuxStorage": 16
+                                     , "windowsStorage": 40
+                                     },
+                                     "maxVMConfig": {
+                                       "vCPU": 32
+                                     , "RAM": 768
+                                     , "storage": 61440
+                                     },
+                                     "resourcesPricing": {
+                                       "vCPUPrice": {
+                                         "id": 0,
+                                         "name": "vCPUPrice",
+                                         "l18n": {
+                                           "ru": "vCPU ядра",
+                                           "en": "vCPU cores"
+                                         },
+                                         "currencyPrice": [
+                                           {
+                                             "id": 0,
+                                             "name": "RUBperHour",
+                                             "l18n": {
+                                               "ru": "руб. в час",
+                                               "en": "rub. per hour"
+                                             },
+                                             "value": 1.57
+                                           }
+                                         ]
+                                       }
+                                     , "RAMPrice": {
+                                         "id": 0,
+                                         "name": "RAMPrice",
+                                         "l18n": {
+                                           "ru": "RAM оперативная память",
+                                           "en": "RAM random access memory"
+                                         },
+                                         "currencyPrice": [
+                                           {
+                                             "id": 0,
+                                             "name": "RUBperHour",
+                                             "l18n": {
+                                               "ru": "руб. в час",
+                                               "en": "rub. per hour"
+                                             },
+                                             "value": 0.8
+                                           }
+                                         ]
+                                       }
+                                     , "StoragePrice": [
+                                         {
+                                           "id": 0,
+                                           "name": "StorageTier0Price",
+                                           "l18n": {
+                                             "ru": "nonSSD (50 IOPS на 500 ГБ)",
+                                             "en": "nonSSD (50 IOPS per 500 GB)"
+                                           },
+                                           "currencyPrice": [
+                                             {
+                                               "id": 0,
+                                               "name": "RUBperHour",
+                                               "l18n": {
+                                                 "ru": "руб. в час",
+                                                 "en": "rub. per hour"
+                                               },
+                                               "value": 0.01
+                                             }
+                                           ]
+                                         },
+                                         {
+                                           "id": 1,
+                                           "name": "StorageTier1Price",
+                                           "l18n": {
+                                             "ru": "SAS (250 IOPS на 500 ГБ)",
+                                             "en": "SAS (250 IOPS per 500 GB)"
+                                           },
+                                           "currencyPrice": [
+                                             {
+                                               "id": 0,
+                                               "name": "RUBperHour",
+                                               "l18n": {
+                                                 "ru": "руб. в час",
+                                                 "en": "rub. per hour"
+                                               },
+                                               "value": 0.02
+                                             }
+                                           ]
+                                         },
+                                         {
+                                           "id": 2,
+                                           "name": "StorageTier2Price",
+                                           "l18n": {
+                                             "ru": "SSD (500 IOPS на 500 ГБ)",
+                                             "en": "SSD (500 IOPS per 500 GB)"
+                                           },
+                                           "currencyPrice": [
+                                             {
+                                               "id": 0,
+                                               "name": "RUBperHour",
+                                               "l18n": {
+                                                 "ru": "руб. в час",
+                                                 "en": "rub. per hour"
+                                               },
+                                               "value": 0.04
+                                             }
+                                           ]
+                                         }
+                                       ]
+                                     }
+                                   }
+                                 ]
+                               }
+                             ]
+                           }
+                         ]
+                     }
+    ]
+}

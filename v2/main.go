@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	elasticCloudCalculator "plugndo.com/service_calculator/cloud_mts/pricing/ElasticCloudCalculator"
 	"strconv"
 	"time"
 )
@@ -42,6 +43,11 @@ func startService() {
 
 	apiPath := "/api"
 	mux.HandleFunc(apiPath+"/version", testApi)
+
+	elasticCloudApiPath := "/elasticCloud"
+
+	mux.HandleFunc(apiPath + elasticCloudApiPath + "/getPrice", elasticCloudCalculator.GetPrice)
+	mux.HandleFunc(apiPath + elasticCloudApiPath + "/getBillingModels", elasticCloudCalculator.GetBillingModels)
 
 	fileServer := http.FileServer(http.Dir("./frontend"))
 	mux.Handle("/", http.StripPrefix("/", fileServer))
