@@ -113,7 +113,7 @@
             "name_Windows value_Windows value_Windows"
             "name_Internet value_Internet value_Internet"
             "name_IPv4 value_IPv4 dimension_IPv4"
-            "name_IPv4subnet value_IPv4subnet value_IPv4subnet"
+            "name_IPv4subnet value_IPv4subnet dimension_IPv4subnet"
             "name_IPv6 value_IPv6 dimension_IPv6"
             "name_vBackup value_vBackup dimension_vBackup"
             "name_BackupVM value_BackupVM dimension_BackupVM"
@@ -388,6 +388,19 @@
 .ecc_chooser_value_IPv4subnet {
     grid-area: value_IPv4subnet;
     margin: 2mm 0 0 0;
+}
+
+.ecc_chooser_dimension_IPv4subnet {
+    grid-area: dimension_IPv4subnet;
+    margin: 2mm 0 2mm 0;
+    padding: 1mm 1mm 1mm 1mm;
+    justify-self: left;
+    background: rgb(114, 114, 114);
+    color: white;
+}
+
+.ecc_chooser_dimension_IPv4subnet:hover {
+    cursor: pointer;
 }
 
 .ecc_chooser_name_vBackup {

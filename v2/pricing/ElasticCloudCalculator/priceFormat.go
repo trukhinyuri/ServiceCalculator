@@ -39,29 +39,29 @@ type Segments struct {
 	L18N	L18N	`json:"l18n"`
 	MinimalVMConfig MinimalVMConfig `json:"minimalVMConfig"`
 	MaxVMConfig MaxVMConfig `json:"maxVMConfig"`
-	ResourcesPricing ResourcesPricing `json:"resourcePricing"`
+	ResourcesPricing ResourcesPricing `json:"resourcesPricing"`
 }
 
 type MinimalVMConfig struct {
-	vCPU int64 `json:"vCPU"`
+	VCPU int64 `json:"vCPU"`
 	RAM int64 `json:"RAM"`
 	LinuxStorage int64 `json:"linuxStorage"`
 	WindowsStorage int64 `json:"windowsStorage"`
 }
 
 type MaxVMConfig struct {
-	vCPU int64 `json:"vCPU"`
+	VCPU int64 `json:"vCPU"`
 	RAM int64 `json:"RAM"`
 	Storage int64 `json:"storage"`
 }
 
 type ResourcesPricing struct {
-	vCPUPrice vCPUPrice `json:"vCPUPrice"`
+	VCPUPrice VCPUPrice `json:"vCPUPrice"`
 	RAMPrice RAMPrice `json:"RAMPrice"`
-	StoragePrice []StoragePrice `json:"storagePrice"`
+	StoragePrice []StoragePrice `json:"StoragePrice"`
 }
 
-type vCPUPrice struct {
+type VCPUPrice struct {
 	Id      int64  `json:"id"`
 	Name    string `json:"name"`
 	L18N	L18N	`json:"l18n"`

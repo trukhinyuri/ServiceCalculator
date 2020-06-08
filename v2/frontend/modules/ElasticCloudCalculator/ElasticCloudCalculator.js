@@ -9,7 +9,9 @@ class ElasticCloudCalculator {
             this.activateSelectSwitches(SDRoot, "ecc_chooser_value_region");
             this.addSelectorChangedHandler(SDRoot, "ecc_chooser_value_dc_select");
             // this.addSelectorChangedHandler(SDRoot, "ecc_chooser_value_segment_select", this.segmentChanged);
+            this.addSubnetField(SDRoot, "ecc_chooser_addSubnetField");
             this.calculateResultHandler(SDRoot, "ecc_addTo_result");
+
             this.fillDefaultValues(SDRoot);
             // this.addSelectorRegionSwitchLogic(SDRoot);
             // alert(this.getTabChooserValue(SDRoot, "ecc_chooser_value_tarifModel"))
@@ -53,7 +55,35 @@ class ElasticCloudCalculator {
         }
         ElasticCloudCalculator._fillChooser(SDRoot, "ecc_chooser_value_segment", segmentsDefault);
 
+        let ecc_chooser_value_vCPU_input = SDRoot.querySelectorAll("." + "ecc_chooser_value_vCPU_input")[0];
+        ecc_chooser_value_vCPU_input.placeholder = "от " + elasticCloudPrice.billingModel[0].regions[0].datacenters[0].segments[0].minimalVMConfig.vCPU
+            + " до " + "∞";
+        ecc_chooser_value_vCPU_input.value = elasticCloudPrice.billingModel[0].regions[0].datacenters[0].segments[0].minimalVMConfig.vCPU;
+        ecc_chooser_value_vCPU_input.focus();
 
+        let ecc_chooser_value_RAM_input = SDRoot.querySelectorAll("." + "ecc_chooser_value_RAM_input")[0];
+        ecc_chooser_value_RAM_input.placeholder = "от " + elasticCloudPrice.billingModel[0].regions[0].datacenters[0].segments[0].minimalVMConfig.RAM
+            + " до " + "∞";
+        ecc_chooser_value_RAM_input.value = elasticCloudPrice.billingModel[0].regions[0].datacenters[0].segments[0].minimalVMConfig.RAM;
+
+        let ecc_chooser_name_nonSSD = SDRoot.querySelectorAll("." + "ecc_chooser_name_nonSSD")[0];
+        ecc_chooser_name_nonSSD.innerHTML = elasticCloudPrice.billingModel[0].regions[0].datacenters[0].segments[0].resourcesPricing.StoragePrice[0].l18n.ru;
+
+        let ecc_chooser_value_nonSSD_input = SDRoot.querySelectorAll("." + "ecc_chooser_value_nonSSD_input")[0];
+        ecc_chooser_value_nonSSD_input.placeholder = "от 0 до ∞";
+        ecc_chooser_value_nonSSD_input.value = elasticCloudPrice.billingModel[0].regions[0].datacenters[0].segments[0].minimalVMConfig.windowsStorage;
+
+        let ecc_chooser_name_SAS = SDRoot.querySelectorAll("." + "ecc_chooser_name_SAS")[0];
+        ecc_chooser_name_SAS.innerHTML = elasticCloudPrice.billingModel[0].regions[0].datacenters[0].segments[0].resourcesPricing.StoragePrice[1].l18n.ru;
+
+        let ecc_chooser_value_SAS_input = SDRoot.querySelectorAll("." + "ecc_chooser_value_SAS_input")[0];
+        ecc_chooser_value_SAS_input.placeholder = "от 0 до ∞";
+
+        let ecc_chooser_name_SSD = SDRoot.querySelectorAll("." + "ecc_chooser_name_SSD")[0];
+        ecc_chooser_name_SSD.innerHTML = elasticCloudPrice.billingModel[0].regions[0].datacenters[0].segments[0].resourcesPricing.StoragePrice[2].l18n.ru;
+
+        let ecc_chooser_value_SSD_input = SDRoot.querySelectorAll("." + "ecc_chooser_value_SSD_input")[0];
+        ecc_chooser_value_SSD_input.placeholder = "от 0 до ∞";
     }
 
     fillValues(SDRoot) {
@@ -310,6 +340,13 @@ class ElasticCloudCalculator {
     calculateResultHandler (SDRoot, calculateResultButtonClassName) {
         let calculateResultButton = SDRoot.querySelectorAll("." + calculateResultButtonClassName)[0];
         calculateResultButton.addEventListener("click", function () {
+            alert(Modules.Server.getString("/api/elasticCloud/getPrice"));
+        });
+    }
+
+    addSubnetField (SDRoot, addSubnetFieldButtonClassName) {
+        let addSubnetFieldButton = SDRoot.querySelectorAll("." + addSubnetFieldButtonClassName)[0];
+        addSubnetFieldButton.addEventListener("click", function () {
             alert(Modules.Server.getString("/api/elasticCloud/getPrice"));
         });
     }

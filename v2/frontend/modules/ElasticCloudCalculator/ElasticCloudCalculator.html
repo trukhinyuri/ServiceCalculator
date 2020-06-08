@@ -59,30 +59,30 @@
         </div>
         <div class="ecc_chooser_name ecc_chooser_name_vCPU">vCPU ядра</div>
         <div class="ecc_chooser_value ecc_chooser_value_vCPU">
-            <input type="text" placeholder="от 1 до ∞" class="ecc_chooser_value_input ecc_chooser_value_vCPU_input"/>
+            <input type="text" placeholder="" class="ecc_chooser_value_input ecc_chooser_value_vCPU_input"/>
         </div>
         <div class="ecc_chooser_dimension ecc_chooser_dimension_vCPU">штук</div>
         <div class="ecc_chooser_name ecc_chooser_name_RAM">RAM оперативная память</div>
         <div class="ecc_chooser_value ecc_chooser_value_RAM">
-            <input type="text" placeholder="от 1 до ∞" class="ecc_chooser_value_input ecc_chooser_value_RAM_input"/>
+            <input type="text" placeholder="" class="ecc_chooser_value_input ecc_chooser_value_RAM_input"/>
         </div>
         <div class="ecc_chooser_dimension ecc_chooser_dimension_RAM">гигабайт</div>
 
         <div class="ecc_chooser_name ecc_chooser_name_nonSSD">nonSSD хранилище (50 IOPS/500 ГБ)</div>
         <div class="ecc_chooser_value ecc_chooser_value_nonSSD">
-            <input type="text" placeholder="от 0 до ∞" class="ecc_chooser_value_input ecc_chooser_value_nonSSD_input"/>
+            <input type="text" placeholder="" class="ecc_chooser_value_input ecc_chooser_value_nonSSD_input"/>
         </div>
         <div class="ecc_chooser_dimension ecc_chooser_dimension_nonSSD">гигабайт</div>
 
         <div class="ecc_chooser_name ecc_chooser_name_SAS">SAS хранилище (250 IOPS/500 ГБ)</div>
         <div class="ecc_chooser_value ecc_chooser_value_SAS">
-            <input type="text" placeholder="от 0 до ∞" class="ecc_chooser_value_input ecc_chooser_value_SAS_input"/>
+            <input type="text" placeholder="" class="ecc_chooser_value_input ecc_chooser_value_SAS_input"/>
         </div>
         <div class="ecc_chooser_dimension ecc_chooser_dimension_SAS">гигабайт</div>
 
         <div class="ecc_chooser_name ecc_chooser_name_SSD">SSD хранилище (500 IOPS/500 ГБ)</div>
         <div class="ecc_chooser_value ecc_chooser_value_SSD">
-            <input type="text" placeholder="от 0 до ∞" class="ecc_chooser_value_input ecc_chooser_value_SSD_input"/>
+            <input type="text" placeholder="" class="ecc_chooser_value_input ecc_chooser_value_SSD_input"/>
         </div>
         <div class="ecc_chooser_dimension ecc_chooser_dimension_SSD">гигабайт</div>
 
@@ -117,12 +117,22 @@
         </div>
         <div class="ecc_chooser_dimension ecc_chooser_dimension_IPv6"></div>
 
-        <div class="ecc_chooser_name ecc_chooser_name_IPv4subnet">IPv4 в одной подсети</div>
+        <div class="ecc_chooser_name ecc_chooser_name_IPv4subnet">Дополнительные подсети</div>
         <div class="ecc_chooser_value ecc_chooser_value_IPv4subnet">
             <select class="custom-select ecc_chooser_value ecc_chooser_value_IPv4subnet_select">
-                <option class="ecc_chooser_value_option" value="1">Нет</option>
-                <option class="ecc_chooser_value_option" value="2">Да</option>
+                <option class="ecc_chooser_value_option" value="0">Нет</option>
+                <option class="ecc_chooser_value_option" value="1">/30 (4 IPv4)</option>
+                <option class="ecc_chooser_value_option" value="2">/29 (8 IPv4)</option>
+                <option class="ecc_chooser_value_option" value="3">/28 (16 IPv4)</option>
+                <option class="ecc_chooser_value_option" value="4">/27 (32 IPv4)</option>
+                <option class="ecc_chooser_value_option" value="5">/26 (64 IPv4)</option>
+                <option class="ecc_chooser_value_option" value="6">/25 (128 IPv4)</option>
+                <option class="ecc_chooser_value_option" value="7">/24 (256 IPv4)</option>
+                <option class="ecc_chooser_value_option" value="8">/23 (512 IPv4)</option>
             </select>
+        </div>
+        <div class="ecc_chooser_dimension ecc_chooser_dimension_IPv4subnet ecc_chooser_addSubnetField">
+            <span class="ecc_addSubnet_text">+</span>
         </div>
 
         <div class="ecc_chooser_name ecc_chooser_name_vBackup">Backup хранилище</div>
