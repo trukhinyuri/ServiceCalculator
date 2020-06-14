@@ -110,10 +110,10 @@
             "name_SAS value_SAS dimension_SAS"
             "name_SSD value_SSD dimension_SSD"
             "toDO_Options toDO_Options toDO_Options"
-            "name_Windows value_Windows value_Windows"
+            "name_Windows value_Windows dimension_Windows"
             "name_Internet value_Internet value_Internet"
             "name_IPv4 value_IPv4 dimension_IPv4"
-            "name_IPv4subnet value_IPv4subnet dimension_IPv4subnet"
+            "name_IPv4subnet value_IPv4subnet value_IPv4subnet"
             "name_IPv6 value_IPv6 dimension_IPv6"
             "name_vBackup value_vBackup dimension_vBackup"
             "name_BackupVM value_BackupVM dimension_BackupVM"
@@ -330,6 +330,13 @@
 .ecc_chooser_value_Windows {
     grid-area: value_Windows;
     margin: 2mm 0 0 0;
+    display: grid;
+}
+
+.ecc_chooser_dimension_Windows {
+    grid-area: dimension_Windows;
+    align-self: center;
+    color: black;
 }
 
 .ecc_chooser_name_Internet {
@@ -385,21 +392,59 @@
     margin: 2mm 0 0 0;
 }
 
-.ecc_chooser_value_IPv4subnet {
+.ecc_chooser_value_IPv4subnet_space {
     grid-area: value_IPv4subnet;
     margin: 2mm 0 0 0;
+    display: grid;
+    grid-auto-rows: auto;
+    grid-template-columns: 1fr;
+    grid-row-gap: 2mm;
 }
 
-.ecc_chooser_dimension_IPv4subnet {
-    grid-area: dimension_IPv4subnet;
-    margin: 2mm 0 2mm 0;
+.ecc_chooser_value_IPv4subnet_internalSpace {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: auto 1fr;
+    grid-column-gap: 2mm;
+}
+
+.ecc_chooser_value_IPv4subnet {
+    /*display: grid;*/
+
+}
+
+.ecc_chooser_multi_value_hiddenCodeSource {
+    display: none;
+}
+
+.ecc_chooser_addSubnetField {
+    display: grid;
     padding: 1mm 1mm 1mm 1mm;
-    justify-self: left;
+    text-align: center;
     background: rgb(114, 114, 114);
     color: white;
+    width: 4mm;
+    user-select: none;
 }
 
-.ecc_chooser_dimension_IPv4subnet:hover {
+.ecc_chooser_removeSubnetField {
+    display: grid;
+    /*margin: 2mm 0 2mm 0;*/
+    padding: 1mm 1mm 1mm 1mm;
+    text-align:  center;
+    background: rgb(114, 114, 114);
+    color: white;
+    width: 4mm;
+    user-select: none;
+}
+
+
+
+.ecc_chooser_addSubnetField:hover {
+    cursor: pointer;
+}
+
+.ecc_chooser_removeSubnetField {
     cursor: pointer;
 }
 

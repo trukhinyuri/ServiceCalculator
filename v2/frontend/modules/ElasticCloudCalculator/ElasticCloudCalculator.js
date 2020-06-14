@@ -10,6 +10,7 @@ class ElasticCloudCalculator {
             this.addSelectorChangedHandler(SDRoot, "ecc_chooser_value_dc_select");
             // this.addSelectorChangedHandler(SDRoot, "ecc_chooser_value_segment_select", this.segmentChanged);
             this.addSubnetField(SDRoot, "ecc_chooser_addSubnetField");
+            ElasticCloudCalculator.removeSubnetField(SDRoot, "ecc_chooser_removeSubnetField");
             this.calculateResultHandler(SDRoot, "ecc_addTo_result");
 
             this.fillDefaultValues(SDRoot);
@@ -347,8 +348,25 @@ class ElasticCloudCalculator {
     addSubnetField (SDRoot, addSubnetFieldButtonClassName) {
         let addSubnetFieldButton = SDRoot.querySelectorAll("." + addSubnetFieldButtonClassName)[0];
         addSubnetFieldButton.addEventListener("click", function () {
-            alert(Modules.Server.getString("/api/elasticCloud/getPrice"));
+            let parent = SDRoot.querySelectorAll("." + "ecc_chooser_value_IPv4subnet_space")[0];
+            let source = SDRoot.querySelectorAll("." + "ecc_chooser_multi_value_hiddenCodeSource")[0];
+            NodeList.prototype.forEach = Array.prototype.forEach;
+            let children = source.childNodes;
+            children.forEach(function(item){
+                let cln = item.cloneNode(true);
+                parent.appendChild(cln);
+            });
+            ElasticCloudCalculator.removeSubnetField(SDRoot, "ecc_chooser_removeSubnetField");
         });
+    }
+
+    static removeSubnetField (SDRoot, removeSubnetFieldButtonClassName) {
+        let removeSubnetFieldButtons = SDRoot.querySelectorAll("." + removeSubnetFieldButtonClassName);
+        let removeSubnetFieldButtonLatest = removeSubnetFieldButtons[removeSubnetFieldButtons.length - 1];
+        removeSubnetFieldButtonLatest.addEventListener("click", function (e) {
+            let parent = SDRoot.querySelectorAll("." + "ecc_chooser_value_IPv4subnet_space")[0];
+            parent.removeChild(e.target.parentNode.parentNode);
+         });
     }
 
     activateSelectSwitches(SDRoot, tab_chooserClassName) {

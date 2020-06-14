@@ -89,13 +89,12 @@
         <div class="ecc_toDO_Options">
             Опции:
         </div>
-        <div class="ecc_chooser_name ecc_chooser_name_Windows">Требуется Windows</div>
+        <div class="ecc_chooser_name ecc_chooser_name_Windows">Лицензируемые Windows ядра</div>
         <div class="ecc_chooser_value ecc_chooser_value_Windows">
-            <select class="custom-select ecc_chooser_value ecc_chooser_value_Windows_select">
-                <option class="ecc_chooser_value_option" value="1">Нет</option>
-                <option class="ecc_chooser_value_option" value="2">Да</option>
-            </select>
+            <input type="text" placeholder="от 0 до ∞" class="ecc_chooser_value_input ecc_chooser_value_Windows_input"/>
         </div>
+        <div class="ecc_chooser_dimension ecc_chooser_dimension_Windows">штук</div>
+
         <div class="ecc_chooser_name ecc_chooser_name_Internet">Интернет-канал</div>
         <div class="ecc_chooser_value ecc_chooser_value_Internet">
             <select class="custom-select ecc_chooser_value ecc_chooser_value_Internet_select">
@@ -118,21 +117,46 @@
         <div class="ecc_chooser_dimension ecc_chooser_dimension_IPv6"></div>
 
         <div class="ecc_chooser_name ecc_chooser_name_IPv4subnet">Дополнительные подсети</div>
-        <div class="ecc_chooser_value ecc_chooser_value_IPv4subnet">
-            <select class="custom-select ecc_chooser_value ecc_chooser_value_IPv4subnet_select">
-                <option class="ecc_chooser_value_option" value="0">Нет</option>
-                <option class="ecc_chooser_value_option" value="1">/30 (4 IPv4)</option>
-                <option class="ecc_chooser_value_option" value="2">/29 (8 IPv4)</option>
-                <option class="ecc_chooser_value_option" value="3">/28 (16 IPv4)</option>
-                <option class="ecc_chooser_value_option" value="4">/27 (32 IPv4)</option>
-                <option class="ecc_chooser_value_option" value="5">/26 (64 IPv4)</option>
-                <option class="ecc_chooser_value_option" value="6">/25 (128 IPv4)</option>
-                <option class="ecc_chooser_value_option" value="7">/24 (256 IPv4)</option>
-                <option class="ecc_chooser_value_option" value="8">/23 (512 IPv4)</option>
-            </select>
-        </div>
-        <div class="ecc_chooser_dimension ecc_chooser_dimension_IPv4subnet ecc_chooser_addSubnetField">
-            <span class="ecc_addSubnet_text">+</span>
+        <div class="ecc_chooser_value ecc_chooser_value_IPv4subnet_space">
+            <div class="ecc_chooser_value ecc_chooser_value_IPv4subnet_internalSpace">
+                <div class="ecc_chooser_addSubnetField">
+                    <span class="ecc_addSubnet_text">+</span>
+                </div>
+                <div class="ecc_chooser_multi_value ecc_chooser_value_IPv4subnet">
+                    <select class="custom-select ecc_chooser_value ecc_chooser_value_IPv4subnet_select">
+                        <option class="ecc_chooser_value_option" value="0">Нет</option>
+                        <option class="ecc_chooser_value_option" value="1">/30 (4 IPv4)</option>
+                        <option class="ecc_chooser_value_option" value="2">/29 (8 IPv4)</option>
+                        <option class="ecc_chooser_value_option" value="3">/28 (16 IPv4)</option>
+                        <option class="ecc_chooser_value_option" value="4">/27 (32 IPv4)</option>
+                        <option class="ecc_chooser_value_option" value="5">/26 (64 IPv4)</option>
+                        <option class="ecc_chooser_value_option" value="6">/25 (128 IPv4)</option>
+                        <option class="ecc_chooser_value_option" value="7">/24 (256 IPv4)</option>
+                        <option class="ecc_chooser_value_option" value="8">/23 (512 IPv4)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="ecc_chooser_multi_value_hiddenCodeSource">
+                <div class="ecc_chooser_value ecc_chooser_value_IPv4subnet_internalSpace">
+                    <div class="ecc_chooser_multi_value ecc_chooser_removeSubnetField">
+                        <span class="ecc_removeSubnet_text">-</span>
+                    </div>
+                    <div class="ecc_chooser_multi_value ecc_chooser_value_IPv4subnet">
+                        <select class="custom-select ecc_chooser_value ecc_chooser_value_IPv4subnet_select">
+                            <option class="ecc_chooser_value_option" value="0">Нет</option>
+                            <option class="ecc_chooser_value_option" value="1">/30 (4 IPv4)</option>
+                            <option class="ecc_chooser_value_option" value="2">/29 (8 IPv4)</option>
+                            <option class="ecc_chooser_value_option" value="3">/28 (16 IPv4)</option>
+                            <option class="ecc_chooser_value_option" value="4">/27 (32 IPv4)</option>
+                            <option class="ecc_chooser_value_option" value="5">/26 (64 IPv4)</option>
+                            <option class="ecc_chooser_value_option" value="6">/25 (128 IPv4)</option>
+                            <option class="ecc_chooser_value_option" value="7">/24 (256 IPv4)</option>
+                            <option class="ecc_chooser_value_option" value="8">/23 (512 IPv4)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="ecc_chooser_name ecc_chooser_name_vBackup">Backup хранилище</div>
