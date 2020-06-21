@@ -13,7 +13,6 @@ class ElasticCloudCalculator {
             ElasticCloudCalculator.removeSubnetField(SDRoot, "ecc_chooser_removeSubnetField");
             this.calculateResultHandler(SDRoot, "ecc_addTo_result");
 
-            this.fillDefaultValues(SDRoot);
             // this.addSelectorRegionSwitchLogic(SDRoot);
             // alert(this.getTabChooserValue(SDRoot, "ecc_chooser_value_tarifModel"))
         });
@@ -72,19 +71,45 @@ class ElasticCloudCalculator {
 
         let ecc_chooser_value_nonSSD_input = SDRoot.querySelectorAll("." + "ecc_chooser_value_nonSSD_input")[0];
         ecc_chooser_value_nonSSD_input.placeholder = "от 0 до ∞";
-        ecc_chooser_value_nonSSD_input.value = elasticCloudPrice.billingModel[0].regions[0].datacenters[0].segments[0].minimalVMConfig.windowsStorage;
+        ecc_chooser_value_nonSSD_input.value = elasticCloudPrice.billingModel[0].regions[0].datacenters[0].segments[0].minimalVMConfig.linuxStorage;
 
         let ecc_chooser_name_SAS = SDRoot.querySelectorAll("." + "ecc_chooser_name_SAS")[0];
         ecc_chooser_name_SAS.innerHTML = elasticCloudPrice.billingModel[0].regions[0].datacenters[0].segments[0].resourcesPricing.StoragePrice[1].l18n.ru;
 
         let ecc_chooser_value_SAS_input = SDRoot.querySelectorAll("." + "ecc_chooser_value_SAS_input")[0];
         ecc_chooser_value_SAS_input.placeholder = "от 0 до ∞";
+        ecc_chooser_value_SAS_input.value = "" ;
 
         let ecc_chooser_name_SSD = SDRoot.querySelectorAll("." + "ecc_chooser_name_SSD")[0];
         ecc_chooser_name_SSD.innerHTML = elasticCloudPrice.billingModel[0].regions[0].datacenters[0].segments[0].resourcesPricing.StoragePrice[2].l18n.ru;
 
         let ecc_chooser_value_SSD_input = SDRoot.querySelectorAll("." + "ecc_chooser_value_SSD_input")[0];
         ecc_chooser_value_SSD_input.placeholder = "от 0 до ∞";
+        ecc_chooser_value_SSD_input.value = "";
+
+        let ecc_chooser_value_Windows_input = SDRoot.querySelectorAll("." + "ecc_chooser_value_Windows_input")[0];
+        ecc_chooser_value_Windows_input.placeholder = "от 0 до ∞";
+        ecc_chooser_value_Windows_input.value = "";
+
+        let networksDefault = [];
+        for (let i = 0; i < elasticCloudPrice.billingModel[0].regions[0].datacenters[0].segments[0].resourcesPricing.networkSpeed.length; i++) {
+            networksDefault.push(elasticCloudPrice.billingModel[0].regions[0].datacenters[0].segments[0].resourcesPricing.networkSpeed[i].l18n.ru);
+        }
+        ElasticCloudCalculator._fillChooser(SDRoot, "ecc_chooser_value_Internet", networksDefault);
+
+        let ecc_chooser_value_IPv4_input = SDRoot.querySelectorAll("." + "ecc_chooser_value_IPv4_input")[0];
+        ecc_chooser_value_IPv4_input.placeholder = "от 1 до ∞";
+        ecc_chooser_value_IPv4_input.value = "";
+
+        let subnetsDefault = [];
+        for (let i = 0; i < elasticCloudPrice.billingModel[0].regions[0].datacenters[0].segments[0].resourcesPricing.subnet.length; i++) {
+            subnetsDefault.push(elasticCloudPrice.billingModel[0].regions[0].datacenters[0].segments[0].resourcesPricing.subnet[i].l18n.ru);
+        }
+        ElasticCloudCalculator._fillChooser(SDRoot, "ecc_chooser_value_IPv4subnet", subnetsDefault);
+
+        let ecc_chooser_value_USB_input = SDRoot.querySelectorAll("." + "ecc_chooser_value_USB_input")[0];
+        ecc_chooser_value_USB_input.placeholder = "от 0 до ∞";
+        ecc_chooser_value_USB_input.value = "";
     }
 
     fillValues(SDRoot) {
@@ -125,13 +150,16 @@ class ElasticCloudCalculator {
     }
 
     static _fillChooser(SDRoot, chooserClassName, DCstrings) {
-        let chooser_value = SDRoot.querySelectorAll("." + chooserClassName)[0];
-        let chooser_value_select = chooser_value.querySelectorAll("."+ "custom-select")[0];
-        chooser_value_select.innerHTML = "";
-        for (let i = 0; i < DCstrings.length; i++) {
-            chooser_value_select.innerHTML += "<option class=\""+ chooserClassName + "_option\" value=" + i + "\">" +
-                DCstrings[i] +
-                "</option>";
+        let chooser_values = SDRoot.querySelectorAll("." + chooserClassName);
+        for (let j = 0; j < chooser_values.length; j++) {
+            let chooser_value = chooser_values[j];
+            let chooser_value_select = chooser_value.querySelectorAll("."+ "custom-select")[0];
+            chooser_value_select.innerHTML = "";
+            for (let i = 0; i < DCstrings.length; i++) {
+                chooser_value_select.innerHTML += "<option class=\""+ chooserClassName + "_option\" value=" + i + "\">" +
+                    DCstrings[i] +
+                    "</option>";
+            }
         }
     }
 
@@ -341,7 +369,7 @@ class ElasticCloudCalculator {
     calculateResultHandler (SDRoot, calculateResultButtonClassName) {
         let calculateResultButton = SDRoot.querySelectorAll("." + calculateResultButtonClassName)[0];
         calculateResultButton.addEventListener("click", function () {
-            alert(Modules.Server.getString("/api/elasticCloud/getPrice"));
+            console.log(Modules.Server.getString("/api/elasticCloud/getPrice").toString());
         });
     }
 

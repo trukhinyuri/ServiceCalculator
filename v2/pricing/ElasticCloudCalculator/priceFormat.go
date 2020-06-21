@@ -59,6 +59,10 @@ type ResourcesPricing struct {
 	VCPUPrice VCPUPrice `json:"vCPUPrice"`
 	RAMPrice RAMPrice `json:"RAMPrice"`
 	StoragePrice []StoragePrice `json:"StoragePrice"`
+	LicensedWindowsCores LicensedWindowsCores `json:"licensedWindowsCores"`
+	NetworkSpeed []NetworkSpeed `json:"networkSpeed"`
+	Subnet []Subnet `json:"subnet"`
+	USBPort USBPort `json:"usbport"`
 }
 
 type VCPUPrice struct {
@@ -87,4 +91,32 @@ type CurrencyPrice struct {
 	Name    string `json:"name"`
 	L18N	L18N	`json:"l18n"`
 	Value    float64	`json:"value"`
+}
+
+type LicensedWindowsCores struct {
+	Id      int64  `json:"id"`
+	Name    string `json:"name"`
+	L18N	L18N	`json:"l18n"`
+	CurrencyPrice []CurrencyPrice `json:"currencyPrice"`
+}
+
+type NetworkSpeed struct {
+	Id      int64  `json:"id"`
+	Name    string `json:"name"`
+	L18N	L18N	`json:"l18n"`
+	CurrencyPrice []CurrencyPrice `json:"currencyPrice"`
+}
+
+type Subnet struct {
+	Id      int64  `json:"id"`
+	Name    string `json:"name"`
+	L18N	L18N	`json:"l18n"`
+	CurrencyPrice []CurrencyPrice `json:"currencyPrice"`
+}
+
+type USBPort struct {
+	Id      int64  `json:"id"`
+	Name    string `json:"name"`
+	L18N	L18N	`json:"l18n"`
+	CurrencyPrice []CurrencyPrice `json:"currencyPrice"`
 }
