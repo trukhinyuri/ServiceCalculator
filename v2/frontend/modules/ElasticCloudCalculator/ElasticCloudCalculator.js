@@ -12,6 +12,7 @@ class ElasticCloudCalculator {
             this.addSubnetField(SDRoot, "ecc_chooser_addSubnetField");
             ElasticCloudCalculator.removeSubnetField(SDRoot, "ecc_chooser_removeSubnetField");
             this.calculateResultHandler(SDRoot, "ecc_addTo_result");
+            ElasticCloudCalculator.getDataForCalculation(SDRoot);
 
             // this.addSelectorRegionSwitchLogic(SDRoot);
             // alert(this.getTabChooserValue(SDRoot, "ecc_chooser_value_tarifModel"))
@@ -23,6 +24,56 @@ class ElasticCloudCalculator {
         // alert(elasticCloudPriceRaw)
         let elasticCloudPriceJSON = JSON.parse(elasticCloudPriceRaw);
         return elasticCloudPriceJSON;
+    }
+
+    static getDataForCalculation(SDRoot) {
+        let payMethod = ElasticCloudCalculator._getTabChooserActiveId(SDRoot, "ecc_chooser_value_tarifModel");
+        let region = ElasticCloudCalculator._getTabChooserActiveId(SDRoot, "ecc_chooser_value_region");
+        let datacenter = ElasticCloudCalculator._getSelectActiveId(SDRoot, "ecc_chooser_value_dc_select");
+        let segment = ElasticCloudCalculator._getSelectActiveId(SDRoot, "ecc_chooser_value_segment_select");
+        let calculationModel = ElasticCloudCalculator._getTabChooserActiveId(SDRoot, "ecc_chooser_value_calculationModel");
+        let vCPUcores = ElasticCloudCalculator._getFieldValue(SDRoot, "ecc_chooser_value_vCPU_input");
+        let RAM = ElasticCloudCalculator._getFieldValue(SDRoot, "ecc_chooser_value_RAM_input");
+        let nonSSD = ElasticCloudCalculator._getFieldValue(SDRoot, "ecc_chooser_value_nonSSD_input");
+        let SAS = ElasticCloudCalculator._getFieldValue(SDRoot, "ecc_chooser_value_SAS_input");
+        let SSD = ElasticCloudCalculator._getFieldValue(SDRoot, "ecc_chooser_value_SSD_input");
+        let licensedWindowsCores = ElasticCloudCalculator._getFieldValue(SDRoot, "ecc_chooser_value_Windows_input");
+        let networkSpeed = ElasticCloudCalculator._getSelectActiveId(SDRoot, "ecc_chooser_value_Internet_select");
+        let ipv4 = ElasticCloudCalculator._getFieldValue(SDRoot, "ecc_chooser_value_IPv4_input");
+        let subnets = ElasticCloudCalculator._getMultipleSelect(SDRoot, "ecc_chooser_value_IPv4subnet_select")
+        let usbPorts = ElasticCloudCalculator._getFieldValue(SDRoot, "ecc_chooser_value_USB_input");
+        //TODO: calculateObject
+    }
+
+    static _getTabChooserActiveId(SDRoot, tab_chooserClassName) {
+        let tab_chooser = SDRoot.querySelectorAll("." + tab_chooserClassName)[0];
+        let tablinks = tab_chooser.querySelectorAll("." + "tab_chooser_links");
+        let result = -1;
+        for (let i = 0; i < tablinks.length; i++) {
+            if (tablinks[i].classList.contains("tab_chooser_links_selected")) {
+                result = i;
+            }
+        }
+        return result;
+    }
+
+    static _getSelectActiveId(SDRoot, chooserClassName) {
+        let chooser = SDRoot.querySelectorAll("." + chooserClassName)[0];
+        return chooser.selectedIndex;
+    }
+
+    static _getFieldValue(SDRoot, fieldClassName) {
+        let field = SDRoot.querySelectorAll("." + fieldClassName)[0];
+        return field.value;
+    }
+
+    static _getMultipleSelect(SDRoot, multipleSelectClassName) {
+        let resultArray = [];
+        let choosers = SDRoot.querySelectorAll("." + multipleSelectClassName);
+        for (let i = 0; i < choosers.length - 1; i++) {
+            resultArray.push(choosers[i].selectedIndex);
+        }
+        return resultArray;
     }
 
     static _loadDefaults(SDRoot, elasticCloudPrice) {
@@ -366,6 +417,7 @@ class ElasticCloudCalculator {
     _segmentChanged(SDRoot) {
 
     }
+
     calculateResultHandler (SDRoot, calculateResultButtonClassName) {
         let calculateResultButton = SDRoot.querySelectorAll("." + calculateResultButtonClassName)[0];
         calculateResultButton.addEventListener("click", function () {
@@ -408,6 +460,7 @@ class ElasticCloudCalculator {
             });
         }
     }
+
     addChooserClickHandler(SDRoot, chooser, handler) {
         let selector_instance = SDRoot.querySelectorAll("." + chooser)[0];
         let tablinks = selector_instance.querySelectorAll(".tab_chooser_links");
@@ -422,15 +475,13 @@ class ElasticCloudCalculator {
             });
         }
     }
+
     addSelectorChangedHandler(SDRoot, selectorClassName) {
         let selectorInstance = SDRoot.querySelectorAll("." + selectorClassName)[0];
         Modules.Events.addListener(selectorInstance, "change", function (event) {
             ElasticCloudCalculator._formDataChanged(SDRoot, selectorClassName, event.target.id)
         } );
     }
-
-
-
 
     getTabChooserValue(SDRoot, tabChooserClass) {
         let tab_chooser = SDRoot.querySelectorAll("." + tabChooserClass)[0];
@@ -442,12 +493,6 @@ class ElasticCloudCalculator {
             }
         }
     }
-
-
-
-
-
-
 }
 
 let ecc = new ElasticCloudCalculator();
